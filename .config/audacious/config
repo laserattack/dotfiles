@@ -12,8 +12,8 @@ theme=dark
 
 [qtui]
 menu_visible=FALSE
-player_height=687
-player_width=1280
+player_height=686
+player_width=637
 playlist_tabs_visible=0
 
 [search-tool]

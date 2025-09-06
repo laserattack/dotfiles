@@ -1,0 +1,24 @@
+-- Настройка treesitter`a
+
+return {
+    "nvim-treesitter/nvim-treesitter",
+    -- Добавляешь новый парсер - укажи сюда
+    -- расширение файлов, которые он обрабатывает
+    event = {
+        "BufReadPre *.{lua,c,cpp,zig,py}",
+        "BufNewFile *.{lua,c,cpp,zig,py}"
+    },
+    config = function()
+        -- Тут надо указать нужные языки
+        require("nvim-treesitter.configs").setup({
+            ensure_installed = { "c", "cpp", "lua", "zig", "python" },
+            sync_install = true,
+            auto_install = false,
+            highlight = {
+                enable = true,
+                -- Сюда можно написать список парсеров которые отключить 
+                disable = { "markdown", "markdown_inline" },
+            },
+        })
+    end
+}

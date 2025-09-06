@@ -1,8 +1,14 @@
 *
 
 !.bashrc
-
 !.config/
+!.gitignore
+
+!.config/kitty/
+!.config/kitty/**
+
+!.config/fastfetch/
+!.config/fastfetch/**
+
 !.config/nvim/
 !.config/nvim/**
-!.gitignore

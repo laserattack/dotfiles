@@ -30,6 +30,17 @@ local ls_settings = {
                 },
             },
         },
+        handlers = {
+            -- Фильтруем надоедливое предупреждение lua_ls о неправильной рабочей директории
+            -- Это сообщение появляется из-за того, что LSP инициализируется ДО смены рабочей директории
+            -- в автокоманде VimEnter, и временно видит домашнюю директорию как workspace
+            ["window/showMessage"] = function(_, result, ctx)
+                if result.message:find("refused to load this directory") then
+                    return
+                end
+                return vim.lsp.handlers["window/showMessage"](_, result, ctx)
+            end,
+        },
     },
     clangd = {
         cmd = { HOME..'/software/lsp/clangd/bin/clangd' },

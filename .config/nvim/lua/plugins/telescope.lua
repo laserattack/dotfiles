@@ -20,7 +20,7 @@ return {
                     previewer = false,
                     -- Ищу через rg, игнорю директорию с зависимостями
                     find_command = {
-                        "rg", "--files", "--hidden",
+                        "rg", "--files", "--hidden", "--no-ignore",
                         -- "--glob", "!**/deps/**",
                         "--glob", "!**/.git/**"
                     },
@@ -30,6 +30,7 @@ return {
                     vimgrep_arguments = {
                         "rg",
                         "--hidden",
+                        "--no-ignore",
                         "--color=never",
                         "--no-heading",
                         "--with-filename",

@@ -182,5 +182,4 @@ PS1='\[\e[34m\]\w\n\[\e[32m\]→ \[\e[0m\]'
 # Заставляет bash сохранять историю команд немедленно после выполнения каждой команды
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-alias nvim="$HOME/software/nvim/nvim-linux-x86_64/bin/nvim"
 alias nvimd="$HOME/projects/nvim-docker/nvimd.sh"

@@ -1,8 +1,10 @@
 -- Настройка LSP-сервером с использованием Mason!
 
--- Индикатор включенной диагностики
-local diagnostics_active = false
+-- Сюда добавить название сервера который надо скачать
+local required_servers = { "lua_ls", "clangd", "zls" }
 
+-- Функция для включения/выключения диагностики
+local diagnostics_active = false
 local function toggle_diagnostics()
     diagnostics_active = not diagnostics_active
 
@@ -29,12 +31,10 @@ return {
     dependencies = {
         { "mason-org/mason.nvim", opts = {} },
         {
-            'williamboman/mason-lspconfig.nvim',
+            'mason-org/mason-lspconfig.nvim',
             config = function()
                 require("mason-lspconfig").setup({
-                    automatic_installation = true,
-                    -- Список серверов для установки
-                    ensure_installed = { "lua_ls", "clangd", "zls" },
+                    ensure_installed = required_servers,
                 })
             end,
         },

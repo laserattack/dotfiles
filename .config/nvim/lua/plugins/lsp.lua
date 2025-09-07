@@ -56,8 +56,6 @@ local ls_settings = {
         settings = {
             zls = {
                 semantic_tokens = "partial",
-                -- zig уже в PATH, поэтому не указываем zig_exe_path
-                -- enable_build_on_save = true,
                 zig_exe_path = HOME.."/software/lsp/zig/zig-x86_64-linux-0.15.1/zig"
             }
         }

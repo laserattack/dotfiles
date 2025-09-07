@@ -1,74 +1,7 @@
--- Настройки LSP серверов
+-- Настройка LSP-сервером с использованием Mason!
 
 -- Индикатор включенной диагностики
 local diagnostics_active = false
-
--- Чтобы добавить сервер надо в табличку добавить новое поле с его настройками
--- в cmd добавить путь до бинарника сервера
--- еще снизу в поле event добавить аналогичную строку для нового расширения
-local ls_settings = {
-    lua_ls = {
-        cmd = { HOME..'/software/lsp/lua/bin/lua-language-server' },
-        settings = {
-            Lua = {
-                runtime = {
-                    version = 'LuaJIT',
-                },
-                diagnostics = {
-                    -- чтобы не было Undefined global variable vim
-                    globals = { 'vim' }
-                },
-                workspace = {
-                    -- Ограничение на кол-во загружаемых для анализа файлов
-                    -- а то редактирование конфига может жрать 2гб, т.к. грузит
-                    -- кучу .lua файлов. А для простого программирования на .lua 50 файлов хватает
-                    maxPreload = 50,
-                    checkThirdParty = false,
-                },
-                telemetry = {
-                    enable = false,
-                },
-            },
-        },
-        handlers = {
-            -- Фильтруем надоедливое предупреждение lua_ls о неправильной рабочей директории
-            -- Это сообщение появляется из-за того, что LSP инициализируется ДО смены рабочей директории
-            -- в автокоманде VimEnter, и временно видит домашнюю директорию как workspace
-            ["window/showMessage"] = function(_, result, ctx)
-                if result.message:find("refused to load this directory") then
-                    return
-                end
-                return vim.lsp.handlers["window/showMessage"](_, result, ctx)
-            end,
-        },
-    },
-    clangd = {
-        cmd = { HOME..'/software/lsp/clangd/bin/clangd' },
-        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-        single_file_support = true,
-        capabilities = {
-            offsetEncoding = { "utf-16" },
-        },
-    },
-    zls = {
-        cmd = { '/software/lsp/zig/zls' },
-        filetypes = { "zig", "zon" },
-        settings = {
-            zls = {
-                semantic_tokens = "partial",
-                zig_exe_path = HOME.."/software/lsp/zig/zig-x86_64-linux-0.15.1/zig"
-            }
-        }
-    },
-}
-
--- Функция для проверки наличия серверов
-local function check_lsp_path(_, binary_path)
-    if vim.fn.executable(binary_path) ~= 1 then
-        return false
-    end
-    return true
-end
 
 local function toggle_diagnostics()
     diagnostics_active = not diagnostics_active
@@ -93,28 +26,33 @@ end
 
 return {
     'neovim/nvim-lspconfig',
-    -- Плагиз загружается когда либо открывается какой то существующий файл
-    -- или создается какой то новый файл (из перечисленных расширений)
-    event = {
-        "BufReadPre *.{lua,c,cpp,zig,zon}",
-        "BufNewFile *.{lua,c,cpp,zig,zon}"
+    dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        {
+            'williamboman/mason-lspconfig.nvim',
+            config = function()
+                require("mason-lspconfig").setup({
+                    automatic_installation = true,
+                    -- Список серверов для установки
+                    ensure_installed = { "lua_ls", "clangd", "zls" },
+                })
+            end,
+        },
     },
     config = function()
         toggle_diagnostics()
-        -- Выключение/включение предупреждений на полях
+
         vim.keymap.set('n', '<leader>l', toggle_diagnostics, {
             noremap = true,
             silent = true,
         })
-
-        for server_name, server_settings in pairs(ls_settings) do
-            if not check_lsp_path(server_name, server_settings.cmd[1]) then
-               goto continue
+        -- Фильтруем надоедливое предупреждение lua_ls о неправильной рабочей директории
+        local original_handler = vim.lsp.handlers["window/showMessage"]
+        vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
+            if result.message and result.message:find("refused to load this directory") then
+                return
             end
-
-            require("lspconfig")[server_name].setup(server_settings)
-
-            ::continue::
+            return original_handler(_, result, ctx)
         end
     end
 }

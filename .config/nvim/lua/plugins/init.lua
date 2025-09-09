@@ -1,7 +1,7 @@
 -- Настройка менеджера плагинов
 local plugins = {
     "plugins/telescope",
-    "plugins/color-scheme",
+    "plugins/theme",
     "plugins/tree-sitter",
     "plugins/cmp",
     "plugins/lsp",

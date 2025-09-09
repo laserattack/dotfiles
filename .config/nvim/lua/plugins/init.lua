@@ -6,7 +6,7 @@ local plugins = {
     "plugins/cmp",
     "plugins/lsp",
     "plugins/mini-surround",
-    "plugins/oil",
+    "plugins/nvim-tree",
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

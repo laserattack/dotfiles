@@ -3,6 +3,9 @@
 
 vim.opt.shortmess:append("sI")
 
+-- Огромная палитра цветов
+vim.opt.termguicolors = true
+
 -- модлайн в файлах
 vim.opt.modeline = true
 vim.opt.modelines = 5
@@ -11,8 +14,12 @@ vim.opt.modelines = 5
 -- vim.opt.fillchars = { eob = " " }
 
 -- Настройка netrw 
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
+-- vim.g.netrw_banner = 0
+-- vim.g.netrw_liststyle = 3
+
+-- Отключение netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- всегда показывать строку с вкладками
 -- vim.opt.showtabline = 2

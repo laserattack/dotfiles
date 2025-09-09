@@ -2,6 +2,10 @@
 
 -- Сюда добавить название сервера который надо скачать
 local required_servers = { "lua_ls", "clangd", "zls" }
+local event = {
+    "BufReadPre *.{lua,c,cpp,zig}",
+    "BufNewFile *.{lua,c,cpp,zig}"
+}
 
 -- Функция для включения/выключения диагностики
 local diagnostics_active = false
@@ -28,6 +32,7 @@ end
 
 return {
     'neovim/nvim-lspconfig',
+    event = event,
     dependencies = {
         { "mason-org/mason.nvim", opts = {} },
         {
@@ -46,7 +51,8 @@ return {
             noremap = true,
             silent = true,
         })
-        -- Фильтруем надоедливое предупреждение lua_ls о неправильной рабочей директории
+
+        -- Фильтруем надоедливое предупреждение lua_ls
         local original_handler = vim.lsp.handlers["window/showMessage"]
         vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
             if result.message and result.message:find("refused to load this directory") then

@@ -6,6 +6,7 @@ local plugins = {
     "plugins/cmp",
     "plugins/lsp",
     "plugins/mini-surround",
+    "plugins/mini-pairs",
     "plugins/nvim-tree",
 }
 

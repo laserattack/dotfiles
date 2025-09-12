@@ -160,9 +160,9 @@ alias fzfn='file=$(find . -type f | fzf) && n "$file"'
 # а fzfg <TEXT> предварительно сортирует по тем коммитам где есть TEXT
 alias fzfg='_fzfg() {
     if [ $# -eq 0 ]; then 
-        git log --oneline | fzf --preview "git show --color=always {1}";
+        git log --oneline | fzf --ansi --preview "git show --color=always {1}";
     else
-        git log -S "$*" --oneline | fzf --preview "git show --color=always {1}";
+        git log -S "$*" --oneline | fzf --ansi --preview "git show --color=always {1}";
     fi;
 }; _fzfg'
 

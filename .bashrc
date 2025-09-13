@@ -151,7 +151,7 @@ alias rm_git_dirs='find . -type d -name ".git" -exec rm -rf {} +'
 alias clear='tput reset'
 
 alias gs='git status'
-
+alias s='syncthing'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 alias fzfn='file=$(find . -type f | fzf) && n "$file"'

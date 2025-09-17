@@ -1,5 +1,6 @@
 -- Настройка менеджера плагинов
 local plugins = {
+    "plugins/vim-move",
     "plugins/telescope",
     "plugins/theme",
     "plugins/tree-sitter",

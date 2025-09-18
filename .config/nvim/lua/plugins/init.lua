@@ -1,10 +1,11 @@
 -- Настройка менеджера плагинов
+
 local plugins = {
     "plugins/vim-move",
     "plugins/telescope",
     "plugins/theme",
     "plugins/tree-sitter",
-    "plugins/cmp",
+    "plugins/blink-cmp",
     "plugins/lsp",
     "plugins/mini-surround",
     "plugins/mini-pairs",

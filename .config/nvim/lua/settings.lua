@@ -5,7 +5,8 @@
 vim.o.list = true
 vim.opt.listchars = {
     trail = "·",
-    lead = "·"
+    lead = "·",
+    tab = "» "
 }
 
 vim.opt.shortmess:append("sI")

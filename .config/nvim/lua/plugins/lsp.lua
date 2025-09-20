@@ -52,7 +52,6 @@ return {
             silent = true,
         })
 
-        -- Фильтруем надоедливое предупреждение lua_ls
         local original_handler = vim.lsp.handlers["window/showMessage"]
         vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
             if result.message and result.message:find("refused to load this directory") then

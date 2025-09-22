@@ -50,6 +50,7 @@ return {
         vim.keymap.set('n', '<leader>l', toggle_diagnostics, {
             noremap = true,
             silent = true,
+            desc = "LSP toggle diagnostic"
         })
 
         local original_handler = vim.lsp.handlers["window/showMessage"]

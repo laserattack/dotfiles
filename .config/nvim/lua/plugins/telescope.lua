@@ -43,7 +43,8 @@ return {
                 }
             },
         })
-        vim.keymap.set('n', 'ff', builtin.find_files, {})
-        vim.keymap.set('n', 'fg', builtin.live_grep, {})
+        vim.keymap.set('n', 'ff', builtin.find_files, { desc = "Telescope find file" })
+        vim.keymap.set('n', 'fg', builtin.live_grep, { desc = "Telescope find content (grep)" })
+        vim.keymap.set('n', 'fk', builtin.keymaps, { desc = "Telescope find keymap" })
     end
 }

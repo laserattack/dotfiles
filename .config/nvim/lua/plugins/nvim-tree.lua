@@ -5,7 +5,12 @@ return {
     },
     -- Только при нажатии чего то из этого плагин загрузится
     keys = {
-        { "<leader>e", ":NvimTreeToggle<CR>", silent = true, noremap = true }
+        {
+            "<leader>e", ":NvimTreeToggle<CR>",
+            silent = true,
+            noremap = true,
+            desc  = "nvim-tree toggle"
+        }
     },
     config = function()
         local width = math.floor(vim.o.columns * 0.7)

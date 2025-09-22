@@ -1,10 +1,10 @@
 -- Настройка LSP-сервером с использованием Mason!
 
 -- Сюда добавить название сервера который надо скачать
-local required_servers = { "lua_ls", "clangd", "zls" }
+local required_servers = { "lua_ls", "clangd", "zls", "pylsp" }
 local event = {
-    "BufReadPre *.{lua,c,cpp,zig}",
-    "BufNewFile *.{lua,c,cpp,zig}"
+    "BufReadPre *.{lua,c,cpp,zig,py}",
+    "BufNewFile *.{lua,c,cpp,zig,py}"
 }
 
 -- Функция для включения/выключения диагностики

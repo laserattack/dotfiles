@@ -47,5 +47,6 @@ return {
         vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Telescope find content (grep)" })
         vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "Telescope find keymap" })
         vim.keymap.set('n', '<leader>ft', ":TodoTelescope<CR>", { desc = "Telescope find todo comment" })
+        vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
     end
 }

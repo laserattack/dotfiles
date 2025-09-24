@@ -40,7 +40,7 @@ return {
                     },
                 },
                 live_grep = {
-                    vimgrep_arguments = vimgrep_arguments
+                    vimgrep_arguments = vimgrep_arguments,
                 }
             },
         })

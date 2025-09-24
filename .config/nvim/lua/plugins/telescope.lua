@@ -53,7 +53,7 @@ return {
                 use_regex = true,
                 vimgrep_arguments = vimgrep_arguments,
             })
-        end, { desc = "Find TODO comments" })
+        end, { desc = "Telescope find TODO comments" })
         vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
     end
 }

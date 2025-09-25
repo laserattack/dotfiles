@@ -183,3 +183,24 @@ PS1='\[\e[34m\]\w\n\[\e[32m\]→ \[\e[0m\]'
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 alias nvimd="$HOME/projects/nvim-docker/nvimd.sh"
+
+
+# Качает конкретную папку из репозитория
+gcf() {
+    if [ $# -lt 2 ]; then
+        echo "Usage: gcf <repository-url> <folder-path> [branch]"
+        echo "Example: gcf https://github.com/github/codeql.git java/ql/src/Security/CWE"
+        return 1
+    fi
+
+    local repo_url="$1"
+    local folder_path="$2" 
+    local repo_name=$(basename "$repo_url" .git)
+
+    (
+        git clone -n --depth=1 --filter=tree:0 "$repo_url" "$repo_name"
+        cd "$repo_name"
+        git sparse-checkout set --no-cone "$folder_path"
+        git checkout
+    )
+}

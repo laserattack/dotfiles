@@ -204,3 +204,6 @@ gcf() {
         git checkout
     )
 }
+
+export JAVA_HOME="/home/serr/software/jdk-25"
+export PATH="$JAVA_HOME/bin:$PATH"

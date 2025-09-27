@@ -5,13 +5,13 @@ return {
     -- Добавляешь новый парсер - укажи сюда
     -- расширение файлов, которые он обрабатывает
     event = {
-        "BufReadPre *.{lua,c,cpp,zig,py}",
-        "BufNewFile *.{lua,c,cpp,zig,py}"
+        "BufReadPre *.{lua,c,cpp,zig,py,java}",
+        "BufNewFile *.{lua,c,cpp,zig,py,java}"
     },
     config = function()
         -- Тут надо указать нужные языки
         require("nvim-treesitter.configs").setup({
-            ensure_installed = { "c", "cpp", "lua", "zig", "python" },
+            ensure_installed = { "c", "cpp", "lua", "zig", "python", "java" },
             sync_install = true,
             auto_install = false,
             highlight = {

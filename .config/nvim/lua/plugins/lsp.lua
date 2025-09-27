@@ -1,10 +1,5 @@
 -- Настройка LSP-серверов с использованием Mason!
 
-local event = {
-    "BufReadPre *.{lua,c,cpp,zig,py}",
-    "BufNewFile *.{lua,c,cpp,zig,py}"
-}
-
 -- Функция для включения/выключения диагностики
 local diagnostics_active = false
 local function toggle_diagnostics()
@@ -29,21 +24,60 @@ local function toggle_diagnostics()
 end
 
 return {
+    -- регистрирует серверы в системе LSP Neovim
     'neovim/nvim-lspconfig',
-    event = event,
+    event = {
+        "BufReadPre *.{lua,c,cpp,zig,py}",
+        "BufNewFile *.{lua,c,cpp,zig,py}"
+    },
     dependencies = {
         -- с помощью этого плагина можно устанавливать сервера через :MasonInstall servername
         -- и он автоматически кладет директорию '~/.local/share/nvim/mason/bin'
-        -- (там папки серверов) в пути где ищутся исполняемые файлы lsp серверов плагином lspconfig
+        -- (там папки серверов) в пути где ищутся исполняемые файлы lsp серверов
         { "mason-org/mason.nvim", opts = {} },
     },
     config = function()
-        local lspconfig = require('lspconfig')
 
-        lspconfig.lua_ls.setup({})
-        lspconfig.clangd.setup({})
-        lspconfig.zls.setup({})
-        lspconfig.pylsp.setup({})
+        -- Сервера настраиваются через config и становятся доступными через enable
+        -- Если сконфигурировать но не сделать enable, то сервер просто не будет работать
+
+        -- HACK: LSP директория начала анализа (с которой вниз начинается анализ)
+        -- для всех серверов является текущая рабочая директория!.
+        -- Так что neovim для редактирования чего то что использует lsp надо запускать
+        -- через nvim path/to/folder а не через nvim path/to/file
+
+        vim.lsp.config('lua_ls', {
+            root_dir = vim.fn.getcwd(),
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { 'vim' }
+                    },
+                    workspace = {
+                        checkThirdParty = false,
+                    },
+                    telemetry = {
+                        enable = false,
+                    }
+                }
+            }
+        })
+        vim.lsp.enable('lua_ls')
+
+        vim.lsp.config('clangd', {
+            root_dir = vim.fn.getcwd(),
+        })
+        vim.lsp.enable('clangd')
+
+        vim.lsp.config('zls', {
+            root_dir = vim.fn.getcwd(),
+        })
+        vim.lsp.enable('zls')
+
+        vim.lsp.config('pylsp', {
+            root_dir = vim.fn.getcwd(),
+        })
+        vim.lsp.enable('pylsp')
 
         toggle_diagnostics()
 
@@ -53,7 +87,6 @@ return {
             desc = "LSP toggle diagnostic"
         })
 
-        -- дальше всякие фильтры сообщений
         local original_handler = vim.lsp.handlers["window/showMessage"]
         vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
             if result.message and result.message:find("refused to load this directory") then

@@ -1,5 +1,8 @@
 -- Настройка LSP-серверов с использованием Mason!
 
+-- NOTE: LSP сервер для java настраивается в ftplugin/java.lua
+-- и подключается через lua/plugins/jdtls.lua
+
 -- Функция для включения/выключения диагностики
 local diagnostics_active = false
 local function toggle_diagnostics()

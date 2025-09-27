@@ -4,6 +4,8 @@
 -- и подключается через lua/plugins/jdtls.lua
 
 -- Функция для включения/выключения диагностики
+-- TODO: Вынести в utils эту ф-ю, т.к. она еще и в ftplugin/java.lua используется
+-- и вообще подумать что еще повыносить в utils
 local diagnostics_active = false
 local function toggle_diagnostics()
     diagnostics_active = not diagnostics_active

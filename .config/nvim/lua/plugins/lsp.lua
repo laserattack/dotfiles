@@ -3,36 +3,6 @@
 -- NOTE: LSP сервер для java настраивается в ftplugin/java.lua
 -- и подключается через lua/plugins/jdtls.lua
 
--- Функция для включения/выключения диагностики
--- TODO: Вынести в utils эту ф-ю, т.к. она еще и в ftplugin/java.lua используется
--- и вообще подумать что еще повыносить в utils
-local diagnostics_active = false
-local function update_statusline()
-    local status = diagnostics_active and "LSPD:ON" or "LSPD:OFF"
-    vim.opt.statusline = status .. " %f %h%w%m%r%=%l:%c %P"
-end
-local function toggle_diagnostics()
-    diagnostics_active = not diagnostics_active
-
-    if diagnostics_active then
-        vim.diagnostic.config({
-            virtual_text = {
-                virt_text_pos = 'right_align',
-                suffix = " ",
-            },
-            signs = false,
-            underline = false,
-        })
-    else
-        vim.diagnostic.config({
-            virtual_text = false,
-            signs = false,
-            underline = false,
-        })
-    end
-    update_statusline()
-end
-
 return {
     -- регистрирует серверы в системе LSP Neovim
     'neovim/nvim-lspconfig',
@@ -88,14 +58,6 @@ return {
             root_dir = vim.fn.getcwd(),
         })
         vim.lsp.enable('pylsp')
-
-        toggle_diagnostics()
-
-        vim.keymap.set('n', '<leader>l', toggle_diagnostics, {
-            noremap = true,
-            silent = true,
-            desc = "LSP toggle diagnostic"
-        })
 
         local original_handler = vim.lsp.handlers["window/showMessage"]
         vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)

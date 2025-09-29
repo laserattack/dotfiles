@@ -21,7 +21,7 @@ vim.opt.modelines = 5
 -- Тильды (которые вместо номеров в пустых строках) на пробелы заменяю
 -- vim.opt.fillchars = { eob = " " }
 
--- Настройка netrw 
+-- Настройка netrw
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_liststyle = 3
 
@@ -73,30 +73,3 @@ vim.opt.smartindent = true
 
 -- Настройка внешнего вида курсора (во всех режимах одинаковый + мигает)
 vim.opt.guicursor = "a:block-blinkon500-blinkoff500"
-
--- При открытии nvim рабочая директория меняется
--- на директорию с открываемым файлом/папкой
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-    callback = function(data)
-        local target_dir = data.file
-        if vim.fn.isdirectory(data.file) ~= 1 then
-            target_dir = vim.fn.fnamemodify(data.file, ":h")
-        end
-        if target_dir and target_dir ~= "" and vim.fn.isdirectory(target_dir) == 1 then
-            vim.cmd("cd " .. vim.fn.fnameescape(target_dir))
-        end
-    end,
-})
-
--- Автоматическое переключение на US раскладку
--- при заходе в NormalMode (в системе требуется утилита xkb-switch)
-vim.api.nvim_create_autocmd({
-    "InsertLeave",
-    "CmdlineLeave",
-    "TermLeave",
-    "VimEnter",
-}, {
-    callback = function()
-        vim.fn.system("xkb-switch -s us")
-    end,
-})

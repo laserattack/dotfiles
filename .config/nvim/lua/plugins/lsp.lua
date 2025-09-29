@@ -7,6 +7,10 @@
 -- TODO: Вынести в utils эту ф-ю, т.к. она еще и в ftplugin/java.lua используется
 -- и вообще подумать что еще повыносить в utils
 local diagnostics_active = false
+local function update_statusline()
+    local status = diagnostics_active and "LSPD:ON" or "LSPD:OFF"
+    vim.opt.statusline = status .. " %f %h%w%m%r%=%l:%c %P"
+end
 local function toggle_diagnostics()
     diagnostics_active = not diagnostics_active
 
@@ -26,6 +30,7 @@ local function toggle_diagnostics()
             underline = false,
         })
     end
+    update_statusline()
 end
 
 return {

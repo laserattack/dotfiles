@@ -100,3 +100,10 @@ vim.keymap.set({'n','v'}, '<Right>', '<Nop>', {
     silent = true,
     desc = "Disable arrow right key"
 })
+
+vim.keymap.set(
+    'n', '<leader>l', UTILS.toggle_diagnostics, {
+    noremap = true,
+    silent = true,
+    desc = "Toggle diagnostic"
+})

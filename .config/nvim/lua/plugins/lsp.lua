@@ -7,8 +7,8 @@ return {
     -- регистрирует серверы в системе LSP Neovim
     'neovim/nvim-lspconfig',
     event = {
-        "BufReadPre *.{lua,c,cpp,zig,py}",
-        "BufNewFile *.{lua,c,cpp,zig,py}"
+        "BufReadPre *.{lua,c,cpp,zig,py,go}",
+        "BufNewFile *.{lua,c,cpp,zig,py,go}"
     },
     dependencies = {
         -- с помощью этого плагина можно устанавливать сервера через :MasonInstall servername
@@ -58,6 +58,27 @@ return {
             root_dir = vim.fn.getcwd(),
         })
         vim.lsp.enable('pylsp')
+
+        vim.lsp.config('gopls', {
+            root_dir = vim.fn.getcwd(),
+            settings = {
+                gopls = {
+                    staticcheck = true,
+                    gofumpt = true,
+                }
+            },
+            on_attach = function(_, bufnr)
+                -- При подключении LSP к буферу создается эта AutoCmd
+                -- которая при записи в буффер форматирует его
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    buffer = bufnr,
+                    callback = function()
+                        vim.lsp.buf.format({ async = false })
+                    end,
+                })
+            end,
+        })
+        vim.lsp.enable('gopls')
 
         local original_handler = vim.lsp.handlers["window/showMessage"]
         vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)

@@ -205,5 +205,8 @@ gcf() {
     )
 }
 
-export JAVA_HOME="/home/serr/software/jdk-25"
+export JAVA_HOME="$HOME/software/jdk-25"
 export PATH="$JAVA_HOME/bin:$PATH"
+
+export GO_HOME="$HOME/software/go"
+export PATH="$GO_HOME/bin:$PATH"

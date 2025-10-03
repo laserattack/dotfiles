@@ -4,6 +4,7 @@
 !.profile
 !.config/
 !.gitignore
+!README.md
 
 !.config/kitty/
 !.config/kitty/**

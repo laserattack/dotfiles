@@ -210,5 +210,3 @@ export PATH="$JAVA_HOME/bin:$PATH"
 
 export GO_HOME="$HOME/software/go"
 export PATH="$GO_HOME/bin:$PATH"
-
-export PATH="$PATH:$HOME/projects/boomer"

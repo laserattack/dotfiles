@@ -1,6 +1,7 @@
 -- Базовые бинды (не относящиеся к плагинам)
 -- Бинды плагинов в файликах с подключением плагинов
 vim.g.mapleader = " "
+
 vim.keymap.set(
     'n', '<leader>h',
     function()
@@ -13,6 +14,7 @@ vim.keymap.set(
         desc = "Open commands.md in new tab"
     }
 )
+
 vim.keymap.set(
     'n', '<leader>`',
     function()
@@ -24,6 +26,7 @@ vim.keymap.set(
         desc = "Open terminal in new tab"
     }
 )
+
 vim.keymap.set(
     't', '<Esc>',
     function()
@@ -35,6 +38,7 @@ vim.keymap.set(
         desc = "Leave terminal insert mode"
     }
 )
+
 vim.api.nvim_create_autocmd("TermOpen", {
     pattern = "*",
     command = "startinsert",

@@ -1,8 +1,5 @@
 -- Настройка LSP-серверов с использованием Mason!
 
--- NOTE: LSP сервер для java настраивается в ftplugin/java.lua
--- и подключается через lua/plugins/jdtls.lua
-
 return {
     -- регистрирует серверы в системе LSP Neovim
     'neovim/nvim-lspconfig',

@@ -6,6 +6,8 @@
 !.gitignore
 !README.md
 
+!.config/mayhem.jpg
+
 !.config/kitty/
 !.config/kitty/**
 

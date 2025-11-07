@@ -15,17 +15,29 @@ vim.keymap.set(
     }
 )
 
-vim.keymap.set(
-    'n', '<leader>`',
-    function()
-        vim.cmd('tabnew | terminal')
-    end,
-    {
-        noremap = true,
-        silent = true,
-        desc = "Open terminal in new tab"
-    }
-)
+vim.keymap.set('n', '<leader>tv', function()
+    vim.cmd('vsplit | terminal')
+end, {
+    noremap = true,
+    silent = true,
+    desc = "Open terminal in vertical split"
+})
+
+vim.keymap.set('n', '<leader>tg', function()
+    vim.cmd('split | terminal')
+end, {
+    noremap = true,
+    silent = true,
+    desc = "Open terminal in horizontal split"
+})
+
+vim.keymap.set('n', '<leader>tt', function()
+    vim.cmd('tabnew | terminal')
+end, {
+    noremap = true,
+    silent = true,
+    desc = "Open terminal in new tab"
+})
 
 vim.keymap.set(
     't', '<Esc>',
@@ -38,12 +50,6 @@ vim.keymap.set(
         desc = "Leave terminal insert mode"
     }
 )
-
-vim.api.nvim_create_autocmd("TermOpen", {
-    pattern = "*",
-    command = "startinsert",
-    desc = "Auto enter insert mode in terminal"
-})
 
 vim.keymap.set("v", "<Tab>", ">gv", {
     noremap = true,

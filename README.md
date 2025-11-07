@@ -8,6 +8,7 @@ Just config files for some programs that I actively use
 - kitty (with JetBrainsMono Nerd Font configured)
 - fzf (for bash aliases)
 - ripgrep (for telescope Neovim plugin)
+- xclip
 - xkb-switch (for automatically switching to US keyboard layout when entering Normal mode in Neovim)
 - Git
 

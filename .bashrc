@@ -11,10 +11,11 @@ PS1='\[\e[34m\]\w\n\[\e[32m\]→ \[\e[0m\]'
 # Forces bash to save the command history immediately 
 # after each command is executed
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-export PATH="$HOME/software:$PATH"
-export PATH="$HOME/software/nvim-linux-x86_64/bin:$PATH"
-export PATH="$HOME/software/xkb-switch/build:$PATH"
-export PATH="$HOME/software/go/bin:$PATH"
+
+# Directory for binaries
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 alias ls='ls --color=auto'
 alias clear='tput reset'
@@ -23,6 +24,91 @@ alias gs='git status'
 alias ff="fastfetch"
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
+
+hoy() {
+    echo "$(date '+%Y-%m-%d')"
+}
+
+copy() {
+    if hash pbcopy 2>/dev/null; then
+        exec pbcopy
+    elif hash xclip 2>/dev/null; then
+        exec xclip -selection clipboard
+    elif hash putclip 2>/dev/null; then
+        exec putclip
+    else
+        rm -f /tmp/clipboard 2> /dev/null
+        if [ $# -eq 0 ]; then
+            cat > /tmp/clipboard
+        else
+            cat "$1" > /tmp/clipboard
+        fi
+    fi
+}
+
+addtopath() {
+    local dir="$1"
+    if [ -d "$dir" ] && [[ ":$PATH:" != *":$dir:"* ]]; then
+        export PATH="$dir:$PATH"
+    fi
+}
+
+prettypath() {
+    echo "$PATH" | sed 's/:/\
+    /g'
+}
+
+running() {
+    process_list="$(ps -eo 'pid command')"
+    if [[ $# != 0 ]]; then
+        process_list="$(echo "$process_list" | grep -Fiw "$@")"
+    fi
+
+    echo "$process_list" |
+        grep -Fv "${BASH_SOURCE[0]}" |
+        grep -Fv grep |
+        GREP_COLORS='mt=00;35' grep -E --colour=auto '^\s*[[:digit:]]+'
+}
+
+uppered() {
+    tr '[:lower:]' '[:upper:]'
+}
+
+lowered() {
+    tr '[:upper:]' '[:lower:]'
+}
+
+# example: cat some_big_file | line 10
+line() {
+    head -n "$1" | tail -n 1
+}
+
+trash() {
+    gio trash "$@"
+}
+
+tempe() {
+    cd "$(mktemp -d)"
+    chmod -R 0700 .
+    if [[ $# -eq 1 ]]; then
+        \mkdir -p "$1"
+        cd "$1"
+        chmod -R 0700 .
+    fi
+}
+
+tempec() {
+    rm -rf /tmp/tmp.*
+}
+
+mkcd() {
+    \mkdir -p "$1"
+    cd "$1"
+}
+
+cpwd() {
+    pwd | tr -d '\n' | copy
+}
 
 gacp() {
     if [ "$#" -eq 1 ]; then

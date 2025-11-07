@@ -1,0 +1,6 @@
+mayhem.jpg|symlink|
+.bashrc|symlink|
+.xprofile|symlink
+.config/nvim|symlink|
+.config/kitty|symlink|
+.config/fastfetch|symlink|

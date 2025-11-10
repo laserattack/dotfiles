@@ -1,5 +1,4 @@
 .i3status.conf|symlink|
-mayhem.jpg|symlink|
 .bashrc|symlink|
 .xprofile|symlink
 .config/nvim|symlink|

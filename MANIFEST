@@ -4,3 +4,4 @@ mayhem.jpg|symlink|
 .config/nvim|symlink|
 .config/kitty|symlink|
 .config/fastfetch|symlink|
+.config/i3/config|symlink|

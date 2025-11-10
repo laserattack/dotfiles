@@ -1,5 +1,6 @@
 {
     sleep 2
     xinput set-prop "SYNA32B9:00 06CB:CE7D Touchpad" 321 1
+    xinput set-prop "Logitech USB Optical Mouse" "libinput Accel Speed" -0.6
     light -S 100
 } &

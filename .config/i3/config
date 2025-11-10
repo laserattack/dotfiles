@@ -59,7 +59,7 @@ bindsym $mod+d exec env PATH="$HOME/.local/bin:$PATH" dmenu_run
 # zoom
 bindsym $mod+z exec --no-startup-id $HOME/.local/bin/boomer
 
-# screenshot using xclip
+# screenshot using xclip (see clipshot.sh in this repo root)
 bindsym Print exec --no-startup-id $HOME/.local/bin/clipshot
 
 # change focus

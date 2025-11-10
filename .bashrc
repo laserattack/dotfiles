@@ -12,7 +12,6 @@ PS1='\[\e[34m\]\w\n\[\e[32m\]→ \[\e[0m\]'
 # after each command is executed
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-# Directory for binaries
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi

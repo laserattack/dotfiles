@@ -2,7 +2,12 @@
 
 i3status | while :
 do
+        # Читаем строку из i3status
         read line
-        LAYOUT=$(xkb-switch)
-        echo "|$line|layout: $LAYOUT" || exit 1
+
+        # Получаем текущую раскладку
+        LAYOUT=$($HOME/.local/bin/xkb-switch)
+
+        # Выводим модифицированную строку
+        echo "layout: $LAYOUT | $line" || exit 1
 done

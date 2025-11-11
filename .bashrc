@@ -20,7 +20,6 @@ alias ls='ls --color=auto'
 alias clear='tput reset'
 alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
-alias ff="fastfetch"
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 

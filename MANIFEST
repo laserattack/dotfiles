@@ -9,4 +9,5 @@
 .config/i3/config|symlink|
 
 .local/bin/emoji|symlink|
+.local/bin/greek|symlink|
 .local/bin/clipshot|symlink|

@@ -53,7 +53,7 @@ vim.opt.cursorline = true -- и номера строки
 vim.opt.cursorlineopt = "both" -- и самой строки
 
 -- Ограничительная вертикальная линия на 80-м символе
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 
 -- Чтобы не было разбиения строки если она не помещается в ширину экрана
 vim.opt.wrap = false

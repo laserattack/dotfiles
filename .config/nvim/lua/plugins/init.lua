@@ -7,7 +7,6 @@ local plugins = {
     "plugins/blink-cmp",
     "plugins/lsp",
     "plugins/tree-sitter",
-    "plugins/mini-surround",
     "plugins/mini-pairs",
     "plugins/nvim-tree",
     "plugins/todo-comments",

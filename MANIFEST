@@ -2,7 +2,11 @@
 .i3status.conf|symlink|
 .bashrc|symlink|
 .xprofile|symlink
+
 .config/nvim|symlink|
 .config/kitty|symlink|
 .config/fastfetch|symlink|
 .config/i3/config|symlink|
+
+.local/bin/emoji.sh|symlink|
+.local/bin/clipshot.sh|symlink|

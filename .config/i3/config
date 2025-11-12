@@ -126,6 +126,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+Shift+p exec "loginctl poweroff"
 bindsym $mod+Shift+b exec "loginctl reboot"
 bindsym $mod+Shift+s exec "loginctl suspend"
+bindsym $mod+Shift+z exec "slock"
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

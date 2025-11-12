@@ -16,7 +16,7 @@ set $mod Mod4
 font pango:monospace 12
 
 # Edit your i3 config (usually ~/.config/i3/config)
-exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:alt_shift_toggle"
+exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:rctrl_toggle"
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.

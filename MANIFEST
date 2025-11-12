@@ -8,5 +8,5 @@
 .config/fastfetch|symlink|
 .config/i3/config|symlink|
 
-.local/bin/emoji.sh|symlink|
-.local/bin/clipshot.sh|symlink|
+.local/bin/emoji|symlink|
+.local/bin/clipshot|symlink|

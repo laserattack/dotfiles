@@ -7,6 +7,7 @@
 .config/kitty|symlink|
 .config/fastfetch|symlink|
 .config/i3/config|symlink|
+.config/gtk-3.0|symlink|
 
 .local/bin/emoji|symlink|
 .local/bin/greek|symlink|

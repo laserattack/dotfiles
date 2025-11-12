@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+set -u
+set -o pipefail
+
+emoji=""
+
+if [[ $# == 0 ]]; then
+	echo "$emoji" | awk '{print $1}'
+elif [[ $# == 1 ]]; then
+	echo "$emoji" | grep -i --color=never "$@" | awk '{print $1}'
+else
+	exit 1
+fi

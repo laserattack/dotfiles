@@ -3,6 +3,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# start X session
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] && command -v startx >/dev/null 2>&1; then
     exec startx
 fi

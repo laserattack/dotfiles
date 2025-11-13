@@ -3,6 +3,10 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]] && command -v startx >/dev/null 2>&1; then
+    exec startx
+fi
+
 HISTSIZE=50000
 HISTFILESIZE=10000000
 

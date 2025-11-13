@@ -15,11 +15,12 @@ vim.keymap.set(
     }
 )
 
-vim.keymap.set('i', '<C-Del>', '<Esc>dw', {
+vim.keymap.set('i', '<C-Del>', '<C-o>dw', {
     noremap = true,
     silent = true,
     desc = "Delete word after cursor (Ctrl+Delete)"
 })
+
 
 vim.keymap.set('n', '<leader>tv', function()
     vim.cmd('vsplit | terminal')

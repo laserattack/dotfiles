@@ -166,5 +166,5 @@ bar {
 
 # autostart
 
-exec --no-startup-id /home/serr/.local/bin/mr
+exec --no-startup-id /home/serr/.local/bin/cronshroom
 exec --no-startup-id /home/serr/.local/bin/syncthing

@@ -4,6 +4,7 @@ Just config files for some programs that I actively use
 
 # Requirements
 
+- i3
 - Neovim 0.11.3
 - kitty (with JetBrainsMono Nerd Font configured)
 - fzf (for bash aliases)

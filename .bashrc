@@ -28,6 +28,10 @@ alias gs='git status'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 
+cacheclean() {
+    sh -c 'echo 3 > /proc/sys/vm/drop_caches'
+}
+
 bb() {
     for cmd in "$@"; do
         nohup "$cmd" </dev/null >/dev/null 2>&1 &

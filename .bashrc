@@ -28,6 +28,18 @@ alias gs='git status'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 
+bb() {
+    if test -t 1; then
+      exec 1>/dev/null
+    fi
+
+    if test -t 2; then
+      exec 2>/dev/null
+    fi
+
+    "$@" &
+}
+
 hoy() {
     echo "$(date '+%Y-%m-%d')"
 }

@@ -29,15 +29,9 @@ alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 
 bb() {
-    if test -t 1; then
-      exec 1>/dev/null
-    fi
-
-    if test -t 2; then
-      exec 2>/dev/null
-    fi
-
-    "$@" &
+    for cmd in "$@"; do
+        nohup "$cmd" </dev/null >/dev/null 2>&1 &
+    done
 }
 
 hoy() {

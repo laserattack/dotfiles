@@ -134,7 +134,6 @@ bindsym $mod+Shift+b exec "loginctl reboot"
 bindsym $mod+Shift+s exec "loginctl suspend"
 bindsym $mod+Shift+z exec "slock"
 
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode

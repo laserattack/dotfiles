@@ -4,6 +4,7 @@ Just config files for some programs that I actively use
 
 # Requirements
 
+- system should be X11
 - i3, i3status
 - dmenu ([github.com/laserattack/dmenu-fuzzy](https://github.com/laserattack/dmenu-fuzzy))
 - scrot

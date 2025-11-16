@@ -4,7 +4,7 @@ Just config files for some programs that I actively use
 
 # Requirements
 
-- i3
+- i3, i3status
 - dmenu ([github.com/laserattack/dmenu-fuzzy](https://github.com/laserattack/dmenu-fuzzy))
 - scrot
 - slock

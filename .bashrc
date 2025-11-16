@@ -122,7 +122,7 @@ gacp() {
 
 gcf() {
     if [ $# -lt 2 ]; then
-        echo "Usage: gcf <repository-url> <folder-path> [branch]"
+        echo "Usage: gcf <repository-url> <folder-path>"
         echo "Example: gcf https://github.com/github/codeql.git java/ql/src/Security/CWE"
         return 1
     fi

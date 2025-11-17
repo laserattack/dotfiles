@@ -4,8 +4,6 @@ local plugins = {
     "plugins/vim-move",
     "plugins/telescope",
     "plugins/theme",
-    -- "plugins/blink-cmp",
-    -- "plugins/lsp",
     "plugins/tree-sitter",
     "plugins/mini-pairs",
     "plugins/nvim-tree",

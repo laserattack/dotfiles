@@ -35,7 +35,6 @@ return {
                     -- Ищу через rg, игнорю директорию с зависимостями
                     find_command = {
                         "rg", "--files", "--hidden", "--no-ignore",
-                        -- "--glob", "!**/deps/**",
                         "--glob", "!**/.git/**"
                     },
                 },

@@ -60,7 +60,7 @@ vim.opt.wrap = false
 vim.wo.linebreak = true
 
 -- Оффест скролла чтобы не нужно было доходить до самого низа
-vim.opt.scrolloff = 8
+-- vim.opt.scrolloff = 8
 
 -- Таб = 4 пробела
 vim.opt.expandtab = true -- табы -> пробелы

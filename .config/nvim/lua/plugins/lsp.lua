@@ -39,18 +39,22 @@ return {
             }
         })
         vim.lsp.enable('lua_ls')
+
         vim.lsp.config('clangd', {
             root_dir = vim.fn.getcwd(),
         })
         vim.lsp.enable('clangd')
+
         vim.lsp.config('zls', {
             root_dir = vim.fn.getcwd(),
         })
         vim.lsp.enable('zls')
+
         vim.lsp.config('pylsp', {
             root_dir = vim.fn.getcwd(),
         })
         vim.lsp.enable('pylsp')
+
         vim.lsp.config('gopls', {
             root_dir = vim.fn.getcwd(),
             settings = {
@@ -71,6 +75,7 @@ return {
             end,
         })
         vim.lsp.enable('gopls')
+
         local original_handler = vim.lsp.handlers["window/showMessage"]
         vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
             if result.message and result.message:find("refused to load this directory") then

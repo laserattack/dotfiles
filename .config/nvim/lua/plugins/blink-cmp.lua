@@ -9,9 +9,9 @@ return {
             ["<S-Tab>"] = { "select_prev", "fallback" },
         },
         completion = {
+            auto_show = false,
             documentation = {
-                auto_show = true,
-                auto_show_delay_ms = 500,
+                auto_show = false,
             }
         },
         appearance = {

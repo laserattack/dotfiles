@@ -9,6 +9,8 @@ local plugins = {
     "plugins/nvim-tree",
     "plugins/todo-comments",
     "plugins/leap",
+    "plugins/lsp",
+    "plugins/blink-cmp",
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

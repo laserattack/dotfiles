@@ -10,6 +10,9 @@ return {
         },
         completion = {
             auto_show = false,
+            trigger = {
+                show_on_keyword = false,
+            },
             documentation = {
                 auto_show = false,
             }

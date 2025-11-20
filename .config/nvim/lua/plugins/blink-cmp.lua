@@ -4,14 +4,8 @@ return {
     opts = {
         keymap = {
             preset = "default",
-            ["<C-s>"] = {
-                function(cmp)
-                    cmp.hide()  -- Если меню открыто — скроется, иначе — ничего не произойдёт
-                    -- Затем принудительно показываем
-                    cmp.show()
-                    return true
-                end,
-            },
+            ["<C-a>"] = { "show" },
+            ["<C-d>"] = { "show_documentation" },
             ["<CR>"] = { "accept", "fallback" },
             ["<Tab>"] = { "select_next", "fallback" },
             ["<S-Tab>"] = { "select_prev", "fallback" },

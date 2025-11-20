@@ -6,15 +6,13 @@ return {
             preset = "default",
             ["<C-s>"] = {
                 function(cmp)
-                    if cmp.visible() then
-                        cmp.cancel()
-                        return true  -- Не выполнять следующую команду
-                    else
-                        cmp.show()
-                        return true  -- Не выполнять следующую команду
-                    end
+                    cmp.hide()  -- Если меню открыто — скроется, иначе — ничего не произойдёт
+                    -- Затем принудительно показываем
+                    cmp.show()
+                    return true
                 end,
-            },            ["<CR>"] = { "accept", "fallback" },
+            },
+            ["<CR>"] = { "accept", "fallback" },
             ["<Tab>"] = { "select_next", "fallback" },
             ["<S-Tab>"] = { "select_prev", "fallback" },
         },

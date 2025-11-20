@@ -4,14 +4,17 @@ return {
     opts = {
         keymap = {
             preset = "default",
-            ["<C-s>"] = function(cmp)
-                if cmp.visible() then
-                    cmp.close()
-                else
-                    cmp.show()
-                end
-            end,
-            ["<CR>"] = { "accept", "fallback" },
+            ["<C-s>"] = {
+                function(cmp)
+                    if cmp.visible() then
+                        cmp.cancel()
+                        return true  -- Не выполнять следующую команду
+                    else
+                        cmp.show()
+                        return true  -- Не выполнять следующую команду
+                    end
+                end,
+            },            ["<CR>"] = { "accept", "fallback" },
             ["<Tab>"] = { "select_next", "fallback" },
             ["<S-Tab>"] = { "select_prev", "fallback" },
         },

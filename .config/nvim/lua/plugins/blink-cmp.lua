@@ -3,7 +3,10 @@ return {
     version = "*",
     opts = {
         keymap = {
-            preset = "default",
+            preset = "none",
+            ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+            ['<C-e>'] = { 'hide', 'fallback' },
+            ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
             ["<CR>"] = { "accept", "fallback" },
             ["<Tab>"] = { "select_next", "fallback" },
             ["<S-Tab>"] = { "select_prev", "fallback" },

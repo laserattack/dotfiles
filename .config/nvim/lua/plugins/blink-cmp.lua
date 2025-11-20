@@ -4,8 +4,7 @@ return {
     opts = {
         keymap = {
             preset = "none",
-            ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-            ['<C-e>'] = { 'hide', 'fallback' },
+            ['<C-s>'] = { 'show', 'hide' },
             ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
             ["<CR>"] = { "accept", "fallback" },
             ["<Tab>"] = { "select_next", "fallback" },
@@ -17,7 +16,7 @@ return {
                 show_on_keyword = false,
             },
             documentation = {
-                auto_show = false,
+                auto_show = true,
             }
         },
         appearance = {

@@ -5,7 +5,6 @@ return {
         keymap = {
             preset = "default",
             ["<C-a>"] = { "show" },
-            ["<C-d>"] = { "show_documentation" },
             ["<CR>"] = { "accept", "fallback" },
             ["<Tab>"] = { "select_next", "fallback" },
             ["<S-Tab>"] = { "select_prev", "fallback" },

@@ -4,7 +4,13 @@ return {
     opts = {
         keymap = {
             preset = "default",
-            ["<C-s>"] = { "show" },
+            ["<C-s>"] = function(cmp)
+                if cmp.visible() then
+                    cmp.close()
+                else
+                    cmp.show()
+                end
+            end,
             ["<CR>"] = { "accept", "fallback" },
             ["<Tab>"] = { "select_next", "fallback" },
             ["<S-Tab>"] = { "select_prev", "fallback" },

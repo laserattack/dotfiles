@@ -4,7 +4,6 @@ return {
     opts = {
         keymap = {
             preset = "default",
-            ["<C-a>"] = { "show" },
             ["<CR>"] = { "accept", "fallback" },
             ["<Tab>"] = { "select_next", "fallback" },
             ["<S-Tab>"] = { "select_prev", "fallback" },

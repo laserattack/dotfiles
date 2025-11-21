@@ -45,8 +45,9 @@ sub murder_port {
     my @lines = split(/\n/, $output);
     shift(@lines);
 
-    chomp($pid);
-    murder_pid($pid) if $pid;
+    foreach my $line (@lines) {
+        my ($pid, $command) = split(/\s+/, $line);
+    }
 }
 
 sub murder_names {

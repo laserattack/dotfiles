@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use feature 'say';
-use Time::HiRes qw(sleep);
+use Time::HiRes ('sleep');
 
 our @SIGNALS = (
     [15, 3],

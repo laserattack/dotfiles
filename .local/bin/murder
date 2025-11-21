@@ -30,7 +30,7 @@ sub murder_pid {
     my ($pid) = @_;
     foreach my $sig (@SIGNALS) {
         my ($code, $wait) = @$sig;
-        say "Sending signal $code to PID $pid";
+        say "Sending signal $code to pid $pid";
         kill($code, $pid);
         sleep(0.5);
         return unless is_running($pid);

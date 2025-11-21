@@ -23,7 +23,9 @@ sub murder_pid {
         my ($code, $wait) = @$sig;
         kill $code, $pid;
         sleep 0.5;
-        return unless is_running($pid);
+        return unless is_running $pid;
         sleep $wait;
     }
 }
+
+sleep 0.5

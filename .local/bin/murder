@@ -49,3 +49,15 @@ sub murder_names {
         }
     }
 }
+
+if (@ARGV < 1) {
+    say 'usage:';
+    say 'murder 123    # kill by pid';
+    say 'murder ruby   # kill by process name';
+    say 'murder :3000  # kill by port';
+    exit 1;
+} else {
+    foreach my $arg (@ARGV) {
+        murder($arg);
+    }
+}

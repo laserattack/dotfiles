@@ -20,3 +20,22 @@ sub kill {
     my ($pid, $code) = @_;
     `kill -$code $pid`
 }
+
+sub murder_pid {
+    my ($pid) = @_;
+    foreach my $sig (@SIGNALS) {
+        
+    }
+
+
+
+    SIGNALS.each do |signal|
+      break unless running? pid
+
+      code, wait = signal
+
+      kill(pid, code)
+      sleep 0.5
+      sleep(wait) if running? pid
+    end
+}

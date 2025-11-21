@@ -6,7 +6,8 @@ use warnings;
 sub is_running {
     my ($pid) = @_;
     my $output = `ps -p $pid`;
-    return scalar(split(/\n/, $output)) == 2;
+    my $line_count = ($output =~ tr/\n//);
+    return $line_count == 1;
 }
 
-is_running()
+print is_running(1602)

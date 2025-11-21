@@ -47,7 +47,10 @@ sub murder_port {
     foreach my $pid (@pids) {
         my $command = `ps -p $pid -o comm=`;
         chomp($command);
-        say("PID = $pid, command = $command");
+        print("Kill process '$command' (pid $pid)? [y/N] ");
+        if (go_ahead()) {
+            murder_pid($pid);
+        }
     }
 }
 

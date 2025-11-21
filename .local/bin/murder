@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 use feature 'say';
+use Time::HiRes qw(sleep);
 
 our @SIGNALS = (
     [15, 3],
@@ -26,18 +27,7 @@ sub murder_pid {
     foreach my $sig (@SIGNALS) {
        my ($code, $wait) = @$sig;
        kill $code, $pid;
-       sleep 0.5;
+       sleep(0.5);
+       sleep($wait) if is_running($pid);
     }
-
-
-
-    SIGNALS.each do |signal|
-      break unless running? pid
-
-      code, wait = signal
-
-      kill(pid, code)
-      sleep 0.5
-      sleep(wait) if running? pid
-    end
 }

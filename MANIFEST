@@ -13,3 +13,4 @@
 .local/bin/emoji|symlink|
 .local/bin/greek|symlink|
 .local/bin/clipshot|symlink|
+.local/bin/murder|symlink|

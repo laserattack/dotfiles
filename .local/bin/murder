@@ -42,7 +42,7 @@ sub murder_port {
     $port =~ s/^://;
     my $pid = `lsof -ti:$port`;
     chomp($pid);
-    murder_pid($pid);
+    murder_pid($pid) if $pid;
 }
 
 sub murder_names {

@@ -43,7 +43,7 @@ sub murder_names {
     foreach my $line (split(/\n/, $running)) {
         my ($pid, $fullname) = split(/\s+/, $line, 2);
         next if $$ == $pid;
-        print("murder $fullname (pid $pid)? (yes) ");
+        print("Kill process '$fullname' (pid $pid)? [y/N] ");
         if (go_ahead()) {
             murder_pid($pid);
         }
@@ -61,12 +61,10 @@ sub murder {
     }
 }
 
-
 if (@ARGV < 1) {
     say 'usage:';
     say 'murder 123    # kill by pid';
     say 'murder ruby   # kill by process name';
-    exit 1;
 } else {
     foreach my $arg (@ARGV) {
         murder($arg);

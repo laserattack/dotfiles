@@ -10,4 +10,4 @@ sub is_running {
     return $line_count == 1;
 }
 
-print is_running(1602)
+say is_running(1602)

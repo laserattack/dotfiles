@@ -12,6 +12,15 @@ our @SIGNALS = (
     [9, 0]
 );
 
+sub go_ahead {
+    my $input = <STDIN>;
+    chomp $input;
+    $input =~ s/^\s+|\s+$//g;
+    $input = lc($input);
+    
+    return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
+}
+
 sub is_running {
     my ($pid) = @_;
     return `ps -p $pid` =~ tr/\n// == 2;
@@ -35,33 +44,8 @@ sub murder_names {
         my ($pid, $fullname) = split(/\s+/, $line);
         next if $$ == $pid;
         print "murder $fullname (pid $pid)? ";
-        if (go_ahead()) {
+        if (go_ahead) {
             murder_pid($pid);
         }
     }
 }
-
-def murder_names(name)
-  loop do
-    should_loop = false
-
-    running = `ps -eo 'pid command' | grep -Fiw '#{name}' | grep -Fv grep`
-    running.lines.each do |line|
-      pid, fullname = line.split(nil, 2)
-
-      next if Process.pid == pid.to_i
-
-      print "murder #{fullname.chomp} (pid #{pid})? "
-      if go_ahead?
-        murder_pid(pid)
-        should_loop = true
-        break
-      end
-    end
-
-    break unless should_loop
-  end
-end
-
-
-sleep 0.5

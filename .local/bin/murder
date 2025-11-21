@@ -47,6 +47,7 @@ sub murder_port {
 
     foreach my $line (@lines) {
         my ($pid, $command) = split(/\s+/, $line);
+        say("Pid = $pid, command = $command")
     }
 }
 

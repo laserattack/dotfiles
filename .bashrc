@@ -32,6 +32,10 @@ cacheclean() {
     sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 }
 
+sfx() {
+    mpv --no-video "$HOME/Music/Sounds/$1.ogg"
+}
+
 bb() {
     for cmd in "$@"; do
         nohup "$cmd" </dev/null >/dev/null 2>&1 &

@@ -24,7 +24,8 @@ sub kill {
 sub murder_pid {
     my ($pid) = @_;
     foreach my $sig (@SIGNALS) {
-        
+       my ($code, $wait) = @$sig;
+       kill $code, $wait
     }
 
 

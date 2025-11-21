@@ -20,13 +20,10 @@ sub is_running {
 sub murder_pid {
     my ($pid) = @_;
     foreach my $sig (@SIGNALS) {
-       my ($code, $wait) = @$sig;
-       kill $code, $pid;
-       sleep 0.5;
-       if (is_running $pid) {
-            sleep $wait;
-       } else {
-            return;
-       }
+        my ($code, $wait) = @$sig;
+        kill $code, $pid;
+        sleep 0.5;
+        return unless is_running($pid);
+        sleep $wait;
     }
 }

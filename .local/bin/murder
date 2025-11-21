@@ -3,4 +3,10 @@
 use strict;
 use warnings;
 
-print("Hello World\n");
+sub pr() {
+    foreach my $msg (@_) {
+        print "$msg";
+    }
+}
+
+pr("1", "2", "3")

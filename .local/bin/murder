@@ -6,7 +6,7 @@ use feature 'say';
 
 sub is_running {
     my ($pid) = @_;
-    return (`ps -p $pid` =~ tr/\n//) == 2;
+    return `ps -p $pid` =~ tr/\n// == 2;
 }
 
 say is_running(1601)

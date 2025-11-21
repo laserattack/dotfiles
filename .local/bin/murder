@@ -3,9 +3,9 @@
 use strict;
 use warnings;
 
-sub pr() {
+sub pr {
     foreach my $msg (@_) {
-        print "$msg";
+        print "$msg\n";
     }
 }
 

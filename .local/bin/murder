@@ -13,5 +13,3 @@ sub kill {
     my ($pid, $code) = @_;
     `kill -$code $pid`
 }
-
-say is_running(1601)

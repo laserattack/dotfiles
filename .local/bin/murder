@@ -2,12 +2,12 @@
 
 use strict;
 use warnings;
+use feature 'say';
 
 sub is_running {
     my ($pid) = @_;
-    my $output = `ps -p $pid`;
-    my $line_count = ($output =~ tr/\n//);
-    return $line_count == 1;
+    my $line_count = (`ps -p $pid` =~ tr/\n//);
+    return $line_count == 2;
 }
 
-say is_running(1602)
+say is_running(1601)

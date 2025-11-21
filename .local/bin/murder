@@ -30,6 +30,7 @@ sub murder_pid {
 
 sub murder_names {
     my ($name) = @_;
+    running = `ps -eo 'pid command' | grep -Fiw '$name' | grep -Fv grep`;
 }
 
 def murder_names(name)

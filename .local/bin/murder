@@ -4,6 +4,13 @@ use strict;
 use warnings;
 use feature 'say';
 
+our @SIGNALS = (
+    [15, 3],
+    [2, 3],
+    [1, 4],
+    [9, 0]
+);
+
 sub is_running {
     my ($pid) = @_;
     return `ps -p $pid` =~ tr/\n// == 2;

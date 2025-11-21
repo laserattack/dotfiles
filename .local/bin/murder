@@ -33,6 +33,7 @@ sub murder_names {
     running = `ps -eo 'pid command' | grep -Fiw '$name' | grep -Fv grep`;
     foreach my $line (split(/\n/, $running)) {
         my ($pid, $fullname) = split(/\s+/, $line);
+        next if $$ == $pid;
     }
 }
 

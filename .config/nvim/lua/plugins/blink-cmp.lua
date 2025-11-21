@@ -11,12 +11,11 @@ return {
             ["<S-Tab>"] = { "select_prev", "fallback" },
         },
         completion = {
-            auto_show = false,
             trigger = {
                 show_on_keyword = false,
             },
             documentation = {
-                auto_show = true,
+                auto_show = false,
                 auto_show_delay_ms = 500,
             }
         },

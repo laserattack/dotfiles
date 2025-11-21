@@ -43,18 +43,29 @@ sub murder_names {
     foreach my $line (split(/\n/, $running)) {
         my ($pid, $fullname) = split(/\s+/, $line, 2);
         next if $$ == $pid;
-        print("murder $fullname (pid $pid)? ");
+        print("murder $fullname (pid $pid)? (yes) ");
         if (go_ahead()) {
             murder_pid($pid);
         }
     }
 }
 
+sub murder {
+    my ($arg) = @_;
+    my $is_pid = $arg =~ /^\d+$/;
+
+    if ($is_pid) {
+        murder_pid($arg);
+    } else {
+        murder_names($arg);
+    }
+}
+
+
 if (@ARGV < 1) {
     say 'usage:';
     say 'murder 123    # kill by pid';
     say 'murder ruby   # kill by process name';
-    say 'murder :3000  # kill by port';
     exit 1;
 } else {
     foreach my $arg (@ARGV) {

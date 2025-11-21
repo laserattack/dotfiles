@@ -14,10 +14,10 @@ our @SIGNALS = (
 
 sub go_ahead {
     my $input = <STDIN>;
-    chomp $input;
+    chomp($input);
     $input =~ s/^\s+|\s+$//g;
     $input = lc($input);
-    
+
     return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
 }
 
@@ -30,10 +30,10 @@ sub murder_pid {
     my ($pid) = @_;
     foreach my $sig (@SIGNALS) {
         my ($code, $wait) = @$sig;
-        kill $code, $pid;
-        sleep 0.5;
-        return unless is_running $pid;
-        sleep $wait;
+        kill($code, $pid);
+        sleep(0.5);
+        return unless is_running($pid);
+        sleep($wait);
     }
 }
 
@@ -41,10 +41,10 @@ sub murder_names {
     my ($name) = @_;
     my $running = `ps -eo 'pid command' | grep -Fiw '$name' | grep -Fv grep`;
     foreach my $line (split(/\n/, $running)) {
-        my ($pid, $fullname) = split(/\s+/, $line);
+        my ($pid, $fullname) = split(/\s+/, $line, 2);
         next if $$ == $pid;
-        print "murder $fullname (pid $pid)? ";
-        if (go_ahead) {
+        print("murder $fullname (pid $pid)? ");
+        if (go_ahead()) {
             murder_pid($pid);
         }
     }

@@ -3,10 +3,10 @@
 use strict;
 use warnings;
 
-sub pr {
-    foreach my $msg (@_) {
-        print "$msg\n";
-    }
+sub is_running {
+    my ($pid) = @_;
+    my $output = `ps -p $pid`;
+    return scalar(split(/\n/, $output)) == 2;
 }
 
-pr("1", "2", "3")
+is_running()

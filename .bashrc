@@ -33,7 +33,13 @@ cacheclean() {
 }
 
 sfx() {
-    mpv --no-video "$HOME/Music/Sounds/$1.ogg"
+    local file="$HOME/Music/Sounds/$1"
+    for ext in ogg mp3 wav; do
+        if [[ -f "$file.$ext" ]]; then
+            mpv --no-video "$file.$ext"
+            return
+        fi
+    done
 }
 
 bb() {

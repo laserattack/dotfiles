@@ -9,4 +9,9 @@ sub is_running {
     return `ps -p $pid` =~ tr/\n// == 2;
 }
 
+sub kill {
+    my ($pid, $code) = @_;
+    `kill -$code $pid`
+}
+
 say is_running(1601)

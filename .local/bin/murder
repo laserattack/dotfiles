@@ -37,6 +37,14 @@ sub murder_pid {
     }
 }
 
+sub murder_port {
+    my ($port) = @_;
+    $port =~ s/^://;
+    my $pid = `lsof -ti:$port`;
+    chomp($pid);
+    murder_pid($pid) if $pid;
+}
+
 sub murder_names {
     my ($name) = @_;
     my $running = `ps -eo 'pid command' | grep -Fiw '$name' | grep -Fv grep`;
@@ -52,19 +60,20 @@ sub murder_names {
 
 sub murder {
     my ($arg) = @_;
-    my $is_pid = $arg =~ /^\d+$/;
-
-    if ($is_pid) {
+    
+    if ($arg =~ /^\d+$/) {
         murder_pid($arg);
+    } elsif ($arg =~ /^:\d+$/) {
+        murder_port($arg);
     } else {
         murder_names($arg);
     }
 }
 
 if (@ARGV < 1) {
-    say 'usage:';
     say 'murder 123    # kill by pid';
-    say 'murder ruby   # kill by process name';
+    say 'murder ruby   # kill by process name'; 
+    say 'murder :3000  # kill by port';
 } else {
     foreach my $arg (@ARGV) {
         murder($arg);

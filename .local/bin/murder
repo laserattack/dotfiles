@@ -41,8 +41,7 @@ sub murder_pid {
 sub murder_port {
     my ($port) = @_;
     $port =~ s/^://;
-    my $pids_output = `lsof -ti:$port`;
-    my @pids = split(/\n/, $pids_output);
+    my @pids = split(/\n/, `lsof -ti:$port`);
 
     foreach my $pid (@pids) {
         my $command = `ps -p $pid -o comm=`;

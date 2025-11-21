@@ -41,7 +41,10 @@ sub murder_pid {
 sub murder_port {
     my ($port) = @_;
     $port =~ s/^://;
-    my $pid = `lsof -ti:$port`;
+    my $output = `lsof -i:$port`;
+    my @lines = split(/\n/, $output);
+    shift(@lines);
+
     chomp($pid);
     murder_pid($pid) if $pid;
 }

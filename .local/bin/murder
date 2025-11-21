@@ -34,6 +34,10 @@ sub murder_names {
     foreach my $line (split(/\n/, $running)) {
         my ($pid, $fullname) = split(/\s+/, $line);
         next if $$ == $pid;
+        print "murder $fullname (pid $pid)? ";
+        if (go_ahead()) {
+            murder_pid($pid);
+        }
     }
 }
 

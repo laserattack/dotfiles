@@ -42,12 +42,6 @@ sfx() {
     done
 }
 
-bb() {
-    for cmd in "$@"; do
-        setsid "$cmd" &>/dev/null
-    done
-}
-
 timer() {
     if [ "$#" -ne 1 ]; then
         echo "Usage: timer <seconds>" >&2
@@ -56,6 +50,12 @@ timer() {
     sleep "$1"
     sfx good
     notify-send -t 5000 'timer complete' "$1 seconds elapsed"
+}
+
+bb() {
+    for cmd in "$@"; do
+        setsid "$cmd" &>/dev/null
+    done
 }
 
 hoy() {

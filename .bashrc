@@ -48,7 +48,7 @@ timer() {
         return
     fi
 
-    setsid bash -s "$1" <<'EOF' &>/dev/null
+    setsid bash -s "$1" &>/dev/null <<'EOF'
 sleep "$1"
 sfx good
 notify-send -t 5000 'timer complete' "$1 seconds elapsed"

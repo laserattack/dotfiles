@@ -44,7 +44,7 @@ sfx() {
 
 bb() {
     for cmd in "$@"; do
-        nohup "$cmd" </dev/null >/dev/null 2>&1 &
+        setsid "$cmd" &>/dev/null
     done
 }
 

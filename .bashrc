@@ -32,6 +32,19 @@ cacheclean() {
     sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 }
 
+timer() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: timer <seconds>"
+        return
+    fi
+
+    setsid bash -s "$1" &>/dev/null <<'EOF'
+sleep "$1"
+sfx good
+notify-send -t 5000 'timer complete' "$1 seconds elapsed"
+EOF
+}
+
 bb() {
     for cmd in "$@"; do
         setsid "$cmd" &>/dev/null

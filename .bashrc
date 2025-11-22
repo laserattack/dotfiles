@@ -36,7 +36,7 @@ sfx() {
     local file="$HOME/Music/Sounds/$1"
     for ext in ogg mp3 wav; do
         if [[ -f "$file.$ext" ]]; then
-            setsid mpv --no-video "$file.$ext" &>/dev/null
+            exec mpv --really-quiet --no-video "$file.$ext"
             return
         fi
     done
@@ -47,11 +47,9 @@ timer() {
         echo "Usage: timer <seconds>"
         return
     fi
-    setsid bash -c '
-        sleep "$1"
-        sfx good
-        notify-send -t 5000 "timer complete" "$1 seconds elapsed"
-    ' _ "$1" &>/dev/null
+    sleep "$1"
+    sfx good
+    notify-send -t 5000 "timer complete" "$1 seconds elapsed"
 }
 
 bb() {

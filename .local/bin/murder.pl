@@ -1,0 +1,86 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature 'say';
+use Time::HiRes 'sleep';
+
+our @SIGNALS = (
+    [15, 3],
+    [2, 3],
+    [1, 4],
+    [9, 0]
+);
+
+sub go_ahead {
+    my $input = <STDIN>;
+    chomp($input);
+    $input =~ s/^\s+|\s+$//g;
+    $input = lc($input);
+    return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
+}
+
+sub is_running {
+    my ($pid) = @_;
+    return `ps -p $pid` =~ tr/\n// == 2;
+}
+
+sub murder_pid {
+    my ($pid) = @_;
+    foreach my $sig (@SIGNALS) {
+        my ($code, $wait) = @$sig;
+        say "Sending signal $code to pid $pid";
+        kill($code, $pid);
+        sleep(0.5);
+        return unless is_running($pid);
+        sleep($wait);
+    }
+}
+
+sub murder_port {
+    my ($port) = @_;
+    $port =~ s/^://;
+    my @pids = split(/\n/, `lsof -ti:$port`);
+    foreach my $pid (@pids) {
+        my $command = `ps -p $pid -o comm=`;
+        chomp($command);
+        print("Kill process '$command' (pid $pid)? [y/N] ");
+        if (go_ahead()) {
+            murder_pid($pid);
+        }
+    }
+}
+
+sub murder_names {
+    my ($name) = @_;
+    my $running = `ps -eo 'pid command' | grep -Fiw '$name' | grep -Fv grep`;
+    foreach my $line (split(/\n/, $running)) {
+        my ($pid, $command) = $line =~ /^\s*(\d+)\s+(.+?)\s*$/;
+        next if $$ == $pid;
+        print("Kill process '$command' (pid $pid)? [y/N] ");
+        if (go_ahead()) {
+            murder_pid($pid);
+        }
+    }
+}
+
+sub murder {
+    my ($arg) = @_;
+    if ($arg =~ /^\d+$/) {
+        murder_pid($arg);
+    } elsif ($arg =~ /^:\d+$/) {
+        murder_port($arg);
+    } else {
+        murder_names($arg);
+    }
+}
+
+if (@ARGV < 1) {
+    say 'murder 123    # kill by pid';
+    say 'murder ruby   # kill by process name'; 
+    say 'murder :3000  # kill by port';
+} else {
+    foreach my $arg (@ARGV) {
+        murder($arg);
+    }
+}

@@ -9,6 +9,7 @@ Just config files for some programs that I actively use
 - dmenu ([github.com/laserattack/dmenu-fuzzy](https://github.com/laserattack/dmenu-fuzzy))
 - scrot
 - slock
+- lsof
 - xclip
 - Neovim 0.11.3
 - kitty (with JetBrainsMono Nerd Font configured)

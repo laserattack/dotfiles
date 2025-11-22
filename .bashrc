@@ -47,12 +47,11 @@ timer() {
         echo "Usage: timer <seconds>"
         return
     fi
-    (
+    setsid bash -c '
         sleep "$1"
         sfx good
-        notify-send -t 5000 'timer complete' "$1 seconds elapsed"
-    ) &>/dev/null &
-    disown
+        notify-send -t 5000 "timer complete" "$1 seconds elapsed"
+    ' _ "$1" &>/dev/null
 }
 
 bb() {

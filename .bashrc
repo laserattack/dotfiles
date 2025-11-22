@@ -42,6 +42,12 @@ sfx() {
     done
 }
 
+timer() {
+    sleep "$1"
+    sfx done
+    notify-send -t $(( "$1" * 1000 )) 'timer complete' "$1 seconds elapsed"
+}
+
 bb() {
     for cmd in "$@"; do
         setsid "$cmd" &>/dev/null

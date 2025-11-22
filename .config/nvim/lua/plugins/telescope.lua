@@ -46,13 +46,13 @@ return {
         vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find file" })
         vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Telescope find content (grep)" })
         vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "Telescope find keymap" })
-        vim.keymap.set('n', '<leader>ft', function()
-            require('telescope.builtin').grep_string({
-                search = 'NOTE:|TODO:|FIX:|HACK:|WARN:|PERF:|TEST:',
-                use_regex = true,
-                vimgrep_arguments = vimgrep_arguments,
-            })
-        end, { desc = "Telescope find TODO comments" })
-        vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
+        -- vim.keymap.set('n', '<leader>ft', function()
+        --     require('telescope.builtin').grep_string({
+        --         search = 'NOTE:|TODO:|FIX:|HACK:|WARN:|PERF:|TEST:',
+        --         use_regex = true,
+        --         vimgrep_arguments = vimgrep_arguments,
+        --     })
+        -- end, { desc = "Telescope find TODO comments" })
+        -- vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
     end
 }

@@ -57,10 +57,10 @@ sub murder_names {
     my ($name) = @_;
     my $running = `ps -eo 'pid command' | grep -Fiw '$name' | grep -Fv grep`;
     foreach my $line (split(/\n/, $running)) {
-        $line =~ s/^\s+|\s+$//g;
+        # $line =~ s/^\s+|\s+$//g;
+        # my ($pid, $fullname) = split(/\s+/, $line, 2);
         say("line = $line");
-        my ($pid, $fullname) = split(/\s+/, $line, 2);
-        say("pid = $pid, fullname = $fullname");
+        my ($pid, $fullname) = $line =~ /^\s*(\d+)\s+(.+?)\s*$/;
         next if $$ == $pid;
         print("Kill process '$fullname' (pid $pid)? [y/N] ");
         if (go_ahead()) {

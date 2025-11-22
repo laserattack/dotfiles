@@ -44,12 +44,14 @@ sfx() {
 
 timer() {
     if [ "$#" -ne 1 ]; then
-        echo "Usage: timer <seconds>" >&2
+        echo "Usage: timer <seconds>"
         return
     fi
-    sleep "$1"
-    sfx good
-    notify-send -t 5000 'timer complete' "$1 seconds elapsed"
+    (
+        sleep "$1"
+        sfx good
+        notify-send -t 5000 'timer complete' "$1 seconds elapsed"
+    ) &
 }
 
 bb() {

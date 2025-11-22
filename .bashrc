@@ -51,7 +51,8 @@ timer() {
         sleep "$1"
         sfx good
         notify-send -t 5000 'timer complete' "$1 seconds elapsed"
-    ) &
+    ) &>/dev/null &
+    disown
 }
 
 bb() {

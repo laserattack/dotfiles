@@ -36,7 +36,7 @@ sfx() {
     local file="$HOME/Music/Sounds/$1"
     for ext in ogg mp3 wav; do
         if [[ -f "$file.$ext" ]]; then
-            exec mpv --really-quiet --no-video "$file.$ext"
+            mpv --really-quiet --no-video "$file.$ext"
             return
         fi
     done

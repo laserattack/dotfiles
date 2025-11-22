@@ -32,16 +32,6 @@ cacheclean() {
     sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 }
 
-sfx() {
-    local file="$HOME/Music/Sounds/$1"
-    for ext in ogg mp3 wav; do
-        if [[ -f "$file.$ext" ]]; then
-            setsid mpv --no-video "$file.$ext" &>/dev/null
-            return
-        fi
-    done
-}
-
 timer() {
     if [ "$#" -ne 1 ]; then
         echo "Usage: timer <seconds>"

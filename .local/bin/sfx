@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+set -e
+set -u
+set -o pipefail
+
 local file="$HOME/Music/Sounds/$1"
 for ext in ogg mp3 wav; do
     if [[ -f "$file.$ext" ]]; then

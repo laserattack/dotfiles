@@ -14,3 +14,4 @@
 .local/bin/greek|symlink|
 .local/bin/clipshot|symlink|
 .local/bin/murder|symlink|
+.local/bin/sfx|symlink|

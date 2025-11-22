@@ -48,7 +48,7 @@ timer() {
         return
     fi
     sleep "$1"
-    sfx done
+    sfx good
     notify-send -t 5000 'timer complete' "$1 seconds elapsed"
 }
 

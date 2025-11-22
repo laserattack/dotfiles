@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use feature 'say';
-use Time::HiRes qw(sleep);
+use Time::HiRes 'sleep';
 
 our @SIGNALS = (
     [15, 3],
@@ -17,7 +17,6 @@ sub go_ahead {
     chomp($input);
     $input =~ s/^\s+|\s+$//g;
     $input = lc($input);
-
     return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
 }
 
@@ -42,7 +41,6 @@ sub murder_port {
     my ($port) = @_;
     $port =~ s/^://;
     my @pids = split(/\n/, `lsof -ti:$port`);
-
     foreach my $pid (@pids) {
         my $command = `ps -p $pid -o comm=`;
         chomp($command);
@@ -57,12 +55,9 @@ sub murder_names {
     my ($name) = @_;
     my $running = `ps -eo 'pid command' | grep -Fiw '$name' | grep -Fv grep`;
     foreach my $line (split(/\n/, $running)) {
-        # $line =~ s/^\s+|\s+$//g;
-        # my ($pid, $fullname) = split(/\s+/, $line, 2);
-        say("line = $line");
-        my ($pid, $fullname) = $line =~ /^\s*(\d+)\s+(.+?)\s*$/;
+        my ($pid, $command) = $line =~ /^\s*(\d+)\s+(.+?)\s*$/;
         next if $$ == $pid;
-        print("Kill process '$fullname' (pid $pid)? [y/N] ");
+        print("Kill process '$command' (pid $pid)? [y/N] ");
         if (go_ahead()) {
             murder_pid($pid);
         }
@@ -71,7 +66,6 @@ sub murder_names {
 
 sub murder {
     my ($arg) = @_;
-    
     if ($arg =~ /^\d+$/) {
         murder_pid($arg);
     } elsif ($arg =~ /^:\d+$/) {

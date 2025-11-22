@@ -2,11 +2,11 @@
 -- Бинды плагинов в файликах с подключением плагинов
 vim.g.mapleader = " "
 
--- vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>', {
---     noremap = true,
---     silent = true,
---     desc = "Telescope find TODO comments"
--- })
+vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>', {
+    noremap = true,
+    silent = true,
+    desc = "Telescope find TODO comments"
+})
 
 vim.keymap.set(
     'n', '<leader>h',

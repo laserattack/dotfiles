@@ -53,6 +53,6 @@ return {
         --         vimgrep_arguments = vimgrep_arguments,
         --     })
         -- end, { desc = "Telescope find TODO comments" })
-        -- vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
+        vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
     end
 }

@@ -19,7 +19,6 @@ return {
             auto_install = false,
             highlight = {
                 enable = true,
-                -- Сюда можно написать список парсеров которые отключить
                 disable = { "markdown", "markdown_inline" },
             },
             incremental_selection = {

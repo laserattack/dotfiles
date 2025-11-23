@@ -29,6 +29,11 @@ alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 
 pyvenv() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        echo "Already in virtual environment '$VIRTUAL_ENV'. Deactivating..."
+        deactivate
+        return
+    fi
     if [ -d ".venv" ]; then
         echo "Virtual environment '.venv' already exists. Activating..."
     else

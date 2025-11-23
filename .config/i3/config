@@ -19,9 +19,9 @@ hide_edge_borders smart
 
 # Edit your i3 config (usually ~/.config/i3/config)
 # exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:rctrl_toggle"
-# exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:rshift_toggle"
-exec --no-startup-id xmodmap -e "keycode 100 = Alt_R"
-exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:ralt_toggle"
+exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:rshift_toggle"
+# exec --no-startup-id xmodmap -e "keycode 100 = Alt_R"
+# exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:ralt_toggle"
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.

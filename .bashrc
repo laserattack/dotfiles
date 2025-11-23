@@ -28,6 +28,11 @@ alias gs='git status'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 
+pyvenv() {
+    python3 -m venv .venv
+    source .venv/bin/activate
+}
+
 cacheclean() {
     sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 }

@@ -38,7 +38,7 @@ pyvenv() {
         echo "Virtual environment '.venv' already exists. Activating..."
     else
         python3 -m venv .venv
-        echo "Virtual environment created."
+        echo "Virtual environment created!"
     fi
     source .venv/bin/activate
 }

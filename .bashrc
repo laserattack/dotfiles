@@ -29,7 +29,12 @@ alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 
 pyvenv() {
-    python3 -m venv .venv
+    if [ -d ".venv" ]; then
+        echo "Virtual environment '.venv' already exists. Activating..."
+    else
+        python3 -m venv .venv
+        echo "Virtual environment created."
+    fi
     source .venv/bin/activate
 }
 

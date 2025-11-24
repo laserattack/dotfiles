@@ -2,7 +2,8 @@
 .Xresources|symlink|
 .i3status.conf|symlink|
 .bashrc|symlink|
-.xprofile|symlink
+.xprofile|symlink|
+.tmux.conf|symlink|
 
 .config/nvim|symlink|
 .config/kitty|symlink|

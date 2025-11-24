@@ -55,7 +55,7 @@ focus_follows_mouse no
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec $HOME/.local/bin/st
 bindsym $mod+t exec thunar
 bindsym $mod+i exec firefox
 
@@ -174,5 +174,5 @@ bar {
 
 # autostart
 
-exec --no-startup-id /home/serr/.local/bin/cronshroom
-exec --no-startup-id /home/serr/.local/bin/syncthing
+exec --no-startup-id $HOME/.local/bin/cronshroom
+exec --no-startup-id $HOME/.local/bin/syncthing

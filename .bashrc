@@ -13,7 +13,7 @@ HISTFILESIZE=10000000
 
 PS1='\[\e[34m\]\w\n\[\e[32m\]→ \[\e[0m\]'
 
-# Forces bash to save the command history immediately 
+# Forces bash to save the command history immediately
 # after each command is executed
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
@@ -22,7 +22,7 @@ if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
 fi
 
 alias ls='ls --color=auto'
-alias clear='tput reset'
+# alias clear='tput reset'
 alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
 alias fzfh='history | fzf'

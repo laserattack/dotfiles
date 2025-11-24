@@ -54,7 +54,7 @@ focus_follows_mouse no
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-# start a terminal
+# start some stuff
 bindsym $mod+Return exec $HOME/.local/bin/st
 bindsym $mod+t exec thunar
 bindsym $mod+i exec firefox

@@ -37,11 +37,11 @@ end, {
 })
 
 vim.keymap.set('n', '<leader>tg', function()
-    vim.cmd('split | terminal')
+    vim.cmd('bel split | terminal')
 end, {
     noremap = true,
     silent = true,
-    desc = "Open terminal in horizontal split"
+    desc = "Open terminal in horizontal split (bottom)"
 })
 
 vim.keymap.set('n', '<leader>tt', function()

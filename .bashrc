@@ -48,7 +48,7 @@ cacheclean() {
 }
 
 radio() {
-    local usage="Usage: radio [jazz|lofi]"
+    local usage="Usage: radio [jazz|lofi|black]"
 
     if [ "$#" -ne 1 ]; then
         echo "$usage"

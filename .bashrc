@@ -48,17 +48,19 @@ cacheclean() {
 }
 
 radio() {
+    local usage = "Usage: radio [jazz|lofi]"
     if [ "$#" -ne 1 ]; then
         echo "Usage: radio [jazz]"
         return
     fi
     if [ "$1" == jazz ]; then
         # https://www.radioswissjazz.ch/en/reception/internet
-        mpv --really-quiet --no-video "https://stream.srg-ssr.ch/srgssr/rsj/mp3/128"
+        mpv --really-quiet "https://stream.srg-ssr.ch/srgssr/rsj/mp3/128"
     elif [ "$1" == lofi ]; then
-        mpv --really-quiet --no-video "https://live.hunter.fm/lofi_low"
+        mpv --really-quiet "https://live.hunter.fm/lofi_low"
     else
-        echo "don't know '$1'"
+        echo "Usage: radio [jazz]"
+        return
     fi
 
 }

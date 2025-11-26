@@ -53,6 +53,7 @@ radio() {
         return
     fi
     if [ "$1" = "jazz" ]; then
+        # https://www.radioswissjazz.ch/en
         mpv --really-quiet --no-video "https://livestreaming-node-4.srg-ssr.ch/srgssr/rsj/mp3/128"
     fi
 }

@@ -52,6 +52,9 @@ radio() {
         echo "Usage: radio [jazz]"
         return
     fi
+    if [ "$1" = "jazz" ]; then
+        mpv --really-quiet --no-video "https://livestreaming-node-4.srg-ssr.ch/srgssr/rsj/mp3/128"
+    fi
 }
 
 sfx() {

@@ -48,21 +48,26 @@ cacheclean() {
 }
 
 radio() {
-    local $usage = "Usage: radio [jazz|lofi]"
+    local usage="Usage: radio [jazz|lofi]"
+
     if [ "$#" -ne 1 ]; then
-        echo $usage
-        return
-    fi
-    if [ "$1" == jazz ]; then
-        # https://www.radioswissjazz.ch/en/reception/internet
-        mpv --really-quiet "https://stream.srg-ssr.ch/srgssr/rsj/mp3/128"
-    elif [ "$1" == lofi ]; then
-        mpv --really-quiet "https://live.hunter.fm/lofi_low"
-    else
-        echo $usage
-        return
+        echo "$usage"
+        return 1
     fi
 
+    case "$1" in
+        jazz)
+            # https://www.radioswissjazz.ch/en/reception/internet
+            mpv --really-quiet "https://stream.srg-ssr.ch/srgssr/rsj/mp3/128"
+            ;;
+        lofi)
+            mpv --really-quiet "https://live.hunter.fm/lofi_low"
+            ;;
+        *)
+            echo "$usage"
+            return 1
+            ;;
+    esac
 }
 
 sfx() {

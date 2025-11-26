@@ -48,7 +48,7 @@ cacheclean() {
 }
 
 radio() {
-    local usage="Usage: radio [jazz|lofi|black|trance]"
+    local usage="Usage: radio [jazz|lofi|black|kfai]"
 
     if [ "$#" -ne 1 ]; then
         echo "$usage"
@@ -66,8 +66,8 @@ radio() {
         black)
             mpv --really-quiet "https://moshhead-blackmetal.stream.laut.fm/moshhead-blackmetal"
             ;;
-        trance)
-            mpv --really-quiet "http://ubuntu.hbr1.com:19800/trance.ogg"
+        kfai)
+            mpv --really-quiet "https://kfai.broadcasttool.stream/kfai-1"
             ;;
         *)
             echo "$usage"

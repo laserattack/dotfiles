@@ -58,26 +58,28 @@ radio() {
     case "$1" in
         jazz)
             # https://www.radioswissjazz.ch/en/reception/internet
-            mpv --really-quiet "https://stream.srg-ssr.ch/srgssr/rsj/mp3/128"
+            url="https://stream.srg-ssr.ch/srgssr/rsj/mp3/128"
             ;;
         lofi)
-            mpv --really-quiet "https://live.hunter.fm/lofi_low"
+            url="https://live.hunter.fm/lofi_low"
             ;;
         classic)
             # https://www.radioswissclassic.ch/en/reception/internet
-            mpv --really-quiet "https://stream.srg-ssr.ch/srgssr/rsc_de/mp3/128"
+            url="https://stream.srg-ssr.ch/srgssr/rsc_de/mp3/128"
             ;;
         black)
-            mpv --really-quiet "https://moshhead-blackmetal.stream.laut.fm/moshhead-blackmetal"
+            url="https://moshhead-blackmetal.stream.laut.fm/moshhead-blackmetal"
             ;;
         kfai)
-            mpv --really-quiet "https://kfai.broadcasttool.stream/kfai-1"
+            url="https://kfai.broadcasttool.stream/kfai-1"
             ;;
         *)
             echo "$usage"
             return 1
             ;;
     esac
+
+    mpv --really-quiet "$url"
 }
 
 sfx() {

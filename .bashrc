@@ -48,7 +48,7 @@ cacheclean() {
 }
 
 radio() {
-    local usage="Usage: radio [jazz|lofi|black|kfai]"
+    local usage="Usage: radio [jazz|lofi|classic|black|kfai]"
 
     if [ "$#" -ne 1 ]; then
         echo "$usage"
@@ -62,6 +62,10 @@ radio() {
             ;;
         lofi)
             mpv --really-quiet "https://live.hunter.fm/lofi_low"
+            ;;
+        classic)
+            # https://www.radioswissclassic.ch/en/reception/internet
+            mpv --really-quiet "https://stream.srg-ssr.ch/srgssr/rsc_de/mp3/128"
             ;;
         black)
             mpv --really-quiet "https://moshhead-blackmetal.stream.laut.fm/moshhead-blackmetal"

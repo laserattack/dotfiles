@@ -47,6 +47,13 @@ cacheclean() {
     sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
 }
 
+radio() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: radio [jazz]"
+        return
+    fi
+}
+
 sfx() {
     local file="$HOME/Music/Sounds/$1"
     for ext in ogg mp3 wav; do

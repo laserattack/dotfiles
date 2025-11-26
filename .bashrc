@@ -52,10 +52,15 @@ radio() {
         echo "Usage: radio [jazz]"
         return
     fi
-    if [ "$1" = "jazz" ]; then
+    if [ "$1" == jazz ]; then
         # https://www.radioswissjazz.ch/en/reception/internet
         mpv --really-quiet --no-video "https://stream.srg-ssr.ch/srgssr/rsj/mp3/128"
+    elif [ "$1" == lofi ]; then
+        mpv --really-quiet --no-video "https://live.hunter.fm/lofi_low"
+    else
+        echo "don't know '$1'"
     fi
+
 }
 
 sfx() {

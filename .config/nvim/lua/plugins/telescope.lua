@@ -1,6 +1,6 @@
 local vimgrep_arguments = {
     "rg",
-    "--hidden",
+    -- "--hidden",
     "--no-ignore",
     "--color=never",
     "--no-heading",
@@ -8,7 +8,7 @@ local vimgrep_arguments = {
     "--line-number",
     "--column",
     "--smart-case",
-    "--glob", "!**/.git/**"
+    -- "--glob", "!**/.git/**"
 }
 
 return {
@@ -32,8 +32,9 @@ return {
                 find_files = {
                     previewer = false,
                     find_command = {
-                        "rg", "--files", "--hidden", "--no-ignore",
-                        "--glob", "!**/.git/**"
+                        "rg", "--files", "--no-ignore",
+                        -- "rg", "--files", "--hidden", "--no-ignore",
+                        -- "--glob", "!**/.git/**"
                     },
                 },
                 live_grep = {

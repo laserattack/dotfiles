@@ -48,9 +48,9 @@ cacheclean() {
 }
 
 radio() {
-    local usage = "Usage: radio [jazz|lofi]"
+    local $usage = "Usage: radio [jazz|lofi]"
     if [ "$#" -ne 1 ]; then
-        echo "Usage: radio [jazz]"
+        echo $usage
         return
     fi
     if [ "$1" == jazz ]; then
@@ -59,7 +59,7 @@ radio() {
     elif [ "$1" == lofi ]; then
         mpv --really-quiet "https://live.hunter.fm/lofi_low"
     else
-        echo "Usage: radio [jazz]"
+        echo $usage
         return
     fi
 

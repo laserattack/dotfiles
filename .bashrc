@@ -63,6 +63,9 @@ radio() {
         lofi)
             mpv --really-quiet "https://live.hunter.fm/lofi_low"
             ;;
+        black)
+            mpv --really-quiet "https://moshhead-blackmetal.stream.laut.fm/moshhead-blackmetal"
+            ;;
         *)
             echo "$usage"
             return 1

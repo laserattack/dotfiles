@@ -48,7 +48,7 @@ cacheclean() {
 }
 
 radio() {
-    local usage="Usage: radio [jazz|lofi|classic|black|kfai]"
+    local usage="Usage: radio [jazz|lofi|trance|classic|black|kfai]"
     local url
 
     if [ "$#" -ne 1 ]; then
@@ -63,6 +63,9 @@ radio() {
             ;;
         lofi)
             url="https://live.hunter.fm/lofi_low"
+            ;;
+        trance)
+            url="http://strm112.1.fm/atr_mobile_mp3"
             ;;
         classic)
             # https://www.radioswissclassic.ch/en/reception/internet

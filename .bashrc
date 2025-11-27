@@ -70,6 +70,10 @@ radio() {
             url="http://strm112.1.fm/atr_mobile_mp3"
             ;;
 
+        relax)
+            url="https://pub0201.101.ru/stream/trust/mp3/128/24?"
+            ;;
+
         classic)
             # https://www.radioswissclassic.ch/en/reception/internet
             url="https://stream.srg-ssr.ch/srgssr/rsc_de/mp3/128"

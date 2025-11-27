@@ -48,7 +48,7 @@ cacheclean() {
 }
 
 radio() {
-    local usage="Usage: radio [jazz|lofi|trance|relax|classic|black|kfai]"
+    local usage="Usage: radio [jazz|lofi|relax|classic|black|kfai]"
     local url
 
     if [ "$#" -ne 1 ]; then
@@ -59,7 +59,6 @@ radio() {
     case "$1" in
         jazz)      url="https://stream.srg-ssr.ch/srgssr/rsj/mp3/128";;
         lofi)      url="https://live.hunter.fm/lofi_low";;
-        trance)    url="http://strm112.1.fm/atr_mobile_mp3";;
         relax)     url="https://pub0201.101.ru/stream/trust/mp3/128/24?";;
         classic)   url="https://stream.srg-ssr.ch/srgssr/rsc_de/mp3/128";;
         black)     url="https://moshhead-blackmetal.stream.laut.fm/moshhead-blackmetal";;

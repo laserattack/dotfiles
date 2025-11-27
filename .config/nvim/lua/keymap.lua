@@ -36,7 +36,7 @@ end, {
     desc = "Open terminal in vertical split"
 })
 
-vim.keymap.set('n', '<leader>tg', function()
+vim.keymap.set('n', '<leader>th', function()
     vim.cmd('bel split | terminal')
 end, {
     noremap = true,

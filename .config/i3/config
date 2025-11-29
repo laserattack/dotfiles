@@ -58,6 +58,7 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec $HOME/.local/bin/st
 bindsym $mod+t exec thunar
 bindsym $mod+i exec firefox
+bindsym $mod+c exec $HOME/.local/bin/crosshair
 
 # kill focused window
 bindsym $mod+Shift+q kill

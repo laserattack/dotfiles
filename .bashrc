@@ -127,7 +127,7 @@ prettypath() {
 running() {
     process_list="$(ps -eo 'pid command')"
     if [[ $# != 0 ]]; then
-        process_list="$(echo "$process_list" | grep -Fiw "$@")"
+        process_list="$(echo "$process_list" | grep -Fi "$@")"
     fi
 
     echo "$process_list" |

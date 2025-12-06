@@ -28,6 +28,11 @@ alias gs='git status'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 pyvenv() {
     if [ -n "$VIRTUAL_ENV" ]; then
         echo "Already in virtual environment '$VIRTUAL_ENV'. Deactivating..."

@@ -11,6 +11,7 @@ local plugins = {
     "plugins/leap",
     "plugins/lsp",
     "plugins/blink-cmp",
+    "plugins/align",
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

@@ -21,6 +21,10 @@ if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -f "$HOME/.cargo/env" ]; then
+    source "$HOME/.cargo/env"
+fi
+
 alias ls='ls --color=auto'
 # alias clear='tput reset'
 alias gcl='git clone --depth 1 --no-tags --single-branch'
@@ -28,10 +32,11 @@ alias gs='git status'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 
-# alias ..='cd ..'
-# alias ...='cd ../..'
-# alias ....='cd ../../..'
-# alias .....='cd ../../../..'
+alias .='cd .'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
 
 pyvenv() {
     if [ -n "$VIRTUAL_ENV" ]; then
@@ -207,4 +212,3 @@ gcf() {
         git checkout
     )
 }
-. "$HOME/.cargo/env"

@@ -45,7 +45,7 @@ enc() {
         tar czf "$archname" -C "$(dirname "$input")" "$(basename "$input")"
         input=$archname
     fi
-    openssl enc -aes-256-cbc -salt -pbkdf2 -in "$1" -out "$1".enc
+    openssl enc -aes-256-cbc -salt -pbkdf2 -in "$input" -out "$input".enc
 }
 
 dec() {

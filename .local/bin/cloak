@@ -5,7 +5,7 @@ use warnings;
 use File::Basename;
 use feature 'say';
 
-out $encext = ".1937";
+our $encext = "1937";
 
 sub goahead {
     my $input = <STDIN>;
@@ -19,7 +19,7 @@ sub cloakdir {
     my ($path) = @_;
     my $dirname = basename($path);
     my $parent = dirname($path);
-    my $output = "$dirname.tar.gz.1937";
+    my $output = "$dirname.tar.gz.$encext";
 
     print "Encrypt dir '$path' (-> $output)? [y/N] ";
     return unless goahead();
@@ -33,11 +33,11 @@ sub cloakfile {
     
     my $basename = basename($path);
     my $output;
-    my $is_encrypted = $path =~ /\.1937$/;
+    my $is_encrypted = $path =~ /\.$encext$/;
     
     if ($is_encrypted) {
         $output = $path;
-        $output =~ s/\.1937$//;
+        $output =~ s/\.$encext$//;
         
         print "Decrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
@@ -54,7 +54,7 @@ sub cloakfile {
             unlink $output;
         }
     } else {
-        $output = "$basename.1937";
+        $output = "$basename.$encext";
         print "Encrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
 

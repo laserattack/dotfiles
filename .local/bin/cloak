@@ -28,16 +28,22 @@ sub cloakdir {
 
 sub cloakfile {
     my ($path) = @_;
-    my ($output, undef, $suffix) = fileparse($path, qr/\.[^.]*$/);
-
-    if ($suffix =~ /^\.enc$/) {
+    
+    my $basename = basename($path);
+    my $output;
+    my $is_encrypted = $path =~ /\.enc$/;
+    
+    if ($is_encrypted) {
+        $output = $path;
+        $output =~ s/\.enc$//;
+        
         print "Decrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
 
-        `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in $path -out $output`;
+        `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in '$path' -out '$output'`;
         die "[ERROR] file decrypt error" unless $? == 0;
 
-        if ($output =~ /.+\.tar\.gz$/) {
+        if ($output =~ /\.tar\.gz$/) {
             print "Unzip archive '$output'? [y/N] ";
             return unless goahead();
 
@@ -46,11 +52,11 @@ sub cloakfile {
             unlink $output;
         }
     } else {
-        $output = "$output.enc";
+        $output = "$path.enc";
         print "Encrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
 
-        `tar czf $output $path`;
+        `openssl enc -aes-256-cbc -salt -pbkdf2 -in '$path' -out '$output'`;
         die "[ERROR] encrypt file error" unless $? == 0;
     }
 }

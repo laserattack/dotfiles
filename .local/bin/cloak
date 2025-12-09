@@ -7,6 +7,14 @@ use feature 'say';
 
 our $encext = "1937";
 
+my $PURPLE = "\033[35m";
+my $RESET = "\033[0m";
+
+sub colored {
+    my ($text) = @_;
+    return $PURPLE . $text . $RESET;
+}
+
 sub goahead {
     my $input = <STDIN>;
     chomp($input);
@@ -21,7 +29,7 @@ sub cloakdir {
     my $parent = dirname($path);
     my $output = "$dirname.tar.gz.$encext";
 
-    print "encrypt dir '$path' (-> $output)? [y/N] ";
+    print "encrypt dir " . colored("'$path'") . " (-> " . colored($output) . ")? [y/N] ";
     return unless goahead();
 
     `tar czf - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
@@ -39,14 +47,14 @@ sub cloakfile {
         $output = $path;
         $output =~ s/\.$encext$//;
         
-        print "decrypt file '$path' (-> $output)? [y/N] ";
+        print "decrypt file " . colored("'$path'") . " (-> " . colored($output) . ")? [y/N] ";
         return unless goahead();
 
         `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in '$path' -out '$output'`;
         die "file decrypt error" unless $? == 0;
 
         if ($output =~ /\.tar\.gz$/) {
-            print "unzip archive '$output'? [y/N] ";
+            print "unzip archive " . colored("'$output'") . "? [y/N] ";
             return unless goahead();
 
             `tar xzf '$output' -C .`;
@@ -55,7 +63,7 @@ sub cloakfile {
         }
     } else {
         $output = "$basename.$encext";
-        print "encrypt file '$path' (-> $output)? [y/N] ";
+        print "encrypt file " . colored("'$path'") . " (-> " . colored($output) . ")? [y/N] ";
         return unless goahead();
 
         `openssl enc -aes-256-cbc -salt -pbkdf2 -in '$path' -out '$output'`;

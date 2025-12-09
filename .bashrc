@@ -44,11 +44,7 @@ enc() {
 
 dec() {
     local usage="Usage: dec <filename.enc>"
-    if [ "$#" -ne 1 ]; then
-        echo "$usage"
-        return 1
-    fi
-    if [[ "$1" != *.enc ]]; then
+    if [ "$#" -ne 1 ] || [[ "$1" != *.enc ]]; then
         echo "$usage"
         return 1
     fi

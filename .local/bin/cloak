@@ -83,7 +83,7 @@ sub cloak {
 }
 
 if (@ARGV < 1) {
-    say 'cloak ' . purple('<porno path>');
+    say 'cloak ' . purple('path');
 } else {
     foreach my $arg (@ARGV) {
         cloak($arg);

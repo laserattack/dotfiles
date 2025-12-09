@@ -5,6 +5,8 @@ use warnings;
 use File::Basename;
 use feature 'say';
 
+out $encext = ".1937";
+
 sub goahead {
     my $input = <STDIN>;
     chomp($input);

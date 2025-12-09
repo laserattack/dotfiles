@@ -85,8 +85,8 @@ sub xxx {
 }
 
 if (@ARGV < 1) {
-    say prpl('xxx ') . 'simple encrypt/decrypt tool';
-    say 'xxx ' . prpl('path');
+    say prpl('xxx ') . '- simple encrypt/decrypt (aes256) openssl wrapper';
+    say 'usage: xxx ' . prpl('path');
 } else {
     foreach my $arg (@ARGV) {
         xxx($arg);

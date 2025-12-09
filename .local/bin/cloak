@@ -11,16 +11,18 @@ sub cloakfile {
 
 sub cloak {
     my ($arg) = @_;
-    if () {
+    if (-f $arg) {
         cloakfile($arg);
-    } else {
+    } else if (-d $arg) {
         cloakfolder($arg);
+    } else {
+        die "[ERROR] '$arg' is not a file or dir\n"
     }
 }
 
 if (@ARGV < 1) {
-    say 'cloak porno      # encrypt file/folder';
-    say 'cloak porno.enc  # decrypt file/folder';
+    say 'cloak porno      # encrypt file/dir';
+    say 'cloak porno.enc  # decrypt file/dir';
 } else {
     foreach my $arg (@ARGV) {
         murder($arg);

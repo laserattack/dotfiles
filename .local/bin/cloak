@@ -25,8 +25,9 @@ sub cloakdir {
 sub cloakfile {
     my ($path) = @_;
     my ($name, undef, $suffix) = fileparse($path, qr/\.[^.]*$/);
-    if ($suffix eq ".enc") {
-        say "decenc";
+    if ($suffix =~ /^\.enc$/) {
+        
+        die "[ERROR] file decrypt error" unless $? == 0;
     } else {
         say "enc";
     }

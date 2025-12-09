@@ -21,11 +21,11 @@ sub cloakdir {
     my $parent = dirname($path);
     my $output = "$dirname.tar.gz.$encext";
 
-    print "Encrypt dir '$path' (-> $output)? [y/N] ";
+    print "encrypt dir '$path' (-> $output)? [y/N] ";
     return unless goahead();
 
     `tar czf - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
-    die "[ERROR] dir encrypt error" unless $? == 0;
+    die "dir encrypt error" unless $? == 0;
 }
 
 sub cloakfile {
@@ -39,27 +39,27 @@ sub cloakfile {
         $output = $path;
         $output =~ s/\.$encext$//;
         
-        print "Decrypt file '$path' (-> $output)? [y/N] ";
+        print "decrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
 
         `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in '$path' -out '$output'`;
-        die "[ERROR] file decrypt error" unless $? == 0;
+        die "file decrypt error" unless $? == 0;
 
         if ($output =~ /\.tar\.gz$/) {
-            print "Unzip archive '$output'? [y/N] ";
+            print "unzip archive '$output'? [y/N] ";
             return unless goahead();
 
             `tar xzf '$output' -C .`;
-            die "[ERROR] unzip archive error" unless $? == 0;
+            die "unzip archive error" unless $? == 0;
             unlink $output;
         }
     } else {
         $output = "$basename.$encext";
-        print "Encrypt file '$path' (-> $output)? [y/N] ";
+        print "encrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
 
         `openssl enc -aes-256-cbc -salt -pbkdf2 -in '$path' -out '$output'`;
-        die "[ERROR] encrypt file error" unless $? == 0;
+        die "encrypt file error" unless $? == 0;
     }
 }
 
@@ -70,7 +70,7 @@ sub cloak {
     } elsif (-d $arg) {
         cloakdir($arg);
     } else {
-        die "[ERROR] '$arg' is not a file or dir\n";
+        die "'$arg' is not a file or dir\n";
     }
 }
 
@@ -80,5 +80,5 @@ if (@ARGV < 1) {
     foreach my $arg (@ARGV) {
         cloak($arg);
     }
-    say 'Everything all right. bye bye!'
+    say 'everything all right. bye bye!'
 }

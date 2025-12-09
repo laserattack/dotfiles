@@ -2,3 +2,14 @@
 
 use strict;
 use warnings;
+
+
+
+if (@ARGV < 1) {
+    say 'cloak porno      # encrypt file/folder';
+    say 'cloak porno.enc  # decrypt file/folder';
+} else {
+    foreach my $arg (@ARGV) {
+        murder($arg);
+    }
+}

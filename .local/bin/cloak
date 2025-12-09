@@ -3,7 +3,20 @@
 use strict;
 use warnings;
 
+sub cloakfolder {
+}
 
+sub cloakfile {
+}
+
+sub cloak {
+    my ($arg) = @_;
+    if () {
+        cloakfile($arg);
+    } else {
+        cloakfolder($arg);
+    }
+}
 
 if (@ARGV < 1) {
     say 'cloak porno      # encrypt file/folder';

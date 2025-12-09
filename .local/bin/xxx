@@ -90,4 +90,5 @@ if (@ARGV < 1) {
     foreach my $arg (@ARGV) {
         xxx($arg);
     }
+    say prpl("bye bye :*")
 }

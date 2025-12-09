@@ -7,6 +7,14 @@ use feature 'say';
 
 our $anyext = qr/\.[^.]*$/;
 
+sub go_ahead {
+    my $input = <STDIN>;
+    chomp($input);
+    $input =~ s/^\s+|\s+$//g;
+    $input = lc($input);
+    return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
+}
+
 sub cloakdir {
     my ($path) = @_;
     my $name = basename($path);
@@ -31,8 +39,7 @@ sub cloak {
 }
 
 if (@ARGV < 1) {
-    say 'cloak porno      # encrypt file/dir';
-    say 'cloak porno.enc  # decrypt file';
+    say 'cloak <porno path>';
 } else {
     foreach my $arg (@ARGV) {
         cloak($arg);

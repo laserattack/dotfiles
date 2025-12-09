@@ -17,6 +17,10 @@ sub cloakdir {
     my ($path) = @_;
     my $name = basename($path);
     print("Encrypt dir '$path' (-> $name.tar.gz.enc)? [y/N] ");
+    if (!go_ahead()) {
+        return;
+    }
+    say "succ";
 }
 
 sub cloakfile {

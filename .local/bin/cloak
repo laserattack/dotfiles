@@ -7,14 +7,14 @@ use feature 'say';
 
 sub cloakdir {
     my ($path) = @_;
-    my $basename = basename($path);
-    say $basename;
+    my ($name, _, $suffix) = fileparse($fullname, @suffixlist);
+    say "name = $name, suffix = $suffix";
 }
 
 sub cloakfile {
     my ($path) = @_;
-    my $basename = basename($path);
-    say $basename;
+    my ($name, _, $suffix) = fileparse($fullname, @suffixlist);
+    say "name = $name, suffix = $suffix";
 }
 
 sub cloak {

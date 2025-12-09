@@ -15,12 +15,12 @@ sub goahead {
 
 sub cloakdir {
     my ($path) = @_;
-    my $output = "${basename($path)}.tar.gz.enc";
+    my $output = basename($path).".tar.gz.enc";
     print "Encrypt dir '$path' (-> $output)? [y/N] ";
     if (!goahead()) {
         return;
     }
-    `tar czf $output $path``;
+    `tar czf $output $path`;
 }
 
 sub cloakfile {

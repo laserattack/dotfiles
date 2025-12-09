@@ -88,5 +88,4 @@ if (@ARGV < 1) {
     foreach my $arg (@ARGV) {
         cloak($arg);
     }
-    say 'everything all right. bye bye!'
 }

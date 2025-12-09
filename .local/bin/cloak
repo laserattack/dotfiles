@@ -30,8 +30,10 @@ sub cloakfile {
         return unless goahead();
         `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in $path -out $output`;
         die "[ERROR] file decrypt error" unless $? == 0;
+        my ($output, undef, $suffix) = fileparse($output, qr/\.tar\.gz$/);
         if ($output =~ /.+\.tar\.gz$/) {
-            say "123";
+            print "Unzip archive '$output' (-> $output)? [y/N] ";
+            return unless goahead();
         }
     } else {
         say "enc";

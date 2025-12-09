@@ -35,6 +35,8 @@ sub cloakdir {
 
     `tar czf - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
     die "dir encrypt error" unless $? == 0;
+
+    print prpl(`realpath $output`);
 }
 
 sub cloakfile {

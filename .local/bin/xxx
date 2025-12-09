@@ -33,7 +33,7 @@ sub xxxdir {
     `tar czf - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
     die "dir encrypt error\n" unless $? == 0;
 
-    print prpl(`realpath $output`);
+    # print prpl(`realpath $output`);
 }
 
 sub xxxfile {
@@ -44,7 +44,7 @@ sub xxxfile {
 
     if ($is_encrypted) {
 
-        $output = $path;
+        $output = $basename;
         $output =~ s/\.$encext$//;
 
         print "decrypt file " . prpl($path) . " -> " . prpl($output) . " [y/N] ";
@@ -70,7 +70,7 @@ sub xxxfile {
         die "encrypt file error\n" unless $? == 0;
     }
 
-    print prpl(`realpath $output`);
+    # print prpl(`realpath $output`);
 }
 
 sub xxx {

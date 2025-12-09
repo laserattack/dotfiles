@@ -24,7 +24,7 @@ sub goahead {
     return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
 }
 
-sub cloakdir {
+sub xxxdir {
     my ($path) = @_;
     my $dirname = basename($path);
     my $parent = dirname($path);
@@ -39,7 +39,7 @@ sub cloakdir {
     print prpl(`realpath $output`);
 }
 
-sub cloakfile {
+sub xxxfile {
     my ($path) = @_;
     my $basename = basename($path);
     my $output;
@@ -75,21 +75,21 @@ sub cloakfile {
     print prpl(`realpath $output`);
 }
 
-sub cloak {
+sub xxx {
     my ($arg) = @_;
     if (-f $arg) {
-        cloakfile($arg);
+        xxxfile($arg);
     } elsif (-d $arg) {
-        cloakdir($arg);
+        xxxdir($arg);
     } else {
         die prpl($arg) . " is not a file or dir\n";
     }
 }
 
 if (@ARGV < 1) {
-    say 'cloak ' . prpl('path');
+    say 'xxx ' . prpl('path');
 } else {
     foreach my $arg (@ARGV) {
-        cloak($arg);
+        xxx($arg);
     }
 }

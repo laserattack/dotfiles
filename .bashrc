@@ -42,17 +42,17 @@ enc() {
     openssl enc -aes-256-cbc -salt -pbkdf2 -in "$1" -out "$1".enc
 }
 
-dec {
+dec() {
     local usage="Usage: dec <filename.enc>"
     if [ "$#" -ne 1 ]; then
         echo "$usage"
         return 1
     fi
     if [[ "$1" != *.enc ]]; then
-        echo "Error: Input file should have .enc extension"
         echo "$usage"
         return 1
     fi
+    openssl enc -aes-256-cbc -d -salt -pbkdf2 -in "$1" -out "${1%.enc}"
 }
 
 pyvenv() {

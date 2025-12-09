@@ -9,7 +9,7 @@ our $anyext = qr/\.[^.]*$/;
 
 sub cloakdir {
     my ($path) = @_;
-    my ($name, undef, undef) = fileparse($path);
+    my $name = basename($path);
     say "name = $name";
 }
 
@@ -32,7 +32,7 @@ sub cloak {
 
 if (@ARGV < 1) {
     say 'cloak porno      # encrypt file/dir';
-    say 'cloak porno.enc  # decrypt file/dir';
+    say 'cloak porno.enc  # decrypt file';
 } else {
     foreach my $arg (@ARGV) {
         cloak($arg);

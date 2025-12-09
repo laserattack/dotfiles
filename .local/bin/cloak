@@ -47,7 +47,7 @@ sub cloakfile {
         $output = $path;
         $output =~ s/\.$encext$//;
 
-        print "decrypt file " . prpl($path) . " -> " . prpl($output) . " [y/N] ";
+        print "decrypt file " . prpl($path) . " -> " . prpl($basename) . " [y/N] ";
         return unless goahead();
 
         `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in '$path' -out '$output'`;

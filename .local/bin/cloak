@@ -32,7 +32,6 @@ sub cloakdir {
     print "encrypt dir " . purple($path) . " -> " . purple($output) . " [y/N] ";
     return unless goahead();
 
-    say "encrypting...";
     `tar czf - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
     die "dir encrypt error" unless $? == 0;
 }
@@ -51,7 +50,6 @@ sub cloakfile {
         print "decrypt file " . purple($path) . " -> " . purple($output) . " [y/N] ";
         return unless goahead();
 
-        say "decrypting...";
         `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in '$path' -out '$output'`;
         die "file decrypt error" unless $? == 0;
 
@@ -68,7 +66,6 @@ sub cloakfile {
         print "encrypt file " . purple($path) . " -> " . purple($output) . " [y/N] ";
         return unless goahead();
 
-        say "encrypting...";
         `openssl enc -aes-256-cbc -salt -pbkdf2 -in '$path' -out '$output'`;
         die "encrypt file error" unless $? == 0;
     }

@@ -35,6 +35,7 @@ alias .....='cd ../../../..'
 
 enc() {
     local usage="Usage: enc <filename>"
+    local input="$1"
     if [ "$#" -ne 1 ]; then
         echo "$usage"
         return 1

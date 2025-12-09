@@ -46,8 +46,11 @@ sub cloakfile {
             unlink $output;
         }
     } else {
-        print "Decrypt file '$path' (-> $output)? [y/N] ";
+        $output = "$output.enc";
+        print "Encrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
+
+        `tar czf $output $path`;
     }
 }
 

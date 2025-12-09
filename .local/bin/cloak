@@ -51,6 +51,7 @@ sub cloakfile {
         return unless goahead();
 
         `tar czf $output $path`;
+        die "[ERROR] encrypt file error" unless $? == 0;
     }
 }
 

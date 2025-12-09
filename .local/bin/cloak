@@ -18,8 +18,10 @@ sub cloakdir {
     my $dirname = basename($path);
     my $parent = dirname($path);
     my $output = "$dirname.tar.gz.enc";
+
     print "Encrypt dir '$path' (-> $output)? [y/N] ";
     return unless goahead();
+
     `tar czf - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
     die "[ERROR] dir encrypt error" unless $? == 0;
 }
@@ -37,6 +39,7 @@ sub cloakfile {
             return unless goahead();
             `tar xzf '$output' -C .`;
             die "[ERROR] unzip archive error" unless $? == 0;
+            unlink $output;
         }
     } else {
         say "enc";

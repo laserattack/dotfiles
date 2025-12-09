@@ -37,25 +37,24 @@ sub xxxdir {
 }
 
 sub xxxfile {
-    my ($path) = @_;
     my $output;
+    my ($path) = @_;
+    my $basename = basename($path);
     my $is_encrypted = $path =~ /\.$encext$/;
 
     if ($is_encrypted) {
-        my $basename = basename($path);
 
-        $basename =~ s/\.$encext$//;
         $output = $path;
         $output =~ s/\.$encext$//;
 
-        print "decrypt file " . prpl($path) . " -> " . prpl($basename) . " [y/N] ";
+        print "decrypt file " . prpl($path) . " -> " . prpl($output) . " [y/N] ";
         return unless goahead();
 
         `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in '$path' -out '$output'`;
         die "file decrypt error\n" unless $? == 0;
 
         if ($output =~ /\.tar\.gz$/) {
-            print "unzip archive " . prpl($basename) . " [y/N] ";
+            print "unzip archive " . prpl($output) . " [y/N] ";
             return unless goahead();
 
             `tar xzf '$output' -C .`;
@@ -63,7 +62,6 @@ sub xxxfile {
             unlink $output;
         }
     } else {
-        my $basename = basename($path);
         $output = "$basename.$encext";
         print "encrypt file " . prpl($path) . " -> " . prpl($output) . " [y/N] ";
         return unless goahead();

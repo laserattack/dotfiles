@@ -17,6 +17,7 @@ sub prpl {
 
 sub goahead {
     my $input = <STDIN>;
+
     chomp($input);
     $input =~ s/^\s+|\s+$//g;
     $input = lc($input);

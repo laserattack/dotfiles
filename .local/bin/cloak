@@ -19,7 +19,7 @@ sub cloakdir {
     my ($path) = @_;
     my $dirname = basename($path);
     my $parent = dirname($path);
-    my $output = "$dirname.tar.gz.enc";
+    my $output = "$dirname.tar.gz.1937";
 
     print "Encrypt dir '$path' (-> $output)? [y/N] ";
     return unless goahead();
@@ -33,11 +33,11 @@ sub cloakfile {
     
     my $basename = basename($path);
     my $output;
-    my $is_encrypted = $path =~ /\.enc$/;
+    my $is_encrypted = $path =~ /\.1937$/;
     
     if ($is_encrypted) {
         $output = $path;
-        $output =~ s/\.enc$//;
+        $output =~ s/\.1937$//;
         
         print "Decrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
@@ -54,7 +54,7 @@ sub cloakfile {
             unlink $output;
         }
     } else {
-        $output = "$basename.enc";
+        $output = "$basename.1937";
         print "Encrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
 

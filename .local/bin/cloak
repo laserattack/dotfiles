@@ -24,9 +24,9 @@ sub cloakdir {
 
 sub cloakfile {
     my ($path) = @_;
-    my ($name, undef, $suffix) = fileparse($path, qr/\.[^.]*$/);
+    my ($output, undef, $suffix) = fileparse($path, qr/\.[^.]*$/);
     if ($suffix =~ /^\.enc$/) {
-        `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in $path -out $name`
+        `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in $path -out $output`;
         die "[ERROR] file decrypt error" unless $? == 0;
     } else {
         say "enc";

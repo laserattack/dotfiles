@@ -5,9 +5,11 @@ use warnings;
 use feature 'say';
 
 sub cloakfolder {
+    my ($path) = @_;
 }
 
 sub cloakfile {
+    my ($path) = @_;
 }
 
 sub cloak {

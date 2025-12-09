@@ -69,6 +69,8 @@ sub cloakfile {
         `openssl enc -aes-256-cbc -salt -pbkdf2 -in '$path' -out '$output'`;
         die "encrypt file error" unless $? == 0;
     }
+
+    print prpl(`realpath $output`);
 }
 
 sub cloak {

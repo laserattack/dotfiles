@@ -7,12 +7,9 @@ use feature 'say';
 
 our $encext = "1937";
 
-my $PURPLE = "\033[35m";
-my $RESET = "\033[0m";
-
 sub prpl {
     my ($text) = @_;
-    return $PURPLE . $text . $RESET;
+    return "\033[35m" . $text . "\033[0m";
 }
 
 sub goahead {

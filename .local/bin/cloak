@@ -33,7 +33,7 @@ sub cloakfile {
         if ($output =~ /.+\.tar\.gz$/) {
             print "Unzip archive '$output'? [y/N] ";
             return unless goahead();
-            `tar xvf $output`;
+            `tar xzf '$output' -C .`;
             die "[ERROR] unzip archive error" unless $? == 0;
         }
     } else {

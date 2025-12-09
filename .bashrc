@@ -42,7 +42,7 @@ enc() {
     fi
     if [ -d "$input" ]; then
         archname="${input%/}.tar.gz"
-        tar czf "$archname" -C "$(dirname "$input")" "$(basename "$input")"
+        tar czf "$archname" -C "$($input)" "$(basename "$input")"
         input=$archname
     fi
     openssl enc -aes-256-cbc -salt -pbkdf2 -in "$input" -out "$input".enc

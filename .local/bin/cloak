@@ -46,7 +46,8 @@ sub cloakfile {
             unlink $output;
         }
     } else {
-        say "enc";
+        print "Decrypt file '$path' (-> $output)? [y/N] ";
+        return unless goahead();
     }
 }
 

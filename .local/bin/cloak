@@ -29,14 +29,18 @@ sub cloakdir {
 sub cloakfile {
     my ($path) = @_;
     my ($output, undef, $suffix) = fileparse($path, qr/\.[^.]*$/);
+
     if ($suffix =~ /^\.enc$/) {
         print "Decrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
+
         `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in $path -out $output`;
         die "[ERROR] file decrypt error" unless $? == 0;
+
         if ($output =~ /.+\.tar\.gz$/) {
             print "Unzip archive '$output'? [y/N] ";
             return unless goahead();
+
             `tar xzf '$output' -C .`;
             die "[ERROR] unzip archive error" unless $? == 0;
             unlink $output;

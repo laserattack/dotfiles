@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use feature 'say';
 
-sub cloakfolder {
+sub cloakdir {
     my ($path) = @_;
 }
 
@@ -17,7 +17,7 @@ sub cloak {
     if (-f $arg) {
         cloakfile($arg);
     } elsif (-d $arg) {
-        cloakfolder($arg);
+        cloakdir($arg);
     } else {
         die "[ERROR] '$arg' is not a file or dir\n"
     }

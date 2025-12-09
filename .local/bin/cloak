@@ -2,17 +2,18 @@
 
 use strict;
 use warnings;
+use File::Basename;
 use feature 'say';
 
 sub cloakdir {
     my ($path) = @_;
-    my $basename = `basename $path`;
+    my $basename = basename($path);
     say $basename;
 }
 
 sub cloakfile {
     my ($path) = @_;
-    my $basename = `basename $path`;
+    my $basename = basename($path);
     say $basename;
 }
 

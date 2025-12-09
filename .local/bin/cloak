@@ -5,8 +5,6 @@ use warnings;
 use File::Basename;
 use feature 'say';
 
-our $anyext = qr/\.[^.]*$/;
-
 sub go_ahead {
     my $input = <STDIN>;
     chomp($input);
@@ -18,12 +16,12 @@ sub go_ahead {
 sub cloakdir {
     my ($path) = @_;
     my $name = basename($path);
-    say "name = $name";
+    print("Encrypt dir '$path' (-> $name.tar.gz.enc)? [y/N] ");
 }
 
 sub cloakfile {
     my ($path) = @_;
-    my ($name, undef, $suffix) = fileparse($path, $anyext);
+    my ($name, undef, $suffix) = fileparse($path, /\.[^.]*$/);
     say "name = $name, suffix = $suffix";
 }
 

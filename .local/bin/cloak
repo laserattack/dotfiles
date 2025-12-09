@@ -17,10 +17,9 @@ sub cloakdir {
     my ($path) = @_;
     my $output = basename($path).".tar.gz.enc";
     print "Encrypt dir '$path' (-> $output)? [y/N] ";
-    if (!goahead()) {
-        return;
-    }
+    return unless goahead();
     system("tar czf - '$path' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'")
+    if ($? != 0)
 }
 
 sub cloakfile {

@@ -29,7 +29,7 @@ sub cloakdir {
     my $parent = dirname($path);
     my $output = "$dirname.tar.gz.$encext";
 
-    print "encrypt dir " . purple("$path") . " -> " . purple($output) . "? [y/N] ";
+    print "encrypt dir " . purple("$path") . " -> " . purple($output) . " [y/N] ";
     return unless goahead();
 
     `tar czf - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
@@ -47,14 +47,14 @@ sub cloakfile {
         $output = $path;
         $output =~ s/\.$encext$//;
         
-        print "decrypt file " . purple("$path") . " -> " . purple($output) . "? [y/N] ";
+        print "decrypt file " . purple("$path") . " -> " . purple($output) . " [y/N] ";
         return unless goahead();
 
         `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in '$path' -out '$output'`;
         die "file decrypt error" unless $? == 0;
 
         if ($output =~ /\.tar\.gz$/) {
-            print "unzip archive " . purple("$output") . "? [y/N] ";
+            print "unzip archive " . purple("$output") . " [y/N] ";
             return unless goahead();
 
             `tar xzf '$output' -C .`;
@@ -63,7 +63,7 @@ sub cloakfile {
         }
     } else {
         $output = "$basename.$encext";
-        print "encrypt file " . purple("$path") . " -> " . purple($output) . "? [y/N] ";
+        print "encrypt file " . purple("$path") . " -> " . purple($output) . " [y/N] ";
         return unless goahead();
 
         `openssl enc -aes-256-cbc -salt -pbkdf2 -in '$path' -out '$output'`;

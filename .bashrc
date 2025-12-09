@@ -33,6 +33,20 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+enc() {
+    local usage="Usage: enc <filename>"
+    if [ "$#" -ne 1 ]; then
+        echo "$usage"
+        return 1
+    fi
+
+    openssl enc -aes-256-cbc -salt -pbkdf2 -in "$1" -out "$1".enc
+}
+
+dec {
+    
+}
+
 pyvenv() {
     if [ -n "$VIRTUAL_ENV" ]; then
         echo "Already in virtual environment '$VIRTUAL_ENV'. Deactivating..."

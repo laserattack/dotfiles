@@ -52,7 +52,7 @@ sub cloakfile {
             unlink $output;
         }
     } else {
-        $output = "$path.enc";
+        $output = "$basename.enc";
         print "Encrypt file '$path' (-> $output)? [y/N] ";
         return unless goahead();
 

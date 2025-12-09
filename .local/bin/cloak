@@ -25,7 +25,7 @@ sub cloakdir {
 
 sub cloakfile {
     my ($path) = @_;
-    my ($name, undef, $suffix) = fileparse($path, /\.[^.]*$/);
+    my ($name, undef, $suffix) = fileparse($path, qr/\.[^.]*$/);
     say "name = $name, suffix = $suffix";
 }
 

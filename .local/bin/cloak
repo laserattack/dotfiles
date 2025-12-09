@@ -19,7 +19,6 @@ sub cloakdir {
     print "Encrypt dir '$path' (-> $output)? [y/N] ";
     return unless goahead();
     `tar czf - '$path' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
-    return unless $? == 0;
 }
 
 sub cloakfile {
@@ -45,4 +44,5 @@ if (@ARGV < 1) {
     foreach my $arg (@ARGV) {
         cloak($arg);
     }
+    say 'bye bye!'
 }

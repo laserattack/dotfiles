@@ -5,15 +5,18 @@ use warnings;
 use File::Basename;
 use feature 'say';
 
+our @suffixlist = (qr/\.[^.]*$/);
+
 sub cloakdir {
     my ($path) = @_;
-    my ($name, undef, $suffix) = fileparse($fullname, @suffixlist);
+    my @suffixlist = (qr/\.[^.]*$/);
+    my ($name, undef, $suffix) = fileparse($path);
     say "name = $name, suffix = $suffix";
 }
 
 sub cloakfile {
     my ($path) = @_;
-    my ($name, undef, $suffix) = fileparse($fullname, @suffixlist);
+    my ($name, undef, $suffix) = fileparse($path);
     say "name = $name, suffix = $suffix";
 }
 

@@ -9,14 +9,13 @@ our @suffixlist = (qr/\.[^.]*$/);
 
 sub cloakdir {
     my ($path) = @_;
-    my @suffixlist = (qr/\.[^.]*$/);
-    my ($name, undef, $suffix) = fileparse($path);
+    my ($name, undef, $suffix) = fileparse($path, @suffixlist);
     say "name = $name, suffix = $suffix";
 }
 
 sub cloakfile {
     my ($path) = @_;
-    my ($name, undef, $suffix) = fileparse($path);
+    my ($name, undef, $suffix) = fileparse($path, @suffixlist);
     say "name = $name, suffix = $suffix";
 }
 

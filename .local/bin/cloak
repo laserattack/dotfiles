@@ -5,7 +5,7 @@ use warnings;
 use File::Basename;
 use feature 'say';
 
-sub go_ahead {
+sub goahead {
     my $input = <STDIN>;
     chomp($input);
     $input =~ s/^\s+|\s+$//g;
@@ -17,7 +17,7 @@ sub cloakdir {
     my ($path) = @_;
     my $name = basename($path);
     print("Encrypt dir '$path' (-> $name.tar.gz.enc)? [y/N] ");
-    if (!go_ahead()) {
+    if (!goahead()) {
         return;
     }
     say "succ";

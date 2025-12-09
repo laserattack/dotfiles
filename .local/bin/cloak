@@ -14,7 +14,7 @@ sub goahead {
 }
 
 sub cloakdir {
-    my ($path) = (shift =~ s{/$}{}r);
+    my ($path) = @_;
     my $output = basename($path).".tar.gz.enc";
     print "Encrypt dir '$path' (-> $output)? [y/N] ";
     return unless goahead();

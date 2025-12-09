@@ -56,7 +56,7 @@ sub cloakfile {
         die "file decrypt error" unless $? == 0;
 
         if ($output =~ /\.tar\.gz$/) {
-            print "unzip archive " . prpl($output) . " [y/N] ";
+            print "unzip archive " . prpl($basename) . " [y/N] ";
             return unless goahead();
 
             `tar xzf '$output' -C .`;

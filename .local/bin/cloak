@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use feature 'say';
 
 sub cloakfolder {
 }
@@ -13,7 +14,7 @@ sub cloak {
     my ($arg) = @_;
     if (-f $arg) {
         cloakfile($arg);
-    } else if (-d $arg) {
+    } elsif (-d $arg) {
         cloakfolder($arg);
     } else {
         die "[ERROR] '$arg' is not a file or dir\n"
@@ -25,6 +26,6 @@ if (@ARGV < 1) {
     say 'cloak porno.enc  # decrypt file/dir';
 } else {
     foreach my $arg (@ARGV) {
-        murder($arg);
+        cloak($arg);
     }
 }

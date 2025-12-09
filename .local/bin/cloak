@@ -25,7 +25,11 @@ sub cloakdir {
 sub cloakfile {
     my ($path) = @_;
     my ($name, undef, $suffix) = fileparse($path, qr/\.[^.]*$/);
-    say "name = $name, suffix = $suffix";
+    if ($suffix eq ".enc") {
+        say "decenc";
+    } else {
+        say "enc";
+    }
 }
 
 sub cloak {

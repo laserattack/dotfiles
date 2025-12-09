@@ -6,14 +6,14 @@ use feature 'say';
 
 sub cloakdir {
     my ($path) = @_;
-    my basename = `basename $path`;
-    say basename;
+    my $basename = `basename $path`;
+    say $basename;
 }
 
 sub cloakfile {
     my ($path) = @_;
-    my basename = `basename $path`;
-    say basename;
+    my $basename = `basename $path`;
+    say $basename;
 }
 
 sub cloak {

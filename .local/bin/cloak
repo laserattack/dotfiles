@@ -30,6 +30,8 @@ sub cloakfile {
         return unless goahead();
         `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in $path -out $output`;
         die "[ERROR] file decrypt error" unless $? == 0;
+        $path = $output;
+        ($output, undef, $suffix) = fileparse($path, qr/\.[^.]*$/);
     } else {
         say "enc";
     }

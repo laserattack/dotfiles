@@ -38,15 +38,15 @@ sub cloakdir {
 
 sub cloakfile {
     my ($path) = @_;
-    
+
     my $basename = basename($path);
     my $output;
     my $is_encrypted = $path =~ /\.$encext$/;
-    
+
     if ($is_encrypted) {
         $output = $path;
         $output =~ s/\.$encext$//;
-        
+
         print "decrypt file " . purple($path) . " -> " . purple($output) . " [y/N] ";
         return unless goahead();
 
@@ -83,7 +83,7 @@ sub cloak {
 }
 
 if (@ARGV < 1) {
-    say 'cloak <porno path>';
+    say 'cloak ' . purple('<porno path>');
 } else {
     foreach my $arg (@ARGV) {
         cloak($arg);

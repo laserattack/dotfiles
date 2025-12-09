@@ -1,6 +1,7 @@
 .xinitrc|symlink|
 .Xresources|symlink|
 .i3status.conf|symlink|
+.bash_profile|symlink|
 .bashrc|symlink|
 .xprofile|symlink|
 .tmux.conf|symlink|

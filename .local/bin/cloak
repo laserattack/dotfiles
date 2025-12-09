@@ -19,7 +19,7 @@ sub cloakdir {
     print "Encrypt dir '$path' (-> $output)? [y/N] ";
     return unless goahead();
     `tar czf - '$path' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
-    die "[ERROR] dir encrypt error" unless $? != 0;
+    return unless $? == 0;
 }
 
 sub cloakfile {

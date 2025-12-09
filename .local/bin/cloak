@@ -32,7 +32,7 @@ sub cloakdir {
     print "encrypt dir " . purple($path) . " -> " . purple($output) . " [y/N] ";
     return unless goahead();
 
-    `tar czf - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
+    `tar czfv - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
     die "dir encrypt error" unless $? == 0;
 }
 
@@ -57,7 +57,7 @@ sub cloakfile {
             print "unzip archive " . purple($output) . " [y/N] ";
             return unless goahead();
 
-            `tar xzf '$output' -C .`;
+            `tar xzfv '$output' -C .`;
             die "unzip archive error" unless $? == 0;
             unlink $output;
         }

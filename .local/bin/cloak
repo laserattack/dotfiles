@@ -15,10 +15,12 @@ sub goahead {
 
 sub cloakdir {
     my ($path) = @_;
-    my $output = basename($path).".tar.gz.enc";
+    my $dirname = basename($path);
+    my $parent = dirname($path);
+    my $output = "$dirname.tar.gz.enc";
     print "Encrypt dir '$path' (-> $output)? [y/N] ";
     return unless goahead();
-    `cd \$(dirname '$path') && tar czf - \$(basename '$path') | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$PWD/$output'`;
+    `tar czf - -C '$parent' '$dirname' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'`;
     die "[ERROR] dir encrypt error" unless $? == 0;
 }
 

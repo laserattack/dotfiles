@@ -20,7 +20,7 @@ sub cloakdir {
     if (!goahead()) {
         return;
     }
-    `tar czf $output $path`;
+    system("tar czf - '$path' | openssl enc -aes-256-cbc -salt -pbkdf2 -out '$output'")
 }
 
 sub cloakfile {

@@ -21,7 +21,6 @@ if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-
 alias ls='ls --color=auto'
 # alias clear='tput reset'
 alias gcl='git clone --depth 1 --no-tags --single-branch'
@@ -208,5 +207,3 @@ gcf() {
         git checkout
     )
 }
-
-. "$HOME/.cargo/env"

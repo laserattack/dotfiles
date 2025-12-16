@@ -36,7 +36,6 @@ vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "both"
 
--- Чтобы не было разбиения строки если она не помещается в ширину экрана
 vim.opt.wrap = false
 vim.wo.linebreak = true
 
@@ -50,8 +49,7 @@ vim.opt.smartindent = true
 
 vim.opt.guicursor = "a:block"
 
--- При открытии nvim рабочая директория меняется
--- на директорию с открываемым файлом/папкой
+-- when the editor is opened, the working directory changes
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
     callback = function(data)
         local target_dir = data.file

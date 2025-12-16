@@ -62,8 +62,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     end,
 })
 
--- Автоматическое переключение на US раскладку
--- при заходе в NormalMode (в системе требуется утилита xkb-switch)
+-- automatic layout change when entering NormalMode (xkb-switch)
 vim.api.nvim_create_autocmd({
     "InsertLeave",
     "CmdlineLeave",

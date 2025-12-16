@@ -7,7 +7,7 @@ local plugins = {
     "plugins/nvim-tree",
     "plugins/todo-comments",
     "plugins/leap",
-    "plugins/lsp",
+    -- "plugins/lsp",
     "plugins/blink-cmp",
     "plugins/align",
 }

@@ -30,6 +30,7 @@ return {
 
             api.config.mappings.default_on_attach(bufnr)
 
+            vim.keymap.set("n", "rr", api.tree.change_root_to_node, opts("CD to pwd"))
             vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
             vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close'))
         end

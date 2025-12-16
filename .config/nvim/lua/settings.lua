@@ -70,8 +70,8 @@ vim.opt.smarttab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
--- Настройка внешнего вида курсора (во всех режимах одинаковый + мигает)
-vim.opt.guicursor = "a:block-blinkon500-blinkoff500"
+-- Настройка внешнего вида курсора
+vim.opt.guicursor = "a:block"
 
 -- При открытии nvim рабочая директория меняется
 -- на директорию с открываемым файлом/папкой

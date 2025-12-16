@@ -1,7 +1,6 @@
--- Настройка LSP-серверов с использованием Mason!
+-- setup lsp servers using mason
 
 return {
-    -- регистрирует серверы в системе LSP Neovim
     'neovim/nvim-lspconfig',
     event = {
         "BufReadPre *.{lua,c,cpp,zig,py,go}",

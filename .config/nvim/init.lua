@@ -1,18 +1,17 @@
--- Глобальные переменные, используемые в разных модулях
+-- global vars
 CFGP = vim.fn.stdpath('config')
 HOME = vim.fn.expand('~')
 UTILS = require("utils")
 
--- Подгружает настройки nvim`a
+-- settings
 require("settings")
--- Подгружает бинды
+-- bindings
 require("keymap")
--- Подгружает плагины и их настройки
+-- plugins settings
 require("plugins/init")
 
--- Чтобы можно было классические файлы с синтаксисисом
--- Хранить в /lua/plugins/syntax
+-- classic syntax files in /lua/plugins/syntax
 vim.opt.runtimepath:prepend(CFGP.."/lua/plugins")
 
--- Включение диагностики
+-- toggle tiagnostic
 UTILS.toggle_diagnostics()

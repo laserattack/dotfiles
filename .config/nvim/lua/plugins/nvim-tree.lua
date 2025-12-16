@@ -3,7 +3,6 @@ return {
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
-    -- Только при нажатии чего то из этого плагин загрузится
     keys = {
         {
             "<leader>e", ":NvimTreeToggle<CR>",
@@ -29,10 +28,8 @@ return {
                 }
             end
 
-            -- Применяем стандартные маппинги
             api.config.mappings.default_on_attach(bufnr)
 
-            -- Добавляем кастомные маппинги
             vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
             vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close'))
         end

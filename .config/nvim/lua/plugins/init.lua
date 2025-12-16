@@ -1,5 +1,3 @@
--- Настройка менеджера плагинов
-
 local plugins = {
     "plugins/vim-move",
     "plugins/telescope",

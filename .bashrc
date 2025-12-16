@@ -27,6 +27,7 @@ alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
+alias fzfv='nvim $(fzf)'
 
 alias ..='cd ..'
 alias ...='cd ../..'

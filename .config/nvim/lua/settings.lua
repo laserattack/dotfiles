@@ -75,17 +75,17 @@ vim.opt.guicursor = "a:block-blinkon500-blinkoff500"
 
 -- При открытии nvim рабочая директория меняется
 -- на директорию с открываемым файлом/папкой
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-    callback = function(data)
-        local target_dir = data.file
-        if vim.fn.isdirectory(data.file) ~= 1 then
-            target_dir = vim.fn.fnamemodify(data.file, ":h")
-        end
-        if target_dir and target_dir ~= "" and vim.fn.isdirectory(target_dir) == 1 then
-            vim.cmd("cd " .. vim.fn.fnameescape(target_dir))
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd({ "VimEnter" }, {
+--     callback = function(data)
+--         local target_dir = data.file
+--         if vim.fn.isdirectory(data.file) ~= 1 then
+--             target_dir = vim.fn.fnamemodify(data.file, ":h")
+--         end
+--         if target_dir and target_dir ~= "" and vim.fn.isdirectory(target_dir) == 1 then
+--             vim.cmd("cd " .. vim.fn.fnameescape(target_dir))
+--         end
+--     end,
+-- })
 
 -- Автоматическое переключение на US раскладку
 -- при заходе в NormalMode (в системе требуется утилита xkb-switch)

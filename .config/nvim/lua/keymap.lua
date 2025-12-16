@@ -27,31 +27,6 @@ vim.keymap.set('i', '<C-Del>', '<C-o>dw', {
     desc = "Delete word after cursor (Ctrl+Delete)"
 })
 
-
-vim.keymap.set('n', '<leader>tv', function()
-    vim.cmd('vsplit | terminal')
-end, {
-    noremap = true,
-    silent = true,
-    desc = "Open terminal in vertical split"
-})
-
-vim.keymap.set('n', '<leader>th', function()
-    vim.cmd('bel split | terminal')
-end, {
-    noremap = true,
-    silent = true,
-    desc = "Open terminal in horizontal split (bottom)"
-})
-
-vim.keymap.set('n', '<leader>tt', function()
-    vim.cmd('tabnew | terminal')
-end, {
-    noremap = true,
-    silent = true,
-    desc = "Open terminal in new tab"
-})
-
 vim.keymap.set(
     't', '<Esc>',
     function()

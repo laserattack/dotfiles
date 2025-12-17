@@ -55,7 +55,7 @@ sub xxxfile {
 
         if ($? != 0) {
             unlink $temp_output if -e $temp_output;
-            die "file decrypt error\n";
+            die "file " . prpl($output) ." decrypt error\n";
         }
 
         rename $temp_output, $output or die "Cannot rename file: $!";

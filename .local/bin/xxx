@@ -63,11 +63,12 @@ sub xxxfile {
         if ($output =~ /\.tar\.gz$/) {
             print "unzip archive " . prpl($output) . " [y/N] ";
             return unless goahead();
-
             `tar xzf '$output' -C .`;
             die "unzip archive error\n" unless $? == 0;
             unlink $output;
         }
+        print "delete " . prpl($path) . " [y/N] ";
+        return unless goahead();
     } else {
         $output = "$basename.$encext";
         print "encrypt file " . prpl($path) . " -> " . prpl($output) . " [y/N] ";

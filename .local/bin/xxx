@@ -69,6 +69,7 @@ sub xxxfile {
         }
         print "delete " . prpl($path) . " [y/N] ";
         return unless goahead();
+        unlink $path;
     } else {
         $output = "$basename.$encext";
         print "encrypt file " . prpl($path) . " -> " . prpl($output) . " [y/N] ";

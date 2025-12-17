@@ -55,7 +55,7 @@ sub xxxfile {
 
         if ($? != 0) {
             unlink $temp_output if -e $temp_output;
-            die "file " . prpl($basename) ." decrypt error\n";
+            die "file " . prpl($basename) . " decrypt error\n";
         }
 
         rename $temp_output, $output or die "Cannot rename file: $!";
@@ -67,9 +67,11 @@ sub xxxfile {
             die "unzip archive error\n" unless $? == 0;
             unlink $output;
         }
+
         print "delete " . prpl($path) . " [y/N] ";
         return unless goahead();
         unlink $path;
+
     } else {
         $output = "$basename.$encext";
         print "encrypt file " . prpl($path) . " -> " . prpl($output) . " [y/N] ";

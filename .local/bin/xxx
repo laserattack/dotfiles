@@ -43,15 +43,22 @@ sub xxxfile {
     my $is_encrypted = $path =~ /\.$encext$/;
 
     if ($is_encrypted) {
-
         $output = $basename;
         $output =~ s/\.$encext$//;
 
         print "decrypt file " . prpl($path) . " -> " . prpl($output) . " [y/N] ";
         return unless goahead();
 
-        `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in '$path' -out '$output'`;
-        die "file decrypt error\n" unless $? == 0;
+        my $temp_output = "$output.tmp";
+
+        `openssl enc -aes-256-cbc -d -salt -pbkdf2 -in '$path' -out '$temp_output' 2>&1`;
+
+        if ($? != 0) {
+            unlink $temp_output if -e $temp_output;
+            die "file decrypt error\n";
+        }
+
+        rename $temp_output, $output or die "Cannot rename file: $!";
 
         if ($output =~ /\.tar\.gz$/) {
             print "unzip archive " . prpl($output) . " [y/N] ";
@@ -66,11 +73,9 @@ sub xxxfile {
         print "encrypt file " . prpl($path) . " -> " . prpl($output) . " [y/N] ";
         return unless goahead();
 
-        `openssl enc -aes-256-cbc -salt -pbkdf2 -in '$path' -out '$output'`;
+        `openssl enc -aes-256-cbc -salt -pbkdf2 -in '$path' -out '$output' 2>&1`;
         die "encrypt file error\n" unless $? == 0;
     }
-
-    # print prpl(`realpath $output`);
 }
 
 sub xxx {

@@ -1,6 +1,7 @@
 {
   "blink.cmp": { "branch": "main", "commit": "b19413d214068f316c78978b08264ed1c41830ec" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
+  "leap.nvim": { "branch": "main", "commit": "f19d43590c4b6d31188ee1ea2954d2b7558a9e11" },
   "miasma.nvim": { "branch": "main", "commit": "627f2e1cac91de0d1d4dd7472b506a30f41b2b7d" },
   "mini.pairs": { "branch": "main", "commit": "d5a29b6254dad07757832db505ea5aeab9aad43a" },
   "nvim-tree.lua": { "branch": "master", "commit": "b8b44b6a2494d086a9177251a119f9daec6cace8" },
@@ -10,6 +11,5 @@
   "telescope.nvim": { "branch": "master", "commit": "e709d31454ee6e6157f0537f861f797bd44c0bad" },
   "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
   "vim-easy-align": { "branch": "master", "commit": "9815a55dbcd817784458df7a18acacc6f82b1241" },
-  "vim-move": { "branch": "master", "commit": "7fd34e479bba197451b800dca5c6fc5baba37bdb" },
-  "vim-sneak": { "branch": "master", "commit": "feea86adcfbf8e6b5e71fdd5f4f5736fd8819fdb" }
+  "vim-move": { "branch": "master", "commit": "7fd34e479bba197451b800dca5c6fc5baba37bdb" }
 }

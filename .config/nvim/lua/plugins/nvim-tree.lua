@@ -30,7 +30,7 @@ return {
 
             api.config.mappings.default_on_attach(bufnr)
 
-            vim.keymap.set("n", "rr", function()
+            vim.keymap.set("n", "<leader>r", function()
                 api.tree.change_root(vim.fn.getcwd())
             end, opts("CD to PWD"))
             vim.keymap.set('n', 'q', api.tree.close, opts('Close'))

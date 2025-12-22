@@ -12,11 +12,22 @@ return {
         }
     },
     config = function()
-        local ui = vim.api.nvim_list_uis()[1]
-        local screen_width = ui.width
-        local screen_height = ui.height
-        local width = math.floor(screen_width * 0.7)
-        local height = math.floor(screen_height * 0.7)
+        local function get_window_config()
+            local ui = vim.api.nvim_list_uis()[1]
+            local screen_width = ui.width
+            local screen_height = ui.height
+            local width = math.floor(screen_width * 0.7)
+            local height = math.floor(screen_height * 0.7)
+            
+            return {
+                relative = "editor",
+                border = "rounded",
+                width = width,
+                height = height,
+                row = (screen_height - height) / 2,
+                col = (screen_width - width) / 2,
+            }
+        end
 
         local function on_attach(bufnr)
             local api = require("nvim-tree.api")
@@ -45,14 +56,9 @@ return {
             view = {
                 float = {
                     enable = true,
-                    open_win_config = {
-                        relative = "editor",
-                        border = "rounded",
-                        width = width,
-                        height = height,
-                        row = (vim.o.lines - height) / 2,
-                        col = (vim.o.columns - width) / 2,
-                    },
+                    open_win_config = function()
+                        return get_window_config()
+                    end,
                 },
                 number = true,
                 relativenumber = true,

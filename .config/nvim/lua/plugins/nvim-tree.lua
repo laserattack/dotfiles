@@ -6,26 +6,26 @@ return {
     keys = {
         {
             "<leader>e", ":NvimTreeToggle<CR>",
-            silent = true,
+            silent  = true,
             noremap = true,
-            desc  = "nvim-tree toggle"
+            desc    = "nvim-tree toggle"
         }
     },
     config = function()
         local function get_window_config()
-            local ui = vim.api.nvim_list_uis()[1]
-            local screen_width = ui.width
+            local ui            = vim.api.nvim_list_uis()[1]
+            local screen_width  = ui.width
             local screen_height = ui.height
-            local width = math.floor(screen_width * 0.7)
-            local height = math.floor(screen_height * 0.7)
+            local width         = math.floor(screen_width * 0.7)
+            local height        = math.floor(screen_height * 0.7)
             
             return {
                 relative = "editor",
-                border = "rounded",
-                width = width,
-                height = height,
-                row = (screen_height - height) / 2,
-                col = (screen_width - width) / 2,
+                border   = "rounded",
+                width    = width,
+                height   = height,
+                row      = (screen_height - height) / 2,
+                col      = (screen_width - width) / 2,
             }
         end
 
@@ -34,11 +34,11 @@ return {
 
             local function opts(desc)
                 return {
-                    desc = "nvim-tree: " .. desc,
-                    buffer = bufnr,
+                    desc    = "nvim-tree: " .. desc,
+                    buffer  = bufnr,
                     noremap = true,
-                    silent = true,
-                    nowait = true
+                    silent  = true,
+                    nowait  = true
                 }
             end
 
@@ -67,14 +67,14 @@ return {
                 group_empty = false,
             },
             filters = {
-                enable = true,
+                enable      = true,
                 git_ignored = false,
-                dotfiles = false,
-                git_clean = false,
-                no_buffer = false,
+                dotfiles    = false,
+                git_clean   = false,
+                no_buffer   = false,
                 no_bookmark = false,
-                custom = {},
-                exclude = {},
+                custom      = {},
+                exclude     = {},
             },
             live_filter = {
                 always_show_folders = false,

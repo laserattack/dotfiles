@@ -46,6 +46,15 @@ return {
 
             vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
             vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close'))
+            vim.api.nvim_create_autocmd("VimResized", {
+                callback = function()
+                    local tree = require("nvim-tree.api").tree
+                    if tree.is_visible() then
+                        tree.close()
+                        tree.open()
+                    end
+                end,
+            })
         end
 
         require("nvim-tree").setup({

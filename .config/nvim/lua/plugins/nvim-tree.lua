@@ -87,9 +87,7 @@ return {
                 local tree = require("nvim-tree.api").tree
                 if tree.is_visible() then
                     tree.close()
-                    vim.defer_fn(function()
-                        tree.open()
-                    end, 50)
+                    tree.open()
                 end
             end,
         })

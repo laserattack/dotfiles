@@ -14,15 +14,15 @@ vim.keymap.set(
     end,
     {
         noremap = true,
-        silent = true,
-        desc = "Open commands.md in new tab"
+        silent  = true,
+        desc    = "Open commands.md in new tab"
     }
 )
 
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', {
     noremap = true,
-    silent = true,
-    desc = "Delete word after cursor (Ctrl+Delete)"
+    silent  = true,
+    desc    = "Delete word after cursor (Ctrl+Delete)"
 })
 
 vim.keymap.set(
@@ -32,33 +32,33 @@ vim.keymap.set(
     end,
     {
         noremap = true,
-        silent = true,
-        desc = "Leave terminal insert mode"
+        silent  = true,
+        desc    = "Leave terminal insert mode"
     }
 )
 
 vim.keymap.set("v", "<Tab>", ">gv", {
     noremap = true,
-    silent = true,
-    desc = "Move the selected block to the right"
+    silent  = true,
+    desc    = "Move the selected block to the right"
 })
 
 vim.keymap.set("v", "<S-Tab>", "<gv", {
     noremap = true,
-    silent = true,
-    desc = "Move the selected block to the left"
+    silent  = true,
+    desc    = "Move the selected block to the left"
 })
 
 vim.keymap.set('v', 'p', 'p:let @+=@0<CR>', {
     noremap = true,
-    silent = true,
-    desc = "Pasting through the `p` does not copy anything to the buffer"
+    silent  = true,
+    desc    = "Pasting through the `p` does not copy anything to the buffer"
 })
 
 vim.keymap.set('n', 'cd', ':lcd %:p:h<CR>', {
     noremap = true,
-    silent = true,
-    desc = "Change working directory to current file directory"
+    silent  = true,
+    desc    = "Change working directory to current file directory"
 })
 
 vim.keymap.set(
@@ -68,31 +68,31 @@ vim.keymap.set(
     end,
     {
         noremap = true,
-        silent = true,
-        desc = "Toggle line wrapping"
+        silent  = true,
+        desc    = "Toggle line wrapping"
     }
 )
 
 vim.keymap.set({'n','v'}, '<Up>', '<Nop>', {
     noremap = true,
-    silent = true,
-    desc = "Disable arrow up key"
+    silent  = true,
+    desc    = "Disable arrow up key"
 })
 
 vim.keymap.set({'n','v'}, '<Down>', '<Nop>', {
     noremap = true,
-    silent = true,
-    desc = "Disable arrow down key"
+    silent  = true,
+    desc    = "Disable arrow down key"
 })
 
 vim.keymap.set({'n','v'}, '<Left>', '<Nop>', {
     noremap = true,
-    silent = true,
-    desc = "Disable arrow left key"
+    silent  = true,
+    desc    = "Disable arrow left key"
 })
 
 vim.keymap.set({'n','v'}, '<Right>', '<Nop>', {
     noremap = true,
-    silent = true,
-    desc = "Disable arrow right key"
+    silent  = true,
+    desc    = "Disable arrow right key"
 })

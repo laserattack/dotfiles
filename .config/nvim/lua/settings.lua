@@ -9,7 +9,7 @@ vim.opt.shortmess:append("sI")
 
 vim.opt.termguicolors = true
 
-vim.opt.modeline = true
+vim.opt.modeline  = true
 vim.opt.modelines = 5
 
 -- netrw settings
@@ -17,7 +17,7 @@ vim.opt.modelines = 5
 -- vim.g.netrw_liststyle = 3
 
 -- disable netrw
-vim.g.loaded_netrw = 1
+vim.g.loaded_netrw       = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.opt.updatetime = 300
@@ -29,22 +29,22 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.swapfile = false
 
 -- relative file lines numbers
-vim.opt.number = true
+vim.opt.number         = true
 vim.opt.relativenumber = true
 
 -- highlight cur line and number
-vim.opt.cursorline = true
+vim.opt.cursorline    = true
 vim.opt.cursorlineopt = "both"
 
-vim.opt.wrap = false
+vim.opt.wrap     = false
 vim.wo.linebreak = true
 
 -- tab = 4 spaces
-vim.opt.expandtab = true -- tabs = spaces
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.smarttab = true
-vim.opt.autoindent = true
+vim.opt.expandtab   = true -- tabs = spaces
+vim.opt.shiftwidth  = 4
+vim.opt.tabstop     = 4
+vim.opt.smarttab    = true
+vim.opt.autoindent  = true
 vim.opt.smartindent = true
 
 vim.opt.guicursor = "a:block"

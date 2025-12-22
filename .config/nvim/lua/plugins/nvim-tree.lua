@@ -12,8 +12,11 @@ return {
         }
     },
     config = function()
-        local width = math.floor(vim.o.columns * 0.7)
-        local height = math.floor(vim.o.lines * 0.7)
+        local ui = vim.api.nvim_list_uis()[1]
+        local screen_width = ui.width
+        local screen_height = ui.height
+        local width = math.floor(screen_width * 0.7)
+        local height = math.floor(screen_height * 0.7)
 
         local function on_attach(bufnr)
             local api = require("nvim-tree.api")

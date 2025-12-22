@@ -54,7 +54,7 @@ return {
             settings = {
                 gopls = {
                     staticcheck = true,
-                    gofumpt = true,
+                    gofumpt     = true,
                 }
             },
             on_attach = function(_, bufnr)

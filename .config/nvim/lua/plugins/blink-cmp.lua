@@ -3,7 +3,7 @@ return {
     version = "*",
     opts = {
         keymap = {
-            preset = "none",
+            preset      = "none",
             ['<C-s>']   = { 'show', 'hide', 'fallback' },
             ['<C-k>']   = { 'show_signature', 'hide_signature', 'fallback' },
             ["<CR>"]    = { "accept", "fallback" },

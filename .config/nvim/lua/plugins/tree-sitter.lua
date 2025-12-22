@@ -15,13 +15,13 @@ return {
             sync_install = true,
             auto_install = false,
             highlight = {
-                enable = true,
+                enable                            = true,
                 additional_vim_regex_highlighting = false,
             },
             incremental_selection = {
-                enable = true,
+                enable  = true,
                 keymaps = {
-                    init_selection = "<leader>v",
+                    init_selection   = "<leader>v",
                     node_incremental = "<leader>v",
                     node_decremental = "<leader>V",
                 },

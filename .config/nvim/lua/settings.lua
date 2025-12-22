@@ -49,19 +49,6 @@ vim.opt.smartindent = true
 
 vim.opt.guicursor = "a:block"
 
--- when the editor is opened, the working directory changes
--- vim.api.nvim_create_autocmd({ "VimEnter" }, {
---     callback = function(data)
---         local target_dir = data.file
---         if vim.fn.isdirectory(data.file) ~= 1 then
---             target_dir = vim.fn.fnamemodify(data.file, ":h")
---         end
---         if target_dir and target_dir ~= "" and vim.fn.isdirectory(target_dir) == 1 then
---             vim.cmd("cd " .. vim.fn.fnameescape(target_dir))
---         end
---     end,
--- })
-
 -- automatic layout change when entering NormalMode (xkb-switch)
 vim.api.nvim_create_autocmd({
     "InsertLeave",

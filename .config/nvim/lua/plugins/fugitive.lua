@@ -2,7 +2,11 @@ return {
   "tpope/vim-fugitive",
   config = function()
     vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Git status" })
-    vim.keymap.set("n", "<leader>gl", ":Git log<CR>", { desc = "Git log" })
+    vim.keymap.set(
+        "n", "<leader>gl", ":Git log --oneline --graph --all<CR>", 
+        { desc = "Git log" }
+    )
+
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "fugitive",
       callback = function()

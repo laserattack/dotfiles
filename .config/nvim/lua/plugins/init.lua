@@ -8,6 +8,7 @@ local plugins = {
     "plugins/todo-comments",
     "plugins/leap",
     -- "plugins/lsp",
+    "plugins/fugitive",
     "plugins/blink-cmp",
     "plugins/align",
 }

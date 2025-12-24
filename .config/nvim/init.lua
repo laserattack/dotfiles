@@ -326,6 +326,7 @@ require("lazy").setup({
         end
     },
 
+    -- completion
     {
         "saghen/blink.cmp",
         version = "*",

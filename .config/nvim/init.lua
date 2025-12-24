@@ -96,6 +96,7 @@ vim.keymap.set("n", "<leader>rc", ":e $MYVIMRC<CR>", { desc = "Edit config" })
 -- AUTO COMMANDS
 -- ============================================================================
 
+-- automatic switch to us keyboard layout in insert mode
 vim.api.nvim_create_autocmd({
     "InsertLeave",
     "CmdlineLeave",
@@ -107,6 +108,7 @@ vim.api.nvim_create_autocmd({
     end,
 })
 
+-- use esc to close netrw buffer
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "netrw",
     callback = function()

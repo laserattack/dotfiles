@@ -122,14 +122,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- auto-close terminal when process exits
-vim.api.nvim_create_autocmd("TermClose", {
-    group = augroup,
-    callback = function()
-        if vim.v.event.status == 0 then
-            vim.api.nvim_buf_delete(0, {})
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd("TermClose", {
+--     group = augroup,
+--     callback = function()
+--         if vim.v.event.status == 0 then
+--             vim.api.nvim_buf_delete(0, {})
+--         end
+--     end,
+-- })
 
 -- ============================================================================
 -- FLOATING TERMINAL
@@ -168,7 +168,7 @@ local function FloatingTerminal()
 
     if not terminal_state.buf or not vim.api.nvim_buf_is_valid(terminal_state.buf) then
         terminal_state.buf = vim.api.nvim_create_buf(false, true)
-        -- vim.api.nvim_buf_set_option(terminal_state.buf, 'bufhidden', 'hide')
+        vim.api.nvim_buf_set_option(terminal_state.buf, 'bufhidden', 'hide')
     end
 
     local win_config = get_terminal_window_config()

@@ -170,7 +170,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
--- create directories when saving files if not exist
+-- create directories when saving files if they dont exist
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = augroup,
     callback = function()

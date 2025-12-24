@@ -108,7 +108,7 @@ vim.api.nvim_create_autocmd({
     end,
 })
 
--- use esc to close netrw buffer
+-- netrw mappings
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "netrw",
     callback = function()
@@ -117,6 +117,10 @@ vim.api.nvim_create_autocmd("FileType", {
             desc = "Close netrw buffer",
             noremap = true,
             silent = true
+        })
+        vim.keymap.set('n', 'gh', ':let g:netrw_hide = !g:netrw_hide <bar> Explore<CR>', {
+            buffer = true,
+            desc = "Toggle hidden files"
         })
     end,
 })

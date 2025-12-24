@@ -26,7 +26,7 @@ vim.o.smartindent = true
 -- search
 vim.o.ignorecase = true
 vim.o.smartcase  = true -- case-sensitive if uppercase used
--- vim.o.hlsearch   = false
+vim.o.hlsearch   = false
 vim.o.incsearch  = true -- shows a match as you type search query
 
 -- clipboard

@@ -77,11 +77,13 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
+-- delete & paste without yanking
+vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
+vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
+
 -- other
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = "Delete word after cursor" })
 vim.keymap.set('n', '<leader>w', function() vim.opt.wrap = not vim.opt.wrap:get() end, { desc = "Toggle line wrap mode" })
-vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
-vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
 vim.keymap.set('n', 'cd', ':lcd %:p:h<CR>', { desc = "Change working directory to current file directory" })
 vim.keymap.set("n", "<leader>rc", ":e $MYVIMRC<CR>", { desc = "Edit config" })
 

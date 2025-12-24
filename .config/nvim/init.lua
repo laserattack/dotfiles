@@ -297,7 +297,6 @@ require("lazy").setup({
                         desc    = "nvim-tree: " .. desc,
                         buffer  = bufnr,
                         noremap = true,
-                        silent  = true,
                         nowait  = true
                     }
                 end

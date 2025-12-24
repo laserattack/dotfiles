@@ -10,10 +10,6 @@ vim.o.listchars     = "trail:·,lead:·,tab:»\\ "
 vim.g.mapleader     = " "
 vim.opt.updatetime  = 300
 
--- disable netrw
--- vim.g.loaded_netrw       = 1
--- vim.g.loaded_netrwPlugin = 1
-
 -- disable swap
 vim.o.swapfile = false
 
@@ -49,6 +45,9 @@ vim.o.wrap = false
 -- ============================================================================
 -- KEY BINDS
 -- ============================================================================
+
+-- quick file navigation
+vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open file explorer" })
 
 -- move lines & selection
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })

@@ -226,12 +226,20 @@ vim.api.nvim_create_autocmd('VimResized', {
 -- USEFUL FUNCTIONS
 -- ============================================================================
 
--- copy Full File-Path
+-- copy full file-path
 vim.keymap.set("n", "<leader>pa", function()
     local path = vim.fn.expand("%:p")
     vim.fn.setreg("+", path)
     print("file:", path)
 end)
+
+-- highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = augroup,
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
 
 -- ============================================================================
 -- PLUGINS

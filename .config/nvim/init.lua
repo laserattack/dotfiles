@@ -336,6 +336,7 @@ require("lazy").setup({
             },
         },
     },
+
     {
         'echasnovski/mini.nvim',
         config = function()
@@ -343,6 +344,7 @@ require("lazy").setup({
             vim.keymap.set('n', '<leader>ff', function() require('mini.pick').builtin.files() end, { desc = "Find files" })
             vim.keymap.set('n', '<leader>fg', function() require('mini.pick').builtin.grep_live() end, { desc = "Live grep" })
             vim.keymap.set('n', '<leader>fb', function() require('mini.pick').builtin.buffers() end, { desc = "Find buffers" })
+            vim.keymap.set('n', '<leader>fk', function() require('mini.pick').builtin.keymaps() end, { desc = "Find keymaps" })
         end
     },
 -- {

@@ -108,7 +108,7 @@ vim.api.nvim_create_autocmd({
     end,
 })
 
--- netrw mappings
+-- netrw toggle using esc
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "netrw",
     callback = function()
@@ -342,7 +342,6 @@ require("lazy").setup({
         'nvim-telescope/telescope.nvim',
         dependencies = {
             'nvim-lua/plenary.nvim',
-            'nvim-tree/nvim-web-devicons'
         },
         config = function()
             local telescope = require('telescope')

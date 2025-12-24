@@ -121,6 +121,16 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- auto-close terminal when process exits
+vim.api.nvim_create_autocmd("TermClose", {
+    group = augroup,
+    callback = function()
+        if vim.v.event.status == 0 then
+            vim.api.nvim_buf_delete(0, {})
+        end
+    end,
+})
+
 -- ============================================================================
 -- FLOATING TERMINAL
 -- ============================================================================

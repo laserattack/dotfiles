@@ -103,6 +103,8 @@ end)
 -- AUTO COMMANDS
 -- ============================================================================
 
+local augroup = vim.api.nvim_create_augroup("UserConfig", {})
+
 -- automatic switch to us keyboard layout in insert mode
 vim.api.nvim_create_autocmd({
     "InsertLeave",
@@ -110,6 +112,7 @@ vim.api.nvim_create_autocmd({
     "TermLeave",
     "VimEnter",
 }, {
+    group = augroup,
     callback = function()
         vim.fn.system("xkb-switch -s us")
     end,
@@ -118,6 +121,7 @@ vim.api.nvim_create_autocmd({
 -- netrw toggle using esc
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "netrw",
+    group = augroup,
     callback = function()
         vim.keymap.set("n", "<Esc>", ":bdelete<CR>", {
             buffer = true, -- local mapping only for this buffer
@@ -132,6 +136,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- for example, when sending an 'exit', the terminal will automatically close
 -- otherwise, you would have to press something
 vim.api.nvim_create_autocmd("TermClose", {
+    group = augroup,
     callback = function()
         if vim.v.event.status == 0 then
             vim.api.nvim_buf_delete(0, {})
@@ -141,6 +146,7 @@ vim.api.nvim_create_autocmd("TermClose", {
 
 -- auto-resize splits when window is resized
 vim.api.nvim_create_autocmd("VimResized", {
+    group = augroup,
     callback = function()
         vim.cmd("tabdo wincmd =")
     end,
@@ -148,6 +154,7 @@ vim.api.nvim_create_autocmd("VimResized", {
 
 -- highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
+    group = augroup,
     callback = function()
         vim.highlight.on_yank()
     end,

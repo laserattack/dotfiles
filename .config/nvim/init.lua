@@ -427,8 +427,6 @@ require("lazy").setup({
                             return get_window_config()
                         end,
                     },
-                    number = true,
-                    relativenumber = true,
                 },
                 renderer = {
                     group_empty = false,
@@ -449,6 +447,8 @@ require("lazy").setup({
                 on_attach = on_attach,
             })
             vim.api.nvim_set_hl(0, "NvimTreeNormalFloat", { link = "Normal" })
+            vim.api.nvim_set_hl(0, "NvimTreeNormalFloatBorder", { link = "Normal" })
+
             vim.api.nvim_create_autocmd("VimResized", {
                 callback = function()
                     local tree = require("nvim-tree.api").tree

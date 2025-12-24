@@ -82,6 +82,7 @@ vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = "Delete word after cursor" })
 vim.keymap.set('n', '<leader>w', function() vim.opt.wrap = not vim.opt.wrap:get() end, { desc = "Toggle line wrap mode" })
 vim.keymap.set('v', 'p', 'p:let @+=@0<CR>', { desc = "Pasting through `p` does not copy anything to buf" })
 vim.keymap.set('n', 'cd', ':lcd %:p:h<CR>', { desc = "Change working directory to current file directory" })
+vim.keymap.set("n", "<leader>rc", ":e $MYVIMRC<CR>", { desc = "Edit config" })
 
 -------------------
 -- AUTO COMMANDS --

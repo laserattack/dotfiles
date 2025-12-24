@@ -28,8 +28,6 @@ alias gs='git status'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 
-fzfv(){ :; }
-
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

@@ -83,6 +83,9 @@ vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" }
 vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete (close) current buffer" })
 
 -- delete & paste without yanking
+vim.keymap.set('v', 'p', 'p:let @+=@0<CR>', {
+    desc    = "Pasting without yanking"
+})
 vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
 vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
 

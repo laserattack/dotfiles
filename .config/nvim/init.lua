@@ -43,8 +43,7 @@ vim.o.relativenumber = true
 
 -- line wraps
 vim.o.wrap       = false
-vim.wo.linebreak = true
-vim.opt.colorcolumn = "100"
+
 ---------------
 -- KEY BINDS --
 ---------------

@@ -166,7 +166,7 @@ local function FloatingTerminal()
 
     vim.api.nvim_win_set_option(terminal_state.win, 'winblend', 0)
     vim.api.nvim_win_set_option(terminal_state.win, 'winhighlight', 'Normal:FloatingTermNormal,FloatBorder:FloatingTermBorder')
-    
+
     vim.api.nvim_set_hl(0, 'FloatingTermNormal', { bg = 'none' })
     vim.api.nvim_set_hl(0, 'FloatingTermBorder', { bg = 'none' })
 
@@ -342,6 +342,8 @@ require("lazy").setup({
         'echasnovski/mini.nvim',
         config = function()
             require('mini.pick').setup()
+            vim.api.nvim_set_hl(0, 'MiniPickNormal', { link = 'Normal' })
+            vim.api.nvim_set_hl(0, 'MiniPickBorder', { link = 'Normal' })
             vim.keymap.set('n', '<leader>ff', function() require('mini.pick').builtin.files() end, { desc = "Find files" })
             vim.keymap.set('n', '<leader>fg', function() require('mini.pick').builtin.grep_live() end, { desc = "Live grep" })
             vim.keymap.set('n', '<leader>fb', function() require('mini.pick').builtin.buffers() end, { desc = "Find buffers" })

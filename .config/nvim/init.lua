@@ -11,8 +11,8 @@ vim.g.mapleader     = " "
 vim.opt.updatetime  = 300
 
 -- disable netrw
-vim.g.loaded_netrw       = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw       = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- disable swap
 vim.o.swapfile = false

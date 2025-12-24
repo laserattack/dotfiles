@@ -30,10 +30,6 @@ alias fzfp='ps aux | fzf'
 
 fzfv() {
     local dir="${1:-.}"
-    if [ ! -d "$dir" ]; then
-        echo "Error: $dir is not a directory" >&2
-        return 1
-    fi
     local selected=$(rg --files "$dir" 2>/dev/null | fzf)
     [ -n "$selected" ] && nvim "$selected"
 }

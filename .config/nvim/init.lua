@@ -133,6 +133,14 @@ vim.api.nvim_create_autocmd("TermClose", {
     end,
 })
 
+-- auto-resize splits when window is resized
+vim.api.nvim_create_autocmd("VimResized", {
+    group = augroup,
+    callback = function()
+        vim.cmd("tabdo wincmd =")
+    end,
+})
+
 -- ============================================================================
 -- FLOATING TERMINAL
 -- ============================================================================

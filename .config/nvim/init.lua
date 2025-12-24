@@ -103,8 +103,8 @@ end)
 -- AUTO COMMANDS
 -- ============================================================================
 
-
-
+-- create an autocmd group to prevent duplication when sourcing config
+-- without this group, each :so $MYVIMRC would create duplicate autocmds
 local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 
 -- automatic switch to us keyboard layout in insert mode

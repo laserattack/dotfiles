@@ -394,8 +394,8 @@ require("lazy").setup({
                 local ui            = vim.api.nvim_list_uis()[1]
                 local screen_width  = ui.width
                 local screen_height = ui.height
-                local width         = math.floor(screen_width * 0.7)
-                local height        = math.floor(screen_height * 0.7)
+                local width         = math.floor(screen_width * 0.8)
+                local height        = math.floor(screen_height * 0.8)
 
                 return {
                     relative = "editor",

@@ -35,7 +35,7 @@ vim.o.clipboard = "unnamedplus"
 -- cursor
 vim.o.guicursor       = "a:block"
 vim.opt.cursorline    = true
-vim.opt.cursorlineopt = "both"
+vim.o.cursorlineopt = "both"
 
 -- line numbers
 vim.o.number         = true

@@ -1,4 +1,4 @@
--- inspired: https://github.com/radleylewis/nvim-lite suckless NeoVim Config
+-- inspired by: https://github.com/radleylewis/nvim-lite suckless NeoVim Config
 
 -- ============================================================================
 -- BASE SETTINGS

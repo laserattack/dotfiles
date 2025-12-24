@@ -168,7 +168,7 @@ local function FloatingTerminal()
 
     if not terminal_state.buf or not vim.api.nvim_buf_is_valid(terminal_state.buf) then
         terminal_state.buf = vim.api.nvim_create_buf(false, true)
-        vim.api.nvim_buf_set_option(terminal_state.buf, 'bufhidden', 'hide')
+        -- vim.api.nvim_buf_set_option(terminal_state.buf, 'bufhidden', 'hide')
     end
 
     local win_config = get_terminal_window_config()

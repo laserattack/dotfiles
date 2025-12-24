@@ -367,11 +367,14 @@ require("lazy").setup({
 
             vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "Normal" })
             vim.api.nvim_set_hl(0, "TelescopePromptBorder", { link = "Normal" })
+            vim.api.nvim_set_hl(0, "TelescopePromptNormal", { link = "Normal" })
+            vim.api.nvim_set_hl(0, "TelescopeTitle", { link = "Normal" })
 
             vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find file" })
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Telescope find content (grep)" })
             vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "Telescope find keymap" })
             vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
+
             -- folke/todo-comments.nvim needed
             vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>', { desc    = "Telescope find TODO comments" })
         end

@@ -42,6 +42,8 @@ vim.o.relativenumber = true
 -- line wraps
 vim.o.wrap = false
 
+vim.cmd("colorscheme habamax")
+
 -- ============================================================================
 -- KEY BINDS
 -- ============================================================================
@@ -239,15 +241,15 @@ vim.opt.rtp:prepend(lazypath)
 -- setup plugins
 require("lazy").setup({
 
-    {
-        -- colorscheme
-        "xero/miasma.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.cmd("colorscheme miasma")
-        end
-    },
+    -- {
+    --     -- colorscheme
+    --     "xero/miasma.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         vim.cmd("colorscheme miasma")
+    --     end
+    -- },
 
     {
         -- smart moves

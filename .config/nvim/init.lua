@@ -33,8 +33,8 @@ vim.o.incsearch  = true -- shows a match as you type search query
 vim.o.clipboard = "unnamedplus"
 
 -- cursor
-vim.o.guicursor       = "a:block"
-vim.opt.cursorline    = true
+vim.o.guicursor     = "a:block"
+vim.opt.cursorline  = true
 vim.o.cursorlineopt = "both"
 
 -- line numbers

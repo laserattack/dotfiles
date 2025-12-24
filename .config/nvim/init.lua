@@ -332,6 +332,8 @@ require("lazy").setup({
         version = "*",
         opts = {
             keymap = {
+                preset      = "none",
+                ['<C-s>']   = { 'show', 'hide', 'fallback' },
                 ["<CR>"]    = { "accept", "fallback" },
                 ["<Tab>"]   = { "select_next", "fallback" },
                 ["<S-Tab>"] = { "select_prev", "fallback" },

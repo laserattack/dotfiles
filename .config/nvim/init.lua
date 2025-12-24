@@ -132,7 +132,6 @@ vim.api.nvim_create_autocmd("FileType", {
 -- for example, when sending an 'exit', the terminal will automatically close
 -- otherwise, you would have to press something
 vim.api.nvim_create_autocmd("TermClose", {
-    group = augroup,
     callback = function()
         if vim.v.event.status == 0 then
             vim.api.nvim_buf_delete(0, {})
@@ -142,7 +141,6 @@ vim.api.nvim_create_autocmd("TermClose", {
 
 -- auto-resize splits when window is resized
 vim.api.nvim_create_autocmd("VimResized", {
-    group = augroup,
     callback = function()
         vim.cmd("tabdo wincmd =")
     end,
@@ -150,7 +148,6 @@ vim.api.nvim_create_autocmd("VimResized", {
 
 -- highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = augroup,
     callback = function()
         vim.highlight.on_yank()
     end,
@@ -158,7 +155,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
-    group = augroup,
     callback = function()
         local mark = vim.api.nvim_buf_get_mark(0, '"')
         local lcount = vim.api.nvim_buf_line_count(0)
@@ -172,7 +168,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- create directories when saving files if they dont exist
 vim.api.nvim_create_autocmd("BufWritePre", {
-    group = augroup,
     callback = function()
         local dir = vim.fn.expand('<afile>:p:h')
         if vim.fn.isdirectory(dir) == 0 then

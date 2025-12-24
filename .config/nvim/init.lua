@@ -118,10 +118,6 @@ vim.api.nvim_create_autocmd("FileType", {
             noremap = true,
             silent = true
         })
-        vim.keymap.set('n', 'gh', ':let g:netrw_hide = !g:netrw_hide <bar> Explore<CR>', {
-            buffer = true,
-            desc = "Toggle hidden files"
-        })
     end,
 })
 

@@ -392,8 +392,8 @@ require("lazy").setup({
                     border   = "rounded",
                     width    = width,
                     height   = height,
-                    row      = (screen_height - height) / 2,
-                    col      = (screen_width - width) / 2,
+                    row      = math.floor(screen_height - height) / 2,
+                    col      = math.floor(screen_width - width) / 2,
                 }
             end
 

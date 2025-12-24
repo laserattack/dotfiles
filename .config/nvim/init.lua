@@ -344,60 +344,7 @@ require("lazy").setup({
             vim.keymap.set('n', '<leader>ff', function() require('mini.pick').builtin.files() end, { desc = "Find files" })
             vim.keymap.set('n', '<leader>fg', function() require('mini.pick').builtin.grep_live() end, { desc = "Live grep" })
             vim.keymap.set('n', '<leader>fb', function() require('mini.pick').builtin.buffers() end, { desc = "Find buffers" })
+        end
     },
--- {
-    --     -- telescope searcher
-    --     'nvim-telescope/telescope.nvim',
-    --     dependencies = {
-    --         'nvim-lua/plenary.nvim',
-    --     },
-    --     config = function()
-    --         local telescope = require('telescope')
-    --         local builtin   = require('telescope.builtin')
-    --         local actions   = require('telescope.actions')
-    --
-    --         telescope.setup({
-    --             defaults = {
-    --                 mappings = {
-    --                     i = { ['<Esc>'] = actions.close },
-    --                     n = { ['<Esc>'] = actions.close },
-    --                 },
-    --             },
-    --             pickers = {
-    --                 find_files = {
-    --                     previewer = false,
-    --                     find_command = {
-    --                         "rg", "--files", "--no-ignore",
-    --                     },
-    --                 },
-    --                 live_grep = {
-    --                     vimgrep_arguments = {
-    --                         "rg",
-    --                         "--no-ignore",
-    --                         "--color=never",
-    --                         "--no-heading",
-    --                         "--with-filename",
-    --                         "--line-number",
-    --                         "--column",
-    --                         "--smart-case",
-    --                     },
-    --                 }
-    --             },
-    --         })
-    --
-    --         vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "Normal" })
-    --         vim.api.nvim_set_hl(0, "TelescopePromptBorder", { link = "Normal" })
-    --         vim.api.nvim_set_hl(0, "TelescopePromptNormal", { link = "Normal" })
-    --         vim.api.nvim_set_hl(0, "TelescopeTitle", { link = "Normal" })
-    --
-    --         vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find file" })
-    --         vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Telescope find content (grep)" })
-    --         vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "Telescope find keymap" })
-    --         vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
-    --
-    --         -- folke/todo-comments.nvim needed
-    --         vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>', { desc    = "Telescope find TODO comments" })
-    --     end
-    -- },
 
 })

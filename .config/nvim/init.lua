@@ -149,7 +149,6 @@ vim.api.nvim_create_autocmd("VimResized", {
 -- highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
-        print("АВТОКОМАНДА СРАБОТАЛА!")
         vim.highlight.on_yank()
     end,
 })

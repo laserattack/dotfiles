@@ -2,6 +2,10 @@
 
 return {
     "nvim-treesitter/nvim-treesitter",
+    -- event = {
+    --     "BufReadPre *.{lua,c,cpp,zig,py,go,json,html,css,js,pl}",
+    --     "BufNewFile *.{lua,c,cpp,zig,py,go,json,html,css,js,pl}"
+    -- },
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = {

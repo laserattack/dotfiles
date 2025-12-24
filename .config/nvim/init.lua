@@ -250,6 +250,7 @@ local function FloatingTerminal()
     terminal_state.is_open = true
     vim.cmd('startinsert')
 
+    -- no need augroup because once = true
     vim.api.nvim_create_autocmd('BufLeave', {
         buffer = terminal_state.buf,
         callback = function()
@@ -278,6 +279,7 @@ vim.keymap.set('t', '<Esc>', function()
 end, { noremap = true, silent = true, desc = 'Close floating terminal from terminal mode' })
 
 vim.api.nvim_create_autocmd('VimResized', {
+    group = augroup,
     callback = function()
         if terminal_state.is_open and vim.api.nvim_win_is_valid(terminal_state.win) then
             local win_config = get_terminal_window_config()
@@ -382,6 +384,7 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>gl", ":Git log --oneline --graph --all<CR>", { desc = "Git log" })
 
             vim.api.nvim_create_autocmd("FileType", {
+                group = augroup,
                 pattern = "fugitive",
                 callback = function()
                     vim.keymap.set("n", "gp", ":Git push<CR>", { buffer = true, desc = "Fugitive Git push" })

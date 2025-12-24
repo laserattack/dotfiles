@@ -378,7 +378,7 @@ require("lazy").setup({
             "nvim-tree/nvim-web-devicons",
         },
         keys = {
-            { "<leader>e", ":NvimTreeToggle<CR>", desc = "nvim-tree toggle" }
+            { "<leader>e", ":NvimTreeToggle<CR>", desc    = "nvim-tree toggle" }
         },
         config = function()
             local function get_window_config()
@@ -425,40 +425,14 @@ require("lazy").setup({
                     float = {
                         enable = true,
                         open_win_config = function()
-                            local config = get_window_config()
-                            config.winblend = 0  -- Убираем прозрачность
-                            return config
+                            return get_window_config()
                         end,
-                        -- Добавляем настройки подсветки
-                        winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
                     },
                     number = true,
                     relativenumber = true,
                 },
                 renderer = {
                     group_empty = false,
-                    -- Используем стандартные highlight группы
-                    highlight_opened_files = "none",
-                    highlight_modified = "none",
-                    highlight_git = true,
-                    root_folder_label = ":~",
-                    indent_markers = {
-                        enable = false,
-                    },
-                    icons = {
-                        webdev_colors = true,
-                        git_placement = "before",
-                        modified_placement = "after",
-                        padding = " ",
-                        symlink_arrow = " ➛ ",
-                        show = {
-                            file = true,
-                            folder = true,
-                            folder_arrow = true,
-                            git = true,
-                            modified = true,
-                        },
-                    },
                 },
                 filters = {
                     enable      = true,

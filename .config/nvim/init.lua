@@ -338,6 +338,7 @@ require("lazy").setup({
     },
 
     {
+        -- fzf search
         'echasnovski/mini.nvim',
         config = function()
             require('mini.pick').setup()

@@ -471,17 +471,3 @@ require("lazy").setup({
     },
 
 })
-
-local counter = 0
-local function test_func()
-    counter = counter + 1
-    print("Вызов #" .. counter)
-end
-
-vim.api.nvim_create_autocmd("BufEnter", {
-    callback = test_func
-})
-
-vim.keymap.set('n', '<leader>c', function()
-    print("Счётчик:", counter)
-end, { desc = "Check counter" })

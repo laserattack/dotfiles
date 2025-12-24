@@ -375,6 +375,7 @@ require("lazy").setup({
             vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>', { desc    = "Telescope find TODO comments" })
         end
     },
+
     {
         -- file tree
         "nvim-tree/nvim-tree.lua",

@@ -92,6 +92,8 @@ vim.keymap.set('n', '<leader>w', function() vim.opt.wrap = not vim.opt.wrap:get(
 vim.keymap.set('n', 'cd', ':lcd %:p:h<CR>', { desc = "Change working directory to current file directory" })
 vim.keymap.set("n", "<leader>rc", ":e $MYVIMRC<CR>", { desc = "Edit config" })
 
+vim.cmd("colorscheme lunaperche")
+
 -- ============================================================================
 -- AUTO COMMANDS
 -- ============================================================================
@@ -239,15 +241,15 @@ vim.opt.rtp:prepend(lazypath)
 -- setup plugins
 require("lazy").setup({
 
-    {
-        -- colorscheme
-        "xero/miasma.nvim",
-        lazy = false,
-        priority = 1000,
-        config = function()
-            vim.cmd("colorscheme miasma")
-        end
-    },
+    -- {
+    --     -- colorscheme
+    --     "xero/miasma.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         vim.cmd("colorscheme miasma")
+    --     end
+    -- },
 
     {
         -- smart moves

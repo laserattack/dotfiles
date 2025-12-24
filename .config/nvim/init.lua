@@ -162,6 +162,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
+    group = augroup,
     callback = function()
         local mark = vim.api.nvim_buf_get_mark(0, '"')
         local lcount = vim.api.nvim_buf_line_count(0)
@@ -175,6 +176,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- create directories when saving files if they dont exist
 vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup,
     callback = function()
         local dir = vim.fn.expand('<afile>:p:h')
         if vim.fn.isdirectory(dir) == 0 then

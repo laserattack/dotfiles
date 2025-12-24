@@ -274,7 +274,7 @@ require("lazy").setup({
     },
 
     {
-        -- align
+        -- align around delimeter
         'junegunn/vim-easy-align',
         event = 'VeryLazy',
         config = function()
@@ -326,17 +326,6 @@ require("lazy").setup({
         end
     },
 
-    -- {
-    --     "folke/todo-comments.nvim",
-    --     dependencies = { "nvim-lua/plenary.nvim" },
-    --     opts = {
-    --         signs = false,
-    --         highlight = {
-    --             keyword = "fg",
-    --         },
-    --     },
-    -- },
-
     {
         -- telescope fzf searcher
         'nvim-telescope/telescope.nvim',
@@ -386,9 +375,6 @@ require("lazy").setup({
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Telescope find content (grep)" })
             vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "Telescope find keymap" })
             vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Telescope find in current buffer" })
-
-            -- folke/todo-comments.nvim needed
-            vim.keymap.set('n', '<leader>ft', ':TodoTelescope<CR>', { desc    = "Telescope find TODO comments" })
         end
     },
 

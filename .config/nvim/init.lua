@@ -341,7 +341,12 @@ require("lazy").setup({
         -- fzf search
         'echasnovski/mini.nvim',
         config = function()
-            require('mini.pick').setup()
+            require('mini.pick').setup({
+                mappings = {
+                    move_down  = '<C-j>',
+                    move_up    = '<C-k>',
+                }
+            })
             vim.api.nvim_set_hl(0, 'MiniPickNormal', { link = 'Normal' })
             vim.api.nvim_set_hl(0, 'MiniPickBorder', { link = 'Normal' })
             vim.keymap.set('n', '<leader>ff', function() require('mini.pick').builtin.files() end, { desc = "Find files" })

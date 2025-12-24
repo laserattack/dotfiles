@@ -27,12 +27,7 @@ alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
-
-fzfv() {
-    local dir="${1:-.}"
-    local selected=$(rg --files "$dir" 2>/dev/null | fzf)
-    [ -n "$selected" ] && nvim "$selected"
-}
+fzfv() { f=$(rg --files "${1:-.}" 2>/dev/null | fzf) && nvim "$f"; }
 
 alias ..='cd ..'
 alias ...='cd ../..'

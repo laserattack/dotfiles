@@ -76,6 +76,10 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
+-- buffer navigation
+vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+
 -- delete & paste without yanking
 vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
 vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })

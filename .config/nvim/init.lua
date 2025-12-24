@@ -49,13 +49,15 @@ vim.wo.linebreak = true
 -- KEY BINDS --
 ---------------
 
-vim.keymap.set("n", "<leader>j", ":m .+1<CR>==", { desc = "Move line down" })
-vim.keymap.set("n", "<leader>k", ":m .-2<CR>==", { desc = "Move line up" })
-vim.keymap.set("v", "<leader>j", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "<leader>k", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("n", "J", ":m .+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "K", ":m .-2<CR>==", { desc = "Move line up" })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search result" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
 
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Move the selected block to the right" })
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Move the selected block to the left" })

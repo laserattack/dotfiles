@@ -42,7 +42,7 @@ vim.o.number         = true
 vim.o.relativenumber = true
 
 -- line wraps
-vim.o.wrap       = false
+vim.o.wrap = false
 
 ---------------
 -- KEY BINDS --

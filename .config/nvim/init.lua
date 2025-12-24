@@ -92,6 +92,13 @@ vim.keymap.set('n', '<leader>w', function() vim.opt.wrap = not vim.opt.wrap:get(
 vim.keymap.set('n', 'cd', ':lcd %:p:h<CR>', { desc = "Change working directory to current file directory" })
 vim.keymap.set("n", "<leader>rc", ":e $MYVIMRC<CR>", { desc = "Edit config" })
 
+-- copy full file-path
+vim.keymap.set("n", "<leader>pa", function()
+    local path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", path)
+    print("file:", path)
+end)
+
 -- ============================================================================
 -- AUTO COMMANDS
 -- ============================================================================
@@ -138,6 +145,28 @@ vim.api.nvim_create_autocmd("VimResized", {
     group = augroup,
     callback = function()
         vim.cmd("tabdo wincmd =")
+    end,
+})
+
+-- highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = augroup,
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
+
+-- return to last edit position when opening files
+vim.api.nvim_create_autocmd("BufReadPost", {
+    group = augroup,
+    callback = function()
+        local mark = vim.api.nvim_buf_get_mark(0, '"')
+        local lcount = vim.api.nvim_buf_line_count(0)
+        local line = mark[1]
+        if line > 0 and line <= lcount
+        and not vim.o.diff then
+            pcall(vim.api.nvim_win_set_cursor, 0, mark)
+        end
     end,
 })
 
@@ -238,39 +267,6 @@ vim.api.nvim_create_autocmd('VimResized', {
         if terminal_state.is_open and vim.api.nvim_win_is_valid(terminal_state.win) then
             local win_config = get_terminal_window_config()
             vim.api.nvim_win_set_config(terminal_state.win, win_config)
-        end
-    end,
-})
-
--- ============================================================================
--- USEFUL FUNCTIONS
--- ============================================================================
-
--- copy full file-path
-vim.keymap.set("n", "<leader>pa", function()
-    local path = vim.fn.expand("%:p")
-    vim.fn.setreg("+", path)
-    print("file:", path)
-end)
-
--- highlight yanked text
-vim.api.nvim_create_autocmd("TextYankPost", {
-    group = augroup,
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-})
-
--- return to last edit position when opening files
-vim.api.nvim_create_autocmd("BufReadPost", {
-    group = augroup,
-    callback = function()
-        local mark = vim.api.nvim_buf_get_mark(0, '"')
-        local lcount = vim.api.nvim_buf_line_count(0)
-        local line = mark[1]
-        if line > 0 and line <= lcount
-        and not vim.o.diff then
-            pcall(vim.api.nvim_win_set_cursor, 0, mark)
         end
     end,
 })

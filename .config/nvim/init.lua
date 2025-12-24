@@ -364,6 +364,9 @@ require("lazy").setup({
                     }
                 },
             })
+
+            vim.api.nvim_set_hl(0, "TelescopeBorder", { link = "Normal" })
+
             vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Telescope find file" })
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Telescope find content (grep)" })
             vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "Telescope find keymap" })

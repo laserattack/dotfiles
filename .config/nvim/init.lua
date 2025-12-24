@@ -332,7 +332,7 @@ require("lazy").setup({
         version = "*",
         opts = {
             keymap = {
-                preset      = "none",
+                preset      = "none", -- preset key sets are not used
                 ['<C-s>']   = { 'show', 'hide', 'fallback' },
                 ["<CR>"]    = { "accept", "fallback" },
                 ["<Tab>"]   = { "select_next", "fallback" },
@@ -340,6 +340,7 @@ require("lazy").setup({
             },
             completion = {
                 trigger = {
+                    -- disable automatic show completion menu (use ctrl+s to show)
                     show_on_keyword = false,
                 },
             },

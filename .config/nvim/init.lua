@@ -26,7 +26,7 @@ vim.o.smartindent = true
 -- search
 vim.o.ignorecase = true
 vim.o.smartcase  = true -- case-sensitive if uppercase used
-vim.o.hlsearch   = false
+-- vim.o.hlsearch   = false
 vim.o.incsearch  = true -- shows a match as you type search query
 
 -- clipboard
@@ -52,15 +52,18 @@ vim.wo.linebreak = true
 vim.keymap.set("n", "<leader>j", ":m .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("n", "<leader>k", ":m .-2<CR>==", { desc = "Move line up" })
 vim.keymap.set("v", "<leader>j", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "<leaderk>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("v", "<leader>k", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search result" })
+
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Move the selected block to the right" })
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Move the selected block to the left" })
+
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = "Delete word after cursor" })
 vim.keymap.set('n', '<leader>w', function() vim.opt.wrap = not vim.opt.wrap:get() end, { desc = "Toggle line wrap mode" })
 vim.keymap.set('v', 'p', 'p:let @+=@0<CR>', { desc = "Pasting through `p` does not copy anything to buf" })
 vim.keymap.set('n', 'cd', ':lcd %:p:h<CR>', { desc = "Change working directory to current file directory" })
-vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search result" })
 
 -------------------
 -- AUTO COMMANDS --

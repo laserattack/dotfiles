@@ -49,10 +49,13 @@ vim.wo.linebreak = true
 -- KEY BINDS --
 ---------------
 
+-- move lines & selection
 vim.keymap.set("n", "J", ":m .+1<CR>==", { desc = "Move line down" })
 vim.keymap.set("n", "K", ":m .-2<CR>==", { desc = "Move line up" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("v", "<Tab>", ">gv", { desc = "Move the selected block to the right" })
+vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Move the selected block to the left" })
 
 -- screen center when jumping
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result" })
@@ -61,11 +64,14 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
 
 -- splitting & resizing
+vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
+vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
+vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
-
-vim.keymap.set("v", "<Tab>", ">gv", { desc = "Move the selected block to the right" })
-vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Move the selected block to the left" })
-
+-- other
 vim.keymap.set('i', '<C-Del>', '<C-o>dw', { desc = "Delete word after cursor" })
 vim.keymap.set('n', '<leader>w', function() vim.opt.wrap = not vim.opt.wrap:get() end, { desc = "Toggle line wrap mode" })
 vim.keymap.set('v', 'p', 'p:let @+=@0<CR>', { desc = "Pasting through `p` does not copy anything to buf" })

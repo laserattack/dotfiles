@@ -27,7 +27,16 @@ alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
-alias fzfv='nvim $(fzf)'
+
+fzfv() {
+    local dir="${1:-.}"
+    if [ ! -d "$dir" ]; then
+        echo "Error: $dir is not a directory" >&2
+        return 1
+    fi
+    local selected=$(rg --files "$dir" 2>/dev/null | fzf)
+    [ -n "$selected" ] && nvim "$selected"
+}
 
 alias ..='cd ..'
 alias ...='cd ../..'

@@ -84,7 +84,6 @@ vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete (close) curre
 
 -- delete & paste without yanking
 vim.keymap.set('x', 'p', 'p:let @+=@0<CR>', { desc = "Pasting without yanking" })
--- vim.keymap.set("x", "p", '"_dP', { desc = "Paste without yanking" })
 vim.keymap.set({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
 
 -- other

@@ -448,7 +448,7 @@ require("lazy").setup({
                 },
                 on_attach = on_attach,
             })
--- vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+            vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
             vim.api.nvim_create_autocmd("VimResized", {
                 callback = function()
                     local tree = require("nvim-tree.api").tree

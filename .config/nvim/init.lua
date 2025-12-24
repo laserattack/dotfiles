@@ -107,6 +107,18 @@ vim.api.nvim_create_autocmd({
     end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "netrw",
+    callback = function()
+        vim.keymap.set("n", "<Esc>", ":bdelete<CR>", {
+            buffer = true,
+            desc = "Close netrw buffer",
+            noremap = true,
+            silent = true
+        })
+    end,
+})
+
 -- ============================================================================
 -- FLOATING TERMINAL
 -- ============================================================================

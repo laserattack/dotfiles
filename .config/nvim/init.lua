@@ -326,19 +326,19 @@ require("lazy").setup({
         end
     },
 
-    {
-        "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {
-            signs = false,
-            highlight = {
-                keyword = "fg",
-            },
-        },
-    },
+    -- {
+    --     "folke/todo-comments.nvim",
+    --     dependencies = { "nvim-lua/plenary.nvim" },
+    --     opts = {
+    --         signs = false,
+    --         highlight = {
+    --             keyword = "fg",
+    --         },
+    --     },
+    -- },
 
     {
-        -- telescope searcher
+        -- telescope fzf searcher
         'nvim-telescope/telescope.nvim',
         dependencies = {
             'nvim-lua/plenary.nvim',

@@ -77,6 +77,12 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
+-- better tab navigation
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab' })
+vim.keymap.set('n', '<leader>td', ':tabclose<CR>', { desc = 'Close tab' })
+vim.keymap.set('n', '<leader>tl', ':tabnext<CR>', { desc = 'Next tab' })
+vim.keymap.set('n', '<leader>th', ':tabprevious<CR>', { desc = 'Prev tab' })
+
 -- work with buffers
 vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
@@ -188,30 +194,21 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- ============================================================================
--- TABS
--- ============================================================================
-
-vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab' })
-vim.keymap.set('n', '<leader>td', ':tabclose<CR>', { desc = 'Close tab' })
-vim.keymap.set('n', '<leader>tl', ':tabnext<CR>', { desc = 'Next tab' })
-vim.keymap.set('n', '<leader>th', ':tabprevious<CR>', { desc = 'Prev tab' })
-
--- ============================================================================
 -- FLOATING TERMINAL
 -- ============================================================================
 
 local terminal_state = {
-    buf = nil,
-    win = nil,
+    buf     = nil,
+    win     = nil,
     is_open = false
 }
 
 local function get_terminal_window_config()
-    local ui = vim.api.nvim_list_uis()[1]
-    local screen_width = ui.width
+    local ui            = vim.api.nvim_list_uis()[1]
+    local screen_width  = ui.width
     local screen_height = ui.height
-    local width = math.floor(screen_width * 0.7)
-    local height = math.floor(screen_height * 0.7)
+    local width         = math.floor(screen_width * 0.7)
+    local height        = math.floor(screen_height * 0.7)
     
     return {
         relative = 'editor',

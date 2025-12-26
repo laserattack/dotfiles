@@ -195,6 +195,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab' })
 vim.keymap.set('n', '<leader>td', ':tabclose<CR>', { desc = 'Close tab' })
 
+-- tab moving
+vim.keymap.set('n', '<leader>tl', ':tabmove +1<CR>', { desc = 'Move tab right' })
+vim.keymap.set('n', '<leader>th', ':tabmove -1<CR>', { desc = 'Move tab left' })
+
 
 -- ============================================================================
 -- FLOATING TERMINAL

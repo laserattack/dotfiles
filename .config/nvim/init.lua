@@ -188,6 +188,19 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- ============================================================================
+-- TABS
+-- ============================================================================
+
+-- Tab display settings
+vim.opt.showtabline = 1  -- Always show tabline (0=never, 1=when multiple tabs, 2=always)
+vim.opt.tabline = ''     -- Use default tabline (empty string uses built-in)
+
+-- Transparent tabline appearance
+vim.cmd([[
+  hi TabLineFill guibg=NONE ctermfg=242 ctermbg=NONE
+]])
+
+-- ============================================================================
 -- FLOATING TERMINAL
 -- ============================================================================
 

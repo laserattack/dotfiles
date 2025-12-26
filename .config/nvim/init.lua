@@ -106,7 +106,7 @@ vim.keymap.set("n", "<leader>pa", function()
 end)
 
 -- ============================================================================
--- AUTO COMMANDS
+-- USEFUL FUNCTIONS
 -- ============================================================================
 
 -- create an autocmd group to prevent duplication when sourcing config

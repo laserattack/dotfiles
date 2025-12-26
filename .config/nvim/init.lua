@@ -191,6 +191,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- TABS
 -- ============================================================================
 
+-- create / del tab
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab' })
+vim.keymap.set('n', '<leader>td', ':tabclose<CR>', { desc = 'Close tab' })
+
 
 -- ============================================================================
 -- FLOATING TERMINAL

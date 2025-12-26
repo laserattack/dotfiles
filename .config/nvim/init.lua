@@ -196,7 +196,6 @@ vim.keymap.set('n', '<leader>td', ':tabclose<CR>', { desc = 'Close tab' })
 vim.keymap.set('n', '<leader>tl', ':tabnext<CR>', { desc = 'Next tab' })
 vim.keymap.set('n', '<leader>th', ':tabprevious<CR>', { desc = 'Prev tab' })
 
-
 -- ============================================================================
 -- FLOATING TERMINAL
 -- ============================================================================

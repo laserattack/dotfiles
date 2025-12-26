@@ -191,13 +191,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- TABS
 -- ============================================================================
 
--- create / del tab
 vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab' })
 vim.keymap.set('n', '<leader>td', ':tabclose<CR>', { desc = 'Close tab' })
-
--- tab moving
-vim.keymap.set('n', '<leader>tl', ':tabmove +1<CR>', { desc = 'Move tab right' })
-vim.keymap.set('n', '<leader>th', ':tabmove -1<CR>', { desc = 'Move tab left' })
+vim.keymap.set('n', '<leader>tl', ':tabnext<CR>', { desc = 'Next tab' })
+vim.keymap.set('n', '<leader>th', ':tabprevious<CR>', { desc = 'Prev tab' })
 
 
 -- ============================================================================

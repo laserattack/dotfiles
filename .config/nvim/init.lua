@@ -212,12 +212,12 @@ local function get_terminal_window_config()
     
     return {
         relative = 'editor',
-        width = width,
-        height = height,
-        row = math.floor((screen_height - height) / 2),
-        col = math.floor((screen_width - width) / 2),
-        style = 'minimal',
-        border = 'rounded',
+        width    = width,
+        height   = height,
+        row      = math.floor((screen_height - height) / 2),
+        col      = math.floor((screen_width - width) / 2),
+        style    = 'minimal',
+        border   = 'rounded',
     }
 end
 

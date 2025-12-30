@@ -271,13 +271,6 @@ local function FloatingTerminal()
     })
 end
 
-local function CloseFloatingTerminal()
-    if terminal_state.is_open and vim.api.nvim_win_is_valid(terminal_state.win) then
-        vim.api.nvim_win_close(terminal_state.win, false)
-        terminal_state.is_open = false
-    end
-end
-
 vim.keymap.set('n', '<leader>`', FloatingTerminal, { noremap = true, silent = true, desc = 'Toggle floating terminal' })
 vim.keymap.set('t', '<Esc>', function()
     if terminal_state.is_open then

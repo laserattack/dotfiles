@@ -198,9 +198,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- ============================================================================
 
 local terminal_state = {
-    buf     = nil,
-    win     = nil,
-    is_open = false
+    buf          = nil,
+    win          = nil,
+    is_open      = false,
+    is_term_mode = false,
 }
 
 local function get_terminal_window_config()
@@ -255,7 +256,8 @@ local function FloatingTerminal()
         vim.fn.termopen(os.getenv('SHELL'))
     end
 
-    terminal_state.is_open = true
+    terminal_state.is_open      = true
+    terminal_state.is_term_mode = true
     vim.cmd('startinsert')
 
     -- no need augroup because once = true
@@ -274,8 +276,12 @@ end
 vim.keymap.set('n', '<leader>`', FloatingTerminal, { noremap = true, silent = true, desc = 'Toggle floating terminal' })
 vim.keymap.set('t', '<Esc>', function()
     if terminal_state.is_open then
-        vim.api.nvim_win_close(terminal_state.win, false)
-        terminal_state.is_open = false
+        if terminal_state.is_term_mode then
+            terminal_state.is_term_mode = false
+        else
+            vim.api.nvim_win_close(terminal_state.win, false)
+            terminal_state.is_open = false
+        end
     end
 end, { noremap = true, silent = true, desc = 'Close floating terminal from terminal mode' })
 

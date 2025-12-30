@@ -274,9 +274,10 @@ local function FloatingTerminal()
 end
 
 vim.keymap.set('n', '<leader>`', FloatingTerminal, { noremap = true, silent = true, desc = 'Toggle floating terminal' })
-vim.keymap.set('t', '<Esc>', function()
+vim.keymap.set({'t','n'}, '<Esc>', function()
     if terminal_state.is_open then
         if terminal_state.is_term_mode then
+            vim.cmd('stopinsert')
             terminal_state.is_term_mode = false
         else
             vim.api.nvim_win_close(terminal_state.win, false)

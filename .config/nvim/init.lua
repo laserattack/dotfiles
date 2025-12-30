@@ -6,7 +6,7 @@
 
 vim.o.termguicolors = true
 vim.o.list          = true
-vim.o.listchars     = "trail:·,lead:·,tab:»\\ "
+vim.o.listchars     = "trail:·,lead:·,tab:» "
 vim.g.mapleader     = " "
 vim.opt.updatetime  = 300
 

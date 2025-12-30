@@ -258,7 +258,7 @@ local function FloatingTerminal()
     end
 
     terminal_state.is_open = true
-    terminal_state.is_in_terminal_mode = true  -- Устанавливаем флаг в true
+    terminal_state.is_in_terminal_mode = true
     vim.cmd('startinsert')
 
     -- no need augroup because once = true
@@ -277,15 +277,12 @@ end
 
 vim.keymap.set('n', '<leader>`', FloatingTerminal, { noremap = true, silent = true, desc = 'Toggle floating terminal' })
 
--- Маппинг для терминального режима
 vim.keymap.set('t', '<Esc>', function()
     if terminal_state.is_open then
         if terminal_state.is_in_terminal_mode then
-            -- Первое нажатие Esc: выходим из терминального режима
             vim.cmd('stopinsert')
             terminal_state.is_in_terminal_mode = false
         else
-            -- Второе нажатие Esc: закрываем терминал
             vim.api.nvim_win_close(terminal_state.win, false)
             terminal_state.is_open = false
             terminal_state.is_in_terminal_mode = false
@@ -293,16 +290,14 @@ vim.keymap.set('t', '<Esc>', function()
     end
 end, { noremap = true, silent = true, desc = 'Exit terminal mode, then close terminal' })
 
--- Автоматически входим в терминальный режим при фокусе на окне терминала
 local augroup = vim.api.nvim_create_augroup('FloatingTerminal', { clear = true })
 
 vim.api.nvim_create_autocmd('WinEnter', {
     group = augroup,
     callback = function()
-        if terminal_state.is_open and 
+        if terminal_state.is_open and
            terminal_state.win == vim.api.nvim_get_current_win() and
            not terminal_state.is_in_terminal_mode then
-            -- Входим в терминальный режим при фокусе на терминале
             vim.cmd('startinsert')
             terminal_state.is_in_terminal_mode = true
         end

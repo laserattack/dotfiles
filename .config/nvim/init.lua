@@ -198,9 +198,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- ============================================================================
 
 local terminal_state = {
-    buf     = nil,
-    win     = nil,
-    is_open = false
+    buf                 = nil,
+    win                 = nil,
+    is_open             = false,
+    is_in_terminal_mode = false
 }
 
 local function get_terminal_window_config()
@@ -225,6 +226,7 @@ local function FloatingTerminal()
     if terminal_state.is_open and vim.api.nvim_win_is_valid(terminal_state.win) then
         vim.api.nvim_win_close(terminal_state.win, false)
         terminal_state.is_open = false
+        terminal_state.is_in_terminal_mode = false
         return
     end
 
@@ -265,6 +267,7 @@ local function FloatingTerminal()
             if terminal_state.is_open and vim.api.nvim_win_is_valid(terminal_state.win) then
                 vim.api.nvim_win_close(terminal_state.win, false)
                 terminal_state.is_open = false
+                terminal_state.is_in_terminal_mode = false
             end
         end,
         once = true
@@ -274,10 +277,16 @@ end
 vim.keymap.set('n', '<leader>`', FloatingTerminal, { noremap = true, silent = true, desc = 'Toggle floating terminal' })
 vim.keymap.set('t', '<Esc>', function()
     if terminal_state.is_open then
-        vim.api.nvim_win_close(terminal_state.win, false)
-        terminal_state.is_open = false
+        if terminal_state.is_in_terminal_mode then
+            vim.cmd('stopinsert')
+            terminal_state.is_in_terminal_mode = false
+        else
+            vim.api.nvim_win_close(terminal_state.win, false)
+            terminal_state.is_open = false
+            terminal_state.is_in_terminal_mode = false
+        end
     end
-end, { noremap = true, silent = true, desc = 'Close floating terminal from terminal mode' })
+end, { noremap = true, silent = true, desc = 'Exit terminal mode, then close terminal' })
 
 vim.api.nvim_create_autocmd('VimResized', {
     group = augroup,

@@ -380,10 +380,7 @@ require("lazy").setup({
     {
         'stevearc/oil.nvim',
         opts = {
-            buf_options = {
-                buflisted = false,
-                bufhidden = "wipe",
-            },
+            default_file_explorer = false,
         },
         lazy = false,
     },

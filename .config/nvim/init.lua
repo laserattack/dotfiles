@@ -378,6 +378,12 @@ require("lazy").setup({
     },
 
     {
+        'stevearc/oil.nvim',
+        opts = {},
+        lazy = false,
+    },
+
+    {
         -- git wrapper
         "tpope/vim-fugitive",
         config = function()

@@ -10,6 +10,10 @@ vim.o.listchars     = "trail:·,lead:·,tab:» "
 vim.g.mapleader     = " "
 vim.opt.updatetime  = 300
 
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- disable swap
 vim.o.swapfile = false
 
@@ -127,18 +131,18 @@ vim.api.nvim_create_autocmd({
 })
 
 -- netrw toggle using esc
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "netrw",
-    group = augroup,
-    callback = function()
-        vim.keymap.set("n", "<Esc>", ":bdelete<CR>", {
-            buffer = true, -- local mapping only for this buffer
-            desc = "Close netrw buffer",
-            noremap = true,
-            silent = true
-        })
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "netrw",
+--     group = augroup,
+--     callback = function()
+--         vim.keymap.set("n", "<Esc>", ":bdelete<CR>", {
+--             buffer = true, -- local mapping only for this buffer
+--             desc = "Close netrw buffer",
+--             noremap = true,
+--             silent = true
+--         })
+--     end,
+-- })
 
 -- auto-close terminal when process exits
 -- for example, when sending an 'exit', the terminal will automatically close

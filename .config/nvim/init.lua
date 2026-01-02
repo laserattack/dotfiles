@@ -359,6 +359,16 @@ require("lazy").setup({
     },
 
     {
+        'elihunter173/dirbuf.nvim',
+        opts = {
+            sort_order = "directories_first",
+        },
+        keys = {
+            { '<leader>e', '<cmd>Dirbuf<cr>', desc = 'Dirbuf' },
+        },
+    },
+
+    {
         -- treesitter
         "nvim-treesitter/nvim-treesitter",
         config = function()

@@ -13,6 +13,6 @@
         done
     done
 } | fzf --reverse |
-    # grep -oE '[^ ]+:[0-9]+(\.[0-9]+)?' |
+    grep -oE '[^ ]+:[0-9]+(\.[0-9]+)?' |
     head -1 |
     xargs tmux switch-client -t

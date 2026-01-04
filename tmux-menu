@@ -5,10 +5,10 @@
         echo "S $session"
 
         tmux list-windows -t "$session" -F '#I #W' | while read -r window_id window_name; do
-            echo "  W $session:$window_id [$window_name]"
+            echo "  W $session:$window_id $window_name"
 
             tmux list-panes -t "$session:$window_id" -F '#P #{pane_current_command}' | while read -r pane_id pane_cmd; do
-                echo "    P $session:$window_id.$pane_id ($pane_cmd)"
+                echo "    P $session:$window_id.$pane_id $pane_cmd"
             done
         done
     done

@@ -1,17 +1,36 @@
 #!/usr/bin/env bash
 
-{
-    tmux list-sessions -F '#S' | grep -v '^_popup_' | while read -r session; do
-        echo "S [$session]$session"
+# Создаем меню с опциями
+choice=$(echo -e "Switch to session/window\n---\nKill current window\nKill current pane\nKill current session\nKill all other windows" | fzf --reverse --height=40% --header="Tmux Menu")
 
-        tmux list-windows -t "$session" -F '#I #W' | while read -r window_id window_name; do
-            echo "  W [$window_name]$session:$window_id"
-
-            tmux list-panes -t "$session:$window_id" -F '#P #{pane_current_command}' | while read -r pane_id pane_cmd; do
-                echo "    P [$pane_cmd]$session:$window_id.$pane_id"
+case "$choice" in
+    "Switch to session/window")
+        # Твой текущий скрипт переключения
+        {
+            tmux list-sessions -F '#S' | grep -v '^_popup_' | while read -r session; do
+                echo "S [$session]$session"
+                tmux list-windows -t "$session" -F '#I #W' | while read -r window_id window_name; do
+                    echo "  W [$window_name]$session:$window_id"
+                    tmux list-panes -t "$session:$window_id" -F '#P #{pane_current_command}' | while read -r pane_id pane_cmd; do
+                        echo "    P [$pane_cmd]$session:$window_id.$pane_id"
+                    done
+                done
             done
+        } | fzf --reverse --with-nth=1 --delimiter=']' | cut -d']' -f2 | xargs tmux switch-client -t
+        ;;
+    "Kill current window")
+        tmux confirm-before -p "kill-window #W? (y/n)" kill-window
+        ;;
+    "Kill current pane")
+        tmux confirm-before -p "kill-pane #P? (y/n)" kill-pane
+        ;;
+    "Kill current session")
+        tmux confirm-before -p "kill-session #S? (y/n)" kill-session
+        ;;
+    "Kill all other windows")
+        current_window=$(tmux display-message -p '#I')
+        for w in $(tmux list-windows -F "#I" | grep -v "^$current_window$"); do
+            tmux kill-window -t "$w"
         done
-    done
-} | fzf --reverse --with-nth=1 --delimiter=']' |
-    awk -F']' '{print $2}' |
-    xargs tmux switch-client -t
+        ;;
+esac

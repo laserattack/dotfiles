@@ -5,14 +5,24 @@
         echo "S $session"
 
         tmux list-windows -t "$session" -F '#I #W' | while read -r window_id window_name; do
-            echo "  W $session:$window_id $window_name"
+            echo "W $session:$window_id"
 
             tmux list-panes -t "$session:$window_id" -F '#P #{pane_current_command}' | while read -r pane_id pane_cmd; do
-                echo "    P $session:$window_id.$pane_id $pane_cmd"
+                echo "  P $session:$window_id.$pane_id"
             done
         done
     done
-} | fzf --reverse |
-    grep -oE '[^ ]+:[0-9]+(\.[0-9]+)?' |
-    head -1 |
+} | fzf --reverse \
+    --preview 'echo {}' \
+    --preview-window='up:1:wrap' \
+    --bind 'ctrl-space:toggle-preview' |
+    awk '{
+        if ($1 == "S") {
+            print $2
+        } else if ($1 == "W") {
+            print $2
+        } else if ($1 == "P") {
+            print $2
+        }
+    }' |
     xargs tmux switch-client -t

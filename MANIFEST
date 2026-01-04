@@ -5,13 +5,13 @@
 .bashrc|symlink|
 .xprofile|symlink|
 .tmux.conf|symlink|
-tmux-menu|symlink|
 
 .config/nvim|symlink|
 .config/kitty|symlink|
 .config/i3/config|symlink|
 .config/gtk-3.0|symlink|
 
+.local/bin/tmux-menu|symlink|
 .local/bin/emoji|symlink|
 .local/bin/greek|symlink|
 .local/bin/clipshot|symlink|

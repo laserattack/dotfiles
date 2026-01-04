@@ -2,16 +2,15 @@
 
 {
     tmux list-sessions -F '#S' | grep -v '^_popup_' | while read -r session; do
-        echo "SESSION: $session"
+        echo "S $session"
 
-        tmux list-windows -t "$session" -F 'WINDOW: #S:#I #W'
+        tmux list-windows -t "$session" -F '#I #W' | while read -r window_id window_name; do
+            echo "W $session:$window_id"
 
-        tmux list-windows -t "$session" -F '#I' | while read -r window; do
-            tmux list-panes -t "$session:$window" -F "PANE: #S:#I.#P  #{pane_current_command}"
+            tmux list-panes -t "$session:$window_id" -F "P $session:$window_id.#P"
         done
     done
-} | sed 's/^SESSION:/S /' | sed 's/^WINDOW:/  W /' | sed 's/^PANE:/    P /' |
-    fzf --reverse |
+} | fzf --reverse |
     awk '{
         if ($1 == "S") {
             print $2

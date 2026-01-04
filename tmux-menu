@@ -5,12 +5,12 @@
         echo "SESSION:$session"
         tmux list-windows -t "$session" -F 'WINDOW:#S:#I #W'
     done
-} | sed 's/^SESSION:/▼ /' | sed 's/^WINDOW:/  ⦿ /' |
+} | sed 's/^SESSION:/S /' | sed 's/^WINDOW:/   W/' |
     fzf --reverse |
     awk '{
-        if ($1 == "▼") {
+        if ($1 == "S") {
             print $2
-        } else if ($1 == "⦿") {
+        } else if ($1 == "W") {
             print $2
         }
     }' |

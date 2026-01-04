@@ -2,16 +2,16 @@
 
 {
     tmux list-sessions -F '#S' | grep -v '^_popup_' | while read -r session; do
-        echo "S $session|$session"
+        echo "S [$session]$session"
 
         tmux list-windows -t "$session" -F '#I #W' | while read -r window_id window_name; do
-            echo "  W $window_name|$session:$window_id"
+            echo "  W [$window_name]$session:$window_id"
 
             tmux list-panes -t "$session:$window_id" -F '#P #{pane_current_command}' | while read -r pane_id pane_cmd; do
-                echo "    P $pane_cmd|$session:$window_id.$pane_id"
+                echo "    P [$pane_cmd]$session:$window_id.$pane_id"
             done
         done
     done
-} | fzf --reverse --with-nth=1 --delimiter='|' |
-    awk -F'|' '{print $2}' |
+} | fzf --reverse --with-nth=1 --delimiter=']' |
+    awk -F']' '{print $2}' |
     xargs tmux switch-client -t

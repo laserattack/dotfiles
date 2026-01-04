@@ -5,6 +5,7 @@
 .bashrc|symlink|
 .xprofile|symlink|
 .tmux.conf|symlink|
+tmux-menu|symlink|
 
 .config/nvim|symlink|
 .config/kitty|symlink|

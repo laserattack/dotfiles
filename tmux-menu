@@ -13,6 +13,15 @@
         done
     done
 } | fzf --reverse |
-    grep -oE '[^ ]+:[0-9]+(\.[0-9]+)?' |
-    head -1 |
+    awk '{
+        if ($1 == "S") {
+            print $2
+        } else if ($1 == "W") {
+            # Берем session:window из второго поля
+            print $2
+        } else if ($1 == "P") {
+            # Берем session:window.pane из второго поля  
+            print $2
+        }
+    }' |
     xargs tmux switch-client -t

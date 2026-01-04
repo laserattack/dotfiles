@@ -5,7 +5,7 @@
         echo "SESSION:$session"
         tmux list-windows -t "$session" -F 'WINDOW:#S:#I #W'
     done
-} | sed 's/^SESSION:/S /' | sed 's/^WINDOW:/   W/' |
+} | sed 's/^SESSION:/S /' | sed 's/^WINDOW:/  W /' |
     fzf --reverse |
     awk '{
         if ($1 == "S") {

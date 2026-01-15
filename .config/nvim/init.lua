@@ -334,19 +334,6 @@ require("lazy").setup({
         end
     },
 
-    -- {
-    --     "rockerBOO/boo-colorscheme-nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require("boo-colorscheme").use({
-    --             theme = "crimson_moonlight"
-    --         })
-    --         vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
-    --         vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
-    --     end
-    -- },
-
     {
         -- smart moves
         "ggandor/leap.nvim",

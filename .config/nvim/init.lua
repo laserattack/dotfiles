@@ -340,7 +340,7 @@ require("lazy").setup({
         priority = 1000,
         config = function()
             require("boo-colorscheme").use({
-                theme = "forest_stream"
+                theme = "radioactive_waste"
             })
         end
     },

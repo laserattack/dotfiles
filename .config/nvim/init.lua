@@ -324,13 +324,24 @@ vim.opt.rtp:prepend(lazypath)
 -- setup plugins
 require("lazy").setup({
 
+    -- {
+    --     -- colorscheme miasma (forest-like style)
+    --     "xero/miasma.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         vim.cmd("colorscheme miasma")
+    --     end
+    -- },
+
     {
-        -- colorscheme
-        "xero/miasma.nvim",
+        "rockerBOO/boo-colorscheme-nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd("colorscheme miasma")
+            require("boo-colorscheme").use({
+                theme = "forest_stream"
+            })
         end
     },
 

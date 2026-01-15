@@ -7,7 +7,6 @@
 .tmux.conf|symlink|
 
 .config/nvim|symlink|
-.config/kitty|symlink|
 .config/i3/config|symlink|
 .config/gtk-3.0|symlink|
 

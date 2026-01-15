@@ -353,7 +353,9 @@ require("lazy").setup({
         -- smart moves
         "ggandor/leap.nvim",
         config = function()
-            require("leap").setup({ preview = false })
+            require("leap").setup({ 
+                preview = false,
+            })
             vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)', { desc = "Leap forward" })
             vim.keymap.set('n', 'S', '<Plug>(leap-from-window)', { desc = "Leap across windows" })
         end

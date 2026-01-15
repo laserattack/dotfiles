@@ -342,7 +342,7 @@ require("lazy").setup({
         priority = 1000,
         config = function()
             require("boo-colorscheme").use({
-                theme = "boo"
+                theme = "crimson_moonlight"
             })
             vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
             vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })

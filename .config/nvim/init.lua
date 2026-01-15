@@ -324,13 +324,26 @@ vim.opt.rtp:prepend(lazypath)
 -- setup plugins
 require("lazy").setup({
 
+    -- {
+    --     -- colorscheme miasma (forest-like style)
+    --     "xero/miasma.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     config = function()
+    --         vim.cmd("colorscheme miasma")
+    --     end
+    -- },
+
     {
-        -- colorscheme miasma (forest-like style)
-        "xero/miasma.nvim",
+        "rockerBOO/boo-colorscheme-nvim",
         lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd("colorscheme miasma")
+            require("boo-colorscheme").use({
+                theme = "crimson_moonlight"
+            })
+            vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+            vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
         end
     },
 

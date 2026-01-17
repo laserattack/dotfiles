@@ -168,9 +168,7 @@ vim.api.nvim_create_autocmd("VimResized", {
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup,
     callback = function()
-        vim.highlight.on_yank({
-            higroup = "Visual",
-        })
+        vim.highlight.on_yank()
     end,
 })
 

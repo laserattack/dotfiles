@@ -37,7 +37,7 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
-;; ===== PLUGINS =====
+;; ===== ANOTHER PLUGINS =====
 
 ;; ido
 
@@ -72,6 +72,8 @@
 (use-package ace-jump-mode
   :ensure t
   :bind ("C-c SPC" . ace-jump-mode))
+
+;; ===== MODES =====
 
 ;; c mode (https://github.com/rexim/simpc-mode)
 

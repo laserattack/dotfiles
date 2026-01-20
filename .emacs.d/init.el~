@@ -48,15 +48,14 @@
 (global-set-key (kbd "M-l") 'forward-char)
 
 ;; ===== THEME =====
-;; (rc/require-theme 'doom-one)
-(rc/require-theme 'zenburn)
-;; (rc/require-theme 'modus-vivendi)
+(rc/require-theme 'gruber-darker)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages nil))
+ '(package-selected-packages '(zenburn-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

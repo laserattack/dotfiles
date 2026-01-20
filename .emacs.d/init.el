@@ -3,12 +3,17 @@
   (write-region "" nil custom-file))
 
 (add-to-list 'load-path "~/.emacs.local/")
-(setq make-backup-files nil)
 
 ;; ===== BASE SETTINGS =====
 
+;; disable mouse wheel speed up
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-scroll-amount '(3))
+
+;; disable backup files
+(setq make-backup-files nil)
+(setq auto-save-list-file-prefix nil)
+(setq create-lockfiles nil)
 
 ;; ===== PACKAGE SYSTEM =====
 

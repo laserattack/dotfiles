@@ -43,10 +43,10 @@
   (if visual-line-mode
       (progn
         (visual-line-mode -1)
-        (setq truncate-lines t)
+        (setq truncate-lines t))
     (progn
         (visual-line-mode 1)
-        (setq truncate-lines nil)))))
+        (setq truncate-lines nil))))
 (global-set-key (kbd "C-c w") 'my-toggle-word-wrap)
 
 (setq inhibit-startup-screen t)

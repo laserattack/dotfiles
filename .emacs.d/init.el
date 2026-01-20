@@ -36,7 +36,7 @@
 
 (setq-default truncate-lines nil)
 (global-visual-line-mode 1)
-(defun my-toggle-word-wrap ()
+(defun custom-toggle-word-wrap ()
   (interactive)
   (if visual-line-mode
       (progn
@@ -45,7 +45,7 @@
     (progn
         (visual-line-mode 1)
         (setq truncate-lines nil))))
-(global-set-key (kbd "C-c w") 'my-toggle-word-wrap)
+(global-set-key (kbd "C-c w") 'custom-toggle-word-wrap)
 
 (setq inhibit-startup-screen t)
 

@@ -1,5 +1,3 @@
-;; interface settings
-
 ;; fontsize
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
@@ -9,12 +7,10 @@
       (global-display-line-numbers-mode +1)
 
 ;; better moves
-
 (global-unset-key (kbd "C-p"))
 (global-unset-key (kbd "C-n"))
 (global-unset-key (kbd "C-b"))
 (global-unset-key (kbd "C-f"))
-
 (global-set-key (kbd "M-j") 'backward-char)
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-i") 'previous-line)

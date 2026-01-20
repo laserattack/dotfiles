@@ -1,4 +1,34 @@
-;; interface
+;; ===== PACKAGE MANAGEMENT =====
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+
+(defvar rc/package-contents-refreshed nil)
+
+(defun rc/package-refresh-contents-once ()
+  (when (not rc/package-contents-refreshed)
+    (setq rc/package-contents-refreshed t)
+    (package-refresh-contents)))
+
+(defun rc/require-one-package (package)
+  (when (not (package-installed-p package))
+    (rc/package-refresh-contents-once)
+    (package-install package)))
+
+(defun rc/require (&rest packages)
+  (dolist (package packages)
+    (rc/require-one-package package)))
+
+;; Упрощенная версия require-theme (без dash)
+(defun rc/require-theme (theme)
+  (let ((theme-package (intern (concat (symbol-name theme) "-theme"))))
+    (rc/require theme-package)
+    (load-theme theme t)))
+
+;; ===== INITIALIZE PACKAGE SYSTEM =====
+(require 'package)
+(package-initialize)
+
+;; ===== INTERFACE =====
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
 
@@ -7,13 +37,12 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 
-;; relative lines numbers
+;; Relative line numbers
 (setq display-line-numbers-type 'relative)
-      (global-display-line-numbers-mode +1)
+(global-display-line-numbers-mode +1)
 
-;; better moves
+;; Better moves
 (global-set-key (kbd "M-j") 'backward-char)
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-i") 'previous-line)
 (global-set-key (kbd "M-l") 'forward-char)
-

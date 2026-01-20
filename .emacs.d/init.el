@@ -18,7 +18,7 @@
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
 
-;; Color theme
+;; color theme
 (use-package ef-themes
   :ensure t
   :config
@@ -30,7 +30,7 @@
 (column-number-mode 1)
 ;; (set-fringe-mode 0)
 
-;; Relative lines numbers
+;; relative lines numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 

@@ -72,7 +72,8 @@
   :ensure t
   :config
   (ido-mode 1)
-  (ido-everywhere))
+  (ido-everywhere)
+  (setq ido-enable-flex-matching t))
 
 (use-package smex
   :ensure t

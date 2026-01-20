@@ -10,6 +10,7 @@
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
 
+;; Color theme
 (use-package ef-themes
   :ensure t
   :config

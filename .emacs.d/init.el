@@ -1,5 +1,3 @@
-;; ===== CUSTOM FILE =====
-
 (setq custom-file "~/.emacs.custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))

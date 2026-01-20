@@ -36,8 +36,7 @@
 (column-number-mode 1)
 (set-fringe-mode 0)
 
-(setq-default truncate-lines nil)
-(global-visual-line-mode 1)
+(global-visual-line-mode 1) ;; word wrap
 
 (setq inhibit-startup-screen t)
 

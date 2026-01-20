@@ -48,6 +48,13 @@
          ("M-X" . smex-major-mode-commands)
          ("C-c C-c M-x" . execute-extended-command)))
 
+;;
+
+(use-package emacs-lisp-mode
+  :hook (emacs-lisp-mode . (lambda ()
+                             (local-set-key (kbd "C-c C-j")
+                                            'eval-print-last-sexp))))
+
 ;; ===== LOAD CUSTOM FILE =====
 
 (load-file custom-file)

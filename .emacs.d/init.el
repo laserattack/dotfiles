@@ -1,6 +1,11 @@
-(setq custom-file "~/.emacs.custom.el")
+;; ===== CUSTOM FILE =====
 
-;; ===== INITIALIZE PACKAGE SYSTEM =====
+(setq custom-file "~/.emacs.custom.el")
+(unless (file-exists-p custom-file)
+  (write-region "" nil custom-file))
+
+;; ===== PACKAGE SYSTEM =====
+
 (require 'package)
 
 (add-to-list 'package-archives
@@ -9,6 +14,7 @@
 (package-initialize)
 
 ;; ===== INTERFACE =====
+
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
 
@@ -27,5 +33,7 @@
 ;; Relative lines numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
+
+;; ===== LOAD CUSTOM FILE =====
 
 (load-file custom-file)

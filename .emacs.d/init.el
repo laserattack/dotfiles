@@ -1,16 +1,17 @@
-;; fontsize
+;; interface
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
+
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+(column-number-mode 1)
 
 ;; relative lines numbers
 (setq display-line-numbers-type 'relative)
       (global-display-line-numbers-mode +1)
 
 ;; better moves
-(global-unset-key (kbd "C-p"))
-(global-unset-key (kbd "C-n"))
-(global-unset-key (kbd "C-b"))
-(global-unset-key (kbd "C-f"))
 (global-set-key (kbd "M-j") 'backward-char)
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-i") 'previous-line)

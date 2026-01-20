@@ -24,7 +24,8 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode +1)
 
-;; Better moves
+;; ===== BETTER MOVES =====
+
 (global-set-key (kbd "M-j") 'backward-char)
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-i") 'previous-line)

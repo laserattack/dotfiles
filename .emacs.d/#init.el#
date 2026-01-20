@@ -1,0 +1,29 @@
+(setq custom-file "~/.emacs.custom.el")
+
+;; ===== INITIALIZE PACKAGE SYSTEM =====
+(require 'package)
+
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+
+(package-initialize)
+
+;; ===== INTERFACE =====
+(add-to-list 'default-frame-alist
+             '(font . "Monospace-15"))
+
+;; Color theme
+(use-package ef-themes
+  :ensure t
+  :config
+  (load-theme 'ef-dream t))
+
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+(column-number-mode 1)
+(set-fringe-mode 0)
+
+;; Relative lines numbers
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode)

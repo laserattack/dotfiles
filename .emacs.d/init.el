@@ -37,6 +37,8 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
+;; ===== PLUGINS =====
+
 ;; ido
 
 (use-package ido-completing-read+
@@ -65,17 +67,17 @@
   :config
   (global-company-mode))
 
-;; c mode (https://github.com/rexim/simpc-mode)
-
-(require 'simpc-mode)
-;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
-(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
-
 ;; ace jump
 
 (use-package ace-jump-mode
   :ensure t
   :bind ("C-c SPC" . ace-jump-mode))
+
+;; c mode (https://github.com/rexim/simpc-mode)
+
+(require 'simpc-mode)
+;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
+(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
 ;;
 

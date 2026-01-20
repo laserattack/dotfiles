@@ -1,9 +1,15 @@
-					; interface settings 
+; interface settings 
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
 
-					; better moves
+(setq display-line-numbers-type 'relative)
+      (global-display-line-numbers-mode +1)
+
+; better moves
 (global-set-key (kbd "M-j") 'backward-char)
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-i") 'previous-line)
 (global-set-key (kbd "M-l") 'forward-char)
+
+
+

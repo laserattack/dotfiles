@@ -17,7 +17,7 @@
 
 ;; ===== BINDINGS =====
 
-(global-set-key (kbd "C-c w") 'toggle-word-wrap)
+;; (global-set-key (kbd "C-c w") 'toggle-word-wrap)
 
 ;; ===== INTERFACE =====
 
@@ -35,6 +35,7 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (set-fringe-mode 0)
+(toggle-word-wrap 1)
 (setq inhibit-startup-screen t)
 
 ;; relative lines numbers

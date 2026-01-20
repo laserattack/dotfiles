@@ -34,8 +34,10 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (column-number-mode 1)
-(toggle-word-wrap 1)
 (set-fringe-mode 0)
+
+(toggle-truncate-lines 0)
+(toggle-word-wrap 1)
 
 (setq inhibit-startup-screen t)
 

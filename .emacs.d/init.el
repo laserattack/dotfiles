@@ -1,10 +1,8 @@
 ;; ===== CUSTOM FILE =====
 
-;;(setq custom-file "~/.emacs.custom.el")
-;;(unless (file-exists-p custom-file)
-;;  (write-region "" nil custom-file))
-
-(setq custom-file null-device)
+(setq custom-file "~/.emacs.custom.el")
+(unless (file-exists-p custom-file)
+  (write-region "" nil custom-file))
 
 (add-to-list 'load-path "~/.emacs.local/")
 
@@ -37,8 +35,6 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (set-fringe-mode 0)
-
-(global-visual-line-mode 1) ;; word wrap
 
 (setq inhibit-startup-screen t)
 

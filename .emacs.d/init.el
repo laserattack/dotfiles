@@ -10,6 +10,11 @@
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
 
+(use-package ef-themes
+  :ensure t
+  :config
+  (load-theme 'ef-dream t))
+
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -25,11 +30,7 @@
 (global-set-key (kbd "M-i") 'previous-line)
 (global-set-key (kbd "M-l") 'forward-char)
 
-;; ===== THEME =====
-(use-package ef-themes
-  :ensure t
-  :config
-  (load-theme 'ef-dream t))
+;; 
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

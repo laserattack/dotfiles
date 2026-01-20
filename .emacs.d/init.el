@@ -36,8 +36,18 @@
 (column-number-mode 1)
 (set-fringe-mode 0)
 
-(toggle-truncate-lines 0)
+(setq-default truncate-lines nil)
 (global-visual-line-mode 1)
+(defun my-toggle-word-wrap ()
+  (interactive)
+  (if visual-line-mode
+      (progn
+        (visual-line-mode -1)
+        (setq truncate-lines t)
+    (progn
+        (visual-line-mode 1)
+        (setq truncate-lines nil))))
+(global-set-key (kbd "C-c w") 'my-toggle-word-wrap)
 
 (setq inhibit-startup-screen t)
 

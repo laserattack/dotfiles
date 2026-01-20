@@ -1,7 +1,10 @@
 ;; interface settings
+
+;; fontsize
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
 
+;; relative lines numbers
 (setq display-line-numbers-type 'relative)
       (global-display-line-numbers-mode +1)
 

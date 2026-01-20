@@ -1,12 +1,13 @@
-;; interface settings
+;; fontsize
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
 
+;; relative lines numbers
 (setq display-line-numbers-type 'relative)
       (global-display-line-numbers-mode +1)
 
 ;; better moves
-
+asidn asjkdnajskd
 (global-unset-key (kbd "C-p"))
 (global-unset-key (kbd "C-n"))
 (global-unset-key (kbd "C-b"))
@@ -16,3 +17,4 @@
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-i") 'previous-line)
 (global-set-key (kbd "M-l") 'forward-char)
+

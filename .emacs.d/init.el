@@ -4,6 +4,11 @@
 
 (add-to-list 'load-path "~/.emacs.local/")
 
+;; ===== BASE SETTINGS =====
+
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-scroll-amount '(3))
+
 ;; ===== PACKAGE SYSTEM =====
 
 (require 'package)

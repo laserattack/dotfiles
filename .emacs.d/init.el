@@ -15,6 +15,10 @@
 
 (package-initialize)
 
+;; ===== BINDINGS =====
+
+(global-set-key (kbd "C-c w") 'toggle-word-wrap)
+
 ;; ===== INTERFACE =====
 
 (add-to-list 'default-frame-alist

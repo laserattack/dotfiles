@@ -17,7 +17,7 @@
 
 ;; ===== BINDINGS =====
 
-;; (global-set-key (kbd "C-c w") 'toggle-word-wrap)
+(global-set-key (kbd "C-c w") 'toggle-truncate-lines)
 
 ;; ===== INTERFACE =====
 
@@ -34,6 +34,7 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (column-number-mode 1)
+(toggle-word-wrap 1)
 (set-fringe-mode 0)
 
 (setq inhibit-startup-screen t)

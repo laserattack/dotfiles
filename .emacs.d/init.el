@@ -49,6 +49,13 @@
          ("M-X" . smex-major-mode-commands)
          ("C-c C-c M-x" . execute-extended-command)))
 
+;; move text
+
+(use-package move-text
+  :ensure t
+  :bind (("M-<down>" . move-text-down)
+         ("M-<up>" . move-text-up)))
+
 ;;
 
 ;; ===== LOAD CUSTOM FILE =====

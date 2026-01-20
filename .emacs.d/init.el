@@ -56,6 +56,13 @@
   :bind (("M-<down>" . move-text-down)
          ("M-<up>" . move-text-up)))
 
+;; company
+
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode)
+
 ;;
 
 ;; ===== LOAD CUSTOM FILE =====

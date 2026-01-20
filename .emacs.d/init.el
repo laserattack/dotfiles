@@ -4,6 +4,8 @@
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 
+(add-to-list 'load-path "~/.emacs.local/")
+
 ;; ===== PACKAGE SYSTEM =====
 
 (require 'package)
@@ -62,6 +64,12 @@
   :ensure t
   :config
   (global-company-mode))
+
+;; c mode (https://github.com/rexim/simpc-mode)
+
+(require 'simpc-mode)
+;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
+(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
 ;;
 

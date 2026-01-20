@@ -3,6 +3,7 @@
   (write-region "" nil custom-file))
 
 (add-to-list 'load-path "~/.emacs.local/")
+(setq make-backup-files nil)
 
 ;; ===== BASE SETTINGS =====
 

@@ -48,7 +48,10 @@
 (global-set-key (kbd "M-l") 'forward-char)
 
 ;; ===== THEME =====
-(rc/require-theme 'gruber-darker)
+(use-package ef-themes
+  :ensure t
+  :config
+  (load-theme 'ef-dream t))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

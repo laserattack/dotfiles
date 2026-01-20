@@ -104,6 +104,17 @@
   :bind (("C-c m s" . magit-status)
          ("C-c m l" . magit-log)))
 
+;; multiple cursors
+
+(use-package multiple-cursors
+  :ensure t
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+         ("C->"         . mc/mark-next-like-this)
+         ("C-<"         . mc/mark-previous-like-this)
+         ("C-c C-<"     . mc/mark-all-like-this)
+         ("C-\""        . mc/skip-to-next-like-this)
+         ("C-:"         . mc/skip-to-previous-like-this)))
+
 ;; ===== MODES =====
 
 ;; c mode (https://github.com/rexim/simpc-mode)

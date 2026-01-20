@@ -27,3 +27,5 @@
 ;; Relative lines numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
+
+(load-file custom-file)

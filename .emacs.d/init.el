@@ -22,16 +22,9 @@
 (column-number-mode 1)
 (set-fringe-mode 0)
 
-;; Relative line numbers
+;; Relative lines numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode +1)
-
-;; ===== BETTER MOVES =====
-
-(global-set-key (kbd "M-j") 'backward-char)
-(global-set-key (kbd "M-k") 'next-line)
-(global-set-key (kbd "M-i") 'previous-line)
-(global-set-key (kbd "M-l") 'forward-char)
 
 ;; 
 

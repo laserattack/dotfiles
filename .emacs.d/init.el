@@ -50,11 +50,6 @@
 
 ;;
 
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c C-j")
-                           'eval-print-last-sexp)))
-
 ;; ===== LOAD CUSTOM FILE =====
 
 (load-file custom-file)

@@ -34,6 +34,20 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
+;; ido
+
+(use-package ido-completing-read+
+  :ensure t
+  :config
+  (ido-mode 1)
+  (ido-everywhere 1))
+
+(use-package smex
+  :ensure t
+  :bind (("M-x" . smex)
+         ("M-X" . smex-major-mode-commands)
+         ("C-c C-c M-x" . execute-extended-command)))
+
 ;; ===== LOAD CUSTOM FILE =====
 
 (load-file custom-file)

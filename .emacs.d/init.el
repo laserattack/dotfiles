@@ -1,8 +1,10 @@
-;better moves
+					; interface settings 
+(set-face-attribute 'default nil :height 120)
+
+					; better moves
 (global-set-key (kbd "M-j") 'backward-char)
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-i") 'previous-line)
 (global-set-key (kbd "M-l") 'forward-char)
 (global-set-key (kbd "M-0") 'beginning-of-line)
 (global-set-key (kbd "M-$") 'end-of-line)
-

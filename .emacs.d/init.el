@@ -43,7 +43,8 @@
   :ensure t
   :config
   (ido-mode 1)
-  (ido-everywhere 1))
+  (ido-everywhere 1)
+  (ido-ubiquitous-mode 1))
 
 (use-package smex
   :ensure t

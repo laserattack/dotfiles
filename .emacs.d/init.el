@@ -95,6 +95,8 @@
   :config
   (global-set-key (kbd "C-c SPC") 'avy-goto-char-2))
 
+;; magit
+
 (use-package magit
   :ensure t
   :config

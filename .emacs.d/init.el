@@ -29,6 +29,7 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (set-fringe-mode 0)
+(setq inhibit-startup-screen t)
 
 ;; relative lines numbers
 (setq display-line-numbers-type 'relative)

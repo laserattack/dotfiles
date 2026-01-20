@@ -48,7 +48,7 @@
 (global-set-key (kbd "M-l") 'forward-char)
 
 ;; ===== THEME =====
-(rc/require-theme 'gruber-darker)
+(rc/require-theme 'zenburn)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

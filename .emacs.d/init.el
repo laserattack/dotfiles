@@ -67,11 +67,12 @@
   :config
   (global-company-mode))
 
-;; ace jump
+;; ave jump
 
-(use-package ace-jump-mode
+(use-package avy
   :ensure t
-  :bind ("C-c SPC" . ace-jump-mode))
+  :config
+  (global-set-key (kbd "C-c SPC") 'avy-goto-char-2))
 
 ;; ===== MODES =====
 

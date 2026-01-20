@@ -71,6 +71,12 @@
 ;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
+;; ace jump
+
+(use-package ace-jump-mode
+  :ensure t
+  :bind ("C-c SPC" . ace-jump-mode))
+
 ;;
 
 ;; ===== LOAD CUSTOM FILE =====

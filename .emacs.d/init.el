@@ -18,7 +18,6 @@
   (dolist (package packages)
     (rc/require-one-package package)))
 
-;; Упрощенная версия require-theme (без dash)
 (defun rc/require-theme (theme)
   (let ((theme-package (intern (concat (symbol-name theme) "-theme"))))
     (rc/require theme-package)
@@ -46,3 +45,8 @@
 (global-set-key (kbd "M-k") 'next-line)
 (global-set-key (kbd "M-i") 'previous-line)
 (global-set-key (kbd "M-l") 'forward-char)
+
+;; ===== THEME =====
+;; (rc/require-theme 'doom-one)
+(rc/require-theme 'zenburn)
+;; (rc/require-theme 'modus-vivendi)

@@ -37,7 +37,7 @@
 (set-fringe-mode 0)
 
 (toggle-truncate-lines 0)
-(toggle-word-wrap 1)
+(global-visual-line-mode 1)
 
 (setq inhibit-startup-screen t)
 

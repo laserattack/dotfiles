@@ -95,6 +95,13 @@
   :config
   (global-set-key (kbd "C-c SPC") 'avy-goto-char-2))
 
+(use-package magit
+  :ensure t
+  :config
+  (setq magit-auto-revert-mode nil)
+  :bind (("C-c m s" . magit-status)
+         ("C-c m l" . magit-log)))
+
 ;; ===== MODES =====
 
 ;; c mode (https://github.com/rexim/simpc-mode)

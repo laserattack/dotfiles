@@ -1,5 +1,6 @@
 					; interface settings 
-(set-face-attribute 'default nil :height 120)
+(add-to-list 'default-frame-alist
+             '(font . "Monospace-15"))
 
 					; better moves
 (global-set-key (kbd "M-j") 'backward-char)

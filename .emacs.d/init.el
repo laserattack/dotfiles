@@ -1,4 +1,4 @@
-(setq custom-file "~/.emacs.custom.el")
+t(setq custom-file "~/.emacs.custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 
@@ -12,6 +12,9 @@
 ;; disable mouse wheel speed up
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-scroll-amount '(3))
+
+;; emacs will reload the file if it is modified from the outside
+(global-auto-revert-mode t)
 
 ;; disable backup files
 (setq make-backup-files nil)

@@ -148,13 +148,6 @@
   :ensure t
   :bind ("C-c g" . deadgrep))
 
-;; expand region
-
-(use-package expand-region
-  :ensure t
-  :bind (("C-=" . er/expand-region)
-         ("C--" . er/contract-region)))
-
 ;; russian keyboard shortcuts support
 
 ;;(use-package reverse-im

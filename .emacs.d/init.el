@@ -44,6 +44,7 @@
 (scroll-bar-mode 0)
 (column-number-mode 1)
 (set-fringe-mode 0)
+(global-hl-line-mode t)
 
 (setq-default truncate-lines nil)
 (global-visual-line-mode 1)
@@ -122,7 +123,7 @@
          ("C-\""        . mc/skip-to-next-like-this)
          ("C-:"         . mc/skip-to-previous-like-this)))
 
-;; ===== MODES =====
+;; ===== LANGUAGES MODES =====
 
 ;; c mode (https://github.com/rexim/simpc-mode)
 

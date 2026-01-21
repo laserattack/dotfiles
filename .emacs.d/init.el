@@ -140,14 +140,9 @@
 
 (use-package deadgrep
   :ensure t
-  :config
-  (defun my/deadgrep-here ()
-    (interactive)
-    (let ((deadgrep-project-root-function
-           (lambda (_) default-directory)))
-      (call-interactively 'deadgrep)))
-  
-  :bind ("C-c g" . my/deadgrep-here))
+  :init
+  (setq deadgrep-project-root-override default-directory)  
+  :bind ("C-c g" . deadgrep))
 
 ;; russian keyboard shortcuts support
 

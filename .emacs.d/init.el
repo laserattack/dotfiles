@@ -22,7 +22,10 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 
+;; save positions in buffer on exit
 (save-place-mode 1)
+
+;; without asking, follow the symlinks in the version control systems
 (setq vc-follow-symlinks t)
 
 ;; dired

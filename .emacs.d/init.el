@@ -148,13 +148,6 @@
   :ensure t
   :init
 
-  (require 'helm-grep)
-  
-  (setq helm-grep-default-command 
-        "rg --color=always --smart-case --no-heading --line-number -e %p %f")
-  (setq helm-grep-default-recurse-command
-        "rg --color=always --smart-case --no-heading --line-number -e %p %f")
-  
   :bind (("C-c f" . helm-find-files)
          ("C-c g" . helm-do-grep-ag)))
 

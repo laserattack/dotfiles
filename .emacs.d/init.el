@@ -129,7 +129,7 @@ h(setq custom-file "~/.emacs.custom.el")
          ("C-\""        . mc/skip-to-next-like-this)
          ("C-:"         . mc/skip-to-previous-like-this)))
 
-;; russian keyboard support
+;; russian keyboard shortcuts support
 
 (use-package reverse-im
   :ensure t

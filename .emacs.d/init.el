@@ -22,6 +22,8 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 
+(save-place-mode 1)
+
 ;; dired
 
 (setq dired-listing-switches "-alh")

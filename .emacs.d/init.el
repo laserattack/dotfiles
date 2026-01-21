@@ -142,6 +142,19 @@
   :ensure t
   :bind ("C-c g" . deadgrep))
 
+;; helm
+
+(use-package helm
+  :ensure t
+  :config
+
+  (helm-mode 1)
+  
+  (setq helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number")
+  
+  :bind (("C-c f" . helm-find-files)
+         ("C-c g" . helm-grep-ag)))
+
 ;; russian keyboard shortcuts support
 
 ;;(use-package reverse-im

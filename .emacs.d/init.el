@@ -7,6 +7,7 @@
 ;; ===== BASE SETTINGS =====
 
 (defalias 'yes-or-no-p 'y-or-n-p)
+(advice-add #'display-startup-echo-area-message :override #'ignore)
 
 ;; disable mouse wheel speed up
 (setq mouse-wheel-progressive-speed nil)

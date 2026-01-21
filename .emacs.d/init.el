@@ -129,6 +129,14 @@
          ("C-\""        . mc/skip-to-next-like-this)
          ("C-:"         . mc/skip-to-previous-like-this)))
 
+;;
+
+(use-package reverse-im
+  :ensure t
+  :config
+  (reverse-im-activate "russian-computer")
+  (reverse-im-insert-into-maps 'reverse-im-map))
+
 ;; ===== LANGUAGES MODES =====
 
 ;; c mode (https://github.com/rexim/simpc-mode)

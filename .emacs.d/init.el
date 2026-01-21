@@ -158,12 +158,12 @@
 
 (use-package helm-cmd-t
   :ensure t
-  :after helm
+  :config
   :bind ("C-c h t" . helm-cmd-t))
 
 (use-package helm-git-grep
   :ensure t
-  :after helm
+  :config
   :bind ("C-c h g g" . helm-git-grep))
 
 (use-package helm-ls-git

@@ -138,20 +138,16 @@
 
 ;; deadgrep
 
-(use-package deadgrep
-  :ensure t
-  :bind ("C-c g" . deadgrep))
+;;(use-package deadgrep
+;;  :ensure t
+;;  :bind ("C-c g" . deadgrep))
 
 ;; helm
 
 (use-package helm
   :ensure t
-  :config
-
-  (helm-mode 1)
-  
+  :init
   (setq helm-grep-ag-command "rg --color=always --smart-case --no-heading --line-number")
-  
   :bind (("C-c f" . helm-find-files)
          ("C-c g" . helm-grep-ag)))
 

@@ -151,6 +151,26 @@
 ;;  :bind (("C-c f" . helm-find-files)
 ;;         ("C-c g" . helm-do-grep-ag)))
 
+(use-package helm
+  :ensure t
+  :config
+  (setq helm-ff-transformer-show-only-basename nil))
+
+(use-package helm-cmd-t
+  :ensure t
+  :after helm
+  :bind ("C-c h t" . helm-cmd-t))
+
+(use-package helm-git-grep
+  :ensure t
+  :after helm
+  :bind ("C-c h g g" . helm-git-grep))
+
+(use-package helm-ls-git
+  :ensure t
+  :after helm
+  :bind ("C-c h g l" . helm-ls-git-ls))
+
 ;; russian keyboard shortcuts support
 
 ;;(use-package reverse-im

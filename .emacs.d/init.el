@@ -144,12 +144,12 @@
 
 ;; helm
 
-(use-package helm
-  :ensure t
-  :init
-
-  :bind (("C-c f" . helm-find-files)
-         ("C-c g" . helm-do-grep-ag)))
+;;(use-package helm
+;;  :ensure t
+;;  :init
+;;
+;;  :bind (("C-c f" . helm-find-files)
+;;         ("C-c g" . helm-do-grep-ag)))
 
 ;; russian keyboard shortcuts support
 

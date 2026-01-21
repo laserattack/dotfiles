@@ -23,7 +23,7 @@
 (setq create-lockfiles nil)
 
 (save-place-mode 1)
-(vc-follow-symlinks t)
+(setq vc-follow-symlinks t)
 
 ;; dired
 

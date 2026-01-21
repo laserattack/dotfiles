@@ -1,4 +1,4 @@
-t(setq custom-file "~/.emacs.custom.el")
+(setq custom-file "~/.emacs.custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 

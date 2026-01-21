@@ -6,6 +6,8 @@
 
 ;; ===== BASE SETTINGS =====
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;; disable mouse wheel speed up
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-scroll-amount '(3))

@@ -139,7 +139,7 @@
 ;; deadgrep
 
 (setq deadgrep-project-root-function
-      (lambda (_) default-directory))  ; всегда текущая директория
+      (lambda (_) default-directory))
 
 (use-package deadgrep
   :ensure t

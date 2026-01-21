@@ -140,8 +140,6 @@
 
 (use-package deadgrep
   :ensure t
-  :init
-  (setq deadgrep-project-root-overrides default-directory)
   :bind ("C-c g" . deadgrep))
 
 ;; russian keyboard shortcuts support

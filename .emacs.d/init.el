@@ -42,13 +42,6 @@
 ;; color theme
 (use-package ef-themes
   :ensure t
-  :init
-  (setq ef-dream-palette-overrides
-        '((bg-main "#131015")
-          (bg-hl-line "#232224")
-          (fg-mode-line "#f2ddcf")
-          (bg-mode-line "#472b00")
-          (yellow-cooler "#ff9f0a")))
   :config
   (load-theme 'ef-dream t))
 

@@ -22,6 +22,11 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 
+;; dired
+
+(setq dired-listing-switches "-alh")
+(put 'dired-find-alternate-file 'disabled nil)
+
 ;; ===== PACKAGE SYSTEM =====
 
 (require 'package)

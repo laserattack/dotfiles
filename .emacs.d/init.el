@@ -156,7 +156,7 @@
         "rg --color=always --smart-case --no-heading --line-number -e %p %f")
   
   :bind (("C-c f" . helm-find-files)
-         ("C-c g" . helm-grep)))
+         ("C-c g" . helm-do-grep-ag)))
 
 ;; russian keyboard shortcuts support
 

@@ -138,14 +138,12 @@
 
 ;; deadgrep
 
-(defun my-deadgrep ()
-  (interactive)
-  (let ((default-directory default-directory))
-    (deadgrep)))
+(setq deadgrep-project-root-function
+      (lambda (_) default-directory))  ; всегда текущая директория
 
 (use-package deadgrep
   :ensure t
-  :bind ("C-c g" . my-deadgrep))
+  :bind ("C-c g" . deadgrep))
 
 ;; russian keyboard shortcuts support
 

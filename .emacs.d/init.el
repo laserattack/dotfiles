@@ -152,8 +152,8 @@
 
 (use-package expand-region
   :ensure t
-  :bind (("C-c e" . er/expand-region)
-         ("C-c r" . er/contract-region)))
+  :bind (("C-+" . er/expand-region)
+         ("C--" . er/contract-region)))
 
 ;; russian keyboard shortcuts support
 

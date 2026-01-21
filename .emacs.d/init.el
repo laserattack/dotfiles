@@ -138,48 +138,9 @@
 
 ;; deadgrep
 
-;;(use-package deadgrep
-;;  :ensure t
-;;  :bind ("C-c g" . deadgrep))
-
-;; helm
-
-;;(use-package helm
-;;  :ensure t
-;;  :init
-;;
-;;  :bind (("C-c f" . helm-find-files)
-;;         ("C-c g" . helm-do-grep-ag)))
-
-(use-package helm
+(use-package deadgrep
   :ensure t
-  :config
-  (setq helm-ff-transformer-show-only-basename nil))
-
-(use-package helm-cmd-t
-  :ensure t
-  :config
-  :bind ("C-c h t" . helm-cmd-t))
-
-(use-package helm-git-grep
-  :ensure t
-  :config
-  :bind ("C-c h g g" . helm-git-grep))
-
-(use-package helm-ls-git
-  :ensure t
-  :after helm
-  :bind ("C-c h g l" . helm-ls-git-ls))
-
-(use-package helm
-  :ensure t
-  :commands helm-find
-  :bind ("C-c h f" . helm-find))
-
-(use-package helm
-  :ensure t
-  :commands helm-recentf
-  :bind ("C-c h r" . helm-recentf))
+  :bind ("C-c g" . deadgrep))
 
 ;; russian keyboard shortcuts support
 

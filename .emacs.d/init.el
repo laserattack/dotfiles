@@ -133,9 +133,10 @@
 
 (use-package reverse-im
   :ensure t
+  :custom
+  (reverse-im-input-methods '("russian-computer"))
   :config
-  (reverse-im-activate "russian-computer")
-  (reverse-im-insert-into-maps 'reverse-im-map))
+  (reverse-im-mode t))
 
 ;; ===== LANGUAGES MODES =====
 

@@ -25,7 +25,11 @@
 ;; dired
 
 (setq dired-listing-switches "-alh")
-(put 'dired-find-alternate-file 'disabled nil)
+(eval-after-load 'dired
+  '(progn
+     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+     (define-key dired-mode-map (kbd "<return>") 'dired-find-alternate-file)
+     (put 'dired-find-alternate-file 'disabled nil)))
 
 ;; ===== PACKAGE SYSTEM =====
 

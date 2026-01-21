@@ -1,4 +1,4 @@
-(setq custom-file "~/.emacs.custom.el")
+h(setq custom-file "~/.emacs.custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 
@@ -129,7 +129,7 @@
          ("C-\""        . mc/skip-to-next-like-this)
          ("C-:"         . mc/skip-to-previous-like-this)))
 
-;;
+;; russian keyboard support
 
 (use-package reverse-im
   :ensure t

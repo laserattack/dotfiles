@@ -171,6 +171,16 @@
   :after helm
   :bind ("C-c h g l" . helm-ls-git-ls))
 
+(use-package helm
+  :ensure t
+  :commands helm-find
+  :bind ("C-c h f" . helm-find))
+
+(use-package helm
+  :ensure t
+  :commands helm-recentf
+  :bind ("C-c h r" . helm-recentf))
+
 ;; russian keyboard shortcuts support
 
 ;;(use-package reverse-im

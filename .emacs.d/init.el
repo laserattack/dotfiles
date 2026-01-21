@@ -138,9 +138,14 @@
 
 ;; deadgrep
 
+(defun my-deadgrep ()
+  (interactive)
+  (let ((default-directory default-directory))
+    (deadgrep)))
+
 (use-package deadgrep
   :ensure t
-  :bind ("C-c g" . deadgrep))
+  :bind ("C-c g" . my-deadgrep))
 
 ;; russian keyboard shortcuts support
 

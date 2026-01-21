@@ -6,15 +6,6 @@
 
 ;; ===== BASE SETTINGS =====
 
-;; Magic garbage collector hack
-;; It's kinda small so maybe makes sense to just copy/paste
-;; it into a config instead of installing it
-(use-package gcmh
-  :init
-  (setq gcmh-idle-delay 5
-        gcmh-high-cons-threshold (* 100 1024 1024))  ; 100mb
-  :hook ((window-setup-hook . gcmh-mode)))
-
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 
 (advice-add #'display-startup-echo-area-message :override #'ignore)

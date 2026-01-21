@@ -26,6 +26,7 @@
 
 (setq dired-listing-switches "-alh")
 (setq dired-mouse-drag-files t)
+(setq-default dired-dwim-target t)
 
 ;; ===== PACKAGE SYSTEM =====
 

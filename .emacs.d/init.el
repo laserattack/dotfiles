@@ -136,6 +136,12 @@
          ("C-\""        . mc/skip-to-next-like-this)
          ("C-}"         . mc/skip-to-previous-like-this)))
 
+;; deadgrep
+
+(use-package deadgrep
+  :ensure t
+  :bind ("C-c g" . deadgrep))
+
 ;; russian keyboard shortcuts support
 
 ;;(use-package reverse-im

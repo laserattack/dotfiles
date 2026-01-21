@@ -25,6 +25,7 @@
 ;; dired
 
 (setq dired-listing-switches "-alh")
+
 (eval-after-load 'dired
   '(progn
      (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)

@@ -175,11 +175,12 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 (use-package org-download
-  :ensure t
+  :ensure tp
   :config
   (setq org-download-image-dir "~/org/images")
-  (setq org-download-method 'directory)
+  (setq org-download-method 'directory))
 (setq org-startup-with-inline-images t)
+(global-set-key (kbd "C-c i") 'org-download-clipboard)
 
 ;; ===== LOAD CUSTOM FILE =====
 

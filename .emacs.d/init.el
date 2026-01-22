@@ -168,7 +168,7 @@
 ;; ===== ORG MODE =====
 
 (setq org-directory "~/org")
-(setq org-agenda-files (list org-directory))
+(setq org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
 
 ;; ===== LOAD CUSTOM FILE =====
 

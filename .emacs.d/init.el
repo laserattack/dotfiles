@@ -167,6 +167,7 @@
 
 ;; ===== ORG MODE =====
 
+;; paths
 (setq org-directory "~/org")
 (setq org-tasks-directory (expand-file-name "tasks.org" org-directory))
 (setq org-images-directory (expand-file-name "images" org-directory))
@@ -186,7 +187,7 @@
 (setq org-startup-with-inline-images t)
 (global-set-key (kbd "C-c i") 'org-download-clipboard)
 
-;; 
+;; templates
 (setq org-capture-templates
       `(("g" "Глобальная задача" entry (file+headline org-tasks-directory "Глобальные (без конкретной даты дедлайна)")
          "** TODO %?")))

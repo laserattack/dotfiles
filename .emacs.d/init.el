@@ -171,7 +171,6 @@
 (setq org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
 (setq org-tags-column 0)
 (setq org-agenda-tags-column 0)
-
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 (use-package org-download

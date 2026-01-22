@@ -193,7 +193,7 @@
 	("g" "Глобальная задача" entry (file+headline org-tasks-directory "Глобальные (без конкретной даты дедлайна)")
          "** TODO %?")
 	("e" "Ежедневная задача" entry 
-         (file+headline ,org-tasks-directory "Ежедневные/повторяющиеся задачи")
+         (file+headline org-tasks-directory "Ежедневные/повторяющиеся задачи")
          "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
 	))
 

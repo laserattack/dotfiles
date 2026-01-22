@@ -190,13 +190,13 @@
 ;; templates
 (setq org-capture-templates
       `(
-	("g" "Global task" entry (file+headline org-tasks-directory "Глобальные (без конкретной даты дедлайна)")
+	("g" "Global task" entry (file+headline org-tasks-directory " Global (no deadline)")
          "** TODO %?")
-	("e" "Task for today" entry (file+headline org-tasks-directory "Ежедневные/повторяющиеся задачи")
+	("e" "Task for today" entry (file+headline org-tasks-directory "Daily")
          "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
-	("t" "Task for tomorrow" entry (file+headline org-tasks-directory "Ежедневные/повторяющиеся задачи")
+	("t" "Task for tomorrow" entry (file+headline org-tasks-directory "Daily")
 	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1d\")>")
-	("m" "Task with manual date input" entry (file+headline org-tasks-directory "Ежедневные/повторяющиеся задачи")
+	("m" "Task with manual date input" entry (file+headline org-tasks-directory "Daily")
 	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
 	))
 

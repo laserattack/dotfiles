@@ -78,6 +78,11 @@
         (setq truncate-lines nil))))
 (global-set-key (kbd "C-c w") 'custom-toggle-word-wrap)
 
+(global-set-key (kbd "C-p") 'previous-logical-line)
+(global-set-key (kbd "C-n") 'next-logical-line)
+(global-set-key (kbd "C-a") 'beginning-of-line)
+(global-set-key (kbd "C-e") 'end-of-line)
+
 (setq inhibit-startup-screen t)
 
 ;; relative lines numbers

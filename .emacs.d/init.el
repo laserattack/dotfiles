@@ -211,6 +211,14 @@
 (use-package comp-run
   :ensure nil
   :config
+  ;; Fix for Emacs 29+ bug with .el.gz files infinite compilation
+  ;; Bug: native compilation incorrectly processes .el.gz files,
+  ;; ignoring their 'no-native-compile: t' directive.
+  ;; This prevents JIT compilation of all *loaddefs.el.gz files
+  ;; (org-loaddefs.el.gz, cl-loaddefs.el.gz, tramp-loaddefs.el.gz, etc.)
+  ;; which are autoload files and should not be compiled.
+  ;; See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=XXXXX
+  ;; This is a temporary workaround until the bug is fixed upstream.
   (push "loaddefs.el.gz" native-comp-jit-compilation-deny-list))
 
 ;; ===== LOAD CUSTOM FILE =====

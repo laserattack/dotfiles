@@ -196,6 +196,8 @@
          "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
 	("t" "Задача на завтра" entry (file+headline org-tasks-directory "Ежедневные/повторяющиеся задачи")
 	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1d\")>")
+	("m" "Задача с ручным вводом даты" entry (file+headline org-tasks-directory "Ежедневные/повторяющиеся задачи")
+	 "** TODO %?\nSCHEDULED: <%^{Дата в формате ГГГГ-ММ-ДД}>")
 	))
 
 ;; ===== LOAD CUSTOM FILE =====

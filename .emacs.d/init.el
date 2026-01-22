@@ -170,6 +170,8 @@
 (setq org-directory "~/org")
 (setq org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
 
+(global-set-key (kbd "C-c a") 'org-agenda)
+
 ;; ===== LOAD CUSTOM FILE =====
 
 (load-file custom-file)

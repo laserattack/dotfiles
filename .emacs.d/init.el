@@ -188,19 +188,7 @@
 
 ;; 
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/tasks.org" "Ежедневные/повторяющиеся задачи")
-         "** TODO %? :дом::покупки:\nSCHEDULED: <%<%Y-%m-%d %a>>")
-        
-        ("e" "Emacs задача" entry (file+headline "~/org/tasks.org" "Ежедневные/повторяющиеся задачи")
-         "** TODO %? :emacs:\nSCHEDULED: <%<%Y-%m-%d %a>>")
-        
-        ("s" "Shell задача" entry (file+headline "~/org/tasks.org" "Ежедневные/повторяющиеся задачи")
-         "** TODO %? :shell:\nSCHEDULED: <%<%Y-%m-%d %a>>")
-        
-        ("u" "Учеба" entry (file+headline "~/org/tasks.org" "Ежедневные/повторяющиеся задачи")
-         "** TODO %? :учеба:\nSCHEDULED: <%<%Y-%m-%d %a %H:%M>>")
-        
-        ("g" "Глобальная задача" entry (file+headline "~/org/tasks.org" "Глобальные (без конкретной даты дедлайна)")
+      '(("g" "Глобальная задача" entry (file+headline org-tasks-directory "Глобальные (без конкретной даты дедлайна)")
          "** TODO %? :global:")))
 
 ;; ===== LOAD CUSTOM FILE =====

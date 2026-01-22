@@ -197,7 +197,7 @@
 	("t" "Task for tomorrow" entry (file+headline org-tasks-directory "Ежедневные/повторяющиеся задачи")
 	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1d\")>")
 	("m" "Task with manual date input" entry (file+headline org-tasks-directory "Ежедневные/повторяющиеся задачи")
-	 "** TODO %?\nSCHEDULED: <%^{Дата в формате ГГГГ-ММ-ДД}>")
+	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
 	))
 
 ;; ===== LOAD CUSTOM FILE =====

@@ -165,7 +165,10 @@
 ;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
-;;
+;; ===== ORG MODE =====
+
+(setq org-directory "~/org")
+(setq org-agenda-files (list org-directory))
 
 ;; ===== LOAD CUSTOM FILE =====
 

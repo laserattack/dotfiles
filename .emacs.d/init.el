@@ -206,6 +206,8 @@
 	))
 (global-set-key (kbd "C-c c") 'org-capture)
 
+;; ===== OTHER =====
+
 (use-package comp-run
   :ensure nil
   :config

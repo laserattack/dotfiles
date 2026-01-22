@@ -168,7 +168,9 @@
 ;; ===== ORG MODE =====
 
 (setq org-directory "~/org")
-(setq org-agenda-files (list (expand-file-name "tasks.org" org-directory)))
+(setq org-tasks-directory (expand-file-name "tasks.org" org-directory))
+
+(setq org-agenda-files (list org-tasks-directory))
 (setq org-tags-column 0)
 (setq org-agenda-tags-column 0)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -180,6 +182,22 @@
 (setq-default org-download-image-dir (expand-file-name "images" org-directory))
 (setq org-startup-with-inline-images t)
 (global-set-key (kbd "C-c i") 'org-download-clipboard)
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/tasks.org" "Ежедневные/повторяющиеся задачи")
+         "** TODO %? :дом::покупки:\nSCHEDULED: <%<%Y-%m-%d %a>>")
+        
+        ("e" "Emacs задача" entry (file+headline "~/org/tasks.org" "Ежедневные/повторяющиеся задачи")
+         "** TODO %? :emacs:\nSCHEDULED: <%<%Y-%m-%d %a>>")
+        
+        ("s" "Shell задача" entry (file+headline "~/org/tasks.org" "Ежедневные/повторяющиеся задачи")
+         "** TODO %? :shell:\nSCHEDULED: <%<%Y-%m-%d %a>>")
+        
+        ("u" "Учеба" entry (file+headline "~/org/tasks.org" "Ежедневные/повторяющиеся задачи")
+         "** TODO %? :учеба:\nSCHEDULED: <%<%Y-%m-%d %a %H:%M>>")
+        
+        ("g" "Глобальная задача" entry (file+headline "~/org/tasks.org" "Глобальные (без конкретной даты дедлайна)")
+         "** TODO %? :global:")))
 
 ;; ===== LOAD CUSTOM FILE =====
 

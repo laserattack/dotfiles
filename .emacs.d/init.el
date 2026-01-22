@@ -176,6 +176,7 @@
 
 (use-package org-download
   :ensure t
+  :after org
   :config
   (setq org-download-image-dir (expand-file-name "images" org-directory))
   (setq org-download-method 'directory))

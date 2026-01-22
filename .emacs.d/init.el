@@ -189,7 +189,7 @@
 ;; 
 (setq org-capture-templates
       `(("g" "Глобальная задача" entry (file+headline org-tasks-directory "Глобальные (без конкретной даты дедлайна)")
-         "** TODO %? :global:")))
+         "** TODO %?\n")))
 
 ;; ===== LOAD CUSTOM FILE =====
 

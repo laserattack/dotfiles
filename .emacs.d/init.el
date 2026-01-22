@@ -199,6 +199,7 @@
 	("m" "Task with manual date input" entry (file+headline org-tasks-directory "Daily")
 	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
 	))
+(global-set-key (kbd "C-c c") 'org-capture)
 
 ;; ===== LOAD CUSTOM FILE =====
 

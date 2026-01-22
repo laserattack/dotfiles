@@ -176,10 +176,9 @@
 
 (use-package org-download
   :ensure t
-  :after org
   :config
-  (setq org-download-image-dir (expand-file-name "images" org-directory))
   (setq org-download-method 'directory))
+(setq org-download-image-dir (expand-file-name "images" org-directory))
 (setq org-startup-with-inline-images t)
 (global-set-key (kbd "C-c i") 'org-download-clipboard)
 

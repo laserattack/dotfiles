@@ -206,6 +206,9 @@
 	))
 (global-set-key (kbd "C-c c") 'org-capture)
 
+(add-to-list 'comp-no-native-compile-regexp
+             "/org-loaddefs\\.el\\.gz$")
+
 ;; ===== LOAD CUSTOM FILE =====
 
 (load-file custom-file)

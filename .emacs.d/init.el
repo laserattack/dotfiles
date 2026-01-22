@@ -175,7 +175,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 (use-package org-download
-  :ensure tp
+  :ensure t
   :config
   (setq org-download-image-dir "~/org/images")
   (setq org-download-method 'directory))

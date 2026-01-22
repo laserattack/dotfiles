@@ -190,7 +190,7 @@
 ;; templates
 (setq org-capture-templates
       `(
-	("g" "Global task" entry (file+headline org-tasks-directory " Global (no deadline)")
+	("g" "Global task" entry (file+headline org-tasks-directory "Global (no deadline)")
          "** TODO %?")
 	("e" "Task for today" entry (file+headline org-tasks-directory "Daily")
          "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")

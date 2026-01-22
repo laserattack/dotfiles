@@ -206,8 +206,10 @@
 	))
 (global-set-key (kbd "C-c c") 'org-capture)
 
-(add-to-list 'comp-no-native-compile-regexp
-             "/org-loaddefs\\.el\\.gz$")
+(use-package comp-run
+  :ensure nil
+  :config
+  (push "loaddefs.el.gz" native-comp-jit-compilation-deny-list))
 
 ;; ===== LOAD CUSTOM FILE =====
 

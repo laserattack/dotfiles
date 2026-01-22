@@ -174,6 +174,13 @@
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 
+(use-package org-download
+  :ensure t
+  :config
+  (setq org-download-image-dir "~/org/images")
+  (setq org-download-method 'directory)
+(setq org-startup-with-inline-images t)
+
 ;; ===== LOAD CUSTOM FILE =====
 
 (load-file custom-file)

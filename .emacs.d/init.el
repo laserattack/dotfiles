@@ -60,29 +60,29 @@
 
 ;; color theme enspired by Casey Muratory `s handmade hero theme
 
-(use-package ef-themes
-  :config
-  (setq ef-dream-palette-overrides
-        '((bg-main "#161616")
-          (fg-main "#CDAA7D")
-          (cursor "#40FF40")
-          (comment "#808080")
-          (keyword "#B8860B")
-          (type "#CDAA7D")
-          (string "#6B8E23")
-          (constant "#6B8E23")
-          (builtin "#DAB98F")
-          (bg-hl-line "#191970")
-          (bg-mode-line "#1A1A1A")
-          (fg-mode-line "#AAAAAA")
-          (bg-mode-line-active "#222222")
-          (fg-mode-line-active "#CDAA7D")))
-  (load-theme 'ef-dream t))
-
 ;;(use-package ef-themes
-;;  :ensure t
 ;;  :config
+;;  (setq ef-dream-palette-overrides
+;;        '((bg-main "#161616")
+;;          (fg-main "#CDAA7D")
+;;          (cursor "#40FF40")
+;;          (comment "#808080")
+;;          (keyword "#B8860B")
+;;          (type "#CDAA7D")
+;;          (string "#6B8E23")
+;;          (constant "#6B8E23")
+;;          (builtin "#DAB98F")
+;;          (bg-hl-line "#191970")
+;;          (bg-mode-line "#1A1A1A")
+;;          (fg-mode-line "#AAAAAA")
+;;          (bg-mode-line-active "#222222")
+;;          (fg-mode-line-active "#CDAA7D")))
 ;;  (load-theme 'ef-dream t))
+
+(use-package ef-themes
+  :ensure t
+  :config
+  (load-theme 'ef-dream t))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

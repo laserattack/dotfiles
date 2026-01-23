@@ -155,6 +155,12 @@
   :ensure t
   :bind ("C-c g" . deadgrep))
 
+;; minions: do not show minor modes
+
+(use-package minions
+  :config 
+  (minions-mode 1))
+
 ;; russian keyboard shortcuts support
 
 ;;(use-package reverse-im

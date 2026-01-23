@@ -58,10 +58,15 @@
 (add-to-list 'default-frame-alist
              '(font . "Liberation Mono-15"))
 
-(use-package ef-themes
+(use-package doric-themes
   :ensure t
   :config
-  (load-theme 'ef-bio t))
+  (doric-themes-select 'doric-dark))
+
+;;(use-package ef-themes
+;;  :ensure t
+;;  :config
+;;  (load-theme 'ef-bio t))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

@@ -55,10 +55,8 @@
 
 ;; ===== INTERFACE =====
 
-(setq initial-frame-alist
-      (assq-delete-all 'font initial-frame-alist))
-
-(set-frame-font "Liberation Mono-15" nil t)
+(add-to-list 'default-frame-alist '(font . "Liberation Mono-15"))
+(set-face-attribute 'default t :font "Liberation Mono-15")
 
 ;;(add-to-list 'default-frame-alist
 ;;             '(font . "Liberation Mono-15"))

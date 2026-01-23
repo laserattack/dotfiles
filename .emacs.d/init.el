@@ -60,15 +60,15 @@
 
 (use-package ef-themes
   :config
-;;  (setq ef-night-palette-overrides
-;;        '((bg-main "#161616")
-;;          (fg-main "#CDAA7D")
-;;          (cursor "#40FF40")
-;;          (comment "#808080")
-;;          (keyword "#B8860B")
-;;          (type "#CDAA7D")
-;;          (string "#6B8E23")
-;;          (builtin "#DAB98F")))
+  (setq ef-night-palette-overrides
+        '((bg-main "#161616")
+          (fg-main "#CDAA7D")
+          (cursor "#40FF40")
+          (comment "#808080")
+          (keyword "#B8860B")
+          (type "#CDAA7D")
+          (string "#6B8E23")
+          (builtin "#DAB98F")))
   (load-theme 'ef-night t))
 
 ;;(use-package ef-themes

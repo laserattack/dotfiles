@@ -56,7 +56,7 @@
 ;; ===== INTERFACE =====
 
 (add-to-list 'default-frame-alist
-             '(font . "Monospace-15"))
+             '(font . "Liberation Mono-15"))
 
 ;; ===== COLORSCHEME =====
 

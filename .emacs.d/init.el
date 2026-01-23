@@ -58,15 +58,8 @@
 (add-to-list 'default-frame-alist
              '(font . "Liberation Mono-15"))
 
-(use-package doom-themes
-  :ensure t
+(use-package ef-themes
   :config
-  (setq doom-themes-enable-bold nil
-        doom-themes-enable-italic nil)
-  (load-theme 'doom-one t))
-
-;;(use-package ef-themes
-;;  :config
 ;;  (setq ef-night-palette-overrides
 ;;        '((bg-main "#161616")
 ;;          (fg-main "#CDAA7D")
@@ -76,7 +69,7 @@
 ;;          (type "#CDAA7D")
 ;;          (string "#6B8E23")
 ;;          (builtin "#DAB98F")))
-;;  (load-theme 'ef-night t))
+  (load-theme 'ef-night t))
 
 ;;(use-package ef-themes
 ;;  :ensure t

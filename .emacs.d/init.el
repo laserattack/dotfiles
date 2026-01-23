@@ -24,7 +24,9 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 
-(setq confirm-kill-processes nil)
+;; close the buffer without question if it holds the process
+(remove-hook 'kill-buffer-query-functions 
+             'process-kill-buffer-query-function)
 
 ;; save positions in buffer on exit
 (save-place-mode 1)

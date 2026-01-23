@@ -61,7 +61,7 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-autumn t))
+  (load-theme 'ef-dark t))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

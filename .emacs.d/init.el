@@ -76,8 +76,7 @@
           (bg-mode-line "#1A1A1A")
           (fg-mode-line "#AAAAAA")
           (bg-mode-line-active "#222222")
-          (fg-mode-line-active "#CDAA7D"))
-	 ))
+          (fg-mode-line-active "#CDAA7D")))
   (load-theme 'ef-dream t))
 
 ;;(use-package ef-themes

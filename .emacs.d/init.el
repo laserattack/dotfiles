@@ -116,8 +116,8 @@
 
 (use-package move-text
   :ensure t
-  :bind (("M-<down>" . move-text-down)
-         ("M-<up>" . move-text-up)))
+  :bind (("M-n" . move-text-down)
+         ("M-p" . move-text-up)))
 
 ;; company
 

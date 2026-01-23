@@ -58,7 +58,7 @@
 (add-to-list 'default-frame-alist
              '(font . "Monospace-15"))
 
-;; color theme enspired Casey Muratory `s handmade hero theme
+;; color theme enspired by Casey Muratory `s handmade hero theme
 
 (use-package ef-themes
   :config

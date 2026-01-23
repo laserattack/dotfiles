@@ -53,7 +53,7 @@
 
 (global-set-key (kbd "C-c w") 'toggle-truncate-lines)
 
-;; ===== COLORTHEME =====
+;; ===== INTERFACE =====
 
 (add-to-list 'default-frame-alist
              '(font . "Liberation Mono-15"))

@@ -91,7 +91,7 @@
 
 ;; ===== ANOTHER PLUGINS =====
 
-;; ido
+;; ido + smex
 
 (use-package ido-completing-read+
   :ensure t

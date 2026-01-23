@@ -24,6 +24,8 @@
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 
+(setq confirm-kill-processes nil)
+
 ;; save positions in buffer on exit
 (save-place-mode 1)
 

@@ -58,9 +58,9 @@
 (add-to-list 'default-frame-alist
              '(font . "Liberation Mono-15"))
 
-(use-package gruber-darker
+(use-package gruber-darker-theme
   :ensure t
-  )
+  :config (load-theme 'gruber-darker t))
 
 ;;(use-package ef-themes
 ;;  :ensure t

@@ -60,24 +60,24 @@
 
 ;; ===== COLORSCHEME =====
 
-;;(use-package ef-themes
-;;  :config
-;;  (setq ef-dream-palette-overrides
-;;        '((bg-main "#161616")
-;;          (fg-main "#CDAA7D")
-;;          (cursor "#40FF40")
-;;          (comment "#808080")
-;;          (keyword "#B8860B")
-;;          (type "#CDAA7D")
-;;          (string "#6B8E23")
-;;          (constant "#6B8E23")
-;;          (builtin "#DAB98F")
-;;          (bg-hl-line "#191970")
-;;          (bg-mode-line "#1A1A1A")
-;;          (fg-mode-line "#AAAAAA")
-;;          (bg-mode-line-active "#222222")
-;;          (fg-mode-line-active "#CDAA7D")))
-;;  (load-theme 'ef-dream t))
+(use-package ef-themes
+  :config
+  (setq ef-dream-palette-overrides
+        '((bg-main "#161616")
+          (fg-main "#CDAA7D")
+          (cursor "#40FF40")
+          (comment "#808080")
+          (keyword "#B8860B")
+          (type "#CDAA7D")
+          (string "#6B8E23")
+          (constant "#6B8E23")
+          (builtin "#DAB98F")
+          (bg-hl-line "#191970")
+          (bg-mode-line "#1A1A1A")
+          (fg-mode-line "#AAAAAA")
+          (bg-mode-line-active "#222222")
+          (fg-mode-line-active "#CDAA7D")))
+  (load-theme 'ef-dream t))
 
 ;;(use-package ef-themes
 ;;  :ensure t
@@ -246,51 +246,6 @@
   ;; See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=XXXXX
   ;; This is a temporary workaround until the bug is fixed upstream.
   (push "loaddefs.el.gz" native-comp-jit-compilation-deny-list))
-
-;;
-
-(set-face-attribute 'default nil 
-                    :background "#161616" 
-                    :foreground "burlywood3")
-(set-face-attribute 'cursor nil 
-                    :background "#40FF40")
-
-(set-face-background 'hl-line "midnight blue")
-
-(set-face-attribute 'font-lock-builtin-face nil 
-                    :foreground "#DAB98F")
-(set-face-attribute 'font-lock-comment-face nil 
-                    :foreground "gray50")
-(set-face-attribute 'font-lock-constant-face nil 
-                    :foreground "olive drab")
-(set-face-attribute 'font-lock-doc-face nil 
-                    :foreground "gray50")
-(set-face-attribute 'font-lock-function-name-face nil 
-                    :foreground "burlywood3")
-(set-face-attribute 'font-lock-keyword-face nil 
-                    :foreground "DarkGoldenrod3")
-(set-face-attribute 'font-lock-string-face nil 
-                    :foreground "olive drab")
-(set-face-attribute 'font-lock-type-face nil 
-                    :foreground "burlywood3")
-(set-face-attribute 'font-lock-variable-name-face nil 
-                    :foreground "burlywood3")
-
-(make-face 'font-lock-fixme-face)
-(make-face 'font-lock-note-face)
-(modify-face 'font-lock-fixme-face "Red" nil nil t nil t nil nil)
-(modify-face 'font-lock-note-face "Dark Green" nil nil t nil t nil nil)
-
-(defun my-add-todo-keywords ()
-  "Добавить подсветку TODO и NOTE для C/C++"
-  (font-lock-add-keywords
-   nil
-   '(("\\<\\(TODO\\)" 1 'font-lock-fixme-face t)
-     ("\\<\\(NOTE\\)" 1 'font-lock-note-face t))))
-
-(add-hook 'c-mode-hook 'my-add-todo-keywords)
-(add-hook 'c++-mode-hook 'my-add-todo-keywords)
-(add-hook 'simpc-mode-hook 'my-add-todo-keywords)
 
 ;; ===== LOAD CUSTOM FILE =====
 

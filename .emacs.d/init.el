@@ -158,7 +158,8 @@
 ;; minions: do not show minor modes
 
 (use-package minions
-  :config 
+  :ensure t
+  :config
   (minions-mode 1))
 
 ;; russian keyboard shortcuts support

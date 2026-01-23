@@ -58,10 +58,14 @@
 (add-to-list 'default-frame-alist
              '(font . "Liberation Mono-15"))
 
-(use-package ef-themes
+(use-package gruber-darker
   :ensure t
-  :config
-  (load-theme 'ef-bio t))
+  )
+
+;;(use-package ef-themes
+;;  :ensure t
+;;  :config
+;;  (load-theme 'ef-bio t))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

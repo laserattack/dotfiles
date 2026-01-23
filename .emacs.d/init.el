@@ -10,6 +10,8 @@
 
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 
+(setq warning-minimum-level :error)
+
 ;; disable mouse wheel speed up
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-scroll-amount '(3))

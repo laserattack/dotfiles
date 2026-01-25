@@ -74,6 +74,9 @@
 (set-fringe-mode 0)
 (global-hl-line-mode t)
 
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+
 (setq-default truncate-lines nil)
 (global-visual-line-mode 1)
 (defun custom-toggle-word-wrap ()

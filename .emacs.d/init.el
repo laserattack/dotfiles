@@ -104,11 +104,7 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
-(defun colorize-compilation-buffer ()
-  (read-only-mode 'toggle)
-  (ansi-color-apply-on-region compilation-filter-start (point))
-  (read-only-mode 'toggle))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 
 ;; ido + smex
 

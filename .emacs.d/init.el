@@ -115,16 +115,16 @@
 (global-set-key (kbd "C-c t") 'insert-timestamp)
 
 ;; rgrep
-
 (global-set-key (kbd "C-c g d") 'rgrep)
 
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
-(defun grep-selected (beg end)
+;; rgrep selected
+(defun rgrep-selected (beg end)
   (interactive (if (use-region-p)
                    (list (region-beginning) (region-end))
                  (list (point-min) (point-min))))
   (rgrep (buffer-substring-no-properties beg end) "*" (pwd)))
-(global-set-key (kbd "C-c g s") 'grep-selected)
+(global-set-key (kbd "C-c g s") 'rgrep-selected)
 
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)

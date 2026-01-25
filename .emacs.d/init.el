@@ -66,7 +66,7 @@
   :ensure t
   :config
   (load-theme 'ef-bio t)
-  (set-face-attribute 'button nil :background (face-attribute 'hl-line :background)))
+  (set-face-attribute 'button nil :background "#00331f"))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

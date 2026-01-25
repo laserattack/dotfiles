@@ -62,7 +62,7 @@
 ;;  :ensure t
 ;;  :config (load-theme 'gruber-darker t))
 
-(load-file "~/.emacs.local/fleury-theme.el")
+(add-to-list 'custom-theme-load-path "~/.emacs.local/")
 (load-theme 'fleury t)
 
 ;;(use-package ef-themes

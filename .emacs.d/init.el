@@ -56,17 +56,6 @@
 (add-to-list 'default-frame-alist
              '(font . "Liberation Mono-15"))
 
-;;(use-package gruber-darker-theme
-;;  :ensure t
-;;  :config (load-theme 'gruber-darker t))
-
-(use-package ef-themes
-  :ensure t
-  :config
-  ;;(load-theme 'ef-elea-light t) ;; green light theme
-  (load-theme 'ef-bio t)
-)
-
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
@@ -137,6 +126,19 @@
 (windmove-default-keybindings)
 
 ;; ===== PLUGINS =====
+
+;; colortheme
+
+;;(use-package gruber-darker-theme
+;;  :ensure t
+;;  :config (load-theme 'gruber-darker t))
+
+(use-package ef-themes
+  :ensure t
+  :config
+  (load-theme 'ef-spring t) ;; green light theme
+  ;;(load-theme 'ef-bio t)
+)
 
 ;; ido + smex
 

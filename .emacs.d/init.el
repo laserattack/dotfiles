@@ -96,7 +96,6 @@
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
 ;; duplicate current line
 (defun duplicate-line ()
-  "Duplicate current line"
   (interactive)
   (let ((column (- (point) (point-at-bol)))
         (line (let ((s (thing-at-point 'line t)))

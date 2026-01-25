@@ -114,6 +114,10 @@
   (insert (format-time-string "(%Y%m%d-%H%M%S)" nil t)))
 (global-set-key (kbd "C-c t") 'insert-timestamp)
 
+;; rgrep
+
+(global-set-key (kbd "C-c g") 'rgrep)
+
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
 (defun grep-selected (beg end)
   (interactive (if (use-region-p)

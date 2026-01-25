@@ -76,6 +76,7 @@
 
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
+(setq-default compilation-scroll-output t)
 
 (setq-default truncate-lines nil)
 (global-visual-line-mode 1)
@@ -102,6 +103,8 @@
 (global-display-line-numbers-mode)
 
 ;; ===== SOME USEFUL STUFF =====
+
+
 
 ;; ido + smex
 

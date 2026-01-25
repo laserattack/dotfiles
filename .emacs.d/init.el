@@ -13,8 +13,14 @@
 (setq warning-minimum-level :error)
 
 ;; disable mouse wheel speed up
-(setq mouse-wheel-progressive-speed nil)
-(setq mouse-wheel-scroll-amount '(3))
+;;(setq mouse-wheel-progressive-speed nil)
+;;(setq mouse-wheel-scroll-amount '(3))
+
+(setq scroll-conservatively 101
+      mouse-wheel-progressive-speed nil
+      mouse-wheel-scroll-amount '(3)
+      pixel-scroll-precision-interpolate-page t)
+(pixel-scroll-precision-mode t)
 
 ;; emacs will reload the file if it is modified from the outside
 (global-auto-revert-mode t)

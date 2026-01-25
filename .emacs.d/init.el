@@ -136,20 +136,20 @@
 ;;  :config
 ;;  (load-theme 'zenburn t))
 
-(use-package gruber-darker-theme
-  :ensure t
-  :config 
-  (load-theme 'gruber-darker t)
-  (set-face-attribute 'line-number-current-line nil 
-                      :weight 'bold
-                      :foreground "#ffdd33"))
-
-;;(use-package ef-themes
+;;(use-package gruber-darker-theme
 ;;  :ensure t
-;;  :config
-;;  ;;(load-theme 'ef-elea-light t) ;; green light theme
-;;  (load-theme 'ef-bio t)
-;;)
+;;  :config 
+;;  (load-theme 'gruber-darker t)
+;;  (set-face-attribute 'line-number-current-line nil 
+;;                      :weight 'bold
+;;                      :foreground "#ffdd33"))
+
+(use-package ef-themes
+  :ensure t
+  :config
+  ;;(load-theme 'ef-elea-light t) ;; green light theme
+  (load-theme 'ef-bio t)
+)
 
 ;; ido + smex
 

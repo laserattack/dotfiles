@@ -136,18 +136,13 @@
 ;;  :config
 ;;  (load-theme 'zenburn t))
 
-;;(use-package gruber-darker-theme
-;;  :ensure t
-;;  :config (load-theme 'gruber-darker t))
-
 (use-package gruber-darker-theme
   :ensure t
   :config 
   (load-theme 'gruber-darker t)
   (set-face-attribute 'line-number-current-line nil 
                       :weight 'bold
-                      :foreground "#ffffff")
-  )
+                      :foreground "#ffdd33"))
 
 ;;(use-package ef-themes
 ;;  :ensure t

@@ -57,14 +57,7 @@
              '(font . "Liberation Mono-15"))
 
 (global-whitespace-mode 1)
-(setq whitespace-style
-      '(face
-        tabs
-        spaces
-        space-mark
-        tab-mark
-        ))
-
+(setq whitespace-style '(space-mark tab-mark))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

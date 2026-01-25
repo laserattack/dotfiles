@@ -8,6 +8,9 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 
+(setq use-dialog-box nil)
+(setq use-file-dialog nil)
+
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 
 (setq warning-minimum-level :error)

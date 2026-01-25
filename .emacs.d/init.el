@@ -118,20 +118,6 @@
 
 (use-package move-text
   :ensure t
-  (ido-mode 1)
-  (ido-everywhere)
-  (setq ido-enable-flex-matching t))
-
-(use-package smex
-  :ensure t
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands)
-         ("C-c C-c M-x" . execute-extended-command)))
-
-;; move text
-
-(use-package move-text
-  :ensure t
   :bind (("M-n" . move-text-down)
          ("M-p" . move-text-up)))
 

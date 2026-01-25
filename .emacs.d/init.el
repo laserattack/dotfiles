@@ -140,12 +140,21 @@
 ;;  :ensure t
 ;;  :config (load-theme 'gruber-darker t))
 
-;;(use-package ef-themes
-;;  :ensure t
-;;  :config
-;;  ;;(load-theme 'ef-elea-light t) ;; green light theme
-;;  (load-theme 'ef-bio t)
-;;)
+(use-package gruber-darker-theme
+  :ensure t
+  :config 
+  (load-theme 'gruber-darker t)
+  
+  (set-face-attribute 'hl-line nil 
+                     :weight 'bold
+                     :background "#282828")
+
+(use-package ef-themes
+  :ensure t
+  :config
+  ;;(load-theme 'ef-elea-light t) ;; green light theme
+  (load-theme 'ef-bio t)
+)
 
 ;; ido + smex
 

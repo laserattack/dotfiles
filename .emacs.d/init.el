@@ -62,10 +62,12 @@
 ;;  :ensure t
 ;;  :config (load-theme 'gruber-darker t))
 
-(use-package ef-themes
-  :ensure t
-  :config
-  (load-theme 'ef-bio t))
+(require 'fleury-theme)
+
+;;(use-package ef-themes
+;;  :ensure t
+;;  :config
+;;  (load-theme 'ef-bio t))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

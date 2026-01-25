@@ -104,7 +104,9 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
-(defun rc/duplicate-line ()
+;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
+;; duplicate current line
+(defun duplicate-line ()
   "Duplicate current line"
   (interactive)
   (let ((column (- (point) (point-at-bol)))
@@ -115,8 +117,9 @@
     (insert line)
     (move-beginning-of-line 1)
     (forward-char column)))
+(global-set-key (kbd "C-,") 'duplicate-line)
 
-(global-set-key (kbd "C-,") 'rc/duplicate-line)
+
 
 ;; ido + smex
 

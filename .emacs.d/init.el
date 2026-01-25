@@ -125,7 +125,13 @@
   (insert (format-time-string "(%Y%m%d-%H%M%S)" nil t)))
 (global-set-key (kbd "C-x p d") 'insert-timestamp)
 
-
+;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
+(defun rgrep-selected (beg end)
+  (interactive (if (use-region-p)
+                   (list (region-beginning) (region-end))
+                 (list (point-min) (point-min))))
+  (rgrep (buffer-substring-no-properties beg end) "*" (pwd)))
+(global-set-key (kbd "C-x p s") 'rgrep-selected)
 
 ;; ido + smex
 

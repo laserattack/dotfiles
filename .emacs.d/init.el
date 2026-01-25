@@ -16,6 +16,18 @@
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-scroll-amount '(3))
 
+
+
+
+
+
+
+
+
+
+
+
+
 ;; emacs will reload the file if it is modified from the outside
 (global-auto-revert-mode t)
 
@@ -23,7 +35,7 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
-
+1
 ;; close the buffer without question if it holds the process
 (remove-hook 'kill-buffer-query-functions 
              'process-kill-buffer-query-function)

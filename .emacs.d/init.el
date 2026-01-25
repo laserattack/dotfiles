@@ -130,7 +130,7 @@
   (interactive (if (use-region-p)
                    (list (region-beginning) (region-end))
                  (list (point-min) (point-min))))
-  (grep (buffer-substring-no-properties beg end) "*" (pwd)))
+  (rgrep (buffer-substring-no-properties beg end) "*" (pwd)))
 (global-set-key (kbd "C-c s") 'grep-selected)
 
 ;; ido + smex

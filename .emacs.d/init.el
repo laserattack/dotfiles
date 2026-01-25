@@ -133,7 +133,10 @@
   (rgrep (buffer-substring-no-properties beg end) "*" (pwd)))
 (global-set-key (kbd "C-c s") 'grep-selected)
 
+;; switch between windows using shift+arrows
 (windmove-default-keybindings)
+
+;; ===== PLUGINS =====
 
 ;; ido + smex
 

@@ -69,7 +69,7 @@
   :ensure t
   :config
   ;;(load-theme 'ef-elea-light t) ;; green light theme
-  (load-theme 'ef-autumn t)
+  (load-theme 'ef-bio t)
 )
 
 (tool-bar-mode 0)

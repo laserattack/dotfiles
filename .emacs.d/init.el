@@ -136,8 +136,8 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-spring t) ;; green light theme
-  ;;(load-theme 'ef-bio t)
+  ;;(load-theme 'ef-elea-light t) ;; green light theme
+  (load-theme 'ef-bio t)
 )
 
 ;; ido + smex

@@ -65,8 +65,9 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-bio t)
-  (set-face-attribute 'button nil :background "#00331f"))
+  (load-theme 'ef-bio t))
+
+(setq mouse-highlight nil)
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

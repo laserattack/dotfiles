@@ -65,7 +65,8 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-bio t))
+  (load-theme 'ef-bio t)
+  (set-face-attribute 'button nil :background (face-attribute 'hl-line :background)))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

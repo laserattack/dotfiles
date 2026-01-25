@@ -62,7 +62,7 @@
 ;;  :ensure t
 ;;  :config (load-theme 'gruber-darker t))
 
-(require 'fleury-theme)
+(load "~/.emacs.local/fleury-theme")
 
 ;;(use-package ef-themes
 ;;  :ensure t

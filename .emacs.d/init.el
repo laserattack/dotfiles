@@ -67,8 +67,6 @@
   :config
   (load-theme 'ef-bio t))
 
-(setq mouse-highlight nil)
-
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)

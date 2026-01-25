@@ -56,9 +56,6 @@
 (add-to-list 'default-frame-alist
              '(font . "Liberation Mono-15"))
 
-(global-whitespace-mode 1)
-(setq whitespace-style '(space-mark tab-mark))
-
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)

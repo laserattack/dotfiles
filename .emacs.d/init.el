@@ -98,8 +98,6 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
-(setq display-line-numbers-width-start t)
-
 ;; ===== ANOTHER PLUGINS =====
 
 ;; ido + smex

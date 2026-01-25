@@ -68,7 +68,9 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-elea-light t))
+  ;;(load-theme 'ef-elea-light t) ;; green light theme
+  (load-theme 'ef-spting t)
+)
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

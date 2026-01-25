@@ -133,6 +133,8 @@
   (rgrep (buffer-substring-no-properties beg end) "*" (pwd)))
 (global-set-key (kbd "C-c s") 'grep-selected)
 
+(windmove-default-keybindings)
+
 ;; ido + smex
 
 (use-package ido-completing-read+

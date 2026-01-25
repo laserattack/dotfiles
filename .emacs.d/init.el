@@ -98,7 +98,7 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
-;; ===== ANOTHER PLUGINS =====
+;; ===== SOME USEFUL STUFF =====
 
 ;; ido + smex
 
@@ -228,7 +228,5 @@
   ;; See: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=XXXXX
   ;; This is a temporary workaround until the bug is fixed upstream.
   (push "loaddefs.el.gz" native-comp-jit-compilation-deny-list))
-
-;; ===== LOAD CUSTOM FILE =====
 
 (load-file custom-file)

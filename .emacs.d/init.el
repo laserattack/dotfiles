@@ -132,9 +132,9 @@
 
 ;; colortheme
 
-(use-package zenburn-theme
-  :config
-  (load-theme 'zenburn t))
+;;(use-package zenburn-theme
+;;  :config
+;;  (load-theme 'zenburn t))
 
 ;;(use-package gruber-darker-theme
 ;;  :ensure t

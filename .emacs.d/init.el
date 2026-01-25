@@ -1,10 +1,10 @@
+;; ===== BASE SETTINGS =====
+
 (setq custom-file "~/.emacs.custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 
 (add-to-list 'load-path "~/.emacs.local/")
-
-;; ===== BASE SETTINGS =====
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 
@@ -38,12 +38,9 @@
 (setq vc-follow-symlinks t)
 
 ;; dired
-
 (setq dired-listing-switches "-alh")
 (setq dired-mouse-drag-files t)
 (setq-default dired-dwim-target t)
-
-;; ===== PACKAGE SYSTEM =====
 
 (require 'package)
 
@@ -51,8 +48,6 @@
              '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
-
-;; ===== BINDINGS =====
 
 (global-set-key (kbd "C-c w") 'toggle-truncate-lines)
 

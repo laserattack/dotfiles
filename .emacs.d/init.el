@@ -284,7 +284,7 @@
     (find-file filename)
     
     (insert (format "#+TITLE: %s\n" title))
-    (insert "#+CREATED: [" (format-time-string "%Y-%m-%d %a %H:%M") "]\n\n")
+    (insert "#+CREATED: " (format-time-string "(%Y-%m-%d %a %H:%M)") "\n\n")
     
     (end-of-line)
     (backward-char 3)))

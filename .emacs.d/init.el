@@ -97,6 +97,7 @@
 ;; align lines using regexp
 (global-set-key (kbd "C-c a") 'align-regexp)
 
+;; kill all buffers except the current one, *scratch* and *Messages*
 (defun kill-other-buffers ()
   (interactive)
   (let ((essential-buffers '("*scratch*" "*Messages*"))

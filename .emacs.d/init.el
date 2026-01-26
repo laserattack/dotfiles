@@ -288,7 +288,7 @@
     (find-file filename)
     
     (when (bobp)
-      (insert (format "#+TITLE: %s\n" title))
+      (insert (format "#+TITLE:   %s\n" title))
       (insert "#+CREATED: " (format-time-string "%Y-%m-%d %a %H:%M") "\n\n")
 
       (beginning-of-line))))

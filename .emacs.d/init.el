@@ -296,9 +296,7 @@
       `(
     ("n" "New note file" plain 
          (file (concat org-notes-directory 
-                      "/" 
-                      (format-time-string "%Y%m%d-%H%M%S") 
-                      "-%^{Note title}.org"))
+                      "/%<%Y%m%d-%H%M%S>-%^{Note title}.org"))
          "#+TITLE: %^{Note title}\n#+CREATED: (%<%Y-%m-%d %a %H:%M>)\n\n" 
          :empty-lines 1)
 	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")

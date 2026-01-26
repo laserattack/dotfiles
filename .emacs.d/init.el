@@ -289,7 +289,7 @@
 
       (beginning-of-line))))
 
-(global-set-key (kbd "C-c n n") 'org-create-note)
+(global-set-key (kbd "C-c o n") 'org-create-note)
 
 ;; templates
 (setq org-capture-templates
@@ -303,7 +303,7 @@
 	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
 	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
 	))
-(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c o t") 'org-capture)
 
 ;; ===== OTHER =====
 

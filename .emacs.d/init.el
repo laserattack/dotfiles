@@ -131,6 +131,11 @@
   (insert (format-time-string "(%Y-%m-%d %H:%M:%S)" nil t)))
 (global-set-key (kbd "C-c i d") 'insert-timestamp)
 
+(defun insert-todo-timestamp ()
+  (interactive)
+  (insert (format-time-string "TODO(%Y-%m-%d %H:%M:%S): " nil t)))
+(global-set-key (kbd "C-c i t") 'insert-todo-timestamp)
+
 ;; rgrep
 (global-set-key (kbd "C-c g d") 'rgrep)
 

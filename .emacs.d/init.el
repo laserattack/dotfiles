@@ -93,8 +93,7 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
-(defun kill-other-buffers-safe ()
-  "Kill all other buffers except current and essential ones."
+(defun kill-other-buffers ()
   (interactive)
   (let ((essential-buffers '("*scratch*" "*Messages*"))
         (current (current-buffer))
@@ -109,16 +108,7 @@
       (if (y-or-n-p "Kill all buffers except current and essential?")
           (dolist (buffer buffers-to-kill)
             (kill-buffer buffer))))))
-(global-set-key (kbd "C-c k") 'kill-other-buffers-safe)
-
-;; (defun kill-other-buffers-safe ()
-;;   (interactive)
-;;   (let ((essential-buffers '("*scratch*" "*Messages*"))
-;;         (current (current-buffer)))
-;;     (dolist (buffer (buffer-list))
-;;       (unless (or (eq buffer current)
-;;                   (member (buffer-name buffer) essential-buffers))
-;;         (kill-buffer buffer)))))
+(global-set-key (kbd "C-c k") 'kill-other-buffers)
 
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
 ;; duplicate current line

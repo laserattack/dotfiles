@@ -250,11 +250,11 @@
 
 ;; paths
 (setq org-directory "~/org")
-(setq org-tasks-directory (expand-file-name "tasks.org" org-directory))
+(setq org-tasks-file (expand-file-name "tasks.org" org-directory))
 (setq org-images-directory (expand-file-name "images" org-directory))
 
 ;; agenda
-(setq org-agenda-files (list org-tasks-directory))
+(setq org-agenda-files (list org-tasks-file))
 (setq org-tags-column 0)
 (setq org-agenda-tags-column 0)
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -271,13 +271,13 @@
 ;; templates
 (setq org-capture-templates
       `(
-	("g" "Global task" entry (file+headline org-tasks-directory "Global (no deadline)")
+	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
          "** TODO %?")
-	("e" "Task for today" entry (file+headline org-tasks-directory "Daily")
+	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
          "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
-	("t" "Task for tomorrow" entry (file+headline org-tasks-directory "Daily")
+	("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
 	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1d\")>")
-	("m" "Task with manual date input" entry (file+headline org-tasks-directory "Daily")
+	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
 	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
 	))
 (global-set-key (kbd "C-c c") 'org-capture)

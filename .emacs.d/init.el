@@ -273,7 +273,7 @@
   (interactive)
   (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
          (title (read-string "Note title: "))
-         (filename (format "%s(%s) %s.org" 
+         (filename (format "%s/(%s)%s.org" 
                           org-notes-directory 
                           timestamp 
                           title)))
@@ -286,7 +286,7 @@
     (when (bobp)
       (insert (format "#+TITLE: %s\n" title))
       (insert "#+CREATED: " (format-time-string "(%Y-%m-%d %a %H:%M)") "\n\n")
-      (insert "* \n")
+
       (beginning-of-line))))
 
 (global-set-key (kbd "C-c n n") 'org-create-note)

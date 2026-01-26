@@ -93,6 +93,16 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
+(defun kill-other-buffers-safe ()
+  "Kill all other buffers except current and essential ones."
+  (interactive)
+  (let ((essential-buffers '("*scratch*" "*Messages*"))
+        (current (current-buffer)))
+    (dolist (buffer (buffer-list))
+      (unless (or (eq buffer current)
+                  (member (buffer-name buffer) essential-buffers))
+        (kill-buffer buffer)))))
+
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
 ;; duplicate current line
 (defun duplicate-line ()

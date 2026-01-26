@@ -303,8 +303,7 @@
                            timestamp 
                            title))))
          "#+TITLE: %^{Note title}\n#+CREATED: (%<%Y-%m-%d %a %H:%M>)\n\n" 
-         :empty-lines 1
-         :immediate-finish t)
+         :empty-lines 1)
 	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
          "** TODO %?")
 	("e" "Task for today" entry (file+headline org-tasks-file "Daily")

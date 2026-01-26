@@ -96,7 +96,7 @@
 (defun kill-other-buffers-safe ()
   "Kill all other buffers except current and essential ones."
   (interactive)
-  (let ((essential-buffers '("*scratch*" "*Messages*" "*Backtrace*"))
+  (let ((essential-buffers '("*scratch*" "*Messages*"))
         (current (current-buffer))
         (buffers-to-kill '()))
     
@@ -108,9 +108,8 @@
     (when buffers-to-kill
       (if (y-or-n-p "Kill all buffers except current and essential?")
           (dolist (buffer buffers-to-kill)
-            (kill-buffer buffer))
-        (message "Cancelled")))))
-(global-set-key (kbd "C-,") 'kill-other-buffers-safe)
+            (kill-buffer buffer))))))
+(global-set-key (kbd "C-c k") 'kill-other-buffers-safe)
 
 ;; (defun kill-other-buffers-safe ()
 ;;   (interactive)

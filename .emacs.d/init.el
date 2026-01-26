@@ -294,13 +294,23 @@
 ;; templates
 (setq org-capture-templates
       `(
-    ("n" "New note file" function org-create-note)
+    ("n" "New note file" plain 
+         (file (lambda () 
+                 (let ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
+                       (title (read-string "Note title: ")))
+                   (format "%s/%s-%s.org" 
+                           org-notes-directory 
+                           timestamp 
+                           title))))
+         "#+TITLE: %^{Note title}\n#+CREATED: (%<%Y-%m-%d %a %H:%M>)\n\n" 
+         :empty-lines 1
+         :immediate-finish t)
 	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
          "** TODO %?")
 	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
          "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
 	("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
-	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1d\")>")
+	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil "+1d")>")
 	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
 	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
 	))

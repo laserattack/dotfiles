@@ -269,6 +269,30 @@
 (setq org-startup-with-inline-images t)
 (global-set-key (kbd "C-c i i") 'org-download-clipboard)
 
+(defun org-create-note ()
+  (interactive)
+  (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
+         (title (read-string "Note title: "))
+         (filename (format "%s(%s) %s.org" 
+                          org-notes-directory 
+                          timestamp 
+                          title)))
+    
+    (unless (file-exists-p org-notes-directory)
+      (make-directory org-notes-directory t))
+    
+    (find-file filename)
+    
+    (insert (format "#+TITLE: %s\n" title))
+    (insert "#+DATE: " (format-time-string "%Y-%m-%d %a %H:%M") "\n")
+    (insert "#+CREATED: [" (format-time-string "%Y-%m-%d %a %H:%M") "]\n\n")
+    (insert "* TODO \n")
+    
+    (end-of-line)
+    (backward-char 3)))
+
+(global-set-key (kbd "C-c n n") 'org-create-note)
+
 ;; templates
 (setq org-capture-templates
       `(

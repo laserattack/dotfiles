@@ -269,36 +269,32 @@
 (setq org-startup-with-inline-images t)
 (global-set-key (kbd "C-c i i") 'org-download-clipboard)
 
-;; (defun org-create-note ()
-;;   (interactive)
-;;   (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
-;;          (title (read-string "Note title: "))
-;;          (filename (format "%s/%s%s.org" 
-;;                           org-notes-directory 
-;;                           timestamp 
-;;                           title)))
+(defun org-create-note ()
+  (interactive)
+  (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
+         (title (read-string "Note title: "))
+         (filename (format "%s/%s%s.org" 
+                          org-notes-directory 
+                          timestamp 
+                          title)))
     
-;;     (unless (file-exists-p org-notes-directory)
-;;       (make-directory org-notes-directory t))
+    (unless (file-exists-p org-notes-directory)
+      (make-directory org-notes-directory t))
     
-;;     (find-file filename)
+    (find-file filename)
     
-;;     (when (bobp)
-;;       (insert (format "#+TITLE: %s\n" title))
-;;       (insert "#+CREATED: " (format-time-string "(%Y-%m-%d %a %H:%M)") "\n\n")
+    (when (bobp)
+      (insert (format "#+TITLE: %s\n" title))
+      (insert "#+CREATED: " (format-time-string "(%Y-%m-%d %a %H:%M)") "\n\n")
 
-;;       (beginning-of-line))))
+      (beginning-of-line))))
 
-;; (global-set-key (kbd "C-c n n") 'org-create-note)
+(global-set-key (kbd "C-c n n") 'org-create-note)
 
 ;; templates
 (setq org-capture-templates
       `(
-    ("n" "New note file" plain 
-         (file (concat org-notes-directory 
-                      "/%<%Y%m%d-%H%M%S>-%^{Note title}.org"))
-         "#+TITLE: %^{Note title}\n#+CREATED: (%<%Y-%m-%d %a %H:%M>)\n\n" 
-         :empty-lines 1)
+    ("n" "New note file" function org-create-note)
 	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
          "** TODO %?")
 	("e" "Task for today" entry (file+headline org-tasks-file "Daily")

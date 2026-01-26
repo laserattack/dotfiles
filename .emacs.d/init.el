@@ -94,6 +94,9 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
+;; align lines using regexp
+(global-set-key (kbd "C-c a") 'align-regexp)
+
 (defun kill-other-buffers ()
   (interactive)
   (let ((essential-buffers '("*scratch*" "*Messages*"))
@@ -285,7 +288,7 @@
     
     (when (bobp)
       (insert (format "#+TITLE: %s\n" title))
-      (insert "#+CREATED: " (format-time-string "(%Y-%m-%d %a %H:%M)") "\n\n")
+      (insert "#+CREATED: " (format-time-string "%Y-%m-%d %a %H:%M") "\n\n")
 
       (beginning-of-line))))
 

@@ -12,6 +12,7 @@
 (setq use-file-dialog nil)
 
 (advice-add #'display-startup-echo-area-message :override #'ignore)
+(setq initial-scratch-message nil)
 
 (setq warning-minimum-level :error)
 
@@ -155,7 +156,7 @@
 
 ;;(use-package gruber-darker-theme
 ;;  :ensure t
-;;  :config 
+;;  :config
 ;;  (load-theme 'gruber-darker t)
 ;;  (set-face-attribute 'line-number-current-line nil 
 ;;                      :weight 'bold

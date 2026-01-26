@@ -258,7 +258,7 @@
 (setq org-agenda-files (list org-tasks-file))
 (setq org-tags-column 0)
 (setq org-agenda-tags-column 0)
-(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c o a") 'org-agenda)
 
 ;; paste images
 (use-package org-download
@@ -267,7 +267,7 @@
   (setq org-download-method 'directory))
 (setq-default org-download-image-dir org-images-directory)
 (setq org-startup-with-inline-images t)
-(global-set-key (kbd "C-c i i") 'org-download-clipboard)
+(global-set-key (kbd "C-c o i") 'org-download-clipboard)
 
 (defun org-create-note ()
   (interactive)
@@ -294,16 +294,6 @@
 ;; templates
 (setq org-capture-templates
       `(
-    ("n" "New note file" plain 
-         (file (lambda () 
-                 (let ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
-                       (title (read-string "Note title: ")))
-                   (format "%s/%s-%s.org" 
-                           org-notes-directory 
-                           timestamp 
-                           title))))
-         "#+TITLE: %^{Note title}\n#+CREATED: (%<%Y-%m-%d %a %H:%M>)\n\n" 
-         :empty-lines 1)
 	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
          "** TODO %?")
 	("e" "Task for today" entry (file+headline org-tasks-file "Daily")

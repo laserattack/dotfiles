@@ -252,6 +252,7 @@
 (setq org-directory "~/org")
 (setq org-tasks-file (expand-file-name "tasks.org" org-directory))
 (setq org-images-directory (expand-file-name "images" org-directory))
+(setq org-notes-directory (expand-file-name "notes" org-directory))
 
 ;; agenda
 (setq org-agenda-files (list org-tasks-file))

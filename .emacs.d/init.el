@@ -128,12 +128,12 @@
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
 (defun insert-timestamp ()
   (interactive)
-  (insert (format-time-string "(%Y-%m-%d %H:%M:%S)" nil t)))
+  (insert (format-time-string "(%Y%m%d-%H%M%S)" nil t)))
 (global-set-key (kbd "C-c i d") 'insert-timestamp)
 
 (defun insert-todo-timestamp ()
   (interactive)
-  (insert (format-time-string "TODO(%Y-%m-%d %H:%M:%S): " nil t)))
+  (insert (format-time-string "TODO(%Y%m%d-%H%M%S): " nil t)))
 (global-set-key (kbd "C-c i t") 'insert-todo-timestamp)
 
 ;; rgrep

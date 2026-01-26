@@ -109,7 +109,7 @@
       (if (y-or-n-p "Kill all buffers except current and essential?")
           (dolist (buffer buffers-to-kill)
             (kill-buffer buffer))))))
-(global-set-key (kbd "C-c k") 'kill-other-buffers)
+(global-set-key (kbd "C-c b k") 'kill-other-buffers)
 
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
 ;; duplicate current line

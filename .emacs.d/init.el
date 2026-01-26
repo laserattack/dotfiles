@@ -94,7 +94,6 @@
 ;; ===== SOME USEFUL STUFF =====
 
 (defun kill-other-buffers-safe ()
-  "Kill all other buffers except current and essential ones."
   (interactive)
   (let ((essential-buffers '("*scratch*" "*Messages*"))
         (current (current-buffer)))

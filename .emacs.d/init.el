@@ -273,7 +273,7 @@
   (interactive)
   (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
          (title (read-string "Note title: "))
-         (filename (format "%s/%s%s.org" 
+         (filename (format "%s/%s-%s.org" 
                           org-notes-directory 
                           timestamp 
                           title)))

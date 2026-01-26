@@ -128,8 +128,8 @@
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
 (defun insert-timestamp ()
   (interactive)
-  (insert (format-time-string "(%Y%m%d-%H%M%S)" nil t)))
-(global-set-key (kbd "C-c t") 'insert-timestamp)
+  (insert (format-time-string "(%Y-%m-%d %H:%M:%S)" nil t)))
+(global-set-key (kbd "C-c i d") 'insert-timestamp)
 
 ;; rgrep
 (global-set-key (kbd "C-c g d") 'rgrep)
@@ -261,7 +261,7 @@
   (setq org-download-method 'directory))
 (setq-default org-download-image-dir org-images-directory)
 (setq org-startup-with-inline-images t)
-(global-set-key (kbd "C-c i") 'org-download-clipboard)
+(global-set-key (kbd "C-c i i") 'org-download-clipboard)
 
 ;; templates
 (setq org-capture-templates

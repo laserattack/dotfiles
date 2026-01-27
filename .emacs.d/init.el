@@ -52,16 +52,16 @@
 
 (global-set-key (kbd "C-c w") 'toggle-truncate-lines)
 
-(let ((whitespace-style
-         '(face
-           tabs
-           spaces
-           trailing
-           space-before-tab
-           space-after-tab
-           indentation
-           empty
-           big-indent)))
+(setq whitespace-style
+      '(face
+        tabs
+        spaces
+        trailing
+        space-before-tab
+        space-after-tab
+        indentation
+        empty
+        big-indent))
 (global-whitespace-mode 1)
 
 ;; ===== INTERFACE =====

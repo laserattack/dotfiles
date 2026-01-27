@@ -52,19 +52,6 @@
 
 (global-set-key (kbd "C-c w") 'toggle-truncate-lines)
 
-(setq whitespace-style
-      '(face
-        tabs
-        spaces
-        trailing
-        space-before-tab
-        space-after-tab
-        indentation
-        empty
-        big-indent))
-
-(global-whitespace-mode 1)
-
 ;; ===== INTERFACE =====
 
 (add-to-list 'default-frame-alist

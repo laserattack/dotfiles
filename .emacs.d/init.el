@@ -4,8 +4,7 @@
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 
-(setq local-file "~/.emacs.local/")
-(add-to-list 'load-path local-file)
+(add-to-list 'load-path "~/.emacs.local/")
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 
@@ -160,7 +159,7 @@
 
 ;; colortheme
 (use-package gruber-darker-mod-theme
-  :load-path (expand-file-name "themes" local-file)
+  :load-path "~/.emacs.local/themes/"
   :config
   (load-theme 'gruber-darker-mod t))
 

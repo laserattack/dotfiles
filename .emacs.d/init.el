@@ -54,14 +54,22 @@
 
 (setq whitespace-style
       '(face
-        tabs
-        spaces
-        trailing
+        tabs           ; подсвечивать табы
+        spaces         ; подсвечивать пробелы
+        trailing       ; пробелы в конце строк
         space-before-tab
         space-after-tab
         indentation
         empty
-        big-indent))
+        big-indent
+        space-mark     ; ← ОТОБРАЖАТЬ пробелы как символы
+        tab-mark       ; ← ОТОБРАЖАТЬ табы как символы
+        ))
+
+;; Кастомные символы (опционально)
+(setq whitespace-space '?·)    ; точка для пробелов
+(setq whitespace-tab '?→)      ; стрелка для табов
+
 (global-whitespace-mode 1)
 
 ;; ===== INTERFACE =====

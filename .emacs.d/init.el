@@ -171,12 +171,12 @@
 ;;                      :weight 'bold
 ;;                      :foreground "#ffdd33"))
 
-(use-package ef-themes
-  :ensure t
-  :config
-  ;;(load-theme 'ef-elea-light t) ;; green light theme
-  (load-theme 'ef-bio t)
-)
+;;(use-package ef-themes
+;;  :ensure t
+;;  :config
+;;  ;;(load-theme 'ef-elea-light t) ;; green light theme
+;;  (load-theme 'ef-bio t)
+;;)
 
 ;; ido + smex
 
@@ -226,7 +226,7 @@
 
 (use-package multiple-cursors
   :ensure t
-  :bind (("C-S-s" . mc/edit-lines)
+  :bind (("C-c e" . mc/edit-lines)
          ("C->"         . mc/mark-next-like-this)
          ("C-<"         . mc/mark-previous-like-this)
          ("C-c C-<"     . mc/mark-all-like-this)

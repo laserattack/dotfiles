@@ -51,6 +51,7 @@
 (package-initialize)
 
 (global-set-key (kbd "C-c w") 'toggle-truncate-lines)
+(global-set-key (kbd "M-!") 'async-shell-command)
 
 ;; ===== INTERFACE =====
 

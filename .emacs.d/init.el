@@ -174,11 +174,8 @@
 (use-package ef-themes
  :ensure t
  :config
- ;;(load-theme 'ef-elea-light t) ;; green light theme
  (load-theme 'ef-bio t)
 )
-
-(setq ef-bio-palette-overrides '((bg-main "#131313")))
 
 ;; ido + smex
 

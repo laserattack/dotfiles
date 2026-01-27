@@ -332,8 +332,9 @@
 
    `(org-special-keyword ((t (:foreground ,gruber-darker-mod-green))))
    `(org-property-value ((t (:foreground ,gruber-darker-mod-green))))
-   `(org-tag ((t (:foreground ,gruber-darker-mod-green))))
    `(org-drawer ((t (:foreground ,gruber-darker-mod-green))))
+   `(org-headline-done ((t (:foreground ,gruber-darker-mod-niagara))))
+   `(org-tag ((t (:foreground ,gruber-darker-mod-green))))
 
    ;; Search
    `(isearch ((t ,(list :foreground gruber-darker-mod-black

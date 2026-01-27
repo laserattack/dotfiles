@@ -1,11 +1,13 @@
-;;; gruber-darker-mod-theme.el --- Modified Gruber Darker color theme for Emacs 24.
+;;; gruber-darker-mod.el --- Modified Gruber Darker color theme for Emacs
 
-;; Copyright (C) 2013-2016 Alexey Kutepov a.k.a rexim
-;; Copyright (C) 2009-2010 Jason R. Blevins
+;; Original Copyright (C) 2025 Sergei Osmanov, a.k.a laserattack
+;; Original Copyright (C) 2013-2016 Alexey Kutepov a.k.a rexim
+;; Original Copyright (C) 2009-2010 Jason R. Blevins
 
-;; Author: Alexey Kutepov <reximkut@gmail.com>
-;; URL: http://github.com/rexim/gruber-darker-mod-theme
-;; Version: 0.7
+;; Author: [ВАШЕ ИМЯ] <[ВАШ EMAIL]>
+;; Based on: Original by Alexey Kutepov <reximkut@gmail.com>
+;; Original URL: http://github.com/rexim/gruber-darker-theme
+;; Version: 0.7-mod
 
 ;; Permission is hereby granted, free of charge, to any person
 ;; obtaining a copy of this software and associated documentation
@@ -29,10 +31,9 @@
 
 ;;; Commentary:
 ;;
-;; Gruber Darker color theme for Emacs by Jason Blevins. A darker
-;; variant of the Gruber Dark theme for BBEdit by John Gruber. Adapted
-;; for deftheme and extended by Alexey Kutepov a.k.a. rexim.
-
+;; Modified Gruber Darker color theme for Emacs.
+;; Based on original by Jason Blevins, adapted by Alexey Kutepov.
+;; This version changes yellow to green+1 color, and some small changes
 
 (deftheme gruber-darker-mod
   "Gruber Darker color theme for Emacs 24")

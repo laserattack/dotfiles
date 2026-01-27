@@ -414,7 +414,7 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'gruber-darker-green)
+(provide-theme 'gruber-darker-mod)
 
 ;; Local Variables:
 ;; no-byte-compile: t

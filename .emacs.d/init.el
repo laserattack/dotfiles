@@ -159,10 +159,10 @@
 
 ;; colortheme
 
-(use-package gruber-darker-green-theme
+(use-package gruber-darker-mod-theme
   :load-path "~/.emacs.local/themes/"
   :config
-  (load-theme 'gruber-darker-green t))
+  (load-theme 'gruber-darker-mod t))
 
 ;;(use-package zenburn-theme
 ;;  :config

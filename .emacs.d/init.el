@@ -27,7 +27,7 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
-1
+
 ;; close the buffer without question if it holds the process
 (remove-hook 'kill-buffer-query-functions 
              'process-kill-buffer-query-function)

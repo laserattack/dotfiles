@@ -316,6 +316,7 @@
    `(org-done ((t (:foreground ,gruber-darker-mod-green))))
    `(org-todo ((t (:foreground ,gruber-darker-mod-red-1))))
    `(org-upcoming-deadline ((t (:foreground ,gruber-darker-mod-green+1))))
+
    `(org-level-1 ((t (:foreground ,gruber-darker-mod-niagara :weight bold))))
    `(org-level-2 ((t (:inherit org-level-1))))
    `(org-level-3 ((t (:inherit org-level-1))))
@@ -324,9 +325,14 @@
    `(org-level-6 ((t (:inherit org-level-1))))
    `(org-level-7 ((t (:inherit org-level-1))))
    `(org-level-8 ((t (:inherit org-level-1))))
+
    `(org-meta-line ((t (:foreground ,gruber-darker-mod-green))))
    `(org-document-info-keyword ((t (:foreground ,gruber-darker-mod-green))))
    `(org-document-title ((t (:foreground ,gruber-darker-mod-green))))
+
+   `(org-special-keyword ((t (:foreground ,gruber-darker-mod-niagara))))
+   `(org-property-value ((t (:foreground ,gruber-darker-mod-green))))
+   `(org-tag ((t (:foreground ,gruber-darker-mod-brown :weight bold))))
 
    ;; Search
    `(isearch ((t ,(list :foreground gruber-darker-mod-black

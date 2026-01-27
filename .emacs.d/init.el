@@ -163,10 +163,6 @@
 ;;  :config
 ;;  (load-theme 'zenburn t))
 
-(use-package gruber-darker-theme
-  :config
-  (load-theme 'gruber-darker t))
-
 ;;(use-package ef-themes
 ;; :ensure t
 ;; :config

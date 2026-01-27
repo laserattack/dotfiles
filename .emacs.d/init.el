@@ -64,8 +64,6 @@
 (set-fringe-mode 0)
 (global-hl-line-mode t)
 
-(setq-default display-line-numbers-width 3)
-
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 (setq-default compilation-scroll-output t)

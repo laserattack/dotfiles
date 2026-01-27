@@ -1,10 +1,10 @@
 ;;; gruber-darker-mod.el --- Modified Gruber Darker color theme for Emacs
 
-;; Original Copyright (C) 2025 Sergei Osmanov, a.k.a laserattack
+;; Original Copyright (C) 2025 laserattack
 ;; Original Copyright (C) 2013-2016 Alexey Kutepov a.k.a rexim
 ;; Original Copyright (C) 2009-2010 Jason R. Blevins
 
-;; Author: [ВАШЕ ИМЯ] <[ВАШ EMAIL]>
+;; Author: laserattack <sc7227484@gmail.com>
 ;; Based on: Original by Alexey Kutepov <reximkut@gmail.com>
 ;; Original URL: http://github.com/rexim/gruber-darker-theme
 ;; Version: 0.7-mod

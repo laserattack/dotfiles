@@ -163,8 +163,10 @@
 ;;  :config
 ;;  (load-theme 'zenburn t))
 
-(require 'gruber-darker-theme)
-(load-theme 'gruber-darker t)
+(use-package gruber-darker-theme
+  :load "~/.emacs.local/gruber-darker-theme.el"
+  :config
+  (load-theme 'gruber-darker t))
 
 ;;(use-package ef-themes
 ;; :ensure t

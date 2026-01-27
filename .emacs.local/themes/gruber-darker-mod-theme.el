@@ -33,7 +33,7 @@
 ;;
 ;; Modified Gruber Darker color theme for Emacs.
 ;; Based on original by Jason Blevins, adapted by Alexey Kutepov.
-;; This version changes yellow to green+1 color, and some small changes
+;; This version changes yellow to green+1 color, and some other changes
 
 (deftheme gruber-darker-mod
   "Gruber Darker color theme for Emacs 24")

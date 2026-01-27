@@ -175,8 +175,6 @@
  :ensure t
  :config
  (load-theme 'ef-bio t)
- (set-face-attribute 'custom-button-mouse nil
-                     :background "#00331f")
 )
 
 ;; ido + smex

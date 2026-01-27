@@ -4,7 +4,8 @@
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 
-(add-to-list 'load-path "~/.emacs.local/")
+(setq local-file "~/.emacs.local/")
+(add-to-list 'load-path local-file)
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 
@@ -158,9 +159,8 @@
 ;; ===== PLUGINS =====
 
 ;; colortheme
-(expand-file-name "themes" org-directory)
 (use-package gruber-darker-mod-theme
-  :load-path "~/.emacs.local/themes/"
+  :load-path (expand-file-name "themes" local-file)
   :config
   (load-theme 'gruber-darker-mod t))
 

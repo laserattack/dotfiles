@@ -330,9 +330,9 @@
    `(org-document-info-keyword ((t (:foreground ,gruber-darker-mod-green))))
    `(org-document-title ((t (:foreground ,gruber-darker-mod-green))))
 
-   `(org-special-keyword ((t (:foreground ,gruber-darker-mod-green+1))))
-   `(org-property-value ((t (:foreground ,gruber-darker-mod-green+1))))
-   `(org-tag ((t (:foreground ,gruber-darker-mod-green+1))))
+   `(org-special-keyword ((t (:foreground ,gruber-darker-mod-green))))
+   `(org-property-value ((t (:foreground ,gruber-darker-mod-green))))
+   `(org-tag ((t (:foreground ,gruber-darker-mod-green))))
 
    ;; Search
    `(isearch ((t ,(list :foreground gruber-darker-mod-black

@@ -325,6 +325,8 @@
    `(org-level-7 ((t (:inherit org-level-1))))
    `(org-level-8 ((t (:inherit org-level-1))))
    `(org-meta-line ((t (:foreground ,gruber-darker-mod-green))))
+   `(org-document-info-keyword ((t (:foreground ,gruber-darker-mod-green))))
+   `(org-document-title ((t (:foreground ,gruber-darker-mod-green))))
 
    ;; Search
    `(isearch ((t ,(list :foreground gruber-darker-mod-black

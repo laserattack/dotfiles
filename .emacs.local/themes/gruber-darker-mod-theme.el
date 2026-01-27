@@ -317,7 +317,7 @@
    `(org-todo ((t (:foreground ,gruber-darker-mod-red-1))))
    `(org-upcoming-deadline ((t (:foreground ,gruber-darker-mod-green+1))))
 
-   `(org-level-1 ((t (:foreground ,gruber-darker-mod-niagara :weight bold))))
+   `(org-level-1 ((t (:foreground ,gruber-darker-mod-green+1 :weight bold))))
    `(org-level-2 ((t (:inherit org-level-1))))
    `(org-level-3 ((t (:inherit org-level-1))))
    `(org-level-4 ((t (:inherit org-level-1))))
@@ -333,6 +333,7 @@
    `(org-special-keyword ((t (:foreground ,gruber-darker-mod-green))))
    `(org-property-value ((t (:foreground ,gruber-darker-mod-green))))
    `(org-tag ((t (:foreground ,gruber-darker-mod-green))))
+   `(org-drawer ((t (:foreground ,gruber-darker-mod-green))))
 
    ;; Search
    `(isearch ((t ,(list :foreground gruber-darker-mod-black

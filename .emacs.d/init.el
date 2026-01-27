@@ -158,7 +158,7 @@
 ;; ===== PLUGINS =====
 
 ;; colortheme
-
+(expand-file-name "themes" org-directory)
 (use-package gruber-darker-mod-theme
   :load-path "~/.emacs.local/themes/"
   :config

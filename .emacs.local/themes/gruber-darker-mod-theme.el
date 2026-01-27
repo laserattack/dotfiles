@@ -316,6 +316,7 @@
    `(org-done ((t (:foreground ,gruber-darker-mod-green))))
    `(org-todo ((t (:foreground ,gruber-darker-mod-red-1))))
    `(org-upcoming-deadline ((t (:foreground ,gruber-darker-mod-green+1))))
+   `(org-level-1 ((t (:foreground ,gruber-darker-mod-niagara :weight bold))))
    `(org-level-2 ((t (:inherit org-level-1))))
    `(org-level-3 ((t (:inherit org-level-1))))
    `(org-level-4 ((t (:inherit org-level-1))))

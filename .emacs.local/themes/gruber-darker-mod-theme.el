@@ -34,7 +34,7 @@
 ;; for deftheme and extended by Alexey Kutepov a.k.a. rexim.
 
 
-(deftheme gruber-darker
+(deftheme gruber-darker-mod
   "Gruber Darker color theme for Emacs 24")
 
 ;; Please, install rainbow-mode.

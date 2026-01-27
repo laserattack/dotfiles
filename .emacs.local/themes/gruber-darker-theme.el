@@ -54,8 +54,7 @@
       (gruber-darker-red       "#f43841")
       (gruber-darker-red+1     "#ff4f58")
       (gruber-darker-green     "#73c936")
-      (gruber-darker-green+1   "#35f038")
-      (gruber-darker-yellow    "#ffdd33")
+      (gruber-darker-yellow    "#35f038")
       (gruber-darker-brown     "#cc8c3c")
       (gruber-darker-quartz    "#95a99f")
       (gruber-darker-niagara-2 "#303540")
@@ -92,7 +91,7 @@
    ;; Basic Coloring (or Uncategorized)
    `(border ((t ,(list :background gruber-darker-bg-1
                        :foreground gruber-darker-bg+2))))
-   `(cursor ((t (:background ,gruber-darker-green+1))))
+   `(cursor ((t (:background ,gruber-darker-yellow))))
    `(default ((t ,(list :foreground gruber-darker-fg
                         :background gruber-darker-bg))))
    `(fringe ((t ,(list :background nil

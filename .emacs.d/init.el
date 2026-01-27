@@ -164,7 +164,6 @@
 ;;  (load-theme 'zenburn t))
 
 (use-package gruber-darker-theme
-  :load "~/.emacs.local/gruber-darker-theme.el"
   :config
   (load-theme 'gruber-darker t))
 

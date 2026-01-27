@@ -316,6 +316,13 @@
    `(org-done ((t (:foreground ,gruber-darker-mod-green))))
    `(org-todo ((t (:foreground ,gruber-darker-mod-red-1))))
    `(org-upcoming-deadline ((t (:foreground ,gruber-darker-mod-green+1))))
+   `(org-level-2 ((t (:inherit org-level-1))))
+   `(org-level-3 ((t (:inherit org-level-1))))
+   `(org-level-4 ((t (:inherit org-level-1))))
+   `(org-level-5 ((t (:inherit org-level-1))))
+   `(org-level-6 ((t (:inherit org-level-1))))
+   `(org-level-7 ((t (:inherit org-level-1))))
+   `(org-level-8 ((t (:inherit org-level-1))))
 
    ;; Search
    `(isearch ((t ,(list :foreground gruber-darker-mod-black

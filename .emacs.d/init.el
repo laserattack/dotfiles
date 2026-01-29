@@ -128,6 +128,7 @@
     (move-beginning-of-line 1)
     (forward-char column)))
 (global-set-key (kbd "C-,") 'duplicate-line)
+(define-key org-mode-map (kbd "C-,") 'duplicate-line)
 
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
 (defun insert-timestamp ()

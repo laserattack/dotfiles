@@ -206,7 +206,7 @@
 (use-package avy
   :ensure t
   :config
-  (global-set-key (kbd "C-c SPC") 'avy-goto-char-2))
+  (global-set-key (kbd "M-o") 'avy-goto-char-2))
 
 ;; magit
 

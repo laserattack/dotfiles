@@ -115,7 +115,6 @@
             (kill-buffer buffer))))))
 (global-set-key (kbd "C-c b k") 'kill-other-buffers)
 
-;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
 ;; duplicate current line
 (defun duplicate-line (&optional n)
   (interactive "p")
@@ -129,8 +128,6 @@
       (insert line)
       (move-beginning-of-line 1)
       (forward-char column))))
-(global-set-key (kbd "C-,") 'duplicate-line)
-(define-key org-mode-map (kbd "C-,") 'duplicate-line)
 (global-set-key (kbd "C-c d") 'duplicate-line)
 
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el

@@ -296,6 +296,10 @@
 	))
 (global-set-key (kbd "C-c o t") 'org-capture)
 
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (org-agenda nil "a")))
+
 ;; gcmh
 
 (use-package gcmh

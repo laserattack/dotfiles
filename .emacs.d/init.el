@@ -68,14 +68,13 @@
 (setq-default indent-tabs-mode nil)
 (setq-default compilation-scroll-output t)
 
-(global-visual-line-mode 1)
 (defun custom-toggle-word-wrap ()
   (interactive)
-  (if global-visual-line-mode
+  (if visual-line-mode
       (progn
-        (global-visual-line-mode -1)
+        (visual-line-mode -1)
     (progn
-        (global-visual-line-mode 1)))))
+        (visual-line-mode 1)))))
 (global-set-key (kbd "C-c w") 'toggle-word-wrap)
 
 (global-set-key (kbd "C-p") 'previous-logical-line)

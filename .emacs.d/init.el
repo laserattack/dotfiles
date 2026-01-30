@@ -68,7 +68,8 @@
 (setq-default indent-tabs-mode nil)
 (setq-default compilation-scroll-output t)
 
-(global-set-key (kbd "C-c w") 'visual-line-mode)
+(global-visual-line-mode -1)
+(global-set-key (kbd "C-c w") 'global-visual-line-mode)
 
 (global-set-key (kbd "C-p") 'previous-logical-line)
 (global-set-key (kbd "C-n") 'next-logical-line)

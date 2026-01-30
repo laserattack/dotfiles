@@ -68,18 +68,18 @@
 (setq-default indent-tabs-mode nil)
 (setq-default compilation-scroll-output t)
 
-(setq-default truncate-lines nil)
-(global-visual-line-mode 1)
-(defun custom-toggle-word-wrap ()
-  (interactive)
-  (if visual-line-mode
-      (progn
-        (visual-line-mode -1)
-        (setq truncate-lines t))
-    (progn
-        (visual-line-mode 1)
-        (setq truncate-lines nil))))
-(global-set-key (kbd "C-c w") 'toggle-word-wrap)
+;; (setq-default truncate-lines nil)
+;; (global-visual-line-mode 1)
+;; (defun custom-toggle-word-wrap ()
+;;   (interactive)
+;;   (if visual-line-mode
+;;       (progn
+;;         (visual-line-mode -1)
+;;         (setq truncate-lines t))
+;;     (progn
+;;         (visual-line-mode 1)
+;;         (setq truncate-lines nil))))
+;; (global-set-key (kbd "C-c w") 'toggle-word-wrap)
 
 (global-set-key (kbd "C-p") 'previous-logical-line)
 (global-set-key (kbd "C-n") 'next-logical-line)

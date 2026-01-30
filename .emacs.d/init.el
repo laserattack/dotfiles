@@ -261,8 +261,7 @@
 (setq org-agenda-tags-column 0)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 
-(setq org-startup-with-inline-images nil)
-(setq org-inline-image-overlays nil)
+;; view images on hotkey
 (global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
 
 ;; paste images

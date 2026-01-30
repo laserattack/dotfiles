@@ -308,6 +308,15 @@
 	))
 (global-set-key (kbd "C-c o t") 'org-capture)
 
+;; gcmp
+
+(use-package gcmh
+  :ensure t
+  :init
+  (setq gcmh-idle-delay 5
+        gcmh-high-cons-threshold (* 100 1024 1024)) ;; 100 mb
+  :hook (emacs-startup-hook . gcmh-mode))
+
 ;; ===== OTHER =====
 
 (use-package comp-run

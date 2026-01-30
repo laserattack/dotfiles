@@ -69,10 +69,10 @@
 (global-visual-line-mode 1)
 (global-set-key (kbd "C-c w") 'global-visual-line-mode)
 
-;; (global-set-key (kbd "C-p") 'previous-logical-line)
-;; (global-set-key (kbd "C-n") 'next-logical-line)
-;; (global-set-key (kbd "C-a") 'beginning-of-line)
-;; (global-set-key (kbd "C-e") 'end-of-line)
+(global-set-key (kbd "C-p") 'previous-logical-line)
+(global-set-key (kbd "C-n") 'next-logical-line)
+(global-set-key (kbd "C-a") 'beginning-of-line)
+(global-set-key (kbd "C-e") 'end-of-line)
 
 (setq inhibit-startup-screen t)
 

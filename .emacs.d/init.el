@@ -262,6 +262,7 @@
 (global-set-key (kbd "C-c o a") 'org-agenda)
 
 ;; view images on hotkey
+(org-toggle-inline-images)
 (global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
 
 ;; paste images

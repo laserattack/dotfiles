@@ -12,7 +12,7 @@
 (setq use-file-dialog nil)
 
 (advice-add #'display-startup-echo-area-message :override #'ignore)
-(setq initial-scratch-message nil)
+(setq initial-scratch-message "!!!!CHECK AGENDA PLSSSS!!!!")
 
 (setq warning-minimum-level :error)
 

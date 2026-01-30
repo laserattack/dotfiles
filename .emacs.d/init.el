@@ -79,7 +79,7 @@
     (progn
         (visual-line-mode 1)
         (setq truncate-lines nil))))
-(global-set-key (kbd "C-c w") 'custom-toggle-word-wrap)
+(global-set-key (kbd "C-c w") 'toggle-word-wrap)
 
 (global-set-key (kbd "C-p") 'previous-logical-line)
 (global-set-key (kbd "C-n") 'next-logical-line)

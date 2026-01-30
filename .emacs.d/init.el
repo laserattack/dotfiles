@@ -130,11 +130,6 @@
       (forward-char column))))
 (global-set-key (kbd "C-c d") 'duplicate-line)
 
-;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
-;; (defun insert-timestamp ()
-;;   (interactive)
-;;   (insert (format-time-string "(%Y%m%d-%H%M%S)" nil t)))
-
 (defun insert-timestamp ()
   (interactive)
   (let ((current-time (current-time)))
@@ -143,7 +138,8 @@
 
 (defun insert-todo-timestamp ()
   (interactive)
-  (insert (format-time-string "TODO(%Y%m%d-%H%M%S): " nil t)))
+  (let ((current-time (current-time)))
+    (insert (format-time-string "TODO(%Y%m%d-%H%M%S): " current-time))))
 (global-set-key (kbd "C-c i t") 'insert-todo-timestamp)
 
 ;; rgrep

@@ -262,7 +262,6 @@
 (global-set-key (kbd "C-c o a") 'org-agenda)
 
 ;; view images on hotkey
-(setq org-startup-with-inline-images nil)
 (global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
 
 ;; paste images
@@ -271,7 +270,6 @@
   :config
   (setq org-download-method 'directory))
 (setq-default org-download-image-dir org-images-directory)
-(setq org-startup-with-inline-images t)
 (global-set-key (kbd "C-c o i") 'org-download-clipboard)
 
 (defun org-create-note ()

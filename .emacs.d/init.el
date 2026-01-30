@@ -131,14 +131,14 @@
 (global-set-key (kbd "C-c d") 'duplicate-line)
 
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
-(defun insert-timestamp ()
-  (interactive)
-  (insert (format-time-string "(%Y%m%d-%H%M%S)" nil t)))
+;; (defun insert-timestamp ()
+;;   (interactive)
+;;   (insert (format-time-string "(%Y%m%d-%H%M%S)" nil t)))
 
 (defun insert-timestamp ()
   (interactive)
-  (insert (format-time-string "(%Y%m%d-%H%M%S)" (current-time) t)))
-
+  (let ((current-time (current-time)))
+    (insert (format-time-string "(%Y%m%d-%H%M%S)" current-time))))
 (global-set-key (kbd "C-c i d") 'insert-timestamp)
 
 (defun insert-todo-timestamp ()

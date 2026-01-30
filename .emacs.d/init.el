@@ -70,7 +70,7 @@
 
 (defun toggle-word-wrap ()
   (interactive)
-  (visual-line-mode))
+  (visual-line-mode (if visual-line-mode -1 1)))
 (global-set-key (kbd "C-c w") 'toggle-word-wrap)
 
 (global-set-key (kbd "C-p") 'previous-logical-line)

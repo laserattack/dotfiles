@@ -308,7 +308,7 @@
 	))
 (global-set-key (kbd "C-c o t") 'org-capture)
 
-;; gcmp
+;; gcmh
 
 (use-package gcmh
   :ensure t

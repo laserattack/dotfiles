@@ -134,6 +134,11 @@
 (defun insert-timestamp ()
   (interactive)
   (insert (format-time-string "(%Y%m%d-%H%M%S)" nil t)))
+
+(defun insert-timestamp ()
+  (interactive)
+  (insert (format-time-string "(%Y%m%d-%H%M%S)" (current-time) t)))
+
 (global-set-key (kbd "C-c i d") 'insert-timestamp)
 
 (defun insert-todo-timestamp ()

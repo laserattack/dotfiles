@@ -263,6 +263,8 @@
 
 ;; view images on hotkey
 (global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
+(eval-after-load 'org
+  '(org-toggle-inline-images))
 
 ;; paste images
 (use-package org-download

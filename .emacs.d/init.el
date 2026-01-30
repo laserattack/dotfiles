@@ -71,11 +71,11 @@
 (global-visual-line-mode 1)
 (defun custom-toggle-word-wrap ()
   (interactive)
-  (if visual-line-mode
+  (if global-visual-line-mode
       (progn
-        (visual-line-mode -1)
+        (global-visual-line-mode -1)
     (progn
-        (visual-line-mode 1)
+        (global-visual-line-mode 1)))))
 (global-set-key (kbd "C-c w") 'toggle-word-wrap)
 
 (global-set-key (kbd "C-p") 'previous-logical-line)

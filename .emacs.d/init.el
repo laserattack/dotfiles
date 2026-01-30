@@ -310,12 +310,12 @@
 
 ;; gcmh
 
-(use-package gcmh
-  :ensure t
-  :init
-  (setq gcmh-idle-delay 5
-        gcmh-high-cons-threshold (* 100 1024 1024)) ;; 100 mb
-  :hook (emacs-startup-hook . gcmh-mode))
+;;(use-package gcmh
+;;  :ensure t
+;;  :init
+;;  (setq gcmh-idle-delay 5
+;;        gcmh-high-cons-threshold (* 100 1024 1024)) ;; 100 mb
+;;  :hook (emacs-startup-hook . gcmh-mode))
 
 ;; ===== OTHER =====
 

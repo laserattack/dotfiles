@@ -296,7 +296,7 @@
 	))
 (global-set-key (kbd "C-c o t") 'org-capture)
 
-;; gcmh
+;; GCMH - the Garbage Collector Magic Hack
 
 (use-package gcmh
   :ensure t

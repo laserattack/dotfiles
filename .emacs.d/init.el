@@ -238,7 +238,7 @@
 ;; go mode
 
 (use-package go-mode
-  :defer t)
+  :ensure t)
 
 ;; ===== ORG MODE =====
 

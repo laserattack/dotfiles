@@ -238,7 +238,8 @@
 ;; go mode
 
 (use-package go-mode
-  :ensure t)
+  :ensure t
+  :hook (before-save . gofmt-before-save))
 
 ;; ===== ORG MODE =====
 

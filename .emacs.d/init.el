@@ -235,6 +235,11 @@
 ;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
+;; go mode
+
+(use-package go-mode
+  :defer t)
+
 ;; ===== ORG MODE =====
 
 ;; paths

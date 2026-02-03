@@ -134,7 +134,7 @@
 (global-set-key (kbd "C-c g d") 'rgrep)
 
 ;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
-;; rgrep selected
+;; rgrep selected in pwd
 (defun rgrep-selected (beg end)
   (interactive (if (use-region-p)
                    (list (region-beginning) (region-end))

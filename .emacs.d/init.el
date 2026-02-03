@@ -288,6 +288,13 @@
 
 (global-set-key (kbd "C-c o n") 'org-create-note)
 
+(defun org-rgrep-notes ()
+  (interactive)
+  (let ((pattern (read-string "Search in notes (regexp): ")))
+    (rgrep pattern "*.org" org-notes-directory)))
+
+(global-set-key (kbd "C-c o g") 'org-rgrep-notes)
+
 ;; templates
 (setq org-capture-templates
       `(

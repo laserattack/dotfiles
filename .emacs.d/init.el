@@ -131,16 +131,7 @@
 (global-set-key (kbd "C-c i t") 'insert-todo-timestamp)
 
 ;; rgrep
-(global-set-key (kbd "C-c g d") 'rgrep)
-
-;; stolen from https://github.com/rexim/dotfiles/blob/master/.emacs.rc/misc-rc.el
-;; rgrep selected in pwd
-(defun rgrep-selected (beg end)
-  (interactive (if (use-region-p)
-                   (list (region-beginning) (region-end))
-                 (list (point-min) (point-min))))
-  (rgrep (buffer-substring-no-properties beg end) "*" (pwd)))
-(global-set-key (kbd "C-c g s") 'rgrep-selected)
+(global-set-key (kbd "C-c g") 'rgrep)
 
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)

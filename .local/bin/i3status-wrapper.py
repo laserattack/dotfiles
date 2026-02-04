@@ -6,15 +6,21 @@ import json
 import subprocess
 
 def get_keyboard_layout():
-    """Get current keyboard layout."""
+    """Get current keyboard layout with simple symbols."""
     try:
-         result = subprocess.run(['xkb-switch', '-p'], 
+        result = subprocess.run(['xkb-switch', '-p'], 
                               capture_output=True, text=True)
-         layout = result.stdout.strip()
+        layout = result.stdout.strip()
     except:
-        layout = 'jopa'
+        layout = 'us'
     
-    return f'{layout}'
+    # Простые символы которые поддерживают все шрифты
+    if layout == 'us':
+        return '🇺🇸 EN'  # или просто 'EN'
+    elif layout == 'ru':
+        return '🇷🇺 RU'  # или просто 'RU'
+    else:
+        return f'{layout}'
 
 def print_line(message):
     """ Non-buffered printing to stdout. """

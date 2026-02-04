@@ -14,13 +14,6 @@ set smartcase
 set incsearch
 set cinoptions=l1
 set modeline
-set keymap=russian-jcukenwin
-set iminsert=0
-set imsearch=0
 set autoindent
 set autochdir
 colorscheme habamax
-
-map gf :e <cfile><CR>
-"map <leader>D :execute 'normal! a' . strftime('(%Y%m%d-%H%M%S)')<CR>
-map <leader>D :execute 'normal! a' . system('date -u "+(%Y%m%d-%H%M%S)"')<CR>

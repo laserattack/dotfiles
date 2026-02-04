@@ -16,4 +16,3 @@ set cinoptions=l1
 set modeline
 set autoindent
 set autochdir
-colorscheme habamax

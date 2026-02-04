@@ -11,7 +11,7 @@ fi
 HISTSIZE=50000
 HISTFILESIZE=10000000
 
-PS1='\[\e[34m\]\w\n\[\e[32m\]→ \[\e[0m\]'
+PS1='\[\e[34m\]\w\n\[\e[32m\]-> \[\e[0m\]'
 
 # Forces bash to save the command history immediately
 # after each command is executed

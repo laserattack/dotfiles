@@ -1,13 +1,20 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import sys
 import json
+import subprocess
 
-def get_governor():
-    """ Get the current governor for cpu0, assuming all CPUs use the same. """
-    with open('/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor') as fp:
-        return fp.readlines()[0].strip()
+def get_keyboard_layout():
+    """Get current keyboard layout."""
+    try:
+         result = subprocess.run(['xkb-switch', '-p'], 
+                              capture_output=True, text=True)
+         layout = result.stdout.strip()
+    except:
+        layout = 'us'
+    
+    return f'⌨ {layout}'
 
 def print_line(message):
     """ Non-buffered printing to stdout. """
@@ -41,8 +48,12 @@ if __name__ == '__main__':
             line, prefix = line[1:], ','
 
         j = json.loads(line)
-        # insert information into the start of the json, but could be anywhere
-        # CHANGE THIS LINE TO INSERT SOMETHING ELSE
-        j.insert(0, {'full_text' : '%s' % get_governor(), 'name' : 'gov'})
+        # insert keyboard layout at the start
+        j.insert(0, {
+            'full_text': get_keyboard_layout(),
+            'name': 'keyboard',
+            'separator': True,
+            'separator_block_width': 20
+        })
         # and echo back new encoded json
-        print_line(prefix+json.dumps(j))
+        print_line(prefix + json.dumps(j))

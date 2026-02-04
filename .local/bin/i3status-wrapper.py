@@ -1,47 +1,50 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import sys
 import json
 import os
-import time
 
-def get_keyboard_layout():
-    """Simple and fast keyboard layout."""
+def get_governor():
+    stream = os.popen('xkb-switch -p 2>/dev/null')
+    layout = stream.read().strip()
+    stream.close()
+    return "123"
+
+def print_line(message):
+    """ Non-buffered printing to stdout. """
+    sys.stdout.write(message + '\n')
+    sys.stdout.flush()
+
+def read_line():
+    """ Interrupted respecting reader for stdin. """
+    # try reading a line, removing any extra whitespace
     try:
-        layout = os.popen('xkb-switch -p 2>/dev/null').read().strip()
-        return 'EN' if layout == 'us' else 'RU'
-    except:
-        return '??'
+        line = sys.stdin.readline().strip()
+        # i3status sends EOF, or an empty line
+        if not line:
+            sys.exit(3)
+        return line
+    # exit on ctrl-c
+    except KeyboardInterrupt:
+        sys.exit()
 
-# Заголовки
-sys.stdout.write(sys.stdin.readline())
-sys.stdout.write(sys.stdin.readline())
+if __name__ == '__main__':
+    # Skip the first line which contains the version header.
+    print_line(read_line())
 
-while True:
-    line = sys.stdin.readline()
-    if not line:
-        break
-    
-    # i3status отправляет JSON массивы с запятыми между ними
-    # Первый массив без запятой, остальные с запятой
-    # НО i3bar ожидает каждый массив БЕЗ запятой в начале!
-    
-    # Убираем начальную запяту если есть
-    if line.startswith(','):
-        line = line[1:]
-    
-    try:
-        data = json.loads(line)
-        data.insert(0, {
-            'full_text': get_keyboard_layout(),
-            'name': 'keyboard',
-            'separator': True,
-            'separator_block_width': 15
-        })
-        
-        # Выводим чистый JSON, i3bar сам добавит запятые между обновлениями
-        sys.stdout.write(json.dumps(data) + '\n')
-        sys.stdout.flush()
-        
-    except json.JSONDecodeError:
-        # Если не JSON, пропускаем
-        continue
+    # The second line contains the start of the infinite array.
+    print_line(read_line())
+
+    while True:
+        line, prefix = read_line(), ''
+        # ignore comma at start of lines
+        if line.startswith(','):
+            line, prefix = line[1:], ','
+
+        j = json.loads(line)
+        # insert information into the start of the json, but could be anywhere
+        # CHANGE THIS LINE TO INSERT SOMETHING ELSE
+        j.insert(0, {'full_text' : '%s' % get_governor(), 'name' : 'gov'})
+        # and echo back new encoded json
+        print_line(prefix+json.dumps(j))

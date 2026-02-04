@@ -12,9 +12,9 @@ def get_keyboard_layout():
                               capture_output=True, text=True)
          layout = result.stdout.strip()
     except:
-        layout = 'us'
+        layout = 'jopa'
     
-    return f'⌨ {layout}'
+    return f'{layout}'
 
 def print_line(message):
     """ Non-buffered printing to stdout. """

@@ -20,7 +20,7 @@ hide_edge_borders smart
 # Edit your i3 config (usually ~/.config/i3/config)
 exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:caps_toggle"
 
-bindsym --release Caps_Lock exec pkill -SIGRTMIN+10 i3blocks
+exec --no-startup-id $HOME/.local/bin/xkb-switch -W | while read line; do pkill -SIGRTMIN+10 i3blocks; done
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.

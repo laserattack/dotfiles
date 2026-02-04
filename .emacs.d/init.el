@@ -195,8 +195,7 @@
   :ensure t
   :config
   (setq magit-auto-revert-mode nil)
-  :bind (("C-c m s" . magit-status)
-         ("C-c m l" . magit-log)))
+  :bind (("C-c m" . magit-status)))
 
 ;; multiple cursors
 

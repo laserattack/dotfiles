@@ -3,11 +3,12 @@
 
 import sys
 import json
+import subprocess
 
 def get_governor():
-    """ Get the current governor for cpu0, assuming all CPUs use the same. """
-    with open('/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor') as fp:
-        return fp.readlines()[0].strip()
+    result = subprocess.run(['xkb-switch', '-p'], capture_output=True, text=True)
+    layout = result.stdout.strip()
+    return layout
 
 def print_line(message):
     """ Non-buffered printing to stdout. """

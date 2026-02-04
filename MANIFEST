@@ -12,9 +12,8 @@
 .config/i3/config|symlink|
 .config/gtk-3.0|symlink|
 
-.local/bin/emoji|symlink|
+#.local/bin/emoji|symlink|
 .local/bin/greek|symlink|
 .local/bin/clipshot|symlink|
 .local/bin/murder|symlink|
 .local/bin/xxx|symlink|
-.local/bin/i3status-wrapper.py|symlink|

@@ -82,6 +82,9 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
+;; rgrep
+(global-set-key (kbd "C-c g") 'rgrep)
+
 ;; align lines using regexp
 (global-set-key (kbd "C-c a") 'align-regexp)
 
@@ -129,9 +132,6 @@
   (let ((current-time (current-time)))
     (insert (format-time-string "TODO(%Y%m%d-%H%M%S): " current-time))))
 (global-set-key (kbd "C-c i t") 'insert-todo-timestamp)
-
-;; rgrep
-(global-set-key (kbd "C-c g") 'rgrep)
 
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)

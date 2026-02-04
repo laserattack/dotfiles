@@ -3,16 +3,13 @@
 
 import sys
 import json
-import subprocess
-
-a = 1
+import os
 
 def get_governor():
-    global a
-    # result = subprocess.run(['xkb-switch', '-p'], capture_output=True, text=True)
-    # layout = result.stdout.strip()
-    a = a + 1
-    return str(a)
+    stream = os.popen('xkb-switch -p 2>/dev/null')
+    layout = stream.read().strip()
+    stream.close()
+    return layout
 
 def print_line(message):
     """ Non-buffered printing to stdout. """

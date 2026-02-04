@@ -5,10 +5,14 @@ import sys
 import json
 import subprocess
 
+a = 1
+
 def get_governor():
-    result = subprocess.run(['xkb-switch', '-p'], capture_output=True, text=True)
-    layout = result.stdout.strip()
-    return layout
+    global a
+    # result = subprocess.run(['xkb-switch', '-p'], capture_output=True, text=True)
+    # layout = result.stdout.strip()
+    a = a + 1
+    return str(a)
 
 def print_line(message):
     """ Non-buffered printing to stdout. """

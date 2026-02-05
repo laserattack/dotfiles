@@ -144,7 +144,8 @@
   :ensure t
   :config
   (setq ef-themes-common-palette-overrides
-        '((bg-hover "#003e5f")))
+        '((bg-hover "#00552f")
+          (bg-hover-secondary "#00552f")))
   (load-theme 'ef-bio t))
 
 ;; ido + smex

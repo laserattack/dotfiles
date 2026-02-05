@@ -53,7 +53,7 @@
 ;; ===== INTERFACE =====
 
 (add-to-list 'default-frame-alist
-             '(font . "Iosevka-15"))
+             '(font . "Iosevka-20"))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

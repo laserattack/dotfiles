@@ -135,18 +135,17 @@
 ;;   :config
 ;;   (load-theme 'gruber-darker-mod t))
 
-;; (use-package zenburn-theme
-;;  :config
-;;  (load-theme 'zenburn t))
+(use-package zenburn-theme
+ :config
+ (load-theme 'zenburn t))
 
-(use-package ef-themes
-  :ensure t
-  :config
-  (setq ef-themes-common-palette-overrides
-        '((bg-hover "#00552f")
-          (bg-hover-secondary "#00552f")
-          (string "#00952f")))
-  (load-theme 'ef-bio t))
+;; (use-package ef-themes
+;;   :ensure t
+;;   :config
+;;   (setq ef-themes-common-palette-overrides
+;;         '((bg-hover "#00552f")
+;;           (bg-hover-secondary "#00552f")))
+;;   (load-theme 'ef-bio t))
 
 ;; ido + smex
 

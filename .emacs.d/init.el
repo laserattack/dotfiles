@@ -143,7 +143,9 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-bio t))
+  (load-theme 'ef-bio t)
+  (custom-set-faces
+   `(bg-hover ((t (:background "#FF0000"))))))
 
 ;; ido + smex
 

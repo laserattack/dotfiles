@@ -59,7 +59,7 @@
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (column-number-mode 1)
-(set-fringe-mode 0)
+;;(set-fringe-mode 0)
 (global-hl-line-mode t)
 
 (setq-default tab-width 4)

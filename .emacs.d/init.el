@@ -136,15 +136,14 @@
 ;;   :config
 ;;   (load-theme 'gruber-darker-mod t))
 
-(use-package zenburn-theme
- :config
- (load-theme 'zenburn t))
+;; (use-package zenburn-theme
+;;  :config
+;;  (load-theme 'zenburn t))
 
-;;(use-package ef-themes
-;; :ensure t
-;; :config
-;; (load-theme 'ef-bio t)
-;;)
+(use-package ef-themes
+  :ensure t
+  :config
+  (load-theme 'ef-bio t))
 
 ;; ido + smex
 

@@ -53,7 +53,7 @@
 ;; ===== INTERFACE =====
 
 (add-to-list 'default-frame-alist
-             '(font . "Liberation Mono-15"))
+             '(font . "Iosevka-15"))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)

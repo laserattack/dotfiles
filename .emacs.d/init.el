@@ -66,9 +66,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default compilation-scroll-output t)
 
-(global-visual-line-mode 1)
-(global-set-key (kbd "C-c w") 'global-visual-line-mode)
-
 (setq inhibit-startup-screen t)
 
 ;; relative lines numbers

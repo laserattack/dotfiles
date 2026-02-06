@@ -1,4 +1,4 @@
-.alacritty.toml|symlink|
+#.alacritty.toml|symlink|
 .xinitrc|symlink|
 .Xresources|symlink|
 .i3status.conf|symlink|

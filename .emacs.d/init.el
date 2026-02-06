@@ -84,24 +84,6 @@
 ;; align lines using regexp
 (global-set-key (kbd "C-c a") 'align-regexp)
 
-;; kill all buffers except the current one, *scratch* and *Messages*
-(defun kill-other-buffers ()
-  (interactive)
-  (let ((essential-buffers '("*scratch*" "*Messages*"))
-        (current (current-buffer))
-        (buffers-to-kill '()))
-    
-    (dolist (buffer (buffer-list))
-      (unless (or (eq buffer current)
-                  (member (buffer-name buffer) essential-buffers))
-        (push buffer buffers-to-kill)))
-    
-    (when buffers-to-kill
-      (if (y-or-n-p "Kill all buffers except current and essential?")
-          (dolist (buffer buffers-to-kill)
-            (kill-buffer buffer))))))
-(global-set-key (kbd "C-c b k") 'kill-other-buffers)
-
 ;; duplicate current line
 (defun duplicate-line (&optional n)
   (interactive "p")

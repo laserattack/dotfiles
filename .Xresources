@@ -12,9 +12,12 @@ URxvt*depth:            32
 URxvt.transparent:      false
 
 URxvt.iso14755:         false
+URxvt.iso14755_52:      false
 URxvt.keysym.C-minus:   resize-font:smaller
 URxvt.keysym.C-equal:   resize-font:bigger
 URxvt.keysym.C-0:       resize-font:reset
+URxvt.keysym.Control-Shift-v: eval:paste_clipboard
+URxvt.keysym.Control-Shift-c: eval:selection_to_clipboard
 
 ! Zenburn
 URxvt*background: #3f3f3f

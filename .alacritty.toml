@@ -24,12 +24,10 @@ bindings = [
   { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
 ]
 
-# colortheme stolen from https://github.com/alacritty/alacritty-theme/blob/master/themes/vscode.toml
-
+# stolen from https://github.com/alacritty/alacritty-theme/blob/master/themes/vscode.toml
 [colors.primary]
 foreground = "#cccccc"
 background = "#1e1e1e"
-
 [colors.normal]
 black = "#000000"
 red = "#cd3131"
@@ -39,7 +37,6 @@ blue = "#2472c8"
 magenta = "#bc3fbc"
 cyan = "#11a8cd"
 white = "#e5e5e5"
-
 [colors.bright]
 black = "#666666"
 red = "#f14c4c"

@@ -130,14 +130,14 @@
 ;; ===== PLUGINS =====
 
 ;; colortheme
-(use-package gruber-darker-mod-theme
-  ;; :load-path "~/.emacs.local/"
-  :config
-  (load-theme 'gruber-darker-mod t))
 
-;; (use-package zenburn-theme
-;;  :config
-;;  (load-theme 'zenburn t))
+;; (use-package gruber-darker-mod-theme
+;;   :config
+;;   (load-theme 'gruber-darker-mod t))
+
+(use-package zenburn-theme
+ :config
+ (load-theme 'zenburn t))
 
 ;; (use-package ef-themes
 ;;   :ensure t

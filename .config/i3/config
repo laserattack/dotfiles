@@ -54,7 +54,7 @@ focus_follows_mouse no
 tiling_drag modifier titlebar
 
 # start some stuff
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec $HOME/.local/bin/st
 bindsym $mod+t      exec thunar
 bindsym $mod+i      exec firefox
 

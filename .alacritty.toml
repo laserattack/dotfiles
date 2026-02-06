@@ -14,7 +14,7 @@ bindings = [
   { key = "Delete", mods = "Control", chars = "\u001bd" },
 ]
 
-# Colors (Zenburn)
+# Colors (Zenburn) (stolen from https://github.com/alacritty/alacritty-theme/blob/master/themes/zenburn.toml)
 # Orginally designed by jnurmine for vim.
 
 # Default colors

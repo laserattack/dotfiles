@@ -29,9 +29,19 @@ alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
 #gg() { git log -p -G"$1" }
 gg() {
-    local pattern
-    pattern=$(echo "" | fzf --prompt="Search pattern: " --print-query | head -1)
-    [ -n "$pattern" ] && git log -p -G"$pattern"
+    local query commits
+    
+    query=$(echo "" | fzf \
+        --prompt="Search: " \
+        --print-query \
+        --bind "change:reload(git log --oneline --color=always -G'{q}')" \
+        --bind "enter:accept" \
+        --header="Type to search in commit diffs (regex)" \
+        --preview "git show --color=always {1} 2>/dev/null | grep -C 3 --color=always '{q}' || echo 'No preview for this commit'" \
+        --preview-window 'right:60%' \
+        | cut -d' ' -f1)
+    
+    [ -n "$query" ] && git show --color=always "$query" | less -R
 }
 
 alias fzfh='history | fzf'

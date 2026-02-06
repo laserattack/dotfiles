@@ -1,2 +1,9 @@
+! cursor
 Xcursor.theme: Adwaita
 Xcursor.size: 24
+
+! urxvt
+URxvt.font: xft:Monospace:size=12
+URxvt.keysym.C-plus: resize-font:larger
+URxvt.keysym.C-minus: resize-font:smaller
+URxvt.keysym.C-0: resize-font:reset

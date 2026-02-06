@@ -27,32 +27,7 @@ alias ls='ls --color=auto'
 
 alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
-#gg() { git log -p -G"$1" }
-
-gg() {
-    # Фаза 1: Ввод паттерна
-    local pattern
-    pattern=$(echo "" | fzf \
-        --prompt="🔍 Enter search pattern: " \
-        --print-query \
-        --bind "enter:accept" \
-        | head -1)
-    
-    [ -z "$pattern" ] && return
-    
-    # Фаза 2: Выбор коммита из результатов
-    local commit_hash
-    commit_hash=$(git log --oneline --color=always -G"$pattern" \
-        | fzf \
-            --ansi \
-            --prompt="📝 Select commit: " \
-            --bind "change:reload(git log --oneline --color=always -G'$pattern' | grep -i {q})" \
-            --preview "git show --color=always {1} | grep -C 3 --color=always '$pattern'" \
-            --preview-window 'right:60%' \
-        | cut -d' ' -f1)
-    
-    [ -n "$commit_hash" ] && git show --color=always "$commit_hash" | less -R
-}
+gg() { git log -p -G"$1" }
 
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'

@@ -18,7 +18,7 @@ bindings = [
 
 [colors.primary]
 foreground = '#dbdbdb'
-background = '#14191e'
+background = '#1A1A1A'
 
 [colors.cursor]
 text   = '#000000'

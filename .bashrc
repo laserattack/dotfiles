@@ -27,7 +27,7 @@ alias ls='ls --color=auto'
 
 alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
-gg() { git log -p -G"$1"; }
+gg() { git --no-pager log -p --reverse -G"$1"; }
 
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'

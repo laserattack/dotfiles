@@ -4,3 +4,9 @@ history=100000
 [cursor]
 style = { shape = "Block", blinking = "On" }
 blink_interval=500
+
+[keyboard]
+bindings = [
+  { key = "Back", mods = "Control", chars = "\u0017" },
+  { key = "Delete", mods = "Control", chars = "\u001bd" },
+]

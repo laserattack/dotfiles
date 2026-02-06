@@ -74,6 +74,10 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
+;; ibuffer
+
+
+
 ;; rgrep
 (global-set-key (kbd "C-c g") 'rgrep)
 

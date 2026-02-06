@@ -8,7 +8,6 @@
 .xprofile|symlink|
 .tmux.conf|symlink|
 
-.urxvt|symlink|
 .config/nvim|symlink|
 .emacs.local|symlink|
 .emacs.d/init.el|symlink|

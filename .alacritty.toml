@@ -1,4 +1,5 @@
 # ==== some info ====
+# Search by substring : C+F (and esc/C-c for exit)
 
 [scrolling]
 history=100000

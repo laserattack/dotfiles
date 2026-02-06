@@ -39,6 +39,7 @@
 (setq vc-follow-symlinks t)
 
 ;; dired
+(setq dired-kill-when-opening-new-dired-buffer t)
 (setq dired-listing-switches "-alh")
 (setq dired-mouse-drag-files t)
 (setq-default dired-dwim-target t)

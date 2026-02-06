@@ -12,6 +12,16 @@ blink_interval=500
 bindings = [
   { key = "Back", mods = "Control", chars = "\u0017" },
   { key = "Delete", mods = "Control", chars = "\u001bd" },
+
+  # check https://github.com/alacritty/alacritty/issues/5450
+  { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+  { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+  { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+  { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+  { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
 ]
 
 # colortheme stolen from https://github.com/alacritty/alacritty-theme/blob/master/themes/vscode.toml

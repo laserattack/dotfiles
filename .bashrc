@@ -24,9 +24,16 @@ fi
 
 alias ls='ls --color=auto'
 # alias clear='tput reset'
+
 alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
-alias gg='git log -p -G"$1"'
+#gg() { git log -p -G"$1" }
+gg() {
+    local pattern
+    pattern=$(echo "" | fzf --prompt="Search pattern: " --print-query | head -1)
+    [ -n "$pattern" ] && git log -p -G"$pattern"
+}
+
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 fzfv() { f=$(rg --files "${1:-.}" 2>/dev/null | fzf) && nvim "$f"; }

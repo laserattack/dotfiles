@@ -76,7 +76,7 @@
 
 ;; ibuffer
 
-
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; rgrep
 (global-set-key (kbd "C-c g") 'rgrep)

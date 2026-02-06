@@ -3,10 +3,13 @@ Xcursor.theme:          Adwaita
 Xcursor.size:           24
 
 !                       urxvt
-URxvt.perl-ext-common:  resize-font,matcher
+! plugin for resize font in ~/.urxvt/ext/resize-font
+URxvt.perl-ext-common:  resize-font
 
 URxvt.font:             xft:Monospace:size=15
 URxvt.scrollBar:        false
+URxvt*depth:            32
+URxvt.transparent:      false
 
 URxvt.keysym.C-minus:   resize-font:smaller
 URxvt.keysym.C-equal:   resize-font:bigger

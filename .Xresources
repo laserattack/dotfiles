@@ -6,6 +6,7 @@ Xcursor.size:           24
 URxvt.perl-ext-common:  resize-font,matcher
 
 URxvt.font:             xft:Monospace:size=15
+URxvt.scrollBar:        false
 
 URxvt.keysym.C-minus:   resize-font:smaller
 URxvt.keysym.C-equal:   resize-font:bigger

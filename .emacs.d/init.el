@@ -131,7 +131,7 @@
 
 ;; ;; colortheme
 ;; (use-package gruber-darker-mod-theme
-;;   :load-path "~/.emacs.local/themes/"
+;;   :load-path "~/.emacs.local/"
 ;;   :config
 ;;   (load-theme 'gruber-darker-mod t))
 

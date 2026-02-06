@@ -14,36 +14,31 @@ bindings = [
   { key = "Delete", mods = "Control", chars = "\u001bd" },
 ]
 
-# Color theme ported from iTerm 2 Smoooooth
-
-# Colors (Wombat)
-
-# Default colors
 [colors.primary]
-background = '#1f1f1f'
-foreground = '#e5e1d8'
+foreground = "#cccccc"
+background = "#1e1e1e"
 
-# Normal colors
 [colors.normal]
-black   = '#000000'
-red     = '#f7786d'
-green   = '#bde97c'
-yellow  = '#efdfac'
-blue    = '#6ebaf8'
-magenta = '#ef88ff'
-cyan    = '#90fdf8'
-white   = '#e5e1d8'
+black = "#000000"
+red = "#cd3131"
+green = "#0dbc79"
+yellow = "#e5e510"
+blue = "#2472c8"
+magenta = "#bc3fbc"
+cyan = "#11a8cd"
+white = "#e5e5e5"
 
-# Bright colors
 [colors.bright]
-black   = '#b4b4b4'
-red     = '#f99f92'
-green   = '#e3f7a1'
-yellow  = '#f2e9bf'
-blue    = '#b3d2ff'
-magenta = '#e5bdff'
-cyan    = '#c2fefa'
-white   = '#ffffff'
+black = "#666666"
+red = "#f14c4c"
+green = "#23d18b"
+yellow = "#f5f543"
+blue = "#3b8eea"
+magenta = "#d670d6"
+cyan = "#29b8db"
+white = "#e5e5e5"
+
+# Color theme ported from iTerm 2 Smoooooth
 
 # [colors.primary]
 # foreground = '#dbdbdb'

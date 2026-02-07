@@ -67,8 +67,11 @@ sub murder_pid {
     }
 
     foreach my $target_pid (reverse @all_pids) {
-        next unless is_running($target_pid);
-
+        unless (is_running($target_pid)) {
+            say "Process with pid ".$COLOR."$target_pid".$RESET." already dead" if !$QUIET;
+            next;
+        }
+        
         foreach my $sig (@SIGNALS) {
             my ($code, $wait) = @$sig;
             say "Sending signal ".$COLOR."$code".$RESET." to pid ".$COLOR."$target_pid".$RESET if !$QUIET;

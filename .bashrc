@@ -38,6 +38,19 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+proctree() {
+    local usage="Usage: proctree <PID>"
+    if [ "$#" -ne 1 ]; then
+        echo "$usage"
+        return 1
+    fi
+    local pid=$1
+    echo "$pid"
+    ps -eo pid,ppid | awk -v p="$pid" '$2 == p {print $1}' | while read child; do 
+        proctree "$child"
+    done
+}
+
 pyvenv() {
     if [ -n "$VIRTUAL_ENV" ]; then
         echo "Already in virtual environment '$VIRTUAL_ENV'. Deactivating..."

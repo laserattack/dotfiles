@@ -22,6 +22,7 @@ our $FORCE   = 0;
 our $QUIET   = 0;
 our $HELP    = 0;
 our $NOCOLOR = 0;
+our $ONE     = 0;
 
 sub go_ahead {
     my $input = <STDIN>;
@@ -56,30 +57,38 @@ sub get_all_descendants {
     return keys %result;
 }
 
+sub kill_single_process {
+    my ($pid) = @_;
+    foreach my $sig (@SIGNALS) {
+        my ($code, $wait) = @$sig;
+        say "Sending signal ".$COLOR."$code".$RESET." to pid ".$COLOR.$pid.$RESET if !$QUIET;
+        kill($code, $pid);
+        sleep(0.3);
+        last unless is_running($pid);
+        sleep($wait);
+    }
+}
+
 sub murder_pid {
     my ($pid) = @_;
 
+    if ($ONE) {
+        say "Process: ".$COLOR.$pid.$RESET if !$QUIET;
+        kill_single_process($pid);
+        return;
+    }
+    
     my @all_pids = get_all_descendants($pid);
     unshift @all_pids, $pid;
 
-    if (!$QUIET) {
-        say "Process tree: " . join($RESET.', '.$COLOR, map { $COLOR.$_ } @all_pids).$RESET;
-    }
+    say "Process tree: " . join($RESET.', '.$COLOR, map { $COLOR.$_ } @all_pids).$RESET if !$QUIET;
 
     foreach my $target_pid (reverse @all_pids) {
         unless (is_running($target_pid)) {
             say "Process with pid ".$COLOR."$target_pid".$RESET." already dead" if !$QUIET;
             next;
         }
-        
-        foreach my $sig (@SIGNALS) {
-            my ($code, $wait) = @$sig;
-            say "Sending signal ".$COLOR."$code".$RESET." to pid ".$COLOR."$target_pid".$RESET if !$QUIET;
-            kill($code, $target_pid);
-            sleep(0.3);
-            last unless is_running($target_pid);
-            sleep($wait);
-        }
+        kill_single_process($target_pid);
     }
 }
 
@@ -143,6 +152,7 @@ sub usage {
     say "  -q, --quiet     Quiet mode (minimal output)";
     say "  -h, --help      Show this help message";
     say "  -n, --nocolor   Disable colored output";
+    say "  -o, --one       Kill only the specified process, not the entire tree";
     say "";
     say "Arguments:";
     say "  PID             Process ID to kill";
@@ -157,10 +167,11 @@ sub usage {
 }
 
 GetOptions(
-    'force|f' => \$FORCE,
-    'quiet|q' => \$QUIET,
-    'help|h'  => \$HELP,
+    'force|f'   => \$FORCE,
+    'quiet|q'   => \$QUIET,
+    'help|h'    => \$HELP,
     'nocolor|n' => \$NOCOLOR,
+    'one|o'     => \$ONE,
     ) or do {
         usage();
         exit 1;

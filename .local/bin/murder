@@ -71,9 +71,7 @@ sub murder_pid {
 
         foreach my $sig (@SIGNALS) {
             my ($code, $wait) = @$sig;
-            if (!$QUIET) {
-                say "Sending signal ".$COLOR."$code".$RESET." to pid ".$COLOR."$target_pid".$RESET;
-            }
+            say "Sending signal ".$COLOR."$code".$RESET." to pid ".$COLOR."$target_pid".$RESET if !$QUIET;
             kill($code, $target_pid);
             sleep(0.3);
             last unless is_running($target_pid);
@@ -93,9 +91,7 @@ sub murder_port {
             murder_pid($pid);
         } else {
             print("Kill process ".$COLOR."$command".$RESET." (pid ".$COLOR."$pid".$RESET.")? [Y/n] ");
-            if (go_ahead()) {
-                murder_pid($pid);
-            }
+            murder_pid($pid) if go_ahead();
         }
     }
 }
@@ -110,9 +106,7 @@ sub murder_names {
             murder_pid($pid);
         } else {
             print("Kill process ".$COLOR."$command".$RESET." (pid ".$COLOR."$pid".$RESET.")? [Y/n] ");
-            if (go_ahead()) {
-                murder_pid($pid);
-            }
+            murder_pid($pid) if go_ahead();
         }
     }
 }
@@ -145,7 +139,7 @@ sub usage {
     say "  -f, --force     Kill without confirmation";
     say "  -q, --quiet     Quiet mode (minimal output)";
     say "  -h, --help      Show this help message";
-    say "      --nocolor   Disable colored output";
+    say "  -n, --nocolor   Disable colored output";
     say "";
     say "Arguments:";
     say "  PID             Process ID to kill";
@@ -163,7 +157,7 @@ GetOptions(
     'force|f' => \$FORCE,
     'quiet|q' => \$QUIET,
     'help|h'  => \$HELP,
-    'nocolor' => \$NOCOLOR,
+    'nocolor|n' => \$NOCOLOR,
     ) or do {
         usage();
         exit 1;

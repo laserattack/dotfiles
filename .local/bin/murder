@@ -4,20 +4,31 @@ use strict;
 use warnings;
 use feature 'say';
 use Time::HiRes 'sleep';
+use Getopt::Long;
 
 our @SIGNALS = (
+    # [signal, timeout]
     [15, 3],
     [2, 3],
     [1, 4],
     [9, 0]
 );
 
+our $COLOR = "\e[36m";
+our $RESET = "\e[0m";
+
+# flags
+our $FORCE   = 0;
+our $QUIET   = 0;
+our $HELP    = 0;
+our $NOCOLOR = 0;
+
 sub go_ahead {
     my $input = <STDIN>;
     chomp($input);
     $input =~ s/^\s+|\s+$//g;
     $input = lc($input);
-     
+
     return 1 if $input eq '';
     return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
 }
@@ -30,7 +41,7 @@ sub is_running {
 sub get_all_descendants {
     my ($pid) = @_;
     my %result;
-    
+
     my $find_children;
     $find_children = sub {
         my ($parent) = @_;
@@ -40,25 +51,29 @@ sub get_all_descendants {
             $find_children->($child);
         }
     };
-    
+
     $find_children->($pid);
     return keys %result;
 }
 
 sub murder_pid {
     my ($pid) = @_;
-    
+
     my @all_pids = get_all_descendants($pid);
     unshift @all_pids, $pid;
-    
-    say "Process tree: " . join(', ', @all_pids);
-    
+
+    if (!$QUIET) {
+        say "Process tree: " . join($RESET.', '.$COLOR, map { $COLOR.$_ } @all_pids).$RESET;
+    }
+
     foreach my $target_pid (reverse @all_pids) {
         next unless is_running($target_pid);
-        
+
         foreach my $sig (@SIGNALS) {
             my ($code, $wait) = @$sig;
-            say "Sending signal $code to pid $target_pid";
+            if (!$QUIET) {
+                say "Sending signal ".$COLOR."$code".$RESET." to pid ".$COLOR."$target_pid".$RESET;
+            }
             kill($code, $target_pid);
             sleep(0.3);
             last unless is_running($target_pid);
@@ -74,9 +89,13 @@ sub murder_port {
     foreach my $pid (@pids) {
         my $command = `ps -p $pid -o comm=`;
         chomp($command);
-        print("Kill process '$command' (pid $pid)? [Y/n] ");
-        if (go_ahead()) {
+        if ($FORCE) {
             murder_pid($pid);
+        } else {
+            print("Kill process ".$COLOR."$command".$RESET." (pid ".$COLOR."$pid".$RESET.")? [Y/n] ");
+            if (go_ahead()) {
+                murder_pid($pid);
+            }
         }
     }
 }
@@ -87,9 +106,13 @@ sub murder_names {
     foreach my $line (split(/\n/, $running)) {
         my ($pid, $command) = $line =~ /^\s*(\d+)\s+(.+?)\s*$/;
         next if $$ == $pid;
-        print("Kill process '$command' (pid $pid)? [Y/n] ");
-        if (go_ahead()) {
+        if ($FORCE) {
             murder_pid($pid);
+        } else {
+            print("Kill process ".$COLOR."$command".$RESET." (pid ".$COLOR."$pid".$RESET.")? [Y/n] ");
+            if (go_ahead()) {
+                murder_pid($pid);
+            }
         }
     }
 }
@@ -105,12 +128,55 @@ sub murder {
     }
 }
 
-if (@ARGV < 1) {
-    say 'murder 123    # kill by pid';
-    say 'murder ruby   # kill by process name'; 
-    say 'murder :3000  # kill by port';
-} else {
-    foreach my $arg (@ARGV) {
-        murder($arg);
+sub main {
+    if (@ARGV < 1) {
+        usage();
+    } else {
+        foreach my $arg (@ARGV) {
+            murder($arg);
+        }
     }
 }
+
+sub usage {
+    say "Usage: murder [OPTIONS] <PID|NAME|:PORT>";
+    say "";
+    say "Options:";
+    say "  -f, --force     Kill without confirmation";
+    say "  -q, --quiet     Quiet mode (minimal output)";
+    say "  -h, --help      Show this help message";
+    say "      --nocolor   Disable colored output";
+    say "";
+    say "Arguments:";
+    say "  PID             Process ID to kill";
+    say "  NAME            Process name to kill (e.g., ruby, python)";
+    say "  :PORT           Port number to kill process on (e.g., :3000)";
+    say "";
+    say "Examples:";
+    say "  murder 1234               Kill process with PID 1234";
+    say "  murder -f ruby            Kill all ruby processes without asking";
+    say "  murder -q :3000           Kill process on port 3000 quietly";
+    say "  murder --nocolor python   Kill python processes without colors";
+}
+
+GetOptions(
+    'force|f' => \$FORCE,
+    'quiet|q' => \$QUIET,
+    'help|h'  => \$HELP,
+    'nocolor' => \$NOCOLOR,
+    ) or do {
+        usage();
+        exit 1;
+};
+
+if ($HELP) {
+    usage();
+    exit 1;
+}
+
+if ($NOCOLOR) {
+    $COLOR="";
+    $RESET="";
+}
+
+main();

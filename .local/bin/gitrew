@@ -29,7 +29,9 @@ sub usage {
         "  gitrew 2 weeks ago\n".
         "  gitrew 2 minute ago\n".
         "  gitrew 2026-02-08 15:52\n".
-        "  gitrew -i\n";
+        "  gitrew -i\n".
+        "Warning: Git's date parser is very strange. 'gibberish' may return\n".
+            "         the latest commit. Use proper timestamps e.g. like above.\n";
 }
 
 sub main {

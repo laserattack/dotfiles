@@ -92,8 +92,7 @@ if ($CLEANUP) {
 }
 
 if ($LIST) {
-    my $output = `ls -1 $GITREWIND_DIR`;
-    print $output;
+    print `ls -1 $GITREWIND_DIR 2>/dev/null` || "No memories found\n" if -d $GITREWIND_DIR;
     exit 0;
 }
 

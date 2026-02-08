@@ -65,9 +65,8 @@ sub main {
 
     my $safe_datetime = $datetime;
     $safe_datetime =~ s/ /_/g;
-    $safe_datetime =~ s/[:-]//g;
-    
-    my $current_time = strftime("%Y%m%d_%H%M%S", localtime());
+
+    my $current_time = strftime("%Y-%m-%d_%H:%M:%S", localtime());
     
     make_path($GITREWIND_DIR) unless -d $GITREWIND_DIR;
 

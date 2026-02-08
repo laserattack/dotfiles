@@ -16,6 +16,7 @@
 
 #.local/bin/emoji|symlink|
 .local/bin/z.sh|symlink|
+.local/bin/gitrew|symlink|
 .local/bin/greek|symlink|
 .local/bin/clipshot|symlink|
 .local/bin/murder|symlink|

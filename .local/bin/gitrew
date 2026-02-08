@@ -82,8 +82,8 @@ sub main {
     my $meta_file = "$snapshot_base_dir/metadata";
     open my $fh, '>', $meta_file or die "Cannot write metadata: $!\n";
     my $current_time = strftime("%Y-%m-%d %H:%M:%S", localtime());
-    print $fh "Repo path:          ~/.gitrewind/${snapshot_base_dir_name}/${repo_name}\n";
     print $fh "Repo name:          $repo_name\n";
+    print $fh "Snapshot path:      ~/.gitrewind/${snapshot_base_dir_name}/${repo_name}\n";
     print $fh "Snapshot created:   $current_time\n";
     print $fh "Snapshot timestamp: $timestamp\n";
     print $fh "Commit hash:        $hash\n";
@@ -123,6 +123,7 @@ if ($LIST) {
                             print "$line";
                         }
                         close $fh;
+                        say "";
                     }
                 }
             }

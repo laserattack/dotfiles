@@ -113,9 +113,21 @@ remove_tree($GITREWIND_DIR) or die "Cannot remove: $!\n" if $CLEANUP && -d $GITR
 
 if ($LIST) {
     if (-d $GITREWIND_DIR) {
-        my $output = `ls -1 $GITREWIND_DIR 2>/dev/null`;
-        if ($output) {
-            print $output;
+        my @snapshots = glob("$GITREWIND_DIR/*");
+        if (@snapshots) {
+            foreach my $snap (sort @snapshots) {
+                say basename($snap);
+                my $meta_file = "$snap/metadata";
+                if (-f $meta_file) {
+                    if (open my $fh, '<', $meta_file) {
+                        while (my $line = <$fh>) {
+                            print "  $line";
+                        }
+                        close $fh;
+                        say "";
+                    }
+                }
+            }
         } else {
             say "No snapshots yet";
         }

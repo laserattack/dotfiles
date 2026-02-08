@@ -15,6 +15,7 @@
 .config/gtk-3.0|symlink|
 
 #.local/bin/emoji|symlink|
+.local/bin/z.sh|symlink|
 .local/bin/greek|symlink|
 .local/bin/clipshot|symlink|
 .local/bin/murder|symlink|

@@ -78,10 +78,11 @@
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(defun search-all-buffers-with-context (pattern nlines)
-  (interactive "sRegexp: ")
-  (occur-1 pattern 1 (buffer-list) t))
-(global-set-key (kbd "C-c b g") 'search-all-buffers)
+(defun multi-isearch-all-buffers-regexp ()
+  (interactive)
+  (let ((buffers (buffer-list)))
+    (multi-isearch-buffers-regexp buffers)))
+(global-set-key (kbd "C-c b g") 'multi-isearch-all-buffers-regexp)
 
 ;; rgrep
 (global-set-key (kbd "C-c g") 'rgrep)

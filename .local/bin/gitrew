@@ -34,8 +34,8 @@ sub main {
     my $datetime;
     
     if ($INTERACTIVE) {
-        my $dates = `git log --date=short --format="%ad %H %s" | head -20`;
-        my $choice = `echo "$dates" | fzf --header="Select commit date" --preview='git show --stat {2}' | cut -d' ' -f1`;
+        my $commits = `git log --date='format:%Y-%m-%d %H:%M:%S' --format="%ad" | head -20`;
+        my $choice = `echo "$commits" | fzf --header="Select commit date+time"`;
         chomp $choice;
         $datetime = $choice if $choice;
     } else {

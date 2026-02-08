@@ -6,6 +6,7 @@ use feature 'say';
 use Time::HiRes 'sleep';
 use Getopt::Long;
 
+
 our @SIGNALS = (
     # [signal, timeout]
     [15, 3],
@@ -14,14 +15,11 @@ our @SIGNALS = (
     [9, 0]
 );
 
-our $COLOR = "\e[36m";
-our $RESET = "\e[0m";
-
 # flags
+Getopt::Long::Configure('bundling'); # can combine flags e.g., -qf
 our $FORCE   = 0;
 our $QUIET   = 0;
 our $HELP    = 0;
-our $NOCOLOR = 0;
 our $ONE     = 0;
 
 sub go_ahead {
@@ -61,7 +59,7 @@ sub kill_single_process {
     my ($pid) = @_;
     foreach my $sig (@SIGNALS) {
         my ($code, $wait) = @$sig;
-        say "Sending signal ".$COLOR."$code".$RESET." to pid ".$COLOR.$pid.$RESET if !$QUIET;
+        say "Sending signal $code to pid $pid" if !$QUIET;
         kill($code, $pid);
         sleep(0.3);
         last unless is_running($pid);
@@ -73,19 +71,19 @@ sub murder_pid {
     my ($pid) = @_;
 
     if ($ONE) {
-        say "Process: ".$COLOR.$pid.$RESET if !$QUIET;
+        say "Process: $pid" if !$QUIET;
         kill_single_process($pid);
         return;
     }
-    
+
     my @all_pids = get_all_descendants($pid);
     unshift @all_pids, $pid;
 
-    say "Process tree: " . join($RESET.', '.$COLOR, map { $COLOR.$_ } @all_pids).$RESET if !$QUIET;
+    say "Process tree: " . join(', ', @all_pids) if !$QUIET;
 
     foreach my $target_pid (reverse @all_pids) {
         unless (is_running($target_pid)) {
-            say "Process with pid ".$COLOR."$target_pid".$RESET." already dead" if !$QUIET;
+            say "Process with pid $target_pid already dead" if !$QUIET;
             next;
         }
         kill_single_process($target_pid);
@@ -102,7 +100,7 @@ sub murder_port {
         if ($FORCE) {
             murder_pid($pid);
         } else {
-            print("Kill process ".$COLOR."$command".$RESET." (pid ".$COLOR."$pid".$RESET.")? [Y/n] ");
+            print("Kill process $command (pid $pid)? [Y/n] ");
             murder_pid($pid) if go_ahead();
         }
     }
@@ -117,7 +115,7 @@ sub murder_names {
         if ($FORCE) {
             murder_pid($pid);
         } else {
-            print("Kill process ".$COLOR."$command".$RESET." (pid ".$COLOR."$pid".$RESET.")? [Y/n] ");
+            print("Kill process $command (pid $pid)? [Y/n] ");
             murder_pid($pid) if go_ahead();
         }
     }
@@ -148,29 +146,27 @@ sub usage {
     say "Usage: murder [OPTIONS] <PID|NAME|:PORT>";
     say "";
     say "Options:";
-    say "  -f, --force     Kill without confirmation";
-    say "  -q, --quiet     Quiet mode (minimal output)";
-    say "  -h, --help      Show this help message";
-    say "  -n, --nocolor   Disable colored output";
-    say "  -o, --one       Kill only the specified process, not the entire tree";
+    say "  -f, --force  Kill without confirmation";
+    say "  -q, --quiet  Quiet mode (minimal output)";
+    say "  -h, --help   Show this help message";
+    say "  -o, --one    Kill only the specified process, not the entire tree";
     say "";
     say "Arguments:";
-    say "  PID             Process ID to kill";
-    say "  NAME            Process name to kill (e.g., ruby, python)";
-    say "  :PORT           Port number to kill process on (e.g., :3000)";
+    say "  PID    Process ID to kill";
+    say "  NAME   Process name to kill (e.g., ruby, python)";
+    say "  :PORT  Port number to kill process on (e.g., :3000)";
     say "";
     say "Examples:";
-    say "  murder 1234               Kill process with PID 1234";
-    say "  murder -f ruby            Kill all ruby processes without asking";
-    say "  murder -q :3000           Kill process on port 3000 quietly";
-    say "  murder --nocolor python   Kill python processes without colors";
+    say "  murder 1234        Kill process with PID 1234";
+    say "  murder -f ruby     Kill all ruby processes without asking";
+    say "  murder -q :3000    Kill process on port 3000 quietly";
+    say "  murder -fq python  Kill python processes without asking and quietly";
 }
 
 GetOptions(
     'force|f'   => \$FORCE,
     'quiet|q'   => \$QUIET,
     'help|h'    => \$HELP,
-    'nocolor|n' => \$NOCOLOR,
     'one|o'     => \$ONE,
     ) or do {
         usage();
@@ -180,11 +176,6 @@ GetOptions(
 if ($HELP) {
     usage();
     exit 1;
-}
-
-if ($NOCOLOR) {
-    $COLOR="";
-    $RESET="";
 }
 
 main();

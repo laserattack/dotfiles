@@ -18,7 +18,7 @@ our $INTERACTIVE = 0;
 our $LIST        = 0;
 
 sub usage {
-    die "Usage: gitrew [-hci] timestamp\n".
+    die "Usage: gitrew [-hlci] timestamp\n".
         "Flags:\n".
         "  -h, --help         Show this help message and exit\n".
         "  -l, --list         Show memories (~/.gitrewind dir by default) end exit\n".

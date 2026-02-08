@@ -6,6 +6,7 @@ use feature 'say';
 use File::Basename;
 use File::Path qw(remove_tree make_path);
 use Getopt::Long;
+use POSIX qw(strftime);
 
 Getopt::Long::Configure('bundling');
 
@@ -41,26 +42,26 @@ sub main {
         usage();
     }
 
-    my $datetime;
+    my $timestamp;
 
     # ==== find commit the commit closest to the date ====
-    $datetime = join(' ', @ARGV);
+    $timestamp = join(' ', @ARGV);
 
-    unless ($datetime) {
+    unless ($timestamp) {
         usage() if !$CLEANUP;
         exit 0;
     }
     
     my $hash;
     if ($BRANCH) {
-        $hash = `git log -n1 $BRANCH --before="$datetime" --format="%H" 2>/dev/null`;
+        $hash = `git log -n1 $BRANCH --before="$timestamp" --format="%H" 2>/dev/null`;
     } else {
         # current branch
-        $hash = `git log -n1 --first-parent --before="$datetime" --format="%H" 2>/dev/null`;
+        $hash = `git log -n1 --first-parent --before="$timestamp" --format="%H" 2>/dev/null`;
     }
     chomp $hash;
     
-    die "There was only darkness: $datetime\n" if !$hash;
+    die "There was only darkness: $timestamp\n" if !$hash;
 
     # ==== preparing the directory for snapshot ====
     my $repo_root = `git rev-parse --show-toplevel`;
@@ -70,16 +71,27 @@ sub main {
     make_path($GITREWIND_DIR) unless -d $GITREWIND_DIR;
 
     my $t = time();
-    my $snapshot_dir = "$GITREWIND_DIR/${repo_name}_${t}/${repo_name}";
+    my $snapshot_base_dir = "$GITREWIND_DIR/${repo_name}_${t}";
+    my $snapshot_dir = "$snapshot_base_dir/${repo_name}";
     
-    remove_tree($snapshot_dir) or die "Cannot remove: $!\n" if -d $snapshot_dir;
+    remove_tree($snapshot_base_dir) or die "Cannot remove: $!\n" if -d $snapshot_base_dir;
     make_path($snapshot_dir) or die "Cannot create: $!\n";
 
+    # ==== crete metadata file ====
+    my $meta_file = "$snapshot_base_dir/metadata";
+    open my $fh, '>', $meta_file or die "Cannot write metadata: $!\n";
+    my $current_time = strftime("%Y-%m-%d %H:%M:%S", localtime());
+    print $fh "Snapshot created:   $current_time\n";
+    print $fh "Snapshot timestamp: $timestamp\n";
+    print $fh "Commit hash:        $hash\n";
+    print $fh "Commit date:        " . `git show -s --format="%ci" $hash 2>/dev/null` . "\n";
+    close $fh;
+    
     # ==== take snapshot ====
     my $output = `git archive $hash | tar -x -C '$snapshot_dir' 2>&1`;
 
     if ($? != 0) {
-        remove_tree($snapshot_dir);
+        remove_tree($snapshot_base_dir);
         die "Failed:\n$output\n";
     }
 

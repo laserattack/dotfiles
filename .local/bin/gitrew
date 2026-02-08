@@ -17,7 +17,7 @@ our $CLEANUP     = 0;
 our $INTERACTIVE = 0;
 
 sub usage {
-    die "Usage: [-hci] timestamp\n".
+    die "Usage: gitrew [-hci] timestamp\n".
         "Flags:\n".
         "  -h, --help         Show this help message and exit\n".
         "  -c, --cleanup      Delete memories (~/.gitrewind dir by default) and exit\n".

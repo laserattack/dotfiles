@@ -78,16 +78,6 @@
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(defun search-all-buffers (pattern)
-  (interactive "sSubstring for search: ")
-  (let ((buffers (cl-remove-if 
-                  (lambda (buf)
-                    (with-current-buffer buf
-                      (eq major-mode 'occur-mode)))
-                  (buffer-list))))
-    (multi-occur buffers pattern)))
-(global-set-key (kbd "C-c b g") 'search-all-buffers)
-
 ;; rgrep
 (global-set-key (kbd "C-c g") 'rgrep)
 

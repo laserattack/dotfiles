@@ -87,6 +87,17 @@
                       (shell-quote-argument pattern)
                       (mapconcat 'shell-quote-argument files " ")))
       (message "No file buffers open"))))
+
+(defun grep-all-buffers (pattern)
+  "Search PATTERN in all open file buffers using grep."
+  (interactive "Search in buffers (regexp): ")
+  (let ((files (delq nil (mapcar 'buffer-file-name (buffer-list)))))
+    (if files
+        (grep (format "grep -n -H -e %s %s" 
+                      (shell-quote-argument pattern)
+                      (mapconcat 'shell-quote-argument files " ")))
+      (message "No file buffers open"))))
+
 (global-set-key (kbd "C-c b g") 'grep-file-buffers)
 
 ;; rgrep

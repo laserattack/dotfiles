@@ -24,6 +24,7 @@ sub usage {
         "  -i, --interactive  Interactive mode (u need fzf for use it)\n".
         "Examples:\n".
         "  gitrew 2 weeks ago\n".
+        "  gitrew 2 minute ago\n".
         "  gitrew 2026-02-08 15:52\n".
         "  gitrew -i\n";
 }
@@ -50,7 +51,7 @@ sub main {
     my $hash = `git log -n1 --before="$datetime" --format="%H" 2>/dev/null`;
     chomp $hash;
 
-    die "There was only darkness before: $datetime\n" if !$hash;
+    die "There was only darkness: $datetime\n" if !$hash;
 
     my $repo_root = `git rev-parse --show-toplevel`;
     chomp $repo_root;

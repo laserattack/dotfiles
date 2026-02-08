@@ -45,7 +45,7 @@ sub main {
     my $datetime;
 
     if ($INTERACTIVE) {
-        my $log_cmd = "git log --date='format:%Y-%m-%d %H:%M:%S' --format=\"%ad\"";
+        my $log_cmd = "git log --date='format:%Y-%m-%d %H:%M:%S' --format=\"%ad | %s\"";
         
         if ($BRANCH) {
             $log_cmd .= " $BRANCH";
@@ -54,12 +54,32 @@ sub main {
         }
         
         my $commits = `$log_cmd`;
-        my $choice = `echo "$commits" | fzf`;
-        chomp $choice;
-        $datetime = $choice if $choice;
+        my $choice = `echo "$commits" | fzf --delimiter='|' --with-nth=1,2`;
+        
+        if ($choice) {
+            ($datetime) = split /\s*\|\s*/, $choice;
+            chomp $datetime;
+        }
     } else {
         $datetime = join(' ', @ARGV);
     }
+    
+    # if ($INTERACTIVE) {
+    #     my $log_cmd = "git log --date='format:%Y-%m-%d %H:%M:%S' --format=\"%ad\"";
+        
+    #     if ($BRANCH) {
+    #         $log_cmd .= " $BRANCH";
+    #     } else {
+    #         $log_cmd .= " --first-parent";
+    #     }
+        
+    #     my $commits = `$log_cmd`;
+    #     my $choice = `echo "$commits" | fzf`;
+    #     chomp $choice;
+    #     $datetime = $choice if $choice;
+    # } else {
+    #     $datetime = join(' ', @ARGV);
+    # }
     
     unless ($datetime) {
         usage() if !$CLEANUP;

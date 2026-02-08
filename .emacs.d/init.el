@@ -79,9 +79,8 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (defun search-all-buffers-with-context (pattern nlines)
-  "Search regexp with NLINES context."
-  (interactive "sRegexp: \nnContext lines: ")
-  (occur-1 pattern nlines (buffer-list) t))
+  (interactive "sRegexp: ")
+  (occur-1 pattern 1 (buffer-list) t))
 (global-set-key (kbd "C-c b g") 'search-all-buffers)
 
 ;; rgrep

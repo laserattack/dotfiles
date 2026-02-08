@@ -49,7 +49,10 @@ sub main {
         $datetime = join(' ', @ARGV);
     }    
 
-    usage() unless $datetime;
+    unless ($datetime) {
+        usage() if !$CLEANUP;
+        exit 0;
+    }
     
     my $hash = `git log -n1 --before="$datetime" --format="%H" 2>/dev/null`;
     chomp $hash;

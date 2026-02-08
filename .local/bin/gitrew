@@ -25,7 +25,7 @@ sub check_dependencies {
 sub usage {
     die "Usage: gitrew [-lcb] timestamp\n".
         "Flags:\n".
-        "  -l, --list     Show snapshots (~/.gitrewind dir) end exit\n".
+        "  -l, --list     Show all snapshots (~/.gitrewind dir) end exit\n".
         "  -c, --cleanup  Delete all snapshots (~/.gitrewind dir)\n".
         "  -b, --branch   Specify a Git branch (otherwise, the current one is used)\n".
         "Examples:\n".
@@ -123,9 +123,10 @@ if ($LIST) {
                             print "$line";
                         }
                         close $fh;
+                    } else {
+                        say "(metadata not readable)";
                     }
                 }
-                say "" if ($snap ne $snapshots[-1]);
             }
         } else {
             say "No snapshots yet";

@@ -23,7 +23,7 @@ sub usage {
         "  -i, --interactive  Interactive mode (u need fzf for use it)\n".
         "Usage: e.g.,\n".
         "  gitrew 2 weeks ago\n".
-        "  gitrew 2026-02-08 15:52\n";
+        "  gitrew 2026-02-08 15:52\n".
         "  gitrew -i\n";
 }
 
@@ -37,7 +37,7 @@ sub main {
     
     if ($INTERACTIVE) {
         my $commits = `git log --date='format:%Y-%m-%d %H:%M:%S' --format="%ad"`;
-        my $choice = `echo "$commits" | fzf --header="Select commit date+time"`;
+        my $choice = `echo "$commits" | fzf`;
         chomp $choice;
         $datetime = $choice if $choice;
     } else {

@@ -12,8 +12,9 @@ Getopt::Long::Configure('bundling');
 our $GITREWIND_DIR = "$ENV{HOME}/.gitrewind";
 
 # flags
-our $HELP    = 0;
-our $CLEANUP = 0;
+our $HELP        = 0;
+our $CLEANUP     = 0;
+our $INTERACTIVE = 0;
 
 sub usage {
     die "Flags:\n".
@@ -29,8 +30,18 @@ sub main {
         say "Not git repo\n";
         usage();
     }
+
+    my $datetime;
     
-    my $datetime = join(' ', @ARGV);
+    if ($INTERACTIVE) {
+        my $dates = `git log --date=short --format="%ad %H %s" | head -20`;
+        my $choice = `echo "$dates" | fzf --header="Select commit date" --preview='git show --stat {2}' | cut -d' ' -f1`;
+        chomp $choice;
+        $datetime = $choice if $choice;
+    } else {
+        $datetime = join(' ', @ARGV);
+    }    
+
     usage() unless $datetime;
     
     my $hash = `git log -n1 --before="$datetime" --format="%H" 2>/dev/null`;
@@ -65,6 +76,7 @@ sub main {
 GetOptions(
     'help|h'    => \$HELP,
     'cleanup|c' => \$CLEANUP,
+    'interactive|i' => \$INTERACTIVE,
 ) or usage();
 
 if ($CLEANUP) {

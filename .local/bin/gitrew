@@ -123,8 +123,6 @@ if ($LIST) {
                             print "$line";
                         }
                         close $fh;
-                    } else {
-                        say "(metadata not readable)";
                     }
                 }
             }

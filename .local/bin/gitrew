@@ -22,8 +22,8 @@ sub usage {
     die "Usage: gitrew [-hlcb] timestamp\n".
         "Flags:\n".
         "  -h, --help     Show this help message and exit\n".
-        "  -l, --list     Show memories (~/.gitrewind dir by default) end exit\n".
-        "  -c, --cleanup  Delete memories (~/.gitrewind dir by default)\n".
+        "  -l, --list     Show snapshots (~/.gitrewind dir by default) end exit\n".
+        "  -c, --cleanup  Delete all snapshots (~/.gitrewind dir by default)\n".
         "  -b, --branch   Specify a Git branch (otherwise, the current one is used)\n".
         "Examples:\n".
         "  gitrew 2 weeks ago\n".
@@ -103,10 +103,10 @@ if ($LIST) {
         if ($output) {
             print $output;
         } else {
-            say "No memories yet";
+            say "No snapshots yet";
         }
     } else {
-        say "No memories yet";
+        say "No snapshots yet";
     }
     exit 0;
 }

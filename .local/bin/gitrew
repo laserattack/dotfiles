@@ -70,7 +70,7 @@ sub main {
     make_path($GITREWIND_DIR) unless -d $GITREWIND_DIR;
 
     my $t = time();
-    my $snapshot_dir = "$GITREWIND_DIR/${repo_name}_${t}";
+    my $snapshot_dir = "$GITREWIND_DIR/${repo_name}_${t}/${repo_name}";
     
     remove_tree($snapshot_dir) or die "Cannot remove: $!\n" if -d $snapshot_dir;
     make_path($snapshot_dir) or die "Cannot create: $!\n";

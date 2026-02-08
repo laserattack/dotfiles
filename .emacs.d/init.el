@@ -85,7 +85,7 @@
     (if files
         (let ((quoted-files (mapconcat (lambda (f) (shell-quote-argument f)) 
                                        files " ")))
-          (grep (format "grep -nH -e %s %s" 
+          (grep (format "grep -nH -i -e %s %s" 
                         (shell-quote-argument pattern)
                         quoted-files)))
       (message "No file buffers open"))))

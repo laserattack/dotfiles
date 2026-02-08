@@ -13,9 +13,9 @@ Getopt::Long::Configure('bundling');
 our $GITREWIND_DIR = "$ENV{HOME}/.gitrewind";
 
 # flags
-our $CLEANUP     = 0;
-our $LIST        = 0;
-our $BRANCH      = '';
+our $CLEANUP = 0;
+our $LIST    = 0;
+our $BRANCH  = '';
 
 sub usage {
     die "Usage: gitrew [-lcb] timestamp\n".
@@ -28,7 +28,7 @@ sub usage {
         "  gitrew -b master 2 minute ago\n".
         "  gitrew 2026-02-08 15:52\n".
         "Warning: Git's date parser is very strange. 'gibberish' may return\n".
-        "         the latest commit. Use proper timestamps e.g. like above.\n";
+        "         the latest commit. Use proper timestamps e.g. like above\n";
 }
 
 sub main {
@@ -87,9 +87,9 @@ sub main {
 }
 
 GetOptions(
-    'cleanup|c'     => \$CLEANUP,
-    'list|l'        => \$LIST,
-    'branch|b=s'    => \$BRANCH,
+    'cleanup|c'  => \$CLEANUP,
+    'list|l'     => \$LIST,
+    'branch|b=s' => \$BRANCH,
 ) or usage();
 
 remove_tree($GITREWIND_DIR) or die "Cannot remove: $!\n" if $CLEANUP && -d $GITREWIND_DIR;

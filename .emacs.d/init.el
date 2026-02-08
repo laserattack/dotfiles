@@ -80,8 +80,13 @@
 
 (defun search-all-buffers (pattern)
   "Search PATTERN in buffers"
-  (interactive "sSearch in buffers (regexp): : ")
-  (multi-occur (buffer-list) pattern))
+  (interactive "sSearch in buffers (regexp): ")
+  (multi-occur (buffer-list) pattern t))
+
+(defun search-all-buffers (pattern)
+  "Search PATTERN in all buffers."
+  (interactive "sSearch in buffers (regexp): ")
+  (occur-1 pattern t (buffer-list)))
 (global-set-key (kbd "C-c b g") 'search-all-buffers)
 
 ;; rgrep

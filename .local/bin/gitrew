@@ -20,7 +20,7 @@ our $LIST        = 0;
 our $BRANCH      = '';
 
 sub usage {
-    die "Usage: gitrew [-hlci] timestamp\n".
+    die "Usage: gitrew [-hlcib] timestamp\n".
         "Flags:\n".
         "  -h, --help         Show this help message and exit\n".
         "  -l, --list         Show memories (~/.gitrewind dir by default) end exit\n".
@@ -43,15 +43,6 @@ sub main {
     }
 
     my $datetime;
-    
-    # if ($INTERACTIVE) {
-    #     my $commits = `git log --date='format:%Y-%m-%d %H:%M:%S' --format="%ad"`;
-    #     my $choice = `echo "$commits" | fzf`;
-    #     chomp $choice;
-    #     $datetime = $choice if $choice;
-    # } else {
-    #     $datetime = join(' ', @ARGV);
-    # }
 
     if ($INTERACTIVE) {
         my $log_cmd = "git log --date='format:%Y-%m-%d %H:%M:%S' --format=\"%ad\"";

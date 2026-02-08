@@ -65,13 +65,15 @@ sub main {
 
     my $safe_datetime = $datetime;
     $safe_datetime =~ s/ /_/g;
-
+    $safe_datetime =~ s/:/-/g;
+    
     my $current_time = strftime("%Y-%m-%d_%H:%M:%S", localtime());
+    $current_time =~ s/:/-/g;
     
     make_path($GITREWIND_DIR) unless -d $GITREWIND_DIR;
 
     my $snapshot_dir = "$GITREWIND_DIR/${repo_name}__${current_time}__${safe_datetime}";
-
+    
     remove_tree($snapshot_dir) or die "Cannot remove: $!\n" if -d $snapshot_dir;
     make_path($snapshot_dir) or die "Cannot create: $!\n";
 

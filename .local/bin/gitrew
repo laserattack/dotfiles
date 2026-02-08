@@ -13,15 +13,13 @@ Getopt::Long::Configure('bundling');
 our $GITREWIND_DIR = "$ENV{HOME}/.gitrewind";
 
 # flags
-our $HELP        = 0;
 our $CLEANUP     = 0;
 our $LIST        = 0;
 our $BRANCH      = '';
 
 sub usage {
-    die "Usage: gitrew [-hlcb] timestamp\n".
+    die "Usage: gitrew [-lcb] timestamp\n".
         "Flags:\n".
-        "  -h, --help     Show this help message and exit\n".
         "  -l, --list     Show snapshots (~/.gitrewind dir by default) end exit\n".
         "  -c, --cleanup  Delete all snapshots (~/.gitrewind dir by default)\n".
         "  -b, --branch   Specify a Git branch (otherwise, the current one is used)\n".
@@ -89,7 +87,6 @@ sub main {
 }
 
 GetOptions(
-    'help|h'        => \$HELP,
     'cleanup|c'     => \$CLEANUP,
     'list|l'        => \$LIST,
     'branch|b=s'    => \$BRANCH,

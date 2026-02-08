@@ -92,7 +92,7 @@ if ($CLEANUP) {
 }
 
 if ($LIST) {
-    my $output = `ls -la $GITREWIND_DIR`;
+    my $output = `ls -1 $GITREWIND_DIR`;
     print $output;
     exit 0;
 }

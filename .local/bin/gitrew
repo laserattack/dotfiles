@@ -25,7 +25,7 @@ sub usage {
 }
 
 sub main {
-    die "Not a git repository\n" if system("git rev-parse --is-inside-work-tree >/dev/null 2>&1") != 0;
+    die "Not git repo\n" if system("git rev-parse --git-dir >/dev/null 2>&1");
     
     my $datetime = join(' ', @ARGV);
     usage() unless $datetime;

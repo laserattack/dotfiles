@@ -17,6 +17,11 @@ our $CLEANUP = 0;
 our $LIST    = 0;
 our $BRANCH  = '';
 
+sub check_dependencies {
+    system("which git >/dev/null 2>&1") == 0 or die "git not found\n";
+    system("which tar >/dev/null 2>&1") == 0 or die "tar not found\n";
+}
+
 sub usage {
     die "Usage: gitrew [-lcb] timestamp\n".
         "Flags:\n".
@@ -87,6 +92,8 @@ sub main {
 
     say $snapshot_dir;
 }
+
+check_dependencies();
 
 GetOptions(
     'cleanup|c'  => \$CLEANUP,

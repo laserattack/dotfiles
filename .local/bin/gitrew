@@ -15,7 +15,6 @@ our $GITREWIND_DIR = "$ENV{HOME}/.gitrewind";
 # flags
 our $HELP        = 0;
 our $CLEANUP     = 0;
-our $INTERACTIVE = 0;
 our $LIST        = 0;
 our $BRANCH      = '';
 
@@ -25,13 +24,11 @@ sub usage {
         "  -h, --help         Show this help message and exit\n".
         "  -l, --list         Show memories (~/.gitrewind dir by default) end exit\n".
         "  -c, --cleanup      Delete memories (~/.gitrewind dir by default)\n".
-        "  -i, --interactive  Interactive mode (u need fzf for use it)\n".
         "  -b, --branch       Specify a Git branch (otherwise, the current one is used)\n".
         "Examples:\n".
         "  gitrew 2 weeks ago\n".
         "  gitrew -b master 2 minute ago\n".
         "  gitrew 2026-02-08 15:52\n".
-        "  gitrew -b main -i\n".
         "Warning: Git's date parser is very strange. 'gibberish' may return\n".
         "         the latest commit. Use proper timestamps e.g. like above.\n";
 }
@@ -44,43 +41,9 @@ sub main {
 
     my $datetime;
 
-    # if ($INTERACTIVE) {
-    #     my $log_cmd = "git log --date='format:%Y-%m-%d %H:%M:%S' --format=\"%ad | %s\"";
-        
-    #     if ($BRANCH) {
-    #         $log_cmd .= " $BRANCH";
-    #     } else {
-    #         $log_cmd .= " --first-parent";
-    #     }
-        
-    #     my $commits = `$log_cmd`;
-    #     my $choice = `echo "$commits" | fzf --delimiter='|' --with-nth=1,2`;
-        
-    #     if ($choice) {
-    #         ($datetime) = split /\s*\|\s*/, $choice;
-    #         chomp $datetime;
-    #     }
-    # } else {
-    #     $datetime = join(' ', @ARGV);
-    # }
-    
-    if ($INTERACTIVE) {
-        my $log_cmd = "git log --date='format:%Y-%m-%d %H:%M:%S' --format=\"%ad\"";
-        
-        if ($BRANCH) {
-            $log_cmd .= " $BRANCH";
-        } else {
-            $log_cmd .= " --first-parent";
-        }
-        
-        my $commits = `$log_cmd`;
-        my $choice = `echo "$commits" | fzf`;
-        chomp $choice;
-        $datetime = $choice if $choice;
-    } else {
-        $datetime = join(' ', @ARGV);
-    }
-    
+    # ==== find commit the commit closest to the date ====
+    $datetime = join(' ', @ARGV);
+
     unless ($datetime) {
         usage() if !$CLEANUP;
         exit 0;
@@ -97,6 +60,7 @@ sub main {
     
     die "There was only darkness: $datetime\n" if !$hash;
 
+    # ==== preparing the directory for snapshot ====
     my $repo_root = `git rev-parse --show-toplevel`;
     chomp $repo_root;
     my $repo_name = basename($repo_root);
@@ -113,6 +77,7 @@ sub main {
     remove_tree($snapshot_dir) or die "Cannot remove: $!\n" if -d $snapshot_dir;
     make_path($snapshot_dir) or die "Cannot create: $!\n";
 
+    # ==== take snapshot ====
     my $output = `git archive $hash | tar -x -C '$snapshot_dir' 2>&1`;
 
     if ($? != 0) {
@@ -126,7 +91,6 @@ sub main {
 GetOptions(
     'help|h'        => \$HELP,
     'cleanup|c'     => \$CLEANUP,
-    'interactive|i' => \$INTERACTIVE,
     'list|l'        => \$LIST,
     'branch|b=s'    => \$BRANCH,
 ) or usage();

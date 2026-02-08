@@ -123,9 +123,9 @@ if ($LIST) {
                             print "$line";
                         }
                         close $fh;
-                        say "";
                     }
                 }
+                say "" if ($snap ne $snapshots[-1]);
             }
         } else {
             say "No snapshots yet";

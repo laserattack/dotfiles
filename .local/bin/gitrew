@@ -17,11 +17,12 @@ our $CLEANUP     = 0;
 our $INTERACTIVE = 0;
 
 sub usage {
-    die "Flags:\n".
+    die "Usage: [-hci] timestamp\n".
+        "Flags:\n".
         "  -h, --help         Show this help message and exit\n".
         "  -c, --cleanup      Delete memories (~/.gitrewind dir by default) and exit\n".
         "  -i, --interactive  Interactive mode (u need fzf for use it)\n".
-        "Usage: e.g.,\n".
+        "Examples:\n".
         "  gitrew 2 weeks ago\n".
         "  gitrew 2026-02-08 15:52\n".
         "  gitrew -i\n";

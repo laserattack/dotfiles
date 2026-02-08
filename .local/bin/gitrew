@@ -17,6 +17,7 @@ our $HELP        = 0;
 our $CLEANUP     = 0;
 our $INTERACTIVE = 0;
 our $LIST        = 0;
+our $BRANCH      = '';
 
 sub usage {
     die "Usage: gitrew [-hlci] timestamp\n".
@@ -25,13 +26,14 @@ sub usage {
         "  -l, --list         Show memories (~/.gitrewind dir by default) end exit\n".
         "  -c, --cleanup      Delete memories (~/.gitrewind dir by default)\n".
         "  -i, --interactive  Interactive mode (u need fzf for use it)\n".
+        "  -b, --branch       Specify a Git branch (otherwise, the current one is used)\n".
         "Examples:\n".
         "  gitrew 2 weeks ago\n".
-        "  gitrew 2 minute ago\n".
+        "  gitrew -b master 2 minute ago\n".
         "  gitrew 2026-02-08 15:52\n".
-        "  gitrew -i\n".
+        "  gitrew -b main -i\n".
         "Warning: Git's date parser is very strange. 'gibberish' may return\n".
-            "         the latest commit. Use proper timestamps e.g. like above.\n";
+        "         the latest commit. Use proper timestamps e.g. like above.\n";
 }
 
 sub main {
@@ -56,9 +58,15 @@ sub main {
         exit 0;
     }
     
-    my $hash = `git log -n1 --before="$datetime" --format="%H" 2>/dev/null`;
+    my $hash;
+    if ($BRANCH) {
+        $hash = `git log -n1 $BRANCH --before="$datetime" --format="%H" 2>/dev/null`;
+    } else {
+        # current branch
+        $hash = `git log -n1 --first-parent --before="$datetime" --format="%H" 2>/dev/null`;
+    }
     chomp $hash;
-
+    
     die "There was only darkness: $datetime\n" if !$hash;
 
     my $repo_root = `git rev-parse --show-toplevel`;
@@ -92,6 +100,7 @@ GetOptions(
     'cleanup|c'     => \$CLEANUP,
     'interactive|i' => \$INTERACTIVE,
     'list|l'        => \$LIST,
+    'branch|b=s'    => \$BRANCH,
 ) or usage();
 
 if ($CLEANUP) {

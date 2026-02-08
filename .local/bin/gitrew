@@ -15,11 +15,6 @@ our $GITREWIND_DIR = "$ENV{HOME}/.gitrewind";
 our $HELP    = 0;
 our $CLEANUP = 0;
 
-sub is_git_repo {
-    `git rev-parse --is-inside-work-tree 2>/dev/null`;
-    return $? == 0;
-}
-
 sub usage {
     die "Flags:\n".
         "  -h, --help     Show this help message and exit\n".
@@ -30,7 +25,7 @@ sub usage {
 }
 
 sub main {
-    die "Not a git repository\n" unless is_git_repo();
+    die "Not a git repository\n" if system("git rev-parse --is-inside-work-tree >/dev/null 2>&1") != 0;
     
     my $datetime = join(' ', @ARGV);
     usage() unless $datetime;

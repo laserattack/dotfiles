@@ -18,14 +18,17 @@ our $CLEANUP = 0;
 sub usage {
     die "Flags:\n".
         "  -h, --help     Show this help message and exit\n".
-        "  -c, --cleanup  Delete all memories (~/.gitrewind dir by default) and exit\n".
+        "  -c, --cleanup  Delete memories (~/.gitrewind dir by default) and exit\n".
         "Usage: e.g.,\n".
         "  gitrew 2 weeks ago\n".
         "  gitrew 2026-02-08 15:52\n";
 }
 
 sub main {
-    die "Not git repo\n" if system("git rev-parse --git-dir >/dev/null 2>&1");
+    if (system("git rev-parse --git-dir >/dev/null 2>&1")) {
+        say "Not git repo\n";
+        usage();
+    }
     
     my $datetime = join(' ', @ARGV);
     usage() unless $datetime;

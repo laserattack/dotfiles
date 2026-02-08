@@ -15,11 +15,13 @@ our $GITREWIND_DIR = "$ENV{HOME}/.gitrewind";
 our $HELP        = 0;
 our $CLEANUP     = 0;
 our $INTERACTIVE = 0;
+our $LIST        = 0;
 
 sub usage {
     die "Usage: gitrew [-hci] timestamp\n".
         "Flags:\n".
         "  -h, --help         Show this help message and exit\n".
+        "  -l, --list         Show memories (~/.gitrewind dir by default) end exit\n".
         "  -c, --cleanup      Delete memories (~/.gitrewind dir by default) and exit\n".
         "  -i, --interactive  Interactive mode (u need fzf for use it)\n".
         "Examples:\n".
@@ -78,13 +80,20 @@ sub main {
 }
 
 GetOptions(
-    'help|h'    => \$HELP,
-    'cleanup|c' => \$CLEANUP,
+    'help|h'        => \$HELP,
+    'cleanup|c'     => \$CLEANUP,
     'interactive|i' => \$INTERACTIVE,
+    'list|l'        => \$LIST,
 ) or usage();
 
 if ($CLEANUP) {
     remove_tree($GITREWIND_DIR) or die "Cannot remove: $!\n" if -d $GITREWIND_DIR;
+    exit 0;
+}
+
+if ($LIST) {
+    my $output = `ls -la $GITREWIND_DIR`;
+    print $output;
     exit 0;
 }
 

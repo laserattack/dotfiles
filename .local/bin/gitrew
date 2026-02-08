@@ -6,6 +6,7 @@ use feature 'say';
 use File::Basename;
 use File::Path qw(remove_tree make_path);
 use Getopt::Long;
+use POSIX qw(strftime);
 
 Getopt::Long::Configure('bundling');
 
@@ -62,9 +63,11 @@ sub main {
     my $safe_datetime = $datetime;
     $safe_datetime =~ s/ /_/g;
 
+    my $current_time = strftime("%Y-%m-%d_%H:%M:%S", localtime());
+    
     make_path($GITREWIND_DIR) unless -d $GITREWIND_DIR;
 
-    my $snapshot_dir = "$GITREWIND_DIR/${repo_name}_${safe_datetime}";
+    my $snapshot_dir = "$GITREWIND_DIR/${repo_name}__${current_time}__${safe_datetime}";
 
     remove_tree($snapshot_dir) or die "Cannot remove: $!\n" if -d $snapshot_dir;
     make_path($snapshot_dir) or die "Cannot create: $!\n";

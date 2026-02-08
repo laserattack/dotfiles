@@ -80,7 +80,7 @@
 
 (defun search-all-buffers (pattern)
   "Search PATTERN in buffers"
-  (interactive "sPattern: ")
+  (interactive "sSearch in buffers (regexp): : ")
   (multi-occur (buffer-list) pattern))
 (global-set-key (kbd "C-c b g") 'search-all-buffers)
 

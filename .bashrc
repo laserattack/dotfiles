@@ -38,6 +38,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
+. $HOME/.local/bin/z.sh
+
+[ -f "$HOME/.local/bin/z.sh" ] && source "$HOME/.local/bin/z.sh"
+
 proctree() {
     local usage="Usage: proctree <PID>"
     if [ "$#" -ne 1 ]; then

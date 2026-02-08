@@ -84,7 +84,7 @@ sub main {
     print $fh "Snapshot created:   $current_time\n";
     print $fh "Snapshot timestamp: $timestamp\n";
     print $fh "Commit hash:        $hash\n";
-    print $fh "Commit date:        " . `git show -s --format="%ci" $hash 2>/dev/null` . "\n";
+    print $fh "Commit date:        " . `git show -s --format="%ci" $hash 2>/dev/null`;
     close $fh;
     
     # ==== take snapshot ====

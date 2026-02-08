@@ -116,12 +116,11 @@ if ($LIST) {
         my @snapshots = glob("$GITREWIND_DIR/*");
         if (@snapshots) {
             foreach my $snap (sort @snapshots) {
-                say basename($snap);
                 my $meta_file = "$snap/metadata";
                 if (-f $meta_file) {
                     if (open my $fh, '<', $meta_file) {
                         while (my $line = <$fh>) {
-                            print "  $line";
+                            print "$line";
                         }
                         close $fh;
                         say "";

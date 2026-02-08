@@ -78,18 +78,11 @@
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(defun grep-file-buffers (pattern)
-  "Search PATTERN in all open file buffers using grep."
-  (interactive "sSearch in file buffers (regexp): ")
-  (let ((files (delq nil (mapcar 'buffer-file-name (buffer-list)))))
-    (if files
-        (let ((quoted-files (mapconcat (lambda (f) (shell-quote-argument f)) 
-                                       files " ")))
-          (grep (format "grep -nH -i -e %s %s" 
-                        (shell-quote-argument pattern)
-                        quoted-files)))
-      (message "No file buffers open"))))
-(global-set-key (kbd "C-c b g") 'grep-file-buffers)
+(defun search-all-buffers (pattern)
+  "Search PATTERN in buffers"
+  (interactive "sPattern: ")
+  (multi-occur (buffer-list) pattern))
+(global-set-key (kbd "C-c b g") 'search-all-buffers)
 
 ;; rgrep
 (global-set-key (kbd "C-c g") 'rgrep)

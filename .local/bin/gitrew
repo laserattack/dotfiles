@@ -92,13 +92,6 @@ sub main {
     say $snapshot_dir;
 }
 
-# check env
-check_dependencies();
-if (system("git rev-parse --git-dir >/dev/null 2>&1")) {
-    say "Not git repo\n";
-    usage();
-}
-
 # parse flags
 GetOptions(
     'cleanup|c'  => \$CLEANUP,
@@ -133,6 +126,13 @@ if ($LIST) {
         say "No snapshots yet";
     }
     exit 0;
+}
+
+# check env
+check_dependencies();
+if (system("git rev-parse --git-dir >/dev/null 2>&1")) {
+    say "Not git repo\n";
+    usage();
 }
 
 # branch flag

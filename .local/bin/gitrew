@@ -139,9 +139,10 @@ if ($LIST) {
 if (!$BRANCH) {
     $BRANCH = `git branch --show-current 2>/dev/null`;
     chomp $BRANCH;
-    if ($!BRANCH) {
+    if (!$BRANCH) {
         say "You are in 'detached HEAD' state";
         say "Use the -b flag to specify a branch or switch to a branch";
+        say "";
         usage();
     }
 }

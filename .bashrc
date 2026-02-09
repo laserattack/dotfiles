@@ -38,7 +38,7 @@ gr() {
             return 1
         }
     else
-        echo "gitrew failed or produced no output"
+        echo "$output"
         return 1
     fi
 }

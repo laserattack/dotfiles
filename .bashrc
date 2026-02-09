@@ -31,15 +31,16 @@ gg() { git log -p -G"$1"; }
 gr() {
     local output
     output=$(gitrew "$@")
+    local exit_code=$?
     
-    if [[ $? -eq 0 ]] && [[ -n "$output" ]]; then
+    if [[ $exit_code -eq 0 ]] && [[ -n "$output" ]]; then
         cd "$output" || {
             echo "failed to cd to: $output"
             return 1
         }
     else
-        echo "$output"
-        return 1
+        echo "error"
+        return $exit_code
     fi
 }
 

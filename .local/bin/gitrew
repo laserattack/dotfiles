@@ -114,7 +114,7 @@ if (!$BRANCH) {
     $BRANCH = `git branch --show-current 2>/dev/null`;
     chomp $BRANCH;
     die "You are in 'detached HEAD' state\n".
-        "Use the -b flag to specify a branch or switch to a branch" if !$BRANCH;
+        "Use the -b flag to specify a branch or switch to a branch\n" if !$BRANCH;
 }
 
 # list flag

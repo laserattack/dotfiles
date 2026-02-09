@@ -28,11 +28,7 @@ alias ls='ls --color=auto'
 alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
 gg() { git log -p -G"$1"; }
-grcd() {
-    local d
-    d=$(gitrew "$@" 2>&1) && cd "$d" 2>/dev/null
-    return $?
-}
+grcd() { local d; d=$(gitrew "$@" 2>/dev/null) && cd "$d" 2>/dev/null; }
 
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'

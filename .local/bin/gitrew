@@ -141,8 +141,7 @@ if (!$BRANCH) {
     chomp $BRANCH;
     if (!$BRANCH) {
         say "You are in 'detached HEAD' state";
-        say "Use the -b flag to specify a branch or switch to a branch";
-        say "";
+        say "Use the -b flag to specify a branch or switch to a branch\n";
         usage();
     }
 }

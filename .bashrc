@@ -34,7 +34,7 @@ gr() {
     
     if [[ $? -eq 0 ]] && [[ -n "$output" ]]; then
         cd "$output" || {
-            echo "Failed to cd to: $output"
+            echo "failed to cd to: $output"
             return 1
         }
     else

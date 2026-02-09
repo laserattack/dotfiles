@@ -28,6 +28,20 @@ alias ls='ls --color=auto'
 alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
 gg() { git log -p -G"$1"; }
+gr() {
+    local output
+    output=$(gitrew "$@")
+    
+    if [[ $? -eq 0 ]] && [[ -n "$output" ]]; then
+        cd "$output" || {
+            echo "Failed to cd to: $output"
+            return 1
+        }
+    else
+        echo "gitrew failed or produced no output"
+        return 1
+    fi
+}
 
 alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'

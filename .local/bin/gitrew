@@ -109,14 +109,6 @@ GetOptions(
 # cleanup flag
 remove_tree($GITREWIND_DIR) or die "Cannot remove: $!\n" if $CLEANUP && -d $GITREWIND_DIR;
 
-# branch flag
-if (!$BRANCH) {
-    $BRANCH = `git branch --show-current 2>/dev/null`;
-    chomp $BRANCH;
-    die "You are in 'detached HEAD' state\n".
-        "Use the -b flag to specify a branch or switch to a branch\n" if !$BRANCH;
-}
-
 # list flag
 if ($LIST) {
     if (-d $GITREWIND_DIR) {
@@ -141,6 +133,17 @@ if ($LIST) {
         say "No snapshots yet";
     }
     exit 0;
+}
+
+# branch flag
+if (!$BRANCH) {
+    $BRANCH = `git branch --show-current 2>/dev/null`;
+    chomp $BRANCH;
+    if ($!BRANCH) {
+        say "You are in 'detached HEAD' state";
+        say "Use the -b flag to specify a branch or switch to a branch";
+        usage();
+    }
 }
 
 main();

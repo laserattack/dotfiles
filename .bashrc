@@ -29,19 +29,8 @@ alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
 gg() { git log -p -G"$1"; }
 gr() {
-    local output
-    output=$(gitrew "$@")
-    local exit_code=$?
-    
-    if [[ $exit_code -eq 0 ]] && [[ -n "$output" ]]; then
-        cd "$output" || {
-            echo "failed to cd to: $output"
-            return 1
-        }
-    else
-        echo "error"
-        return $exit_code
-    fi
+    local d
+    d=$(gitrew "$@" 2>&1) && cd "$d" || echo "$d"
 }
 
 alias fzfh='history | fzf'

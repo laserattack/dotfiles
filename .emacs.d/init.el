@@ -74,6 +74,10 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
+;; dired
+
+(global-set-key (kbd "C-x C-d") 'dired)
+
 ;; ibuffer
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)

@@ -209,6 +209,11 @@
 ;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
+;; dockerfile
+
+(use-package dockerfile-mode
+  :ensure t)
+
 ;; go mode
 
 (use-package go-mode

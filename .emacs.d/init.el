@@ -78,7 +78,7 @@
 
 (global-set-key (kbd "C-x C-d") 'dired)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c g") 'rgrep)
+(global-set-key (kbd "C-x g") 'rgrep)
 (global-set-key (kbd "C-c a") 'align-regexp)
 
 ;; duplicate current line

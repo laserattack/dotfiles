@@ -74,18 +74,11 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
-;; dired
+;; binds
 
 (global-set-key (kbd "C-x C-d") 'dired)
-
-;; ibuffer
-
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-
-;; rgrep
 (global-set-key (kbd "C-c g") 'rgrep)
-
-;; align lines using regexp
 (global-set-key (kbd "C-c a") 'align-regexp)
 
 ;; duplicate current line

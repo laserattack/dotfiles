@@ -166,7 +166,7 @@
   :config
   (global-company-mode))
 
-;; ave jump
+;; avy jump
 
 (use-package avy
   :ensure t

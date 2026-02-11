@@ -139,15 +139,16 @@ bindsym $mod+Shift+b exec "loginctl reboot"
 bindsym $mod+Shift+s exec "loginctl suspend"
 bindsym $mod+Shift+z exec "slock"
 
-bindsym $mod+shift+1 workspace 1
-bindsym $mod+shift+2 workspace 2
-bindsym $mod+shift+3 workspace 3
-bindsym $mod+shift+4 workspace 4
-bindsym $mod+shift+5 workspace 5
-bindsym $mod+shift+6 workspace 6
-bindsym $mod+shift+7 workspace 7
-bindsym $mod+shift+8 workspace 8
-bindsym $mod+shift+9 workspace 9
+# move to workspace
+bindsym $mod+shift+1 move container to workspace 1
+bindsym $mod+shift+2 move container to workspace 2
+bindsym $mod+shift+3 move container to workspace 3
+bindsym $mod+shift+4 move container to workspace 4
+bindsym $mod+shift+5 move container to workspace 5
+bindsym $mod+shift+6 move container to workspace 6
+bindsym $mod+shift+7 move container to workspace 7
+bindsym $mod+shift+8 move container to workspace 8
+bindsym $mod+shift+9 move container to workspace 9
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

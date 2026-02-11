@@ -139,6 +139,16 @@ bindsym $mod+Shift+b exec "loginctl reboot"
 bindsym $mod+Shift+s exec "loginctl suspend"
 bindsym $mod+Shift+z exec "slock"
 
+bindsym $mod+shift+1 workspace 1
+bindsym $mod+shift+2 workspace 2
+bindsym $mod+shift+3 workspace 3
+bindsym $mod+shift+4 workspace 4
+bindsym $mod+shift+5 workspace 5
+bindsym $mod+shift+6 workspace 6
+bindsym $mod+shift+7 workspace 7
+bindsym $mod+shift+8 workspace 8
+bindsym $mod+shift+9 workspace 9
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode

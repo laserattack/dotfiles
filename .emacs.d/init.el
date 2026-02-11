@@ -76,7 +76,7 @@
 
 ;; binds
 
-(global-set-key (kbd "C-x C-d") 'dired)
+(global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'rgrep)
 (global-set-key (kbd "C-c a") 'align-regexp)

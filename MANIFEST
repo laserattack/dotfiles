@@ -1,4 +1,5 @@
 #.alacritty.toml|symlink|
+auto-cpufreq|symlink|
 .xinitrc|symlink|
 .Xresources|symlink|
 .i3status.conf|symlink|

@@ -1,5 +1,4 @@
 #.alacritty.toml|symlink|
-auto-cpufreq|symlink|
 .xinitrc|symlink|
 .Xresources|symlink|
 .i3status.conf|symlink|
@@ -9,6 +8,7 @@ auto-cpufreq|symlink|
 .xprofile|symlink|
 .tmux.conf|symlink|
 
+.config/auto-cpufreq|symlink|
 .config/nvim|symlink|
 .emacs.local|symlink|
 .emacs.d/init.el|symlink|

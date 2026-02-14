@@ -213,6 +213,9 @@
   :ensure t
   :hook (before-save . gofmt-before-save))
 
+(use-package graphviz-dot-mode
+  :ensure t)
+
 ;; ===== ORG MODE =====
 
 ;; paths

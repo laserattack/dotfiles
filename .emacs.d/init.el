@@ -218,6 +218,8 @@
 
 ;; ===== ORG MODE =====
 
+(setq org-capture-bookmark nil)
+
 ;; paths
 (setq org-directory "~/org")
 (setq org-tasks-file (expand-file-name "tasks.org" org-directory))

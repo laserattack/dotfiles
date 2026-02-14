@@ -6,7 +6,6 @@ use feature 'say';
 use Time::HiRes 'sleep';
 use Getopt::Long;
 
-
 our @SIGNALS = (
     # [signal, timeout]
     [15, 3],
@@ -17,10 +16,10 @@ our @SIGNALS = (
 
 # flags
 Getopt::Long::Configure('bundling'); # can combine flags e.g., -qf
-our $FORCE   = 0;
-our $QUIET   = 0;
-our $HELP    = 0;
-our $ONE     = 0;
+our $FORCE  = 0;
+our $QUIET  = 0;
+our $HELP   = 0;
+our $ONE    = 0;
 
 sub go_ahead {
     my $input = <STDIN>;
@@ -143,12 +142,12 @@ sub main {
 }
 
 sub usage {
-    say "Usage: murder [OPTIONS] <PID|NAME|:PORT>";
+    say "Usage: murder [-hfqo] arguments";
     say "";
     say "Options:";
+    say "  -h, --help   Show this help message";
     say "  -f, --force  Kill without confirmation";
     say "  -q, --quiet  Quiet mode (minimal output)";
-    say "  -h, --help   Show this help message";
     say "  -o, --one    Kill only the specified process, not the entire tree";
     say "";
     say "Arguments:";

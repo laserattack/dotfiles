@@ -81,11 +81,6 @@
 (global-set-key (kbd "C-x g") 'rgrep)
 (global-set-key (kbd "C-c a") 'align-regexp)
 
-(global-set-key (kbd "C-c C-c") 'compile)
-;; (add-hook 'after-change-major-mode-hook
-;;           (lambda ()
-;;             (local-unset-key (kbd "C-c C-c"))))
-
 ;; duplicate current line
 (defun duplicate-line (&optional n)
   (interactive "p")

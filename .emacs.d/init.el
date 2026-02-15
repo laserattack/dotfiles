@@ -80,6 +80,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'rgrep)
 (global-set-key (kbd "C-c a") 'align-regexp)
+(global-set-key (kbd "C-c C-c") 'compile)
 
 ;; duplicate current line
 (defun duplicate-line (&optional n)

@@ -72,7 +72,10 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
-;; disable trash funcs
+;; turn off stupid functions
+(put 'narrow-to-region 'disabled t)
+(put 'narrow-to-page 'disabled t)
+(put 'narrow-to-defun 'disabled t)
 (put 'widen 'disabled t)
 
 ;; ===== SOME USEFUL STUFF =====

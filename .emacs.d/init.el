@@ -254,7 +254,7 @@
    ("C-c n d" . denote-dired)
    ("C-c n g" . denote-grep))
   :config
-  (setq denote-directory org-notes-director)
+  (setq denote-directory org-notes-directory)
 
   ;; Automatically rename Denote buffers when opening them so that
   ;; instead of their long file name they have, for example, a literal

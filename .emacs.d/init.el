@@ -72,6 +72,9 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
+;; disable trash funcs
+(put 'widen 'disabled t)
+
 ;; ===== SOME USEFUL STUFF =====
 
 ;; binds

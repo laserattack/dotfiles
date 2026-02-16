@@ -137,8 +137,12 @@
   :ensure t
   :config
   (vertico-mode 1)
-  ;; Показывать больше кандидатов
   (setq vertico-count 15))
+
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode 1))
 
 ;; (use-package ido-completing-read+
 ;;   :ensure t

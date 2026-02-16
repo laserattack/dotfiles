@@ -140,10 +140,10 @@
 
 ;; hints on the right
 
-;; (use-package marginalia
-;;   :ensure t
-;;   :config
-;;   (marginalia-mode 1))
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode 1))
 
 ;; smart search
 

@@ -151,9 +151,10 @@
 (use-package orderless
   :ensure t 
   :config
-  (setq completion-styles '(basic orderless))
+  (setq completion-styles '(orderless))
   (setq orderless-component-separator nil)
-  (setq orderless-smart-case t))
+  (setq orderless-smart-case t)
+  (setq orderless-matching-styles '(orderless-flex)))
 
 ;; ido + smex (old style)
 

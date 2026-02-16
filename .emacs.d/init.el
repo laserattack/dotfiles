@@ -151,7 +151,7 @@
 (use-package orderless
   :ensure t 
   :config
-  (setq completion-styles '(basic flex)) ;; first basic, if not found, then fzf
+  (setq completion-styles '(flex basic))
   (setq orderless-smart-case t)) ;; case-sensitive only if you have entered a capital letter
 
 ;; ido + smex (old style)

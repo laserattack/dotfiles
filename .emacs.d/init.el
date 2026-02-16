@@ -136,8 +136,7 @@
 (use-package vertico
   :ensure t
   :config
-  (vertico-mode 1)
-  (setq vertico-count 15))
+  (vertico-mode 1))
 
 (use-package marginalia
   :ensure t

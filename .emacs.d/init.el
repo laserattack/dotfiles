@@ -29,7 +29,7 @@
 (setq create-lockfiles nil)
 
 ;; close the buffer without question if it holds the process
-(remove-hook 'kill-buffer-query-functions 
+(remove-hook 'kill-buffer-query-functions
              'process-kill-buffer-query-function)
 
 ;; save positions in buffer on exit
@@ -150,7 +150,7 @@
 ;; smart search
 
 (use-package orderless
-  :ensure t 
+  :ensure t
   :config
   (setq completion-styles '(orderless))
   (setq orderless-component-separator nil)
@@ -300,7 +300,7 @@
 
   (setq denote-dired-directories (list org-notes-directory))
   (setq denote-known-keywords '("emacs" "philosophy" "prog" "study" "ideas" "linux"))
-  
+
   ;; Automatically rename Denote buffers when opening them so that
   ;; instead of their long file name they have, for example, a literal
   ;; "[D]" followed by the file's title.  Read the doc string of

@@ -260,6 +260,9 @@
 ;; denote system
 (use-package denote
   :ensure t
+  :hook
+  (
+   (dired-mode . denote-dired-mode-in-directories))
   :bind
   (("C-c n n" . denote)
    ("C-c n r" . denote-rename-file)
@@ -269,6 +272,8 @@
    ("C-c n g" . denote-grep))
   :config
   (setq denote-directory org-notes-directory)
+
+  (setq denote-dired-directories (list org-notes-directory))
   (setq denote-known-keywords '("emacs" "philosophy" "prog" "study" "ideas" "linux"))
   
   ;; Automatically rename Denote buffers when opening them so that

@@ -133,17 +133,24 @@
 
 ;; ido + smex
 
-(use-package ido-completing-read+
+(use-package vertico
   :ensure t
   :config
-  (ido-everywhere)
-  (setq ido-enable-flex-matching t))
+  (vertico-mode 1)
+  ;; Показывать больше кандидатов
+  (setq vertico-count 15))
 
-(use-package smex
-  :ensure t
-  :bind (("M-x" . smex)
-         ("M-X" . smex-major-mode-commands)
-         ("C-c C-c M-x" . execute-extended-command)))
+;; (use-package ido-completing-read+
+;;   :ensure t
+;;   :config
+;;   (ido-everywhere)
+;;   (setq ido-enable-flex-matching t))
+
+;; (use-package smex
+;;   :ensure t
+;;   :bind (("M-x" . smex)
+;;          ("M-X" . smex-major-mode-commands)
+;;          ("C-c C-c M-x" . execute-extended-command)))
 
 ;; move text
 

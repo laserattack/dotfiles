@@ -260,6 +260,78 @@
 
 ;; ===== ORG MODE =====
 
+
+;; ===== ORG MODE =====
+
+;; Base org setup
+(use-package org
+  :ensure nil
+  :custom
+  ;; paths
+  (org-directory "~/org")
+  (org-tasks-file (expand-file-name "tasks.org" org-directory))
+  (org-images-directory (expand-file-name "images" org-directory))
+  (org-notes-directory (expand-file-name "notes" org-directory))
+  
+  ;; agenda settings
+  (org-agenda-files (list org-tasks-file))
+  (org-tags-column 0)
+  (org-agenda-tags-column 0)
+  
+  ;; capture
+  (org-capture-bookmark nil)
+  (org-capture-templates
+   '(("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
+      "** TODO %?")
+     ("e" "Task for today" entry (file+headline org-tasks-file "Daily")
+      "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
+     ("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
+      "** TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1d\")>")
+     ("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
+      "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")))
+  
+  :bind
+  (("C-c o a" . org-agenda)
+   ("C-c o v" . org-toggle-inline-images)
+   ("C-c o t" . org-capture)))
+
+;; Image handling
+(use-package org-download
+  :ensure t
+  :after org
+  :custom
+  (org-download-method 'directory)
+  (org-download-image-dir org-images-directory)
+  :bind
+  ("C-c o i" . org-download-clipboard))
+
+;; Denote for notes
+(use-package denote
+  :ensure t
+  :after org
+  :hook ((dired-mode . denote-dired-mode-in-directories))
+  :custom
+  (denote-directory org-notes-directory)
+  (denote-dired-directories (list org-notes-directory))
+  (denote-known-keywords '("emacs" "philosophy" "prog" "study" "ideas" "linux"))
+  :bind
+  (("C-c n n" . denote)
+   ("C-c n r" . denote-rename-file)
+   ("C-c n l" . denote-link)
+   ("C-c n b" . denote-backlinks)
+   ("C-c n d" . denote-dired)
+   ("C-c n g" . denote-grep))
+  :config
+  (denote-rename-buffer-mode 1))
+
+
+
+;;;;;;;;;;;;
+
+
+
+
+
 (setq org-capture-bookmark nil)
 
 ;; paths

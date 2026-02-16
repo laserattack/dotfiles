@@ -274,6 +274,7 @@
 
   (setq denote-dired-directories (list org-notes-directory))
   (setq denote-known-keywords '("emacs" "philosophy" "prog" "study" "ideas" "linux"))
+  (setq denote-prompts '(title keywords))
   
   ;; Automatically rename Denote buffers when opening them so that
   ;; instead of their long file name they have, for example, a literal

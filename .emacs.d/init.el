@@ -243,32 +243,51 @@
 (setq-default org-download-image-dir org-images-directory)
 (global-set-key (kbd "C-c o i") 'org-download-clipboard)
 
-(defun org-create-note ()
-  (interactive)
-  (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
-         (title (read-string "Note title: "))
-         (filename (format "%s/%s-%s.org"
-                          org-notes-directory
-                          timestamp
-                          title)))
-    
-    (unless (file-exists-p org-notes-directory)
-      (make-directory org-notes-directory t))
-    
-    (find-file filename)
-    
-    (when (bobp)
-      (insert (format "#+TITLE: %s\n" title))
-      (insert "#+CREATED: " (format-time-string "%Y-%m-%d %a %H:%M") "\n\n")
+(use-package denote
+  :ensure t
+  :hook (dired-mode . denote-dired-mode)
+  :bind
+  (("C-c n n" . denote)
+   ("C-c n r" . denote-rename-file)
+   ("C-c n l" . denote-link)
+   ("C-c n b" . denote-backlinks)
+   ("C-c n d" . denote-dired)
+   ("C-c n g" . denote-grep))
+  :config
+  (setq denote-directory org-notes-director)
 
-      (beginning-of-line))))
-(global-set-key (kbd "C-c o n") 'org-create-note)
+  ;; Automatically rename Denote buffers when opening them so that
+  ;; instead of their long file name they have, for example, a literal
+  ;; "[D]" followed by the file's title.  Read the doc string of
+  ;; `denote-rename-buffer-format' for how to modify this.
+  (denote-rename-buffer-mode 1))
 
-(defun org-rgrep-notes ()
-  (interactive)
-  (let ((pattern (read-string "Search in notes (regexp): ")))
-    (rgrep pattern "*.org" org-notes-directory)))
-(global-set-key (kbd "C-c o g") 'org-rgrep-notes)
+;; (defun org-create-note ()
+;;   (interactive)
+;;   (let* ((timestamp (format-time-string "%Y%m%d-%H%M%S"))
+;;          (title (read-string "Note title: "))
+;;          (filename (format "%s/%s-%s.org"
+;;                           org-notes-directory
+;;                           timestamp
+;;                           title)))
+    
+;;     (unless (file-exists-p org-notes-directory)
+;;       (make-directory org-notes-directory t))
+    
+;;     (find-file filename)
+    
+;;     (when (bobp)
+;;       (insert (format "#+TITLE: %s\n" title))
+;;       (insert "#+CREATED: " (format-time-string "%Y-%m-%d %a %H:%M") "\n\n")
+
+;;       (beginning-of-line))))
+;; (global-set-key (kbd "C-c o n") 'org-create-note)
+
+;; (defun org-rgrep-notes ()
+;;   (interactive)
+;;   (let ((pattern (read-string "Search in notes (regexp): ")))
+;;     (rgrep pattern "*.org" org-notes-directory)))
+;; (global-set-key (kbd "C-c o g") 'org-rgrep-notes)
 
 ;; templates
 (setq org-capture-templates

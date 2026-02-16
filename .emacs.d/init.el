@@ -158,7 +158,7 @@
 (use-package orderless
   :ensure t
   :config
-  (setq completion-styles '(orderless))
+  (setq completion-styles '(orderless flex))
   (setq orderless-component-separator nil)
   (setq orderless-smart-case t)
   (setq orderless-matching-styles '(orderless-flex)))

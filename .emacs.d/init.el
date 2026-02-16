@@ -137,7 +137,8 @@
   :ensure t
   :config
   (vertico-mode 1)
-  (setq vertico-preselect 'prompt))
+  (setq vertico-preselect 'prompt)
+  (setq vertico-count 20))
 
 ;; hints on the right
 

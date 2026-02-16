@@ -324,68 +324,68 @@
 
 ;;;;
 
-(setq org-capture-bookmark nil)
+;; (setq org-capture-bookmark nil)
 
-;; paths
-(setq org-directory "~/org")
-(setq org-tasks-file (expand-file-name "tasks.org" org-directory))
-(setq org-images-directory (expand-file-name "images" org-directory))
-(setq org-notes-directory (expand-file-name "notes" org-directory))
+;; ;; paths
+;; (setq org-directory "~/org")
+;; (setq org-tasks-file (expand-file-name "tasks.org" org-directory))
+;; (setq org-images-directory (expand-file-name "images" org-directory))
+;; (setq org-notes-directory (expand-file-name "notes" org-directory))
 
-;; agenda
-(setq org-agenda-files (list org-tasks-file))
-(setq org-tags-column 0)
-(setq org-agenda-tags-column 0)
-(global-set-key (kbd "C-c o a") 'org-agenda)
+;; ;; agenda
+;; (setq org-agenda-files (list org-tasks-file))
+;; (setq org-tags-column 0)
+;; (setq org-agenda-tags-column 0)
+;; (global-set-key (kbd "C-c o a") 'org-agenda)
 
-;; view images on hotkey
-(global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
+;; ;; view images on hotkey
+;; (global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
 
-;; paste images
-(use-package org-download
-  :ensure t
-  :config
-  (setq org-download-method 'directory))
-(setq-default org-download-image-dir org-images-directory)
-(global-set-key (kbd "C-c o i") 'org-download-clipboard)
+;; ;; paste images
+;; (use-package org-download
+;;   :ensure t
+;;   :config
+;;   (setq org-download-method 'directory))
+;; (setq-default org-download-image-dir org-images-directory)
+;; (global-set-key (kbd "C-c o i") 'org-download-clipboard)
 
-;; templates for create tasks
-(setq org-capture-templates
-      `(
-	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
-         "** TODO %?")
-	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
-         "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
-	("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
-	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil "+1d")>")
-	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
-	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
-	))
-(global-set-key (kbd "C-c o t") 'org-capture)
+;; ;; templates for create tasks
+;; (setq org-capture-templates
+;;       `(
+;; 	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
+;;          "** TODO %?")
+;; 	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
+;;          "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
+;; 	("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
+;; 	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil "+1d")>")
+;; 	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
+;; 	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
+;; 	))
+;; (global-set-key (kbd "C-c o t") 'org-capture)
 
-;; denote system
-(use-package denote
-  :ensure t
-  :hook
-  ((dired-mode . denote-dired-mode-in-directories))
-  :bind
-  (("C-c n n" . denote)
-   ("C-c n r" . denote-rename-file)
-   ("C-c n l" . denote-link)
-   ("C-c n b" . denote-backlinks)
-   ("C-c n d" . denote-dired)
-   ("C-c n g" . denote-grep))
-  :config
-  (setq denote-directory org-notes-directory)
+;; ;; denote system
+;; (use-package denote
+;;   :ensure t
+;;   :hook
+;;   ((dired-mode . denote-dired-mode-in-directories))
+;;   :bind
+;;   (("C-c n n" . denote)
+;;    ("C-c n r" . denote-rename-file)
+;;    ("C-c n l" . denote-link)
+;;    ("C-c n b" . denote-backlinks)
+;;    ("C-c n d" . denote-dired)
+;;    ("C-c n g" . denote-grep))
+;;   :config
+;;   (setq denote-directory org-notes-directory)
 
-  (setq denote-dired-directories (list org-notes-directory))
-  (setq denote-known-keywords '("emacs" "philosophy" "prog" "study" "ideas" "linux"))
+;;   (setq denote-dired-directories (list org-notes-directory))
+;;   (setq denote-known-keywords '("emacs" "philosophy" "prog" "study" "ideas" "linux"))
 
-  ;; Automatically rename Denote buffers when opening them so that
-  ;; instead of their long file name they have, for example, a literal
-  ;; "[D]" followed by the file's title.  Read the doc string of
-  ;; `denote-rename-buffer-format' for how to modify this.
-  (denote-rename-buffer-mode 1))
+;;   ;; Automatically rename Denote buffers when opening them so that
+;;   ;; instead of their long file name they have, for example, a literal
+;;   ;; "[D]" followed by the file's title.  Read the doc string of
+;;   ;; `denote-rename-buffer-format' for how to modify this.
+;;   (denote-rename-buffer-mode 1))
 
 ;; GCMH - the Garbage Collector Magic Hack
 

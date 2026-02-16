@@ -152,7 +152,7 @@
   :ensure t 
   :config
   (setq completion-styles '(basic flex))
-  (setq orderless-smart-case t)) ;; case-sensitive only if you have entered a capital letter
+  (setq orderless-smart-case nil))
 
 ;; ido + smex (old style)
 

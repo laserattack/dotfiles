@@ -243,7 +243,7 @@
 (setq-default org-download-image-dir org-images-directory)
 (global-set-key (kbd "C-c o i") 'org-download-clipboard)
 
-;; templates
+;; templates for create tasks
 (setq org-capture-templates
       `(
 	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
@@ -276,8 +276,6 @@
   ;; "[D]" followed by the file's title.  Read the doc string of
   ;; `denote-rename-buffer-format' for how to modify this.
   (denote-rename-buffer-mode 1))
-
-
 
 ;; GCMH - the Garbage Collector Magic Hack
 

@@ -157,11 +157,20 @@
 
 (use-package orderless
   :ensure t
+  :init
+
+  (setq completion-styles nil)
+  (setq completion-category-defaults nil)
+  (setq completion-category-overrides nil)
+  
   :config
-  (setq completion-styles '(orderless flex))
-  (setq orderless-component-separator nil)
-  (setq orderless-smart-case t)
-  (setq orderless-matching-styles '(orderless-flex)))
+
+  (setq completion-styles '(orderless))
+  (setq orderless-matching-styles '(orderless-flex))
+  (setq orderless-smart-case nil)
+  (setq orderless-component-separator " +")
+  (setq read-buffer-completion-ignore-case t)
+  (setq completion-ignore-case t))
 
 ;; ido + smex (old style)
 

@@ -142,6 +142,12 @@
   :config
   (marginalia-mode 1))
 
+(use-package orderless
+  :ensure t 
+  :config 
+  (setq completion-styles '(orderless basic))
+  (setq orderless-smart-case t))
+
 ;; ido + smex
 
 ;; (use-package ido-completing-read+

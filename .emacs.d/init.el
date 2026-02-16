@@ -131,7 +131,6 @@
 ;;           (bg-hover-secondary "#00552f")))
 ;;   (load-theme 'ef-bio t))
 
-
 (use-package vertico
   :ensure t
   :config
@@ -145,8 +144,8 @@
 (use-package orderless
   :ensure t 
   :config 
-  (setq completion-styles '(orderless basic))
-  (setq orderless-smart-case t))
+  (setq completion-styles '(flex basic))
+  (setq orderless-smart-case t)) ;; case-sensitive only if you have entered a capital letter
 
 ;; ido + smex
 

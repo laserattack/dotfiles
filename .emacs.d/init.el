@@ -243,6 +243,21 @@
 (setq-default org-download-image-dir org-images-directory)
 (global-set-key (kbd "C-c o i") 'org-download-clipboard)
 
+;; templates
+(setq org-capture-templates
+      `(
+	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
+         "** TODO %?")
+	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
+         "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
+	("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
+	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil "+1d")>")
+	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
+	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
+	))
+(global-set-key (kbd "C-c o t") 'org-capture)
+
+;; denote system
 (use-package denote
   :ensure t
   :bind
@@ -262,19 +277,7 @@
   ;; `denote-rename-buffer-format' for how to modify this.
   (denote-rename-buffer-mode 1))
 
-;; templates
-(setq org-capture-templates
-      `(
-	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
-         "** TODO %?")
-	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
-         "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
-	("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
-	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil "+1d")>")
-	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
-	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
-	))
-(global-set-key (kbd "C-c o t") 'org-capture)
+
 
 ;; GCMH - the Garbage Collector Magic Hack
 

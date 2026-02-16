@@ -136,7 +136,8 @@
 (use-package vertico
   :ensure t
   :config
-  (vertico-mode 1))
+  (vertico-mode 1)
+  (setq vertico-preselect 'prompt))
 
 ;; hints on the right
 

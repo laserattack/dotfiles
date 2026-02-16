@@ -167,10 +167,9 @@
 
   (setq completion-styles '(orderless))
   (setq orderless-matching-styles '(orderless-flex))
-  (setq orderless-smart-case nil)
-  (setq orderless-component-separator " +")
-  (setq read-buffer-completion-ignore-case t)
-  (setq completion-ignore-case t))
+  (setq orderless-smart-case t)
+  (setq orderless-component-separator nil)
+  )
 
 ;; ido + smex (old style)
 

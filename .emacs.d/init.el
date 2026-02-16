@@ -131,7 +131,6 @@
 ;;           (bg-hover-secondary "#00552f")))
 ;;   (load-theme 'ef-bio t))
 
-;; ido + smex
 
 (use-package vertico
   :ensure t
@@ -142,6 +141,8 @@
   :ensure t
   :config
   (marginalia-mode 1))
+
+;; ido + smex
 
 ;; (use-package ido-completing-read+
 ;;   :ensure t

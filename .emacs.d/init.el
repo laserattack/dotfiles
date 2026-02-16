@@ -72,7 +72,7 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
-;; turn off stupid functions
+;; disable inferting funcs
 (put 'narrow-to-region 'disabled t)
 (put 'narrow-to-page 'disabled t)
 (put 'narrow-to-defun 'disabled t)

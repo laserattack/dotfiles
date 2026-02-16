@@ -261,8 +261,7 @@
 (use-package denote
   :ensure t
   :hook
-  (
-   (dired-mode . denote-dired-mode-in-directories))
+  ((dired-mode . denote-dired-mode-in-directories))
   :bind
   (("C-c n n" . denote)
    ("C-c n r" . denote-rename-file)

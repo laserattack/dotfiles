@@ -260,16 +260,16 @@
 
 ;; ===== ORG MODE =====
 
+(setq org-directory "~/org")
+(setq org-tasks-file (expand-file-name "tasks.org" org-directory))
+(setq org-images-directory (expand-file-name "images" org-directory))
+(setq org-notes-directory (expand-file-name "notes" org-directory))
+
 ;; Base org setup
 (use-package org
   :ensure nil
   :custom
-  ;; paths
-  (org-directory "~/org")
-  (org-tasks-file (expand-file-name "tasks.org" org-directory))
-  (org-images-directory (expand-file-name "images" org-directory))
-  (org-notes-directory (expand-file-name "notes" org-directory))
-  
+
   ;; agenda settings
   (org-agenda-files (list org-tasks-file))
   (org-tags-column 0)

@@ -143,7 +143,7 @@
 
 (use-package orderless
   :ensure t 
-  :config 
+  :config
   (setq completion-styles '(flex basic))
   (setq orderless-smart-case t)) ;; case-sensitive only if you have entered a capital letter
 

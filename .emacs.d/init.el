@@ -136,15 +136,19 @@
   :config
   (vertico-mode 1))
 
+;; hints on the right
+
 (use-package marginalia
   :ensure t
   :config
   (marginalia-mode 1))
 
+;; smart search
+
 (use-package orderless
   :ensure t 
   :config
-  (setq completion-styles '(flex basic))
+  (setq completion-styles '(basic flex)) ;; first basic, if not found, then fzf
   (setq orderless-smart-case t)) ;; case-sensitive only if you have entered a capital letter
 
 ;; ido + smex (old)

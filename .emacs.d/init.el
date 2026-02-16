@@ -147,7 +147,7 @@
   (setq completion-styles '(flex basic))
   (setq orderless-smart-case t)) ;; case-sensitive only if you have entered a capital letter
 
-;; ido + smex
+;; ido + smex (old)
 
 ;; (use-package ido-completing-read+
 ;;   :ensure t

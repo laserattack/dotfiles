@@ -77,6 +77,7 @@
 (global-display-line-numbers-mode)
 
 ;; disable inferting funcs
+
 (put 'narrow-to-region 'disabled t)
 (put 'narrow-to-page 'disabled t)
 (put 'narrow-to-defun 'disabled t)

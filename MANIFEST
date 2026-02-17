@@ -10,8 +10,8 @@
 
 .config/auto-cpufreq|symlink|
 .config/nvim|symlink|
+.emacs|symlink|
 .emacs.local|symlink|
-.emacs.d/init.el|symlink|
 .config/i3/config|symlink|
 .config/gtk-3.0|symlink|
 

@@ -136,8 +136,9 @@
 ;;   (load-theme 'gruber-darker-mod t))
 
 (use-package zenburn-theme
- :config
- (load-theme 'zenburn t))
+  :ensure t
+  :config
+  (load-theme 'zenburn t))
 
 ;; (use-package ef-themes
 ;;   :ensure t

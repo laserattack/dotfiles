@@ -190,9 +190,16 @@
 ;; keycast
 
 (use-package keycast
- :ensure t
- :config
- (keycast-mode-line-mode +1))
+  :ensure t
+  :hook (after-init . keycast-mode-line-mode)
+  :config
+  (setq keycast-format "%2k %c"
+        keycast-separator-width 1))
+
+;;(use-package keycast
+;; :ensure t
+;; :config
+;; (keycast-mode-line-mode +1))
 
 ;; move text
 

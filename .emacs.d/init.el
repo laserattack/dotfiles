@@ -189,10 +189,10 @@
 
 ;; keycast
 
-(use-package keycast
-  :ensure t
-  :config
-  (keycast-mode-line-mode +1))
+;;(use-package keycast
+;;  :ensure t
+;;  :config
+;;  (keycast-mode-line-mode +1))
 
 ;; move text
 

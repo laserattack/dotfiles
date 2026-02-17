@@ -187,6 +187,11 @@
 ;;          ("M-X" . smex-major-mode-commands)
 ;;          ("C-c C-c M-x" . execute-extended-command)))
 
+(use-package keycast
+ :ensure t
+ :config
+ (keycast-mode-line-mode +1))
+
 ;; move text
 
 (use-package move-text

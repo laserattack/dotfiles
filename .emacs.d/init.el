@@ -187,20 +187,6 @@
 ;;          ("M-X" . smex-major-mode-commands)
 ;;          ("C-c C-c M-x" . execute-extended-command)))
 
-;; keycast
-
-(use-package keycast
-  :ensure t
-  :hook (after-init . keycast-mode-line-mode)
-  :config
-  (setq keycast-format "%2k %c"
-        keycast-separator-width 1))
-
-;;(use-package keycast
-;; :ensure t
-;; :config
-;; (keycast-mode-line-mode +1))
-
 ;; move text
 
 (use-package move-text

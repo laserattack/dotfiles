@@ -47,8 +47,8 @@
 ;; abbrev
 (define-abbrev-table 'global-abbrev-table
   '(
-    ("bses" "#+BEGIN_SRC\n\n#+END_SRC")
-    ("rel" "^- \\(.*?\\)\\( *\\):")
+    ("_be" "#+BEGIN_SRC\n\n#+END_SRC")
+    ("_re_1" "^- \\(.*?\\)\\( *\\):")
    ))
 (setq-default abbrev-mode t)
 

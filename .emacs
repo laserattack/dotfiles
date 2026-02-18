@@ -49,10 +49,11 @@
   '(
     ("##" "#+BEGIN_SRC\n\n#+END_SRC")
    ))
-(abbrev-mode 1)
+(setq-default abbrev-mode t)
+
+;; repos
 
 (require 'package)
-
 (setq package-archives '(("gnu" . "https://mirrors.ustc.edu.cn/elpa/gnu/")
                          ("melpa" . "https://mirrors.ustc.edu.cn/elpa/melpa/")
                          ("nongnu" . "https://mirrors.ustc.edu.cn/elpa/nongnu/")))

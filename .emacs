@@ -47,7 +47,10 @@
 ;; abbrev
 (define-abbrev-table 'global-abbrev-table
   '(
-    ("asap" "as soon as possible")
+    ("##"
+     "#+BEGIN_SRC
+
+#+END_SRC")
    ))
 (setq-default abbrev-mode t)
 

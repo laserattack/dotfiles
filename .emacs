@@ -145,7 +145,6 @@
 
 ;; enable yas in minibuffer (https://emacs.stackexchange.com/questions/36677/how-to-use-yasnippets-tab-expansion-in-minibuffer)
 (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
-(yas--define-parents 'minibuffer-inactive-mode '(org-mode))
 (define-key minibuffer-local-map [tab] 'yas-expand)
 
 ;; colortheme

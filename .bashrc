@@ -41,6 +41,10 @@ alias .....='cd ../../../..'
 
 . $HOME/.local/bin/z.sh
 
+backupthis () {
+    cp -riv $1 ${1}-$(date +%Y%m%d%H%M).backup;
+}
+
 proctree() {
     local usage="Usage: proctree <PID>"
     if [ "$#" -ne 1 ]; then

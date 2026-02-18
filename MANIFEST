@@ -12,6 +12,7 @@
 .config/nvim|symlink|
 .emacs|symlink|
 .emacs.local|symlink|
+.emacs.snippets|symlink|
 .config/i3/config|symlink|
 .config/gtk-3.0|symlink|
 

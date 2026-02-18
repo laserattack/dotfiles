@@ -149,22 +149,10 @@
 
 ;; colortheme
 
-;; (use-package gruber-darker-mod-theme
-;;   :config
-;;   (load-theme 'gruber-darker-mod t))
-
 (use-package zenburn-theme
   :ensure t
   :config
   (load-theme 'zenburn t))
-
-;; (use-package ef-themes
-;;   :ensure t
-;;   :config
-;;   (setq ef-themes-common-palette-overrides
-;;         '((bg-hover "#00552f")
-;;           (bg-hover-secondary "#00552f")))
-;;   (load-theme 'ef-bio t))
 
 ;; vertical completion UI
 
@@ -249,15 +237,6 @@
          ("C-c C-<"     . mc/mark-all-like-this)
          ("C-\""        . mc/skip-to-next-like-this)
          ("C-}"         . mc/skip-to-previous-like-this)))
-
-;; russian keyboard shortcuts support
-
-;;(use-package reverse-im
-;;  :ensure t
-;;  :custom
-;;  (reverse-im-input-methods '("russian-computer"))
-;;  :config
-;;  (reverse-im-mode t))
 
 ;; ===== LANGUAGES MODES =====
 

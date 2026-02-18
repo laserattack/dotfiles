@@ -2,4 +2,4 @@
 # name: regex list bold left parts before ':'
 # key: relb
 # --
-^- \(.*?\)\( *\):
+^- \\(.*?\\)\\( *\\):

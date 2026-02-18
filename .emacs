@@ -51,7 +51,6 @@
    ))
 (setq-default abbrev-mode t)
 
-
 (require 'package)
 
 (setq package-archives '(("gnu" . "https://mirrors.ustc.edu.cn/elpa/gnu/")

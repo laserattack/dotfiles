@@ -8,11 +8,13 @@
 .xprofile|symlink|
 .tmux.conf|symlink|
 
-.config/auto-cpufreq|symlink|
-.config/nvim|symlink|
+# emacs
 .emacs|symlink|
 .emacs.local|symlink|
 .emacs.snippets|symlink|
+
+.config/auto-cpufreq|symlink|
+.config/nvim|symlink|
 .config/i3/config|symlink|
 .config/gtk-3.0|symlink|
 

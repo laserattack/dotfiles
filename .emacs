@@ -142,6 +142,7 @@
 
 (setq yas/triggers-in-field nil)
 (setq yas-snippet-dirs '("~/.emacs.snippets/"))
+(yas-reload-all)
 
 ;; colortheme
 

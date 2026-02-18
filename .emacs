@@ -47,12 +47,9 @@
 ;; abbrev
 (define-abbrev-table 'global-abbrev-table
   '(
-    ("##"
-     "#+BEGIN_SRC
-
-#+END_SRC")
+    ("##" "#+BEGIN_SRC\n\n#+END_SRC")
    ))
-(setq-default abbrev-mode t)
+(abbrev-mode 1)
 
 (require 'package)
 

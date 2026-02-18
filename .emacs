@@ -141,27 +141,15 @@
   (yas-global-mode 1)
   (setq yas-snippet-dirs '("~/.emacs.snippets/"))
   (yas-reload-all)
-  
+
+  ;; allow yas in minibuffer
   (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
-  
   (define-key minibuffer-local-map (kbd "TAB")
     (lambda ()
       (interactive)
       (if (yas--maybe-expand-key-filter 'ignore)
           (yas-expand)
         (vertico-next)))))
-
-;; (use-package yasnippet
-;;   :ensure t
-;;   :config
-;;   (yas-global-mode 1))
-
-;; (setq yas-snippet-dirs '("~/.emacs.snippets/"))
-;; (yas-reload-all)
-
-;; ;; enable yas in minibuffer (https://emacs.stackexchange.com/questions/36677/how-to-use-yasnippets-tab-expansion-in-minibuffer)
-;; (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
-;; (define-key minibuffer-local-map [tab] 'yas-maybe-expand)
 
 ;; colortheme
 

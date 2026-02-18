@@ -44,16 +44,7 @@
 (setq dired-mouse-drag-files t)
 (setq-default dired-dwim-target t)
 
-;; abbrev
-(define-abbrev-table 'global-abbrev-table
-  '(
-    ("_be" "#+BEGIN_SRC\n\n#+END_SRC")
-    ("_re_1" "^- \\(.*?\\)\\( *\\):")
-   ))
-(setq-default abbrev-mode t)
-
 ;; repos
-
 (require 'package)
 (setq package-archives '(("gnu" . "https://mirrors.ustc.edu.cn/elpa/gnu/")
                          ("melpa" . "https://mirrors.ustc.edu.cn/elpa/melpa/")
@@ -141,6 +132,13 @@
 (windmove-default-keybindings)
 
 ;; ===== PLUGINS =====
+
+;; yas
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1))
 
 ;; colortheme
 

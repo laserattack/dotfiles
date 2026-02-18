@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: regex list bold left parts before :
+# name: regex list bold left parts before ':'
 # key: re
 # --
 ^- \(.*?\)\( *\):

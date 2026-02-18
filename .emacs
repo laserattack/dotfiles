@@ -141,7 +141,7 @@
   (yas-global-mode 1))
 
 (setq yas/triggers-in-field nil)
-(setq yas-snippet-dirs '("~/.emacs.snippets/"))
+(yas-load-directory "~/.emacs.snippets/" t)
 
 ;; colortheme
 

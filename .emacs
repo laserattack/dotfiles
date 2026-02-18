@@ -44,6 +44,9 @@
 (setq dired-mouse-drag-files t)
 (setq-default dired-dwim-target t)
 
+;; default mode in M-x re-builder
+(setq reb-re-syntax 'string)
+
 ;; repos
 (require 'package)
 (setq package-archives '(("gnu" . "https://mirrors.ustc.edu.cn/elpa/gnu/")

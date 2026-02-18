@@ -44,6 +44,14 @@
 (setq dired-mouse-drag-files t)
 (setq-default dired-dwim-target t)
 
+;; abbrev
+(define-abbrev-table 'global-abbrev-table
+  '(
+    ("asap" "as soon as possible")
+   ))
+(setq-default abbrev-mode t)
+
+
 (require 'package)
 
 (setq package-archives '(("gnu" . "https://mirrors.ustc.edu.cn/elpa/gnu/")

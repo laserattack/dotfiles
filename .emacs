@@ -8,9 +8,6 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 
-(setq use-dialog-box nil)
-(setq use-file-dialog nil)
-
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 (setq initial-scratch-message "!!!!CHECK AGENDA PLSSSS!!!!")
 
@@ -80,6 +77,11 @@
 (global-display-line-numbers-mode)
 
 ;; disable inferting funcs
+
+(setq use-dialog-box nil)
+(setq use-file-dialog nil)
+
+(global-eldoc-mode -1)
 
 (put 'narrow-to-region 'disabled t)
 (put 'narrow-to-page 'disabled t)

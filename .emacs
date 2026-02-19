@@ -13,20 +13,9 @@
 
 (setq warning-minimum-level :error)
 
-;; emacs will reload the file if it is modified from the outside
-(global-auto-revert-mode t)
-
-;; disable backup files
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-(setq create-lockfiles nil)
-
 ;; close the buffer without question if it holds the process
 (remove-hook 'kill-buffer-query-functions
              'process-kill-buffer-query-function)
-
-;; save positions in buffer on exit
-(save-place-mode 1)
 
 ;; without asking, follow the symlinks in the version control systems
 (setq vc-follow-symlinks t)
@@ -66,9 +55,13 @@
 (setq-default indent-tabs-mode nil)
 (setq-default compilation-scroll-output t)
 
-(setq inhibit-startup-screen t)
-
 ;; ===== ENABLE COOL STUFF =====
+
+;; save positions in buffer on exit
+(save-place-mode 1)
+
+;; emacs will reload the file if it is modified from the outside
+(global-auto-revert-mode t)
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
@@ -78,6 +71,14 @@
 (global-display-line-numbers-mode)
 
 ;; ===== DISABLE INFERTING STUFF =====
+
+;; disable backup files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
+
+;; disable emacs hello-screen on startup
+(setq inhibit-startup-screen t)
 
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-scroll-amount '(3))
@@ -101,7 +102,7 @@
 (global-unset-key (kbd "C-<down-mouse-1>"))
 (global-unset-key (kbd "C-<down-mouse-3>"))
 
-;; ===== SOME USEFUL STUFF =====
+;; ===== SOME USEFUL BINDS =====
 
 ;; binds
 

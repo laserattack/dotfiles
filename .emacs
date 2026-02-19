@@ -187,7 +187,6 @@
   (setq completion-styles '(orderless))
   ;; disable default completion rules
   (setq completion-category-defaults nil)
-  (setq completion-category-overrides nil)
   ;; so, only orderless will be used
 
   ;; fzf-like search

@@ -59,7 +59,6 @@
 
 ;; save positions in buffer on exit
 (save-place-mode 1)
-
 ;; save minibuffer history on exit
 (savehist-mode 1)
 

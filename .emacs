@@ -185,24 +185,11 @@
 
   ;; disable default rules
   (setq completion-category-defaults nil)
-  (setq completion-category-overrides nil)
 
   (setq completion-styles '(orderless)) ;; use orderless for autocomplete
   (setq orderless-matching-styles '(orderless-flex)) ;; fzf-like search
   (setq orderless-smart-case t)
   (setq orderless-component-separator nil)) ;; no use separators
-
-;; (use-package orderless
-;;   :ensure t
-;;   :init
-;;   (setq completion-styles nil)
-;;   (setq completion-category-defaults nil)
-;;   (setq completion-category-overrides nil)
-;;   :config
-;;   (setq completion-styles '(orderless))
-;;   (setq orderless-matching-styles '(orderless-flex))
-;;   (setq orderless-smart-case t)
-;;   (setq orderless-component-separator nil))
 
 ;; ido + smex (old style)
 

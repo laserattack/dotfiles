@@ -187,10 +187,12 @@
   (setq completion-styles '(orderless))
   ;; disable default completion rules
   (setq completion-category-defaults nil)
+  (setq completion-category-overrides nil)
   ;; so, only orderless will be used
 
   ;; fzf-like search
-  (setq orderless-matching-styles '(orderless-flex)) 
+  (setq orderless-matching-styles '(orderless-flex))
+  ;; smart case-insensitive search
   (setq orderless-smart-case t)
   ;; no use separators (search the entire row)
   (setq orderless-component-separator nil))

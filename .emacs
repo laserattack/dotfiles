@@ -341,6 +341,7 @@
 ;; denote system
 
 (defun my/denote-dired-all ()
+  "Open denote directory in dired without filters."
   (interactive)
   (denote-dired ".*" nil nil nil))
 

@@ -105,7 +105,7 @@
 (global-set-key (kbd "C-c a") 'align-regexp)
 
 ;; duplicate current line
-(defun duplicate-line (&optional n)
+(defun my/duplicate-line (&optional n)
   (interactive "p")
   (let ((n (or n 1))
         (column (- (point) (point-at-bol)))
@@ -117,19 +117,19 @@
       (insert line)
       (move-beginning-of-line 1)
       (forward-char column))))
-(global-set-key (kbd "C-c d") 'duplicate-line)
+(global-set-key (kbd "C-c d") 'my/duplicate-line)
 
-(defun insert-timestamp ()
+(defun my/insert-timestamp ()
   (interactive)
   (let ((current-time (current-time)))
     (insert (format-time-string "(%Y%m%d-%H%M%S)" current-time))))
-(global-set-key (kbd "C-c i d") 'insert-timestamp)
+(global-set-key (kbd "C-c i d") 'my/insert-timestamp)
 
-(defun insert-todo-timestamp ()
+(defun my/insert-todo-timestamp ()
   (interactive)
   (let ((current-time (current-time)))
     (insert (format-time-string "TODO(%Y%m%d-%H%M%S): " current-time))))
-(global-set-key (kbd "C-c i t") 'insert-todo-timestamp)
+(global-set-key (kbd "C-c i t") 'my/insert-todo-timestamp)
 
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)

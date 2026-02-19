@@ -183,6 +183,7 @@
   :ensure t
   :config
 
+  ;; disable default rules
   (setq completion-category-defaults nil)
   (setq completion-category-overrides nil)
 

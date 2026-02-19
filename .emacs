@@ -46,7 +46,6 @@
 (global-hl-line-mode t)
 
 (setq-default tab-width 4)
-(setq-default indent-tabs-mode nil)
 (setq-default compilation-scroll-output t)
 
 ;; ===== CHANGE SETTINGS =====
@@ -78,6 +77,10 @@
 
 ;; ===== DISABLE INFERTING STUFF =====
 
+;; never insert tabs. only spaces. hate tabs.
+(setq-default indent-tabs-mode nil) 
+
+;; disable menu etc.
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)

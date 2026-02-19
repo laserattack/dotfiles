@@ -314,6 +314,11 @@
 (global-set-key (kbd "C-c o t") 'org-capture)
 
 ;; denote system
+
+(defun my/denote-dired-all ()
+  (interactive)
+  (denote-dired ".*" nil nil nil))
+
 (use-package denote
   :ensure t
   :hook
@@ -323,7 +328,8 @@
    ("C-c n r" . denote-rename-file)
    ("C-c n l" . denote-link)
    ("C-c n b" . denote-backlinks)
-   ("C-c n d" . denote-dired)
+   ("C-c n d" . my/denote-dired-all)
+   ("C-c n f" . denote-dired)
    ("C-c n g" . denote-grep))
   :config
   (setq denote-directory org-notes-directory)

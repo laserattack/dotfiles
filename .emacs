@@ -78,6 +78,10 @@
 
 ;; disable inferting funcs
 
+;; disable mouse wheel speed up
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-scroll-amount '(3))
+
 (setq use-dialog-box nil)
 (setq use-file-dialog nil)
 

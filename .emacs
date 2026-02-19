@@ -182,15 +182,18 @@
 (use-package orderless
   :ensure t
   :config
-
+  
+  ;; use orderless unless otherwise specified
+  (setq completion-styles '(orderless))
   ;; disable default completion rules
   (setq completion-category-defaults nil)
-  ;; and use only orderless for autocomplete
-  (setq completion-styles '(orderless))
+  ;; so, only orderless will be used
 
-  (setq orderless-matching-styles '(orderless-flex)) ;; fzf-like search
+  ;; fzf-like search
+  (setq orderless-matching-styles '(orderless-flex)) 
   (setq orderless-smart-case t)
-  (setq orderless-component-separator nil)) ;; no use separators
+  ;; no use separators (search the entire row)
+  (setq orderless-component-separator nil))
 
 ;; ido + smex (old style)
 

@@ -1,3 +1,14 @@
+;; ===== PATHS =====
+
+(setq org-directory "~/org")
+(setq org-tasks-file (expand-file-name "tasks.org" org-directory))
+(setq org-images-directory (expand-file-name "images" org-directory))
+(setq org-notes-directory (expand-file-name "notes" org-directory))
+
+;; ===== PATHS =====
+
+
+
 ;; ===== CHANGE SETTINGS =====
 
 (setq custom-file "~/.emacs.custom.el")
@@ -162,6 +173,46 @@
 (windmove-default-keybindings)
 
 ;; ===== SOME USEFUL BINDS =====
+
+
+
+
+;; ===== ORG MODE =====
+
+(setq org-capture-bookmark nil)
+
+;; agenda
+(setq org-agenda-files (list org-tasks-file))
+(setq org-tags-column 0)
+(setq org-agenda-tags-column 0)
+(global-set-key (kbd "C-c o a") 'org-agenda)
+
+;; view images on hotkey
+(global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
+
+;; paste images
+(use-package org-download
+  :ensure t
+  :config
+  (setq org-download-method 'directory))
+(setq-default org-download-image-dir org-images-directory)
+(global-set-key (kbd "C-c o i") 'org-download-clipboard)
+
+;; templates for create tasks
+(setq org-capture-templates
+      `(
+	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
+         "** TODO %?")
+	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
+         "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
+	("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
+	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil "+1d")>")
+	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
+	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
+	))
+(global-set-key (kbd "C-c o t") 'org-capture)
+
+;; ===== ORG MODE =====
 
 
 
@@ -349,52 +400,6 @@
   :ensure t)
 
 ;; ===== LANGUAGES MODES =====
-
-
-
-
-;; ===== ORG MODE =====
-
-(setq org-capture-bookmark nil)
-
-;; paths
-(setq org-directory "~/org")
-(setq org-tasks-file (expand-file-name "tasks.org" org-directory))
-(setq org-images-directory (expand-file-name "images" org-directory))
-(setq org-notes-directory (expand-file-name "notes" org-directory))
-
-;; agenda
-(setq org-agenda-files (list org-tasks-file))
-(setq org-tags-column 0)
-(setq org-agenda-tags-column 0)
-(global-set-key (kbd "C-c o a") 'org-agenda)
-
-;; view images on hotkey
-(global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
-
-;; paste images
-(use-package org-download
-  :ensure t
-  :config
-  (setq org-download-method 'directory))
-(setq-default org-download-image-dir org-images-directory)
-(global-set-key (kbd "C-c o i") 'org-download-clipboard)
-
-;; templates for create tasks
-(setq org-capture-templates
-      `(
-	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
-         "** TODO %?")
-	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
-         "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
-	("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
-	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil "+1d")>")
-	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
-	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
-	))
-(global-set-key (kbd "C-c o t") 'org-capture)
-
-;; ===== ORG MODE =====
 
 
 

@@ -1,4 +1,4 @@
-;; ===== BASE SETTINGS =====
+;; ===== CHANGE SETTINGS =====
 
 (setq custom-file "~/.emacs.custom.el")
 (unless (file-exists-p custom-file)
@@ -40,8 +40,6 @@
 
 (package-initialize)
 
-;; ===== INTERFACE =====
-
 (add-to-list 'default-frame-alist
              '(font . "Liberation Mono-15"))
 
@@ -51,6 +49,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default compilation-scroll-output t)
 
+;; ===== CHANGE SETTINGS =====
 
 
 
@@ -72,6 +71,7 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
+;; ===== ENABLE COOL STUFF =====
 
 
 
@@ -112,6 +112,7 @@
 (global-unset-key (kbd "C-<down-mouse-1>"))
 (global-unset-key (kbd "C-<down-mouse-3>"))
 
+;; ===== DISABLE INFERTING STUFF =====
 
 
 
@@ -155,6 +156,7 @@
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)
 
+;; ===== SOME USEFUL BINDS =====
 
 
 
@@ -314,6 +316,7 @@
         gcmh-high-cons-threshold (* 100 1024 1024)) ;; 100 mb
   :hook (emacs-startup-hook . gcmh-mode))
 
+;; ===== PLUGINS =====
 
 
 

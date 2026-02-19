@@ -122,13 +122,13 @@
 (defun my/insert-timestamp ()
   (interactive)
   (let ((current-time (current-time)))
-    (insert (format-time-string "(%Y%m%d-%H%M%S)" current-time))))
+    (insert (format-time-string "(%Y%m%dT%H%M%S)" current-time))))
 (global-set-key (kbd "C-c i d") 'my/insert-timestamp)
 
 (defun my/insert-todo-timestamp ()
   (interactive)
   (let ((current-time (current-time)))
-    (insert (format-time-string "TODO(%Y%m%d-%H%M%S): " current-time))))
+    (insert (format-time-string "TODO(%Y%m%dT%H%M%S): " current-time))))
 (global-set-key (kbd "C-c i t") 'my/insert-todo-timestamp)
 
 ;; switch between windows using shift+arrows

@@ -51,6 +51,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default compilation-scroll-output t)
 
+
+
+
+
 ;; ===== ENABLE COOL STUFF =====
 
 (column-number-mode 1)
@@ -67,6 +71,10 @@
 ;; relative lines numbers
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
+
+
+
+
 
 ;; ===== DISABLE INFERTING STUFF =====
 
@@ -103,6 +111,10 @@
 
 (global-unset-key (kbd "C-<down-mouse-1>"))
 (global-unset-key (kbd "C-<down-mouse-3>"))
+
+
+
+
 
 ;; ===== SOME USEFUL BINDS =====
 
@@ -142,6 +154,10 @@
 
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)
+
+
+
+
 
 ;; ===== PLUGINS =====
 
@@ -298,6 +314,10 @@
         gcmh-high-cons-threshold (* 100 1024 1024)) ;; 100 mb
   :hook (emacs-startup-hook . gcmh-mode))
 
+
+
+
+
 ;; ===== LANGUAGES MODES =====
 
 ;; c mode (https://github.com/rexim/simpc-mode)
@@ -319,6 +339,11 @@
 
 (use-package graphviz-dot-mode
   :ensure t)
+
+;; ===== LANGUAGES MODES =====
+
+
+
 
 ;; ===== ORG MODE =====
 
@@ -361,6 +386,11 @@
 	))
 (global-set-key (kbd "C-c o t") 'org-capture)
 
+;; ===== ORG MODE =====
+
+
+
+
 ;; ===== OTHER =====
 
 ;; https://emacs.stackexchange.com/questions/82010/why-is-emacs-recompiling-some-packages-on-every-startup
@@ -370,3 +400,5 @@
   (push "loaddefs.el.gz" native-comp-jit-compilation-deny-list))
 
 (load-file custom-file)
+
+;; ===== OTHER =====

@@ -45,10 +45,6 @@
 (add-to-list 'default-frame-alist
              '(font . "Liberation Mono-15"))
 
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
-(column-number-mode 1)
 (global-hl-line-mode t)
 
 (setq-default tab-width 4)
@@ -56,6 +52,8 @@
 (setq-default compilation-scroll-output t)
 
 ;; ===== ENABLE COOL STUFF =====
+
+(column-number-mode 1)
 
 ;; save positions in buffer on exit
 (save-place-mode 1)
@@ -71,6 +69,10 @@
 (global-display-line-numbers-mode)
 
 ;; ===== DISABLE INFERTING STUFF =====
+
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
 
 ;; disable backup files
 (setq make-backup-files nil)
@@ -143,7 +145,7 @@
 
 ;; ===== PLUGINS =====
 
-;; yas
+;; snippets
 
 (use-package yasnippet
   :ensure t
@@ -257,6 +259,45 @@
          ("C-\""        . mc/skip-to-next-like-this)
          ("C-}"         . mc/skip-to-previous-like-this)))
 
+;; denote system
+
+(defun my/denote-dired-all ()
+  (interactive)
+  (denote-dired ".*" nil nil nil))
+
+(use-package denote
+  :ensure t
+  :hook
+  ((dired-mode . denote-dired-mode-in-directories))
+  :bind
+  (("C-c n n" . denote)
+   ("C-c n r" . denote-rename-file)
+   ("C-c n l" . denote-link)
+   ("C-c n b" . denote-backlinks)
+   ("C-c n d" . my/denote-dired-all)
+   ("C-c n f" . denote-dired)
+   ("C-c n g" . denote-grep))
+  :config
+  (setq denote-directory org-notes-directory)
+
+  (setq denote-dired-directories (list org-notes-directory))
+  (setq denote-known-keywords '("emacs" "philosophy" "prog" "study" "ideas" "linux" "list" "personal"))
+
+  ;; Automatically rename Denote buffers when opening them so that
+  ;; instead of their long file name they have, for example, a literal
+  ;; "[D]" followed by the file's title.  Read the doc string of
+  ;; `denote-rename-buffer-format' for how to modify this.
+  (denote-rename-buffer-mode 1))
+
+;; GCMH - the Garbage Collector Magic Hack
+
+(use-package gcmh
+  :ensure t
+  :init
+  (setq gcmh-idle-delay 5
+        gcmh-high-cons-threshold (* 100 1024 1024)) ;; 100 mb
+  :hook (emacs-startup-hook . gcmh-mode))
+
 ;; ===== LANGUAGES MODES =====
 
 ;; c mode (https://github.com/rexim/simpc-mode)
@@ -319,45 +360,6 @@
 	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
 	))
 (global-set-key (kbd "C-c o t") 'org-capture)
-
-;; denote system
-
-(defun my/denote-dired-all ()
-  (interactive)
-  (denote-dired ".*" nil nil nil))
-
-(use-package denote
-  :ensure t
-  :hook
-  ((dired-mode . denote-dired-mode-in-directories))
-  :bind
-  (("C-c n n" . denote)
-   ("C-c n r" . denote-rename-file)
-   ("C-c n l" . denote-link)
-   ("C-c n b" . denote-backlinks)
-   ("C-c n d" . my/denote-dired-all)
-   ("C-c n f" . denote-dired)
-   ("C-c n g" . denote-grep))
-  :config
-  (setq denote-directory org-notes-directory)
-
-  (setq denote-dired-directories (list org-notes-directory))
-  (setq denote-known-keywords '("emacs" "philosophy" "prog" "study" "ideas" "linux" "list" "personal"))
-
-  ;; Automatically rename Denote buffers when opening them so that
-  ;; instead of their long file name they have, for example, a literal
-  ;; "[D]" followed by the file's title.  Read the doc string of
-  ;; `denote-rename-buffer-format' for how to modify this.
-  (denote-rename-buffer-mode 1))
-
-;; GCMH - the Garbage Collector Magic Hack
-
-(use-package gcmh
-  :ensure t
-  :init
-  (setq gcmh-idle-delay 5
-        gcmh-high-cons-threshold (* 100 1024 1024)) ;; 100 mb
-  :hook (emacs-startup-hook . gcmh-mode))
 
 ;; ===== OTHER =====
 

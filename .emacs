@@ -145,8 +145,8 @@
 (global-set-key (kbd "C-x g") 'rgrep)
 (global-set-key (kbd "C-c a") 'align-regexp)
 
-;; duplicate current line
 (defun my/duplicate-line (&optional n)
+  "Duplicate current line."
   (interactive "p")
   (let ((n (or n 1))
         (column (- (point) (point-at-bol)))
@@ -161,12 +161,14 @@
 (global-set-key (kbd "C-c d") 'my/duplicate-line)
 
 (defun my/insert-timestamp ()
+  "Insert current timestamp in format (%Y%m%dT%H%M%S)."
   (interactive)
   (let ((current-time (current-time)))
     (insert (format-time-string "(%Y%m%dT%H%M%S)" current-time))))
 (global-set-key (kbd "C-c i d") 'my/insert-timestamp)
 
 (defun my/insert-todo-timestamp ()
+   "Insert todo in format TODO(%Y%m%dT%H%M%S)."
   (interactive)
   (let ((current-time (current-time)))
     (insert (format-time-string "TODO(%Y%m%dT%H%M%S): " current-time))))

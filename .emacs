@@ -1,5 +1,8 @@
 ;; ===== PATHS =====
 
+(setq custom-file "~/.emacs.custom.el")
+(setq local-dir "~/.emacs.local/")
+
 (setq org-directory "~/org")
 (setq org-tasks-file (expand-file-name "tasks.org" org-directory))
 (setq org-images-directory (expand-file-name "images" org-directory))
@@ -9,13 +12,13 @@
 
 
 
+
 ;; ===== CHANGE SETTINGS =====
 
-(setq custom-file "~/.emacs.custom.el")
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 
-(add-to-list 'load-path "~/.emacs.local/")
+(add-to-list 'load-path local-dir)
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 

@@ -91,7 +91,7 @@
 
 
 
-;; ===== DISABLE INFERTING STUFF =====
+;; ===== DISABLE ANNOYING STUFF =====
 
 ;; never insert tabs. only spaces. hate tabs.
 (setq-default indent-tabs-mode nil) 
@@ -131,7 +131,7 @@
 (global-unset-key (kbd "C-<down-mouse-1>"))
 (global-unset-key (kbd "C-<down-mouse-3>"))
 
-;; ===== DISABLE INFERTING STUFF =====
+;; ===== DISABLE ANNOYING STUFF =====
 
 
 
@@ -168,7 +168,7 @@
 (global-set-key (kbd "C-c i d") 'my/insert-timestamp)
 
 (defun my/insert-todo-timestamp ()
-   "Insert todo in format TODO(%Y%m%dT%H%M%S)."
+   "Insert todo in format TODO(%Y%m%dT%H%M%S) using current timestamp."
   (interactive)
   (let ((current-time (current-time)))
     (insert (format-time-string "TODO(%Y%m%dT%H%M%S): " current-time))))

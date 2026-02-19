@@ -68,14 +68,14 @@
 
 (setq inhibit-startup-screen t)
 
-;; relative lines numbers
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode)
-
 ;; ===== ENABLE COOL STUFF =====
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+;; relative lines numbers
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode)
 
 ;; ===== DISABLE INFERTING STUFF =====
 

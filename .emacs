@@ -183,10 +183,11 @@
   :ensure t
   :config
 
-  ;; disable default rules
+  ;; disable default completion rules
   (setq completion-category-defaults nil)
+  ;; and use only orderless for autocomplete
+  (setq completion-styles '(orderless))
 
-  (setq completion-styles '(orderless)) ;; use orderless for autocomplete
   (setq orderless-matching-styles '(orderless-flex)) ;; fzf-like search
   (setq orderless-smart-case t)
   (setq orderless-component-separator nil)) ;; no use separators

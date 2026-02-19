@@ -13,10 +13,6 @@
 
 (setq warning-minimum-level :error)
 
-;; disable mouse wheel speed up
-(setq mouse-wheel-progressive-speed nil)
-(setq mouse-wheel-scroll-amount '(3))
-
 ;; emacs will reload the file if it is modified from the outside
 (global-auto-revert-mode t)
 
@@ -76,7 +72,11 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
-;; disable inferting funcs
+;; ===== Enable Cool Stuff =====
+
+(put 'upcase-region 'enabled t)
+
+;; ===== Disable Inferting Stuff =====
 
 ;; disable mouse wheel speed up
 (setq mouse-wheel-progressive-speed nil)

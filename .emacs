@@ -101,18 +101,18 @@
 (scroll-bar-mode 0)
 
 ;; disable backup files
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-(setq create-lockfiles nil)
+(setq make-backup-files nil
+      auto-save-default nil
+      create-lockfiles nil)
 
 ;; disable emacs hello-screen on startup
 (setq inhibit-startup-screen t)
 
-(setq mouse-wheel-progressive-speed nil)
-(setq mouse-wheel-scroll-amount '(3))
+(setq mouse-wheel-progressive-speed nil
+      mouse-wheel-scroll-amount '(3))
 
-(setq use-dialog-box nil)
-(setq use-file-dialog nil)
+(setq use-dialog-box nil
+      use-file-dialog nil)
 
 (global-eldoc-mode -1)
 

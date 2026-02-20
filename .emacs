@@ -269,19 +269,18 @@
 (use-package orderless
   :ensure t
   :config
-  
   ;; use orderless unless otherwise specified
-  (setq completion-styles '(orderless))
-  ;; disable default completion rules
-  (setq completion-category-defaults nil)
-  ;; so, only orderless will be used
+  (setq completion-styles '(orderless)
+        ;; disable default completion rules
+        completion-category-defaults nil
+        ;; so, only orderless will be used
 
-  ;; fzf-like search
-  (setq orderless-matching-styles '(orderless-flex))
-  ;; smart case-insensitive search
-  (setq orderless-smart-case t)
-  ;; no use separators (search the entire row)
-  (setq orderless-component-separator nil))
+        ;; fzf-like search
+        orderless-matching-styles '(orderless-flex)
+        ;; smart case-insensitive search
+        orderless-smart-case t
+        ;; no use separators (search the entire row)
+        orderless-component-separator nil))
 
 ;; ido + smex (old style)
 
@@ -357,10 +356,9 @@
    ("C-c n f" . denote-dired)
    ("C-c n g" . denote-grep))
   :config
-  (setq denote-directory org-notes-directory)
-
-  (setq denote-dired-directories (list org-notes-directory))
-  (setq denote-known-keywords '("emacs" "philosophy" "prog" "it"
+  (setq denote-directory org-notes-directory
+        denote-dired-directories (list org-notes-directory)
+        denote-known-keywords '("emacs" "philosophy" "prog" "it"
                                 "study" "ideas" "linux" "list" "personal" "guide"))
 
   ;; Automatically rename Denote buffers when opening them so that

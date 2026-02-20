@@ -1,12 +1,11 @@
 ;; ===== PATHS =====
 
-(setq custom-file "~/.emacs.custom.el")
-(setq local-dir "~/.emacs.local/")
-
-(setq org-directory "~/org")
-(setq org-tasks-file (expand-file-name "tasks.org" org-directory))
-(setq org-images-directory (expand-file-name "images" org-directory))
-(setq org-notes-directory (expand-file-name "notes" org-directory))
+(setq custom-file "~/.emacs.custom.el"
+      local-dir "~/.emacs.local"
+      org-directory "~/org"
+      org-tasks-file (expand-file-name "tasks.org" org-directory)
+      org-images-directory (expand-file-name "images" org-directory)
+      org-notes-directory (expand-file-name "notes" org-directory))
 
 ;; ===== PATHS =====
 

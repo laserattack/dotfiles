@@ -355,7 +355,6 @@
    ("C-c n l" . denote-link)
    ("C-c n b" . denote-backlinks)
    ("C-c n d" . my/denote-dired-all)
-   ("C-c n f" . denote-dired)
    ("C-c n g" . denote-grep))
   :config
   (setq denote-directory org-notes-directory

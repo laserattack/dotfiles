@@ -186,9 +186,9 @@
 (setq org-capture-bookmark nil)
 
 ;; agenda
-(setq org-agenda-files (list org-tasks-file))
-(setq org-tags-column 0)
-(setq org-agenda-tags-column 0)
+(setq org-agenda-files (list org-tasks-file)
+      org-tags-column 0
+      org-agenda-tags-column 0)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 
 ;; view images on hotkey
@@ -254,8 +254,8 @@
   :ensure t
   :config
   (vertico-mode 1)
-  (setq vertico-preselect 'prompt)
-  (setq vertico-count 20))
+  (setq vertico-preselect 'prompt
+        vertico-count 20))
 
 ;; hints on the right
 

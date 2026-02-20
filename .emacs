@@ -341,7 +341,7 @@
 (defun my/denote-dired-all ()
   "Open denote directory in dired without filters."
   (interactive)
-  (denote-dired ".*" nil nil nil))
+  (dired org-notes-directory))
 
 (use-package denote
   :ensure t

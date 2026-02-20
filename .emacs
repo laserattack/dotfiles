@@ -393,11 +393,13 @@
 (use-package dockerfile-mode
   :ensure t)
 
-;; go mode
+;; go
 
 (use-package go-mode
   :ensure t
   :hook (before-save . gofmt-before-save))
+
+;; graphviz
 
 (use-package graphviz-dot-mode
   :ensure t)

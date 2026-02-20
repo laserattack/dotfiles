@@ -34,9 +34,9 @@
 (setq vc-follow-symlinks t)
 
 ;; dired
-(setq dired-kill-when-opening-new-dired-buffer t)
-(setq dired-listing-switches "-alh")
-(setq dired-mouse-drag-files t)
+(setq dired-kill-when-opening-new-dired-buffer t
+      dired-listing-switches "-alh"
+      dired-mouse-drag-files t)
 (setq-default dired-dwim-target t)
 
 ;; default mode in M-x re-builder
@@ -58,8 +58,8 @@
 
 (global-hl-line-mode t)
 
-(setq-default tab-width 4)
-(setq-default compilation-scroll-output t)
+(setq-default tab-width 4
+              compilation-scroll-output t)
 
 ;; ===== CHANGE SETTINGS =====
 

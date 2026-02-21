@@ -243,10 +243,15 @@
 
 ;; colortheme
 
-(use-package zenburn-theme
+(use-package ef-themes
   :ensure t
   :config
-  (load-theme 'zenburn t))
+  (load-theme 'ef-dark t))
+
+;; (use-package zenburn-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'zenburn t))
 
 ;; vertical completion UI
 

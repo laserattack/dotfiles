@@ -224,23 +224,6 @@
 
 ;; ===== PLUGINS =====
 
-;; snippets
-
-(use-package yasnippet
-  :ensure t
-  :config
-  (yas-global-mode 1)
-  (yas-reload-all)
-
-  ;; allow yas in minibuffer
-  (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
-  (define-key minibuffer-local-map (kbd "TAB")
-    (lambda ()
-      (interactive)
-      (if (yas--maybe-expand-key-filter 'ignore)
-          (yas-expand)
-        (vertico-next)))))
-
 ;; colortheme
 
 (use-package ef-themes
@@ -290,26 +273,22 @@
         ;; no use separators (search the entire row)
         orderless-component-separator nil))
 
-(use-package consult
+;; snippets
+
+(use-package yasnippet
   :ensure t
-  :bind (("C-x b" . consult-buffer)
-         ("C-c l" . consult-line))
   :config
-  (setq consult-preview-key 'any))
+  (yas-global-mode 1)
+  (yas-reload-all)
 
-;; ido + smex (old style)
-
-;; (use-package ido-completing-read+
-;;   :ensure t
-;;   :config
-;;   (ido-everywhere)
-;;   (setq ido-enable-flex-matching t))
-
-;; (use-package smex
-;;   :ensure t
-;;   :bind (("M-x" . smex)
-;;          ("M-X" . smex-major-mode-commands)
-;;          ("C-c C-c M-x" . execute-extended-command)))
+  ;; allow yas in minibuffer
+  (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
+  (define-key minibuffer-local-map (kbd "TAB")
+    (lambda ()
+      (interactive)
+      (if (yas--maybe-expand-key-filter 'ignore)
+          (yas-expand)
+        (vertico-next)))))
 
 ;; move text
 

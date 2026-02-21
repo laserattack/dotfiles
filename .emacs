@@ -246,7 +246,9 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-dark t))
+  (load-theme 'ef-elea-dark t)
+  ;; (load-theme 'ef-dark t)
+  )
 
 ;; (use-package zenburn-theme
 ;;   :ensure t

@@ -246,7 +246,8 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme 'ef-elea-dark t)
+  (load-theme 'ef-dream t)
+  ;; (load-theme 'ef-elea-dark t)
   ;; (load-theme 'ef-dark t)
   )
 

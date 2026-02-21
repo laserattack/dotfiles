@@ -290,6 +290,14 @@
         ;; no use separators (search the entire row)
         orderless-component-separator nil))
 
+(use-package consult
+  :ensure t
+  :bind (("C-x b" . consult-buffer)
+         ("C-c s l" . consult-line)
+         ("M-g M-g" . consult-goto-line))
+  :config
+  (setq consult-preview-key 'any))
+
 ;; ido + smex (old style)
 
 ;; (use-package ido-completing-read+

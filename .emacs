@@ -293,8 +293,7 @@
 (use-package consult
   :ensure t
   :bind (("C-x b" . consult-buffer)
-         ("C-c s l" . consult-line)
-         ("M-g M-g" . consult-goto-line))
+         ("C-c s l" . consult-line))
   :config
   (setq consult-preview-key 'any))
 

@@ -1,6 +1,7 @@
 ;; ===== PATHS =====
 
 (setq custom-file "~/.emacs.custom.el"
+      yas-snippet-dirs '("~/.emacs.snippets/")
       local-dir "~/.emacs.local"
       org-directory "~/org"
       org-tasks-file (expand-file-name "tasks.org" org-directory)
@@ -229,7 +230,6 @@
   :ensure t
   :config
   (yas-global-mode 1)
-  (setq yas-snippet-dirs '("~/.emacs.snippets/"))
   (yas-reload-all)
 
   ;; allow yas in minibuffer

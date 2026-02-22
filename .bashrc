@@ -54,9 +54,19 @@ m4exec() {
         fi
         
         echo "Processing: $file"
+        
+        local tmp_file=$(mktemp)
+        
         m4 -D "CMD=esyscmd(\`\$1 | tr -d \"\n\"')" "$file" | 
-            awk 'NF > 0 {print} NF == 0 && last != "" {print ""} {last=$0}' | 
-            sponge "$file"
+            awk 'NF > 0 {print} NF == 0 && last != "" {print ""} {last=$0}' > "$tmp_file"
+        
+        if [ $? -eq 0 ]; then
+            mv "$tmp_file" "$file"
+            echo "Updated: $file"
+        else
+            echo "Error: Failed to process $file"
+            rm "$tmp_file"
+        fi
     done
 }
 

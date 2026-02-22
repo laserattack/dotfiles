@@ -53,12 +53,11 @@ m4exec() {
             continue
         fi
         
-        echo "Processing: $file"
+        echo "Processing: $file..."
         
         local tmp_file=$(mktemp)
         
-        m4 -D "CMD=esyscmd(\`\$1 | tr -d \"\n\"')" "$file" | 
-            awk 'NF > 0 {print} NF == 0 && last != "" {print ""} {last=$0}' > "$tmp_file"
+         m4 -D "CMD=esyscmd(\`\$1 | tr -d \"\n\"')" "$file" > "$tmp_file"
         
         if [ $? -eq 0 ]; then
             mv "$tmp_file" "$file"

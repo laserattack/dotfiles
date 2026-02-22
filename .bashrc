@@ -47,13 +47,15 @@ m4exec() {
         return 1
     fi
     
+    local cmd="esyscmd(\`\$1')"
+    
     for file in "$@"; do
         if [ ! -f "$file" ]; then
             echo "Warning: Skipping '$file' - not found"
             continue
         fi
         
-        m4 -D CMD='esyscmd(`$1')' "$file" | sponge "$file"
+        m4 -D CMD="$cmd" "$file" | sponge "$file"
         echo "Processed: $file"
     done
 }

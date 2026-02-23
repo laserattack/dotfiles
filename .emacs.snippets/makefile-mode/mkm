@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: makefile multiple files
+# name: makefile simple for multiple files
 # key: mkm
 # --
 PROGRAM_NAME    = ${1:program}
@@ -8,7 +8,7 @@ OBJECTS         = $(SOURCES:.c=.o)
 PROGRAM_BIN     = $(PROGRAM_NAME)
 
 CC              = ${3:gcc}
-CFLAGS          = ${4:-Wall -Wextra -std=c99 -O2}
+CFLAGS          = ${4:-Wall -Wextra -std=c99}
 LDFLAGS         = ${5:}
 LIBS            = ${6:}
 

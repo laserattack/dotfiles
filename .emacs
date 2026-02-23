@@ -282,6 +282,7 @@
 (use-package yasnippet
   :ensure t
   :config
+  (setq yas-indent-line 'fixed)
   (yas-global-mode 1)
   (yas-reload-all)
 

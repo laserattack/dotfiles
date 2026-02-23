@@ -7,7 +7,7 @@ SOURCES         = ${2:main.c}
 OBJECTS         = $(SOURCES:.c=.o)
 PROGRAM_BIN     = $(PROGRAM_NAME)
 
-CC              = ${3:gcc}
+CC              = ${3:cc}
 CFLAGS          = ${4:-Wall -Wextra -std=c99}
 LDFLAGS         = ${5:}
 LIBS            = ${6:}

@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # name: makefile simple for multiple files
 # key: mkm
+# expand-env: ((yas-indent-line 'fixed))
 # --
 PROGRAM_NAME    = ${1:program}
 SOURCES         = ${2:main.c}

@@ -298,9 +298,8 @@
 
 (use-package move-text
   :ensure t
-  :config
-  (define-key override-global-map (kbd "M-n") 'move-text-down)
-  (define-key override-global-map (kbd "M-p") 'move-text-up))
+  :bind (("M-n" . move-text-down)
+         ("M-p" . move-text-up)))
 
 ;; company
 

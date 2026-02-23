@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# name: simple makefile
+# key: smake
+# --
+PROGRAM_NAME    = $0
+PROGRAM_SRC		= ${PROGRAM_NAME}.c
+PROGRAM_BIN		= ${PROGRAM_NAME}.out
+
+CC				= cc
+CFLAGS			= -Wall -Wextra -std=c99
+
+all: $(PROGRAM_BIN)
+
+$(PROGRAM_BIN): $(PROGRAM_SRC)
+	$(CC) $(CFLAGS) -o $(PROGRAM_BIN) $(PROGRAM_SRC)
+
+clean:
+	rm -f $(PROGRAM_BIN)
+
+.PHONY: all clean

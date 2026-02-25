@@ -374,6 +374,15 @@
         gcmh-high-cons-threshold (* 100 1024 1024)) ;; 100 mb
   :hook (emacs-startup-hook . gcmh-mode))
 
+;; russian keyboard shortcuts support
+
+(use-package reverse-im
+ :ensure t
+ :custom
+ (reverse-im-input-methods '("russian-computer"))
+ :config
+ (reverse-im-mode t))
+
 ;; ===== PLUGINS =====
 
 

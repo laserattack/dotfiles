@@ -211,8 +211,6 @@
          "** TODO %?")
 	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
          "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
-	("t" "Task for tomorrow" entry (file+headline org-tasks-file "Daily")
-	 "** TODO %?\nSCHEDULED: <%(org-read-date nil nil "+1d")>")
 	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
 	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
 	))

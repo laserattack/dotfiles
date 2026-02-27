@@ -47,14 +47,23 @@ sub is_running {
 sub get_all_descendants {
     my ($pid) = @_;
     my %result;
+    my %children_of;
+
+    my $ps_output = `ps -eo pid,ppid`;
+    my @lines = split(/\n/, $ps_output);
+    foreach my $line (@lines) {
+        my ($child, $parent) = split(' ', $line);
+        push @{$children_of{$parent}}, $child;
+    }
 
     my $find_children;
     $find_children = sub {
         my ($parent) = @_;
-        my @children = split(/\n/, `ps -eo pid,ppid | awk '\$2 == $parent {print \$1}'`);
-        foreach my $child (@children) {
-            next if $result{$child}++;
-            $find_children->($child);
+        if (my $children = $children_of{$parent}) {
+            foreach my $child (@$children) {
+                next if $result{$child}++;
+                $find_children->($child);
+            }
         }
     };
 

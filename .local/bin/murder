@@ -16,10 +16,12 @@ our @SIGNALS = (
 
 # flags
 Getopt::Long::Configure('bundling'); # can combine flags e.g., -qf
-our $FORCE = 0;
-our $QUIET = 0;
-our $HELP  = 0;
-our $ONE   = 0;
+our $FORCE    = 0;
+our $QUIET    = 0;
+our $HELP     = 0;
+our $ONE      = 0;
+our $DRYRUN   = 0;
+our $NAMEONLY = 0;
 
 sub log_message {
     say @_ unless $QUIET;
@@ -28,8 +30,8 @@ sub log_message {
 sub go_ahead {
     my $input = <STDIN>;
     chomp($input);
-    $input =~ s/^\s+|\s+$//g;
-    $input = lc($input);
+    $input    =~ s/^\s+|\s+$//g;
+    $input    = lc($input);
 
     return 1 if $input eq '';
     return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
@@ -59,6 +61,7 @@ sub get_all_descendants {
 }
 
 sub kill_process_single {
+    return if $DRYRUN;
     my ($pid) = @_;
     foreach my $sig (@SIGNALS) {
         my ($code, $wait) = @$sig;
@@ -82,7 +85,11 @@ sub kill_process_tree {
     my @all_pids = get_all_descendants($pid);
     unshift @all_pids, $pid;
 
-    log_message "Process tree: " . join(', ', @all_pids);
+    my @all_pids_with_names = map {
+        chomp(my $name = `ps -p $_ -o comm= 2>/dev/null`);
+        "$_($name)"
+    } @all_pids;
+    log_message "Process tree: " . join(', ', @all_pids_with_names);
 
     foreach my $target_pid (reverse @all_pids) {
         unless (is_running($target_pid)) {
@@ -95,28 +102,30 @@ sub kill_process_tree {
 
 sub murder_pid {
     my ($pid) = @_;
+    my $name  = `ps -p $pid -o comm=`;
+    chomp($name);
+    print("Kill process $name (pid $pid)? [Y/n] ");
     if ($FORCE) {
+        print("\n");
         kill_process_tree($pid);
     } else {
-        my $command = `ps -p $pid -o comm=`;
-        chomp($command);        
-        print("Kill process $command (pid $pid)? [Y/n] ");
         kill_process_tree($pid) if go_ahead();
     }
 }
 
 sub murder_port {
     my ($port) = @_;
-    $port =~ s/^://;
-    my @pids = split(/\n/, `lsof -ti:$port`);
+    $port      =~ s/^://;
+    my @pids   = split(/\n/, `lsof -ti:$port`);
     foreach my $pid (@pids) {
         murder_pid($pid);
     }
 }
 
 sub murder_names {
-    my ($name) = @_;
-    my $running = `ps -eo 'pid command' | grep -Fiw '$name' | grep -Fv grep`;
+    my ($name)  = @_;
+    my $format  = $NAMEONLY ? 'pid comm' : 'pid command';
+    my $running = `ps -eo '$format' | grep -Fiw '$name' | grep -Fv grep`;
     foreach my $line (split(/\n/, $running)) {
         my ($pid) = $line =~ /^\s*(\d+)/;
         next if $$ == $pid;
@@ -146,13 +155,16 @@ sub main {
 }
 
 sub usage {
-    say "Usage: murder [-hfqo] arguments";
+    say "What is it : Linux process killer script";
+    say "Usage      : murder [-hfqonc] arguments";
     say "";
-    say "Options:";
-    say "  -h, --help   Show this help message";
-    say "  -f, --force  Kill without confirmation";
-    say "  -q, --quiet  Quiet mode (minimal output)";
-    say "  -o, --one    Kill only the specified process, not the entire tree";
+    say "Flags:";
+    say "  -h, --help       Show this help message";
+    say "  -f, --force      Kill without confirmation";
+    say "  -q, --quiet      Quiet mode (minimal output)";
+    say "  -o, --one        Kill only the specified process, not the entire tree";
+    say "  -c, --name-only  Search by process name only (not full command line)";
+    say "  -n, --dry-run    Show what would be killed without actually killing";
     say "";
     say "Arguments:";
     say "  PID    Process ID to kill";
@@ -160,17 +172,22 @@ sub usage {
     say "  :PORT  Port number to kill process on (e.g., :3000)";
     say "";
     say "Examples:";
-    say "  murder 1234        Kill process with PID 1234";
-    say "  murder -f ruby     Kill all ruby processes without asking";
-    say "  murder -q :3000    Kill process on port 3000 quietly";
-    say "  murder -fq python  Kill python processes without asking and quietly";
+    say "  murder 1234          Kill process with PID 1234";
+    say "  murder -f ruby       Kill all ruby processes without asking";
+    say "  murder -q :3000      Kill process on port 3000 quietly";
+    say "  murder -fq python    Kill python processes without asking and quietly";
+    say "  murder -nf firefox   Show what would be killed (search by full command)";
+    say "  murder -nfc firefox  Show what would be killed (search by name only)";
+    say "  murder -nfq firefox  Show what would be killed with minimal output";
 }
 
 GetOptions(
-    'force|f' => \$FORCE,
-    'quiet|q' => \$QUIET,
-    'help|h'  => \$HELP,
-    'one|o'   => \$ONE,
+    'force|f'     => \$FORCE,
+    'quiet|q'     => \$QUIET,
+    'help|h'      => \$HELP,
+    'one|o'       => \$ONE,
+    'dry-run|n'   => \$DRYRUN,
+    'name-only|c' => \$NAMEONLY,
     ) or do {
         usage();
         exit 1;

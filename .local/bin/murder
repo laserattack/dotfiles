@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 
+# What is it : Linux process killer script
+# Usage      : murder [-hfqonc] PID|NAME|:PORT
+
 use strict;
 use warnings;
 use feature 'say';
@@ -156,7 +159,7 @@ sub main {
 
 sub usage {
     say "What is it : Linux process killer script";
-    say "Usage      : murder [-hfqonc] arguments";
+    say "Usage      : murder [-hfqonc] PID|NAME|:PORT";
     say "";
     say "Flags:";
     say "  -h, --help       Show this help message";

@@ -4,12 +4,26 @@
 # Usage      : murder [-hfqonc] PID|NAME|:PORT
 
 use strict;
-use warnings;
-use feature 'say';
-use Time::HiRes 'sleep';
 use Getopt::Long;
 
-our @SIGNALS = (
+BEGIN {
+    eval "use warnings";
+    eval "use Time::HiRes 'sleep'";
+    if ($@) {
+         *sleep = sub {
+            my $seconds = shift;
+            CORE::sleep($seconds) if $seconds > 0;
+        };
+    }
+    my $has_ss   = `which ss 2>/dev/null`;
+    my $has_lsof = `which lsof 2>/dev/null`;
+
+    unless ($has_ss || $has_lsof) {
+        print STDERR "WARNING: Neither 'ss' nor 'lsof' found. Port killing mode (:PORT) will not work\n";
+    }
+}
+
+my @SIGNALS = (
     # [signal, timeout]
     [15, 3],
     [2, 3],
@@ -19,15 +33,15 @@ our @SIGNALS = (
 
 # flags
 Getopt::Long::Configure('bundling'); # can combine flags e.g., -qf
-our $FORCE    = 0;
-our $QUIET    = 0;
-our $HELP     = 0;
-our $ONE      = 0;
-our $DRYRUN   = 0;
-our $NAMEONLY = 0;
+my $FORCE    = 0;
+my $QUIET    = 0;
+my $HELP     = 0;
+my $ONE      = 0;
+my $DRYRUN   = 0;
+my $NAMEONLY = 0;
 
 sub log_message {
-    say @_ unless $QUIET;
+    print @_, "\n" unless $QUIET;
 }
 
 sub go_ahead {
@@ -41,47 +55,79 @@ sub go_ahead {
 
 sub is_running {
     my ($pid) = @_;
-    return `ps -p $pid` =~ tr/\n// == 2;
+    return kill(0, $pid);
+}
+
+sub get_children {
+    my ($pid) = @_;
+    local *DIR;
+    opendir(DIR, '/proc') or return;
+    my @children;
+
+    while (readdir(DIR)) {
+        next unless /^\d+$/;
+
+        if (open(STAT, "/proc/$_/stat")) {
+            my $stat = <STAT>;
+            close STAT;
+
+            my ($ppid) = ($stat =~ /^\d+\s+\([^)]+\)\s+.\s+(\d+)/);
+            push @children, $_ if (defined $ppid && $ppid == $pid);
+        }
+    }
+
+    closedir DIR;
+    return @children;
+}
+
+sub get_pid_with_start {
+    my ($pid) = @_;
+    chomp(my $start = `ps -o lstart= -p $pid 2>/dev/null`);
+    return ($pid, $start);
 }
 
 sub get_all_descendants {
     my ($pid) = @_;
-    my %result;
-    my %children_of;
-
-    my $ps_output = `ps -eo pid,ppid`;
-    my @lines = split(/\n/, $ps_output);
-    shift @lines;
-    foreach my $line (@lines) {
-        my ($child, $parent) = split(' ', $line);
-        push @{$children_of{$parent}}, $child;
-    }
-
-    my $find_children;
-    $find_children = sub {
-        my ($parent) = @_;
-        if (my $children = $children_of{$parent}) {
-            foreach my $child (@$children) {
-                next if $result{$child}++;
-                $find_children->($child);
+    my %result; # hash: pid => start_time
+    my @queue = ($pid);
+    
+    my ($self_pid, $self_start) = get_pid_with_start($pid);
+    $result{$self_pid} = $self_start if $self_start;
+    
+    while (my $current = shift @queue) {
+        my @children = get_children($current);
+        foreach my $child (@children) {
+            next if exists $result{$child};
+            
+            my ($child_pid, $child_start) = get_pid_with_start($child);
+            if ($child_start) {
+                $result{$child_pid} = $child_start;
+                push @queue, $child;
             }
         }
-    };
+    }
+    
+    return %result;
+}
 
-    $find_children->($pid);
-    return keys %result;
+sub verify_process {
+    my ($pid, $original_start) = @_;
+    chomp (my $current_start = `ps -o lstart= -p $pid 2>/dev/null`);
+    return $current_start eq $original_start;
 }
 
 sub kill_process_single {
     return if $DRYRUN;
-    my ($pid) = @_;
+    my ($pid, $original_start) = @_;
+    return if !is_running($pid) || !verify_process($pid, $original_start);
     foreach my $sig (@SIGNALS) {
         my ($code, $wait) = @$sig;
         log_message "Sending signal $code to pid $pid";
         kill($code, $pid);
         sleep(0.3);
-        last unless is_running($pid);
+        last if !is_running($pid) || !verify_process($pid, $original_start);
         sleep($wait);
+        last if !is_running($pid) || !verify_process($pid, $original_start);
     }
 }
 
@@ -90,12 +136,13 @@ sub kill_process_tree {
 
     if ($ONE) {
         log_message "Process: $pid";
-        kill_process_single($pid);
+        my ($self_pid, $self_start) = get_pid_with_start($pid);
+        kill_process_single($self_pid, $self_start);
         return;
     }
 
-    my @all_pids = get_all_descendants($pid);
-    unshift @all_pids, $pid;
+    my %pids_with_start = get_all_descendants($pid);
+    my @all_pids        = keys %pids_with_start;
 
     my @all_pids_with_names = map {
         chomp(my $name = `ps -p $_ -o comm= 2>/dev/null`);
@@ -104,17 +151,18 @@ sub kill_process_tree {
     log_message "Process tree: ".join(', ', @all_pids_with_names);
 
     foreach my $target_pid (reverse @all_pids) {
-        unless (is_running($target_pid)) {
+        if (!is_running($target_pid) || !verify_process($target_pid, $pids_with_start{$target_pid})) {
             log_message "Process with pid $target_pid already dead";
             next;
         }
-        kill_process_single($target_pid);
+        kill_process_single($target_pid, $pids_with_start{$target_pid});
     }
 }
 
 sub murder_pid {
     my ($pid) = @_;
-    chomp(my $name  = `ps -p $pid -o comm=`);
+    return unless is_running $pid;
+    chomp(my $name  = `ps -p $pid -o comm= 2>/dev/null`);
     print("Kill process $name (pid $pid)? [Y/n] ");
     if ($FORCE) {
         print("\n");
@@ -126,20 +174,28 @@ sub murder_pid {
 
 sub murder_port {
     my ($port) = @_;
-    $port      =~ s/^://;
-    my @pids   = split(/\n/, `lsof -ti:$port`);
+    $port =~ s/^://;
+    my @pids;
+
+    my $ss_out = `ss -ltnup 'sport = :$port' 2>/dev/null`;
+    @pids      = $ss_out =~ /pid=(\d+)/g;
+    @pids      = split(/\n/, `lsof -ti:$port 2>/dev/null`) unless @pids;
+
     foreach my $pid (@pids) {
         murder_pid($pid);
     }
 }
 
 sub murder_names {
-    my ($name)  = @_;
-    my $format  = $NAMEONLY ? 'pid comm' : 'pid command';
-    my $running = `ps -eo '$format' | grep -Fiw '$name' | grep -Fv grep`;
-    foreach my $line (split(/\n/, $running)) {
-        my ($pid) = $line =~ /^\s*(\d+)/;
-        next if $$ == $pid;
+    my ($name) = @_;
+    my $format = $NAMEONLY ? 'pid comm' : 'pid command';
+    my $output = `ps -eo '$format' 2>/dev/null`;
+    foreach my $line (split(/\n/, $output)) {
+        my ($pid, $cmd_or_name)  = $line =~ /^\s*(\d+)\s+(.+)/;
+        next unless $pid && $cmd_or_name;
+        next if $pid             == $$;
+        # \Q...\E escapes regex metacharacters (treats $name as literal string)
+        next unless $cmd_or_name =~ /\Q$name\E/;
         murder_pid($pid);
     }
 }
@@ -166,30 +222,30 @@ sub main {
 }
 
 sub usage {
-    say "What is it : Linux process killer script";
-    say "Usage      : murder [-hfqonc] PID|NAME|:PORT";
-    say "";
-    say "Flags:";
-    say "  -h, --help       Show this help message";
-    say "  -f, --force      Kill without confirmation";
-    say "  -q, --quiet      Quiet mode (minimal output)";
-    say "  -o, --one        Kill only the specified process, not the entire tree";
-    say "  -c, --name-only  Search by process name only (not full command line)";
-    say "  -n, --dry-run    Show what would be killed without actually killing";
-    say "";
-    say "Arguments:";
-    say "  PID    Process ID to kill";
-    say "  NAME   Process name to kill (e.g., python, emacs, firefox)";
-    say "  :PORT  Port number to kill process on (e.g., :3000)";
-    say "";
-    say "Examples:";
-    say "  murder 1234          Kill process with PID 1234";
-    say "  murder -f ruby       Kill all ruby processes without asking";
-    say "  murder -q :3000      Kill process on port 3000 quietly";
-    say "  murder -fq python    Kill python processes without asking and quietly";
-    say "  murder -nf firefox   Show what would be killed (search by full command)";
-    say "  murder -nfc firefox  Show what would be killed (search by name only)";
-    say "  murder -nfq firefox  Show what would be killed with minimal output";
+    print "What is it : Linux process killer script",                                  "\n";
+    print "Usage      : murder [-hfqonc] PID|NAME|:PORT",                              "\n";
+    print "",                                                                          "\n";
+    print "Flags:",                                                                    "\n";
+    print "  -h, --help       Show this help message",                                 "\n";
+    print "  -f, --force      Kill without confirmation",                              "\n";
+    print "  -q, --quiet      Quiet mode (minimal output)",                            "\n";
+    print "  -o, --one        Kill only the specified process, not the entire tree",   "\n";
+    print "  -c, --name-only  Search by process name only (not full command line)",    "\n";
+    print "  -n, --dry-run    Show what would be killed without actually killing",     "\n";
+    print "",                                                                          "\n";
+    print "Arguments:",                                                                "\n";
+    print "  PID    Process ID to kill",                                               "\n";
+    print "  NAME   Process name to kill (e.g., python, emacs, firefox)",              "\n";
+    print "  :PORT  Port number to kill process on (e.g., :3000)",                     "\n";
+    print "",                                                                          "\n";
+    print "Examples:",                                                                 "\n";
+    print "  murder 1234          Kill process with PID 1234",                         "\n";
+    print "  murder -f ruby       Kill all ruby processes without asking",             "\n";
+    print "  murder -q :3000      Kill process on port 3000 quietly",                  "\n";
+    print "  murder -fq python    Kill python processes without asking and quietly",   "\n";
+    print "  murder -nf firefox   Show what would be killed (search by full command)", "\n";
+    print "  murder -nfc firefox  Show what would be killed (search by name only)",    "\n";
+    print "  murder -nfq firefox  Show what would be killed with minimal output",      "\n";
 }
 
 GetOptions(

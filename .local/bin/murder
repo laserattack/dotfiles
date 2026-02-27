@@ -51,6 +51,7 @@ sub get_all_descendants {
 
     my $ps_output = `ps -eo pid,ppid`;
     my @lines = split(/\n/, $ps_output);
+    shift @lines;
     foreach my $line (@lines) {
         my ($child, $parent) = split(' ', $line);
         push @{$children_of{$parent}}, $child;

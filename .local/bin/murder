@@ -89,7 +89,7 @@ sub kill_process_tree {
         chomp(my $name = `ps -p $_ -o comm= 2>/dev/null`);
         "$_($name)"
     } @all_pids;
-    log_message "Process tree: " . join(', ', @all_pids_with_names);
+    log_message "Process tree: ".join(', ', @all_pids_with_names);
 
     foreach my $target_pid (reverse @all_pids) {
         unless (is_running($target_pid)) {

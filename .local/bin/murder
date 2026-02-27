@@ -31,8 +31,7 @@ sub log_message {
 }
 
 sub go_ahead {
-    my $input = <STDIN>;
-    chomp($input);
+    chomp(my $input = <STDIN>);
     $input    =~ s/^\s+|\s+$//g;
     $input    = lc($input);
 
@@ -105,8 +104,7 @@ sub kill_process_tree {
 
 sub murder_pid {
     my ($pid) = @_;
-    my $name  = `ps -p $pid -o comm=`;
-    chomp($name);
+    chomp(my $name  = `ps -p $pid -o comm=`);
     print("Kill process $name (pid $pid)? [Y/n] ");
     if ($FORCE) {
         print("\n");

@@ -271,7 +271,7 @@ sub usage {
     print "  murder :3000         Kill process on port 3000 quietly",                  "\n";
     print "  murder -nfq firefox  Show what would be killed with minimal output",      "\n";
     print "",                                                                          "\n";
-    print "For more details, see: man murder",                                         "\n";
+    print "For more details, see man page",                                            "\n";
 }
 
 GetOptions(

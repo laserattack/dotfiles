@@ -15,12 +15,6 @@ BEGIN {
             CORE::sleep($seconds) if $seconds > 0;
         };
     }
-    my $has_ss   = `which ss 2>/dev/null`;
-    my $has_lsof = `which lsof 2>/dev/null`;
-
-    unless ($has_ss || $has_lsof) {
-        print STDERR "WARNING: Neither 'ss' nor 'lsof' found. Port killing mode (:PORT) will not work\n";
-    }
 }
 
 my @SIGNALS = (
@@ -50,7 +44,7 @@ sub go_ahead {
     $input    = lc($input);
 
     return 1 if $input eq '';
-    return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
+    return $input =~ /^(y|yes|yas)$/? 1: 0;
 }
 
 sub is_running {
@@ -70,8 +64,7 @@ sub get_children {
         if (open(STAT, "/proc/$_/stat")) {
             my $stat = <STAT>;
             close STAT;
-
-            my ($ppid) = ($stat =~ /^\d+\s+\([^)]+\)\s+.\s+(\d+)/);
+            my ($ppid) = ($stat =~ /^.*\)\s+.\s+(\d+)/);
             push @children, $_ if (defined $ppid && $ppid == $pid);
         }
     }
@@ -90,15 +83,15 @@ sub get_all_descendants {
     my ($pid) = @_;
     my %result; # hash: pid => start_time
     my @queue = ($pid);
-    
+
     my ($self_pid, $self_start) = get_pid_with_start($pid);
     $result{$self_pid} = $self_start if $self_start;
-    
+
     while (my $current = shift @queue) {
         my @children = get_children($current);
         foreach my $child (@children) {
             next if exists $result{$child};
-            
+
             my ($child_pid, $child_start) = get_pid_with_start($child);
             if ($child_start) {
                 $result{$child_pid} = $child_start;
@@ -106,7 +99,7 @@ sub get_all_descendants {
             }
         }
     }
-    
+
     return %result;
 }
 
@@ -151,10 +144,34 @@ sub kill_process_tree {
     log_message "Process tree: ".join(', ', @all_pids_with_names);
 
     foreach my $target_pid (reverse @all_pids) {
-        if (!is_running($target_pid) || !verify_process($target_pid, $pids_with_start{$target_pid})) {
-            log_message "Process with pid $target_pid already dead";
+
+        my $exists = is_running($target_pid);
+
+        # exists, but another process on the pid
+        if ($exists && !verify_process($target_pid, $pids_with_start{$target_pid})) {
+            log_message "Process with pid $target_pid changed";
             next;
         }
+
+        # no exists ??
+        unless ($exists) {
+
+            # mb exists but no rights?
+            my $no_rights = do {
+                my @lines = split(/\n/, `ps -p $target_pid 2>/dev/null`);
+                scalar @lines == 2
+            };
+
+            if ($no_rights) {
+                # exists but no rights
+                log_message "There are no rights to send a signal to $target_pid";
+            } else {
+                # no exists
+                log_message "Process with pid $target_pid already dead";
+            }
+            next;
+        }
+
         kill_process_single($target_pid, $pids_with_start{$target_pid});
     }
 }
@@ -175,11 +192,17 @@ sub murder_pid {
 sub murder_port {
     my ($port) = @_;
     $port =~ s/^://;
-    my @pids;
 
-    my $ss_out = `ss -ltnup 'sport = :$port' 2>/dev/null`;
-    @pids      = $ss_out =~ /pid=(\d+)/g;
-    @pids      = split(/\n/, `lsof -ti:$port 2>/dev/null`) unless @pids;
+    # try ss
+    my @pids = do {
+        my $ss_out = `ss -ltnup 'sport = :$port' 2>/dev/null`;
+        $ss_out =~ /pid=(\d+)/g
+    };
+    my %seen;
+    @pids = grep { !$seen{$_}++ } @pids; # mb ipv4-ipv6 duplicates
+
+    # try lsof
+    @pids = split(/\n/, `lsof -ti:$port 2>/dev/null`) unless @pids;
 
     foreach my $pid (@pids) {
         murder_pid($pid);
@@ -188,12 +211,16 @@ sub murder_port {
 
 sub murder_names {
     my ($name) = @_;
-    my $format = $NAMEONLY ? 'pid comm' : 'pid command';
-    my $output = `ps -eo '$format' 2>/dev/null`;
+
+    my $output = do {
+        my $format = $NAMEONLY? 'pid comm': 'pid command';
+        `ps -eo '$format' 2>/dev/null`
+    };
+
     foreach my $line (split(/\n/, $output)) {
-        my ($pid, $cmd_or_name)  = $line =~ /^\s*(\d+)\s+(.+)/;
+        my ($pid, $cmd_or_name) = $line =~ /^\s*(\d+)\s+(.+)/;
         next unless $pid && $cmd_or_name;
-        next if $pid             == $$;
+        next if $pid == $$;
         # \Q...\E escapes regex metacharacters (treats $name as literal string)
         next unless $cmd_or_name =~ /\Q$name\E/;
         murder_pid($pid);
@@ -259,6 +286,13 @@ GetOptions(
         usage();
         exit 1;
 };
+
+my $has_ss   = `which ss 2>/dev/null`;
+my $has_lsof = `which lsof 2>/dev/null`;
+
+if (!$QUIET && !$has_ss && !$has_lsof) {
+    print STDERR "WARNING: Neither 'ss' nor 'lsof' found. Port killing mode (:PORT) will not work\n";
+}
 
 if ($HELP) {
     usage();

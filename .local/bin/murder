@@ -249,29 +249,29 @@ sub main {
 }
 
 sub usage {
-    print "What is it : Linux process killer script",                                  "\n";
-    print "Usage      : murder [-hfqonc] PID|NAME|:PORT",                              "\n";
-    print "",                                                                          "\n";
-    print "Flags:",                                                                    "\n";
-    print "  -h, --help       Show this help message",                                 "\n";
-    print "  -f, --force      Kill without confirmation",                              "\n";
-    print "  -q, --quiet      Quiet mode (minimal output)",                            "\n";
-    print "  -o, --one        Kill only the specified process, not the entire tree",   "\n";
-    print "  -c, --name-only  Search by process name only (not full command line)",    "\n";
-    print "  -n, --dry-run    Show what would be killed without actually killing",     "\n";
-    print "",                                                                          "\n";
-    print "Arguments:",                                                                "\n";
-    print "  PID    Process ID to kill",                                               "\n";
-    print "  NAME   Process name to kill (e.g., python, emacs, firefox)",              "\n";
-    print "  :PORT  Port number to kill process on (e.g., :3000)",                     "\n";
-    print "",                                                                          "\n";
-    print "Examples:",                                                                 "\n";
-    print "  murder 1234          Kill process with PID 1234",                         "\n";
-    print "  murder -f ruby       Kill all ruby processes without asking",             "\n";
-    print "  murder :3000         Kill process on port 3000 quietly",                  "\n";
-    print "  murder -nfq firefox  Show what would be killed with minimal output",      "\n";
-    print "",                                                                          "\n";
-    print "For more details, see man page",                                            "\n";
+    print "What is it : smart Linux process killer",                                 "\n";
+    print "Usage      : murder [-hfqonc] PID|NAME|:PORT",                            "\n";
+    print "",                                                                        "\n";
+    print "Flags:",                                                                  "\n";
+    print "  -h, --help       Show this help message",                               "\n";
+    print "  -f, --force      Kill without confirmation",                            "\n";
+    print "  -q, --quiet      Quiet mode (minimal output)",                          "\n";
+    print "  -o, --one        Kill only the specified process, not the entire tree", "\n";
+    print "  -c, --name-only  Search by process name only (not full command line)",  "\n";
+    print "  -n, --dry-run    Show what would be killed without actually killing",   "\n";
+    print "",                                                                        "\n";
+    print "Arguments:",                                                              "\n";
+    print "  PID    Process ID to kill",                                             "\n";
+    print "  NAME   Process name to kill (e.g., python, emacs, firefox)",            "\n";
+    print "  :PORT  Port number to kill process on (e.g., :3000)",                   "\n";
+    print "",                                                                        "\n";
+    print "Examples:",                                                               "\n";
+    print "  murder 1234          Kill process with PID 1234",                       "\n";
+    print "  murder -f ruby       Kill all ruby processes without asking",           "\n";
+    print "  murder :3000         Kill process on port 3000 quietly",                "\n";
+    print "  murder -nfq firefox  Show what would be killed with minimal output",    "\n";
+    print "",                                                                        "\n";
+    print "For more details, see man page",                                          "\n";
 }
 
 GetOptions(

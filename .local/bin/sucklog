@@ -28,7 +28,7 @@ sub main {
     my $channel = shift @ARGV;
     my $log_file = "$LOG_DIR/$channel/current";
     unless (-f $log_file) {
-        say "Cannot find log file for channel '$channel'";
+        say STDERR "Cannot find log file for channel '$channel'";
         exit 1;
     }
     open my $fh, '<', $log_file or do {

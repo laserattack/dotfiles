@@ -25,3 +25,4 @@
 .local/bin/clipshot|symlink|
 .local/bin/murder|symlink|
 .local/bin/xxx|symlink|
+.local/bin/sucklog|symlink|

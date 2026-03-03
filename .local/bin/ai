@@ -6,6 +6,8 @@ use feature 'say';
 use HTTP::Tiny;
 use JSON::PP;
 use utf8;
+binmode STDOUT, ':utf8';
+binmode STDERR, ':utf8';
 
 # you can hack it
 my $url                 = 'https://openai.htk.ge/v1/chat/completions';
@@ -44,7 +46,6 @@ sub ask {
     if ($response->{success}) {
         my $result = $json->decode($response->{content});
         my $text = $result->{choices}[0]{message}{content};
-        utf8::decode($text);
         return $text;
     } else {
         return "Error: $response->{status} $response->{reason}";

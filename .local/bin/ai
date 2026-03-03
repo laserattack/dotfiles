@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 
+# Что это       : Подсказщик bash-команд использующий AI
+# Использование : ai [вопрос]
+
 # Идея взята отсюда https://habr.com/ru/articles/1001214/
 
 use strict;

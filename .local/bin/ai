@@ -5,7 +5,6 @@ use warnings;
 use feature 'say';
 use HTTP::Tiny;
 use JSON::PP;
-use utf8;
 
 # you can hack it
 my $url                 = 'https://openai.htk.ge/v1/chat/completions';

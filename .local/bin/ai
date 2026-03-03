@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+# Идея взята отсюда https://habr.com/ru/articles/1001214/
+
 use strict;
 use warnings;
 use feature 'say';
@@ -71,6 +73,7 @@ sub usage {
     say "";
     say "ВНИМАНИЕ:";
     say "  Терминал должен поддерживать UTF-8";
+    say "  Эндпоинт: $url (можно поменять в коде)";
     say "  Лимит по токенам ответа: $answer_tokens_limit (можно поменять в коде)";
     say "  Ключ должен быть в $key_file (можно поменять в коде)";
     say "";

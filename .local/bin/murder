@@ -241,10 +241,10 @@ sub murder {
 sub main {
     if (@ARGV < 1) {
         usage();
+        exit 1;
     } else {
-        foreach my $arg (@ARGV) {
-            murder($arg);
-        }
+        murder($_) for @ARGV;
+        exit 0;
     }
 }
 
@@ -275,12 +275,12 @@ sub usage {
 }
 
 GetOptions(
-    'force|f'     => \$FORCE,
-    'quiet|q'     => \$QUIET,
-    'help|h'      => \$HELP,
-    'one|o'       => \$ONE,
-    'dry-run|n'   => \$DRYRUN,
-    'name-only|c' => \$NAMEONLY,
+        'force|f'     => \$FORCE,
+        'quiet|q'     => \$QUIET,
+        'help|h'      => \$HELP,
+        'one|o'       => \$ONE,
+        'dry-run|n'   => \$DRYRUN,
+        'name-only|c' => \$NAMEONLY,
     ) or do {
         usage();
         exit 1;
@@ -295,7 +295,7 @@ if (!$QUIET && !$has_ss && !$has_lsof) {
 
 if ($HELP) {
     usage();
-    exit 1;
+    exit 0;
 }
 
 main();

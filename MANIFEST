@@ -25,3 +25,4 @@
 .local/bin/murder|symlink|
 .local/bin/xxx|symlink|
 .local/bin/sucklog|symlink|
+.local/bin/ai|symlink|

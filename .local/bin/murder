@@ -6,6 +6,15 @@
 use strict;
 use Getopt::Long;
 
+# you can hack it
+my @SIGNALS = (
+    # [signal, timeout]
+    [15, 3],
+    [2, 3],
+    [1, 4],
+    [9, 0]
+);
+
 BEGIN {
     eval "use warnings";
     eval "use Time::HiRes 'sleep'";
@@ -17,14 +26,6 @@ BEGIN {
     }
 }
 
-my @SIGNALS = (
-    # [signal, timeout]
-    [15, 3],
-    [2, 3],
-    [1, 4],
-    [9, 0]
-);
-
 # flags
 Getopt::Long::Configure('bundling'); # can combine flags e.g., -qf
 my $FORCE    = 0;
@@ -33,6 +34,10 @@ my $HELP     = 0;
 my $ONE      = 0;
 my $DRYRUN   = 0;
 my $NAMEONLY = 0;
+
+my $ss;
+my $lsof;
+my $ps;
 
 sub log_message {
     print @_, "\n" unless $QUIET;
@@ -75,7 +80,7 @@ sub get_children {
 
 sub get_pid_with_start {
     my ($pid) = @_;
-    chomp(my $start = `ps -o lstart= -p $pid 2>/dev/null`);
+    chomp(my $start = `$ps -o lstart= -p $pid 2>/dev/null`);
     return ($pid, $start);
 }
 
@@ -105,7 +110,7 @@ sub get_all_descendants {
 
 sub verify_process {
     my ($pid, $original_start) = @_;
-    chomp (my $current_start = `ps -o lstart= -p $pid 2>/dev/null`);
+    chomp (my $current_start = `$ps -o lstart= -p $pid 2>/dev/null`);
     return $current_start eq $original_start;
 }
 
@@ -138,7 +143,7 @@ sub kill_process_tree {
     my @all_pids        = keys %pids_with_start;
 
     my @all_pids_with_names = map {
-        chomp(my $name = `ps -p $_ -o comm= 2>/dev/null`);
+        chomp(my $name = `$ps -p $_ -o comm= 2>/dev/null`);
         "$_($name)"
     } @all_pids;
     log_message "Process tree: ".join(', ', @all_pids_with_names);
@@ -158,7 +163,7 @@ sub kill_process_tree {
 
             # mb exists but no rights?
             my $no_rights = do {
-                my @lines = split(/\n/, `ps -p $target_pid 2>/dev/null`);
+                my @lines = split(/\n/, `$ps -p $target_pid 2>/dev/null`);
                 scalar @lines == 2
             };
 
@@ -179,7 +184,7 @@ sub kill_process_tree {
 sub murder_pid {
     my ($pid) = @_;
     return unless is_running $pid;
-    chomp(my $name  = `ps -p $pid -o comm= 2>/dev/null`);
+    chomp(my $name  = `$ps -p $pid -o comm= 2>/dev/null`);
     print("Kill process $name (pid $pid)? [Y/n] ");
     if ($FORCE) {
         print("\n");
@@ -195,14 +200,14 @@ sub murder_port {
 
     # try ss
     my @pids = do {
-        my $ss_out = `ss -ltnup 'sport = :$port' 2>/dev/null`;
+        my $ss_out = `$ss -ltnup 'sport = :$port' 2>/dev/null`;
         $ss_out =~ /pid=(\d+)/g
     };
     my %seen;
     @pids = grep { !$seen{$_}++ } @pids; # mb ipv4-ipv6 duplicates
 
     # try lsof
-    @pids = split(/\n/, `lsof -ti:$port 2>/dev/null`) unless @pids;
+    @pids = split(/\n/, `$lsof -ti:$port 2>/dev/null`) unless @pids;
 
     foreach my $pid (@pids) {
         murder_pid($pid);
@@ -214,7 +219,7 @@ sub murder_names {
 
     my $output = do {
         my $format = $NAMEONLY? 'pid comm': 'pid command';
-        `ps -eo '$format' 2>/dev/null`
+        `$ps -eo '$format' 2>/dev/null`
     };
 
     foreach my $line (split(/\n/, $output)) {
@@ -246,6 +251,16 @@ sub main {
         murder($_) for @ARGV;
         exit 0;
     }
+}
+
+sub check_command {
+    my ($cmd) = @_;
+    my @paths = split(':', $ENV{PATH} || '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin');
+    foreach my $path (@paths) {
+        my $full_path = "$path/$cmd";
+        return $full_path if -x $full_path;
+    }
+    return;
 }
 
 sub usage {
@@ -286,16 +301,20 @@ GetOptions(
         exit 1;
 };
 
-my $has_ss   = `which ss 2>/dev/null`;
-my $has_lsof = `which lsof 2>/dev/null`;
-
-if (!$QUIET && !$has_ss && !$has_lsof) {
-    print STDERR "WARNING: Neither 'ss' nor 'lsof' found. Port killing mode (:PORT) will not work\n";
-}
-
 if ($HELP) {
     usage();
     exit 0;
+}
+
+$ss   = check_command('ss');
+$lsof = check_command('lsof');
+$ps   = check_command('ps');
+if (!$ps) {
+    print STDERR "ERROR: 'ps' program was not found\n";
+    exit 1;
+}
+if (!$QUIET && !$ss && !$lsof) {
+    print STDERR "WARNING: Neither 'ss' nor 'lsof' found. Port killing mode (:PORT) will not work\n";
 }
 
 main();

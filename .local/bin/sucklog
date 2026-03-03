@@ -32,7 +32,7 @@ sub main {
         exit 1;
     }
     open my $fh, '<', $log_file or do {
-        say "ERROR: Cannot open $log_file: $!";
+        say STDERR "ERROR: Cannot open $log_file: $!";
         exit 1;
     };
     print while <$fh>;

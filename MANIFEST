@@ -8,7 +8,6 @@
 .xprofile|symlink|
 .tmux.conf|symlink|
 
-# emacs
 .emacs|symlink|
 .emacs.local|symlink|
 .emacs.snippets|symlink|

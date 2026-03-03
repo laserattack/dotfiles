@@ -5,6 +5,7 @@ use warnings;
 use feature 'say';
 use HTTP::Tiny;
 use JSON::PP;
+use utf8;
 
 # you can hack it
 my $url                 = 'https://openai.htk.ge/v1/chat/completions';
@@ -33,7 +34,7 @@ sub ask {
         max_tokens => $answer_tokens_limit
     };
 
-    my $json = JSON::PP->new;
+    my $json = JSON::PP->new->utf8(1);
     my $http = HTTP::Tiny->new();
     my $response = $http->post($url, {
         headers => $headers,
@@ -43,6 +44,7 @@ sub ask {
     if ($response->{success}) {
         my $result = $json->decode($response->{content});
         my $text = $result->{choices}[0]{message}{content};
+        utf8::decode($text);
         return $text;
     } else {
         return "Error: $response->{status} $response->{reason}";

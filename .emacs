@@ -354,7 +354,6 @@
    ("C-c n g" . denote-grep))
   :config
   (setq denote-directory org-notes-directory
-        denote-dired-directories (list org-notes-directory)
         denote-known-keywords '("emacs" "philosophy" "prog" "it"
                                 "study" "ideas" "linux" "list" "personal" "guide"))
   ;; Automatically rename Denote buffers when opening them so that
@@ -374,6 +373,8 @@
         (expand-file-name "1journal1" denote-directory)
         denote-journal-keyword "journal"
         denote-journal-title-format 'day-date-month-year))
+
+(setq denote-dired-directories (list org-notes-directory denote-journal-directory))
 
 ;; GCMH - the Garbage Collector Magic Hack
 

@@ -145,6 +145,7 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'rgrep)
 (global-set-key (kbd "C-c a") 'align-regexp)
+(global-set-key (kbd "C-c c") 'calendar)
 (global-set-key (kbd "C-c C-c") 'compile)
 
 (defun my/duplicate-line (&optional n)
@@ -189,7 +190,7 @@
 (setq org-capture-bookmark nil)
 
 ;; agenda
-(setq org-agenda-files (list org-journal-directory) ;; only .org files in dir
+(setq org-agenda-files (list org-journal-directory)
       org-tags-column 0
       org-agenda-tags-column 0)
 (global-set-key (kbd "C-c o a") 'org-agenda)

@@ -189,7 +189,7 @@
 (setq org-capture-bookmark nil)
 
 ;; agenda
-(setq org-agenda-files (list org-journal-directory)
+(setq org-agenda-files (list org-journal-directory) ;; only .org files in dir
       org-tags-column 0
       org-agenda-tags-column 0)
 (global-set-key (kbd "C-c o a") 'org-agenda)

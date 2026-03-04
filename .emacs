@@ -94,7 +94,7 @@
 ;; ===== DISABLE ANNOYING STUFF =====
 
 ;; never insert tabs. only spaces. hate tabs.
-(setq-default indent-tabs-mode nil) 
+(setq-default indent-tabs-mode nil)
 
 ;; disable menu etc.
 (tool-bar-mode 0)
@@ -362,6 +362,20 @@
   ;; "[D]" followed by the file's title.  Read the doc string of
   ;; `denote-rename-buffer-format' for how to modify this.
   (denote-rename-buffer-mode 1))
+
+(use-package denote-journal
+  :ensure t
+  :bind (("C-c j j" . denote-journal-new-entry)
+         ("C-c j o" . denote-journal-new-or-existing-entry)
+         ("C-c j l" . denote-journal-link-or-create-entry)
+         :map calendar-mode-map
+         ("j" . denote-journal-new-entry))
+  :hook (calendar-mode . denote-journal-calendar-mode)
+  :config
+  (setq denote-journal-directory
+        (expand-file-name "journal" denote-directory))
+  (setq denote-journal-keyword "journal")
+  (setq denote-journal-title-format 'day-date-month-year))
 
 ;; GCMH - the Garbage Collector Magic Hack
 

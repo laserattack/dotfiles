@@ -195,6 +195,9 @@
       org-agenda-tags-column 0)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 
+(setq org-agenda-custom-commands
+      '(("g" "Global TODO list" todo "")))
+
 ;; view images on hotkey
 (global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
 

@@ -6,7 +6,8 @@
       org-directory "~/org"
       org-tasks-file (expand-file-name "tasks.org" org-directory)
       org-images-directory (expand-file-name "images" org-directory)
-      org-notes-directory (expand-file-name "notes" org-directory))
+      org-notes-directory (expand-file-name "notes" org-directory)
+      denote-journal-directory (expand-file-name "1journal1" org-notes-directory))
 
 ;; ===== PATHS =====
 
@@ -354,6 +355,7 @@
    ("C-c n g" . denote-grep))
   :config
   (setq denote-directory org-notes-directory
+        denote-dired-directories (list org-notes-directory denote-journal-directory)
         denote-known-keywords '("emacs" "philosophy" "prog" "it"
                                 "study" "ideas" "linux" "list" "personal" "guide"))
   ;; Automatically rename Denote buffers when opening them so that
@@ -369,12 +371,8 @@
          ("j" . denote-journal-new-entry))
   :hook (calendar-mode . denote-journal-calendar-mode)
   :config
-  (setq denote-journal-directory
-        (expand-file-name "1journal1" denote-directory)
-        denote-journal-keyword "journal"
+  (setq denote-journal-keyword "journal"
         denote-journal-title-format 'day-date-month-year))
-
-(setq denote-dired-directories (list org-notes-directory denote-journal-directory))
 
 ;; GCMH - the Garbage Collector Magic Hack
 

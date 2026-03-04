@@ -371,7 +371,7 @@
   :hook (calendar-mode . denote-journal-calendar-mode)
   :config
   (setq denote-journal-directory
-        (expand-file-name "_journal" denote-directory)
+        (expand-file-name "1journal1" denote-directory)
         denote-journal-keyword "journal"
         denote-journal-title-format 'day-date-month-year))
 

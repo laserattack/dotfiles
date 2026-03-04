@@ -191,6 +191,7 @@
 
 ;; agenda
 (setq org-agenda-files (list org-journal-directory))
+
 (global-set-key (kbd "C-c o a") 'org-todo-list)
 
 ;; view images on hotkey

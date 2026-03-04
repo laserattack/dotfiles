@@ -366,7 +366,9 @@
 
 (use-package denote-journal
   :ensure t
-  :bind (("C-c j j" . denote-journal-new-or-existing-entry))
+  :bind (("C-c j j" . denote-journal-new-or-existing-entry)
+         :map calendar-mode-map
+         ("j" . denote-journal-calendar-new-or-existing))
   :hook (calendar-mode . denote-journal-calendar-mode)
   :config
   (setq denote-journal-keyword "journal"

@@ -360,6 +360,7 @@
   :hook (calendar-mode . denote-journal-calendar-mode)
   :config
   (setq denote-journal-keyword "journal"
+        denote-journal-directory org-journal-directory
         denote-journal-title-format 'day-date-month-year))
 
 ;; GCMH - the Garbage Collector Magic Hack

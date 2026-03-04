@@ -7,7 +7,7 @@
       org-tasks-file (expand-file-name "tasks.org" org-directory)
       org-images-directory (expand-file-name "images" org-directory)
       org-notes-directory (expand-file-name "notes" org-directory)
-      denote-journal-directory (expand-file-name "1journal1" org-notes-directory))
+      org-journal-directory (expand-file-name "1journal1" org-notes-directory))
 
 ;; ===== PATHS =====
 
@@ -189,7 +189,7 @@
 (setq org-capture-bookmark nil)
 
 ;; agenda
-(setq org-agenda-files (list org-tasks-file)
+(setq org-agenda-files (list org-journal-directory)
       org-tags-column 0
       org-agenda-tags-column 0)
 (global-set-key (kbd "C-c o a") 'org-agenda)
@@ -343,7 +343,7 @@
    ("C-c n g" . denote-grep))
   :config
   (setq denote-directory org-notes-directory
-        denote-dired-directories (list org-notes-directory denote-journal-directory)
+        denote-dired-directories (list org-notes-directory org-journal-directory)
         denote-known-keywords '("emacs" "philosophy" "prog" "it"
                                 "study" "ideas" "linux" "list" "personal" "guide"))
   ;; Automatically rename Denote buffers when opening them so that

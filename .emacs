@@ -371,9 +371,9 @@
   :hook (calendar-mode . denote-journal-calendar-mode)
   :config
   (setq denote-journal-directory
-        (expand-file-name "journal" denote-directory))
-  (setq denote-journal-keyword "journal")
-  (setq denote-journal-title-format 'day-date-month-year))
+        (expand-file-name "_journal" denote-directory)
+        denote-journal-keyword "journal"
+        denote-journal-title-format 'day-date-month-year))
 
 ;; GCMH - the Garbage Collector Magic Hack
 

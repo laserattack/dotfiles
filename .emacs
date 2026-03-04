@@ -192,7 +192,8 @@
 ;; agenda
 (setq org-agenda-files (list org-journal-directory)
       org-tags-column 0
-      org-agenda-tags-column 0)
+      org-agenda-tags-column 0
+      org-agenda-persistent-filter nil)
 (global-set-key (kbd "C-c o a") 'org-agenda)
 
 (setq org-agenda-custom-commands

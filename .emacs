@@ -365,8 +365,7 @@
 
 (use-package denote-journal
   :ensure t
-  :bind (("C-c j j" . denote-journal-new-entry)
-         ("C-c j o" . denote-journal-new-or-existing-entry)
+  :bind (("C-c j j" . denote-journal-new-or-existing-entry)
          ("C-c j l" . denote-journal-link-or-create-entry)
          :map calendar-mode-map
          ("j" . denote-journal-new-entry))

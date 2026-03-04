@@ -205,18 +205,6 @@
 (setq-default org-download-image-dir org-images-directory)
 (global-set-key (kbd "C-c o i") 'org-download-clipboard)
 
-;; templates for create tasks
-(setq org-capture-templates
-      `(
-	("g" "Global task" entry (file+headline org-tasks-file "Global (no deadline)")
-         "** TODO %?")
-	("e" "Task for today" entry (file+headline org-tasks-file "Daily")
-         "** TODO %?\nSCHEDULED: <%<%Y-%m-%d %a>>")
-	("m" "Task with manual date input" entry (file+headline org-tasks-file "Daily")
-	 "** TODO %?\nSCHEDULED: <%^{Date in YYYY-MM-DD format}>")
-	))
-(global-set-key (kbd "C-c o t") 'org-capture)
-
 ;; ===== ORG MODE =====
 
 

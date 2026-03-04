@@ -190,9 +190,7 @@
 (setq org-capture-bookmark nil)
 
 ;; agenda
-;; (setq org-agenda-files (list org-journal-directory)
-;;       org-tags-column 0
-;;       org-agenda-tags-column 0)
+(setq org-agenda-files (list org-journal-directory))
 (global-set-key (kbd "C-c o a") 'org-todo-list)
 
 ;; view images on hotkey

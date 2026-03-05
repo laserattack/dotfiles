@@ -178,7 +178,7 @@ sub explain {
     if (-e $arg || -l $arg) {
         my $ls  = check_command('ls');
         unless ($ls) {
-            say "ERROR: Program 'ls' is required to check file permissions";
+            say STDERR "ERROR: Program 'ls' is required to check file permissions";
             exit 1;
         }
         
@@ -190,7 +190,7 @@ sub explain {
         if ($perm) {
             explain_symbolic_perm($perm);
         } else {
-            say "ERROR: Cannot parse permissions for $arg";
+            say STDERR "ERROR: Cannot parse permissions for $arg";
             exit 1;
         }
     }
@@ -202,7 +202,7 @@ sub explain {
         if ($perm) {
             explain_symbolic_perm($perm);
         } else {
-            say "ERROR: '$arg' is not a valid file, directory, or permission string";
+            say STDERR "ERROR: '$arg' is not a valid file, directory, or permission string";
             usage();
             exit 1;
         }

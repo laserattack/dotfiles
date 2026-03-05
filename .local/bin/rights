@@ -5,7 +5,7 @@
 
 use strict;
 use warnings;
-use feature qw\say switch\;
+use feature 'say';
 
 sub check_command {
     my ($cmd) = @_;
@@ -47,71 +47,43 @@ sub explain_symbolic_perm {
     my $suffix = $perm->{suffix} // '';
 
     print "File type:           ";
-    given ($type) {
-        when ('-') { say "regular file" }
-        when ('d') { say "directory" }
-        when ('l') { say "symbolic link" }
-        when ('p') { say "named pipe" }
-        when ('c') { say "character device" }
-        when ('b') { say "block device" }
-        when ('s') { say "socket" }
-        when ('')  { say "not specified" }
-    }
-
+    if    ($type eq '-') { say "regular file" }
+    elsif ($type eq 'd') { say "directory" }
+    elsif ($type eq 'l') { say "symbolic link" }
+    elsif ($type eq 'p') { say "named pipe" }
+    elsif ($type eq 'c') { say "character device" }
+    elsif ($type eq 'b') { say "block device" }
+    elsif ($type eq 's') { say "socket" }
+    elsif ($type eq '')  { say "not specified" }
+    
     print "Owner permissions:   ";
-    given ($own_r) {
-        when ('r') { print "read, " }
-        when ('-') { print "no read, " }
-    }
-    given ($own_w) {
-        when ('w') { print "write, " }
-        when ('-') { print "no write, " }
-    }
-    given ($own_x) {
-        when ('x') { say "execute" }
-        when ('s') { say "execute with suid (run as file owner)" }
-        when ('S') { say "suid (run as file owner) set but no execute" }
-        when ('-') { say "no execute" }
-    }
+    print (($own_r eq 'r') ? "read, "  : "no read, " );
+    print (($own_w eq 'w') ? "write, " : "no write, " );
+    if    ($own_x eq 'x')  { say "execute" }
+    elsif ($own_x eq 's')  { say "execute with suid (run as file owner)" }
+    elsif ($own_x eq 'S')  { say "suid (run as file owner) set but no execute" }
+    elsif ($own_x eq '-')  { say "no execute" }    
 
     print "Group permissions:   ";
-    given ($grp_r) {
-        when ('r') { print "read, " }
-        when ('-') { print "no read, " }
-    }
-    given ($grp_w) {
-        when ('w') { print "write, " }
-        when ('-') { print "no write, " }
-    }
-    given ($grp_x) {
-        when ('x') { say "execute" }
-        when ('s') { say "execute with sgid (run as group member)" }
-        when ('S') { say "sgid (run as group member) set but no execute" }
-        when ('-') { say "no execute" }
-    }
+    print (($grp_r eq 'r') ? "read, "  : "no read, " );
+    print (($grp_w eq 'w') ? "write, " : "no write, " );
+    if    ($grp_x eq 'x')  { say "execute" }
+    elsif ($grp_x eq 's')  { say "execute with sgid (run as group member)" }
+    elsif ($grp_x eq 'S')  { say "sgid (run as group member) set but no execute" }
+    elsif ($grp_x eq '-')  { say "no execute" }
 
     print "Others permissions:  ";
-    given ($oth_r) {
-        when ('r') { print "read, " }
-        when ('-') { print "no read, " }
-    }
-    given ($oth_w) {
-        when ('w') { print "write, " }
-        when ('-') { print "no write, " }
-    }
-    given ($oth_x) {
-        when ('x') { say "execute" }
-        when ('t') { say "sticky bit (for directories: only file owner or root can delete files)" }
-        when ('T') { say "sticky bit (for directories: only file owner or root can delete files) set but no execute" }
-        when ('-') { say "no execute" }
-    }
+    print (($oth_r eq 'r') ? "read, "  : "no read, " );
+    print (($oth_w eq 'w') ? "write, " : "no write, " );
+    if    ($oth_x eq 'x')  { say "execute" }
+    elsif ($oth_x eq 't')  { say "sticky bit (for directories: only file owner or root can delete files)" }
+    elsif ($oth_x eq 'T')  { say "sticky bit (for directories: only file owner or root can delete files) set but no execute" }
+    elsif ($oth_x eq '-')  { say "no execute" }
 
     print "Suffix:              ";
-    given ($suffix) {
-        when ('+') { say "ACL present (Access Control Lists)" }
-        when ('.') { say "SELinux context present" }
-        when ('')  { say "not specified" }
-    }
+    if    ($suffix eq '+') { say "ACL present (Access Control Lists)" }
+    elsif ($suffix eq '.') { say "SELinux context present" }
+    elsif ($suffix eq '')  { say "not specified" }
 
     my $symbolic = $type.$own_r.$own_w.$own_x.$grp_r.$grp_w.$grp_x.$oth_r.$oth_w.$oth_x.$suffix;
     print "Symbolic:            $symbolic\n";

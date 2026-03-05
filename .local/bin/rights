@@ -4,18 +4,6 @@ use strict;
 use warnings;
 use feature 'say';
 
-sub translate_numeric_symbolic {
-
-}
-
-sub explain {
-    
-}
-
-sub main {
-    explain($_) for @ARGV;
-}
-
 sub usage {
     say "What is it : Linux file permissions explainer";
     say "Usage      : rights PERMISSIONS";
@@ -28,6 +16,25 @@ sub usage {
     say "Examples:";
     say "  rights 755        Explain what 755 means";
     say "  rights rwxr-xr-x  Explain symbolic permissions";
+}
+
+sub translate_numeric_symbolic {
+
+}
+
+sub explain {
+    my ($arg) = @_;
+    if ($arg =~ /^\d+$/) {
+        
+    } elsif () {
+        
+    } else {
+        
+    }
+}
+
+sub main {
+    explain($_) for @ARGV;
 }
 
 unless (@ARGV) {

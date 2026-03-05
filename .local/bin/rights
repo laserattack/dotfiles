@@ -30,7 +30,7 @@ sub explain {
     my ($arg) = @_;
     if ($arg =~ /^\d+$/) {
         explain_numeric_perm($arg);
-    } elsif ($arg =~ /^[-dl]$/) {
+    } elsif ($arg =~ /^[-dlscb]$/) {
         explain_symbolic_perm($arg);
     } else {
         say "ERROR: Incorrect arg format";

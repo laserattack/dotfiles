@@ -58,27 +58,6 @@ sub is_running {
     return kill(0, $pid);
 }
 
-sub get_children {
-    my ($pid) = @_;
-    local *DIR;
-    opendir(DIR, '/proc') or return;
-    my @children;
-
-    while (readdir(DIR)) {
-        next unless /^\d+$/;
-
-        if (open(STAT, "/proc/$_/stat")) {
-            my $stat = <STAT>;
-            close STAT;
-            my ($ppid) = ($stat =~ /^.*\)\s+.\s+(\d+)/);
-            push @children, $_ if (defined $ppid && $ppid == $pid);
-        }
-    }
-
-    closedir DIR;
-    return @children;
-}
-
 sub get_pid_with_start {
     my ($pid) = @_;
     chomp(my $start = `$ps -o lstart= -p $pid 2>/dev/null`);
@@ -108,11 +87,32 @@ sub kill_process_single {
     }
 }
 
-sub get_all_descendants {
+sub get_children {
     my ($pid) = @_;
+    local *DIR;
+    opendir(DIR, '/proc') or return;
+    my @children;
+
+    while (readdir(DIR)) {
+        next unless /^\d+$/;
+
+        if (open(STAT, "/proc/$_/stat")) {
+            my $stat = <STAT>;
+            close STAT;
+            my ($ppid) = ($stat =~ /^.*\)\s+.\s+(\d+)/);
+            push @children, $_ if (defined $ppid && $ppid == $pid);
+        }
+    }
+
+    closedir DIR;
+    return \@children; # return ptr, no array!
+}
+
+sub get_all_descendants {
+    my ($pid)  = @_;
+    my @queue  = ($pid);
     my @result;
     my %seen;
-    my @queue = ($pid);
 
     my ($self_pid, $self_start) = get_pid_with_start($pid);
     if ($self_start) {
@@ -121,8 +121,8 @@ sub get_all_descendants {
     }
 
     while (my $current = shift @queue) {
-        my @children = get_children($current);
-        foreach my $child (@children) {
+        my $children = get_children($current);
+        foreach my $child (@$children) {
             next if exists $seen{$child};
 
             my ($child_pid, $child_start) = get_pid_with_start($child);
@@ -134,7 +134,7 @@ sub get_all_descendants {
         }
     }
 
-    return @result;
+    return \@result; # return ptr, no array!
 }
 
 sub kill_process_tree {
@@ -147,18 +147,20 @@ sub kill_process_tree {
         return;
     }
 
-    my @descendants = get_all_descendants($pid);
+    my $descendants = get_all_descendants($pid);
     
-    my @all_pids_with_names = map {
-        my $pid = $_->[0];
+    my @names;
+    foreach my $proc (@$descendants) {
+        my $pid = $proc->[0];
         chomp(my $name = `$ps -p $pid -o comm= 2>/dev/null`);
-        "$pid($name)"
-    } @descendants;
-    log_message "Process tree: ".join(', ', @all_pids_with_names);
+        push @names, "$pid($name)";
+    }
+    log_message "Process tree: ".join(', ', @names);
 
-    @descendants = reverse @descendants unless $REVERSE;
+    # changing the real array, there are no copies
+    @$descendants = reverse @$descendants unless $REVERSE;
     
-    foreach my $proc (@descendants) {
+    foreach my $proc (@$descendants) {
         my ($target_pid, $start_time) = @$proc;
         my $exists = is_running($target_pid);
 

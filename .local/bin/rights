@@ -28,7 +28,7 @@ sub explain_numeric_perm {
 
 sub explain {
     my ($arg) = @_;
-    if ($arg =~ /^\d+$/) {
+    if ($arg =~ /^[0-7]{3,4}$/) {
         explain_numeric_perm($arg);
     } elsif ($arg =~ /^[-dlscbp]$/) {
         explain_symbolic_perm($arg);

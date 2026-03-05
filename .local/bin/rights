@@ -30,7 +30,7 @@ sub explain {
     my ($arg) = @_;
     if ($arg =~ /^[0-7]{3,4}$/) {
         explain_numeric_perm($arg);
-    } elsif ($arg =~ /^[-dlscbp]?[r-][w-][xsS-][r-][w-][xsS-][r-][w-][xtT-][+\.]?$/) {
+    } elsif ($arg =~ /^([-dlscbp]?)([r-])([w-])([xsS-])([r-])([w-])([xsS-])([r-])([w-])([xtT-])([+\.]?)$/) {
         explain_symbolic_perm($arg);
     } else {
         say "ERROR: Incorrect arg format";

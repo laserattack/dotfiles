@@ -31,7 +31,13 @@ sub explain {
     if ($arg =~ /^[0-7]{3,4}$/) {
         explain_numeric_perm($arg);
     } elsif ($arg =~ /^([-dlscbp]?)([r-])([w-])([xsS-])([r-])([w-])([xsS-])([r-])([w-])([xtT-])([+\.]?)$/) {
-        explain_symbolic_perm($arg);
+        explain_symbolic_perm({
+            type  => $1,
+            own_r => $2, own_w => $3, own_x => $4,
+            grp_r => $5, grp_w => $6, grp_x => $7,
+            oth_r => $8, oth_w => $9, oth_x => $10,
+            suffix => $11
+        });
     } else {
         say "ERROR: Incorrect arg format";
         usage();

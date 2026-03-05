@@ -9,11 +9,11 @@ sub translate_numeric_symbolic {
 }
 
 sub explain {
-
+    
 }
 
 sub main {
-    
+    explain($_) for @ARGV;
 }
 
 sub usage {

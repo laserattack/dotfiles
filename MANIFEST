@@ -18,6 +18,7 @@
 .config/gtk-3.0|symlink|
 
 .local/bin/emoji|symlink|
+.local/bin/rights|symlink|
 .local/bin/z.sh|symlink|
 .local/bin/gitrew|symlink|
 .local/bin/greek|symlink|

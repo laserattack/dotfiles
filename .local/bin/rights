@@ -4,18 +4,29 @@ use strict;
 use warnings;
 use feature qw\say switch\;
 
+sub check_command {
+    my ($cmd) = @_;
+    my @paths = split(':', $ENV{PATH} || '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin');
+    foreach my $path (@paths) {
+        my $full_path = "$path/$cmd";
+        return $full_path if -x $full_path;
+    }
+    return;
+}
+
 sub usage {
     say "What is it : Linux file permissions explainer";
-    say "Usage      : rights PERMISSIONS";
+    say "Usage      : rights ARGUMENTS";
     say "";
     say "Arguments:";
-    say "  PERMISSIONS  File permissions in various formats:";
-    say "               Symbolic : rwxr-xr-x, rw-------, r-x--x--x";
-    say "               Numeric  : 755, 644, 777, 600, 444";
+    say "  Symbolic permissions : rwxr-xr-x, rw-------, r-x--x--x";
+    say "  Numeric permissions  : 755, 644, 777, 600, 444";
+    say "  File/directory path  : /dev/video0, script.sh, /tmp";
     say "";
     say "Examples:";
-    say "  rights 755        Explain what 755 means";
-    say "  rights rwxr-xr-x  Explain symbolic permissions";
+    say "  rights 755           # Explain numeric permissions";
+    say "  rights rwxr-xr-x     # Explain symbolic permissions";
+    say "  rights /dev/video0   # Show permissions of existing file";
 }
 
 sub explain_symbolic_perm {
@@ -171,23 +182,55 @@ sub explain_numeric_perm {
     explain_symbolic_perm(\%perm);
 }
 
-sub explain {
-    my ($arg) = @_;
-
-    if ($arg =~ /^[0-7]{3,4}$/) {
-        explain_numeric_perm($arg);
-    } elsif ($arg =~ /^([-dlscbp]?)([r-])([w-])([xsS-])([r-])([w-])([xsS-])([r-])([w-])([xtT-])([+\.]?)$/) {
-        explain_symbolic_perm({
+sub parse_perm_string {
+    my ($perm_string) = @_;
+    
+    if ($perm_string =~ /^([-dlscbp]?)([r-])([w-])([xsS-])([r-])([w-])([xsS-])([r-])([w-])([xtT-])([+\.]?)$/) {
+        return {
             type  => $1,
             own_r => $2, own_w => $3, own_x => $4,
             grp_r => $5, grp_w => $6, grp_x => $7,
             oth_r => $8, oth_w => $9, oth_x => $10,
             suffix => $11
-        });
-    } else {
-        say "ERROR: Incorrect permissions format";
-        usage();
-        exit 1;
+        };
+    }
+    return undef;
+}
+
+sub explain {
+    my ($arg) = @_;
+
+    if (-e $arg) {
+        my $ls  = check_command('ls');
+        unless ($ls) {
+            say "ERROR: program 'ls' need for check file rights";
+            exit 1;
+        }
+        
+        my $perm_string = `ls -ld "$arg"`;
+        chomp $perm_string;
+        $perm_string =~ s/\s.*$//;
+        
+        my $perm = parse_perm_string($perm_string);
+        if ($perm) {
+            explain_symbolic_perm($perm);
+        } else {
+            say "ERROR: Cannot parse permissions for $arg";
+            exit 1;
+        }
+    }
+    elsif ($arg =~ /^[0-7]{3,4}$/) {
+        explain_numeric_perm($arg);
+    }
+    else {
+        my $perm = parse_perm_string($arg);
+        if ($perm) {
+            explain_symbolic_perm($perm);
+        } else {
+            say "ERROR: Incorrect permissions format";
+            usage();
+            exit 1;
+        }
     }
 }
 

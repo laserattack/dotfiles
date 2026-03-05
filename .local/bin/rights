@@ -200,7 +200,7 @@ sub parse_perm_string {
 sub explain {
     my ($arg) = @_;
 
-    if (-e $arg) {
+    if (-e $arg || -l $arg) {
         my $ls  = check_command('ls');
         unless ($ls) {
             say "ERROR: Program 'ls' is required to check file permissions";

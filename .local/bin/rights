@@ -18,23 +18,26 @@ sub usage {
     say "  rights rwxr-xr-x  Explain symbolic permissions";
 }
 
-sub translate_numeric_symbolic {
+sub explain_numeric_symbolic {
 
 }
 
 sub explain {
     my ($arg) = @_;
     if ($arg =~ /^\d+$/) {
-        
+        explain_numeric_perm($arg);
     } elsif () {
         
     } else {
-        
+        say "ERROR: Incorrect arg format";
+        usage();
+        exit 1;
     }
 }
 
 sub main {
     explain($_) for @ARGV;
+    exit 0;
 }
 
 unless (@ARGV) {

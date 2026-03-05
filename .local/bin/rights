@@ -5,7 +5,17 @@ use warnings;
 use feature 'say';
 
 sub usage {
-    
+    say "What is it : Linux file permissions explainer";
+    say "Usage      : rights [-h] PERMISSIONS";
+    say "";
+    say "Arguments:";
+    say "  PERMISSIONS  File permissions in various formats:";
+    say "               Symbolic: rwxr-xr-x, rw-------, r-x--x--x";
+    say "               Numeric : 755, 644, 777, 600, 444";
+    say "";
+    say "Examples:";
+    say "  rights 755        Explain what 755 means";
+    say "  rights rwxr-xr-x  Explain symbolic permissions";
 }
 
 unless (@ARGV) {

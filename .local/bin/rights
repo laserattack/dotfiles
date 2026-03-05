@@ -18,7 +18,11 @@ sub usage {
     say "  rights rwxr-xr-x  Explain symbolic permissions";
 }
 
-sub explain_numeric_symbolic {
+sub symbolic_symbolic_perm {
+
+}
+
+sub explain_numeric_perm {
 
 }
 
@@ -27,7 +31,7 @@ sub explain {
     if ($arg =~ /^\d+$/) {
         explain_numeric_perm($arg);
     } elsif () {
-        
+        explain_symbolic_perm($arg);
     } else {
         say "ERROR: Incorrect arg format";
         usage();

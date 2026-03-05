@@ -174,11 +174,7 @@ sub explain_numeric_perm {
 sub explain {
     my ($arg) = @_;
 
-    if (-e $arg) {
-        my @stat = stat($arg);
-        my $mode = $stat[2] & 07777;
-        explain_numeric_perm(sprintf "%o", $mode);
-    } elsif ($arg =~ /^[0-7]{3,4}$/) {
+    if ($arg =~ /^[0-7]{3,4}$/) {
         explain_numeric_perm($arg);
     } elsif ($arg =~ /^([-dlscbp]?)([r-])([w-])([xsS-])([r-])([w-])([xsS-])([r-])([w-])([xtT-])([+\.]?)$/) {
         explain_symbolic_perm({

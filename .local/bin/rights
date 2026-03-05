@@ -26,7 +26,7 @@ sub usage {
     say "Examples:";
     say "  rights 755           # Explain numeric permissions";
     say "  rights rwxr-xr-x     # Explain symbolic permissions";
-    say "  rights /dev/video0   # Show permissions of existing file";
+    say "  rights /dev/video0   # Show file permissions";
 }
 
 sub explain_symbolic_perm {

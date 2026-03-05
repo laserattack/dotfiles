@@ -26,7 +26,7 @@ sub usage {
     say "Examples:";
     say "  rights 755           # Explain numeric permissions";
     say "  rights rwxr-xr-x     # Explain symbolic permissions";
-    say "  rights /dev/video0   # Show file permissions";
+    say "  rights /dev/video0   # Explain file permissions";
 }
 
 sub explain_symbolic_perm {
@@ -98,8 +98,8 @@ sub explain_symbolic_perm {
     }
     given ($oth_x) {
         when ('x') { say "execute" }
-        when ('t') { say "sticky bit (for directories: only owner or root can delete files)" }
-        when ('T') { say "sticky bit (for directories: only owner or root can delete files) set but no execute" }
+        when ('t') { say "sticky bit (for directories: only file owner or root can delete files)" }
+        when ('T') { say "sticky bit (for directories: only file owner or root can delete files) set but no execute" }
         when ('-') { say "no execute" }
     }
 
@@ -203,11 +203,11 @@ sub explain {
     if (-e $arg) {
         my $ls  = check_command('ls');
         unless ($ls) {
-            say "ERROR: program 'ls' need for check file rights";
+            say "ERROR: Program 'ls' is required to check file permissions";
             exit 1;
         }
         
-        my $perm_string = `ls -ld "$arg"`;
+        my $perm_string = `$ls -ld "$arg" 2>/dev/null`;
         chomp $perm_string;
         $perm_string =~ s/\s.*$//;
         
@@ -227,7 +227,7 @@ sub explain {
         if ($perm) {
             explain_symbolic_perm($perm);
         } else {
-            say "ERROR: Incorrect permissions format";
+            say "ERROR: '$arg' is not a valid file, directory, or permission string";
             usage();
             exit 1;
         }

@@ -1,5 +1,8 @@
 #!/usr/bin/env perl
 
+# What is it : Linux file permissions explainer
+# Usage      : rights ARGUMENTS
+
 use strict;
 use warnings;
 use feature qw\say switch\;

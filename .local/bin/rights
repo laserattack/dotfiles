@@ -20,17 +20,17 @@ sub usage {
 
 sub symbolic_symbolic_perm {
     my ($perm) = @_;
-    my $type    = $perm->{type} // '-';
-    my $own_r   = $perm->{own_r};
-    my $own_w   = $perm->{own_w};
-    my $own_x   = $perm->{own_x};
-    my $grp_r   = $perm->{grp_r};
-    my $grp_w   = $perm->{grp_w};
-    my $grp_x   = $perm->{grp_x};
-    my $oth_r   = $perm->{oth_r};
-    my $oth_w   = $perm->{oth_w};
-    my $oth_x   = $perm->{oth_x};
-    my $suffix  = $perm->{suffix} // '';
+    my $type   = $perm->{type} // '-';
+    my $own_r  = $perm->{own_r};
+    my $own_w  = $perm->{own_w};
+    my $own_x  = $perm->{own_x};
+    my $grp_r  = $perm->{grp_r};
+    my $grp_w  = $perm->{grp_w};
+    my $grp_x  = $perm->{grp_x};
+    my $oth_r  = $perm->{oth_r};
+    my $oth_w  = $perm->{oth_w};
+    my $oth_x  = $perm->{oth_x};
+    my $suffix = $perm->{suffix} // '';
 }
 
 sub explain_numeric_perm {

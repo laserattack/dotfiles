@@ -161,10 +161,10 @@ sub parse_symbolic_perm {
 
     if ($perm_string =~ /^([-dlscbp]?)([r-])([w-])([xsS-])([r-])([w-])([xsS-])([r-])([w-])([xtT-])([+\.]?)$/) {
         return {
-            type  => $1,
-            own_r => $2, own_w => $3, own_x => $4,
-            grp_r => $5, grp_w => $6, grp_x => $7,
-            oth_r => $8, oth_w => $9, oth_x => $10,
+            type   => $1,
+            own_r  => $2, own_w => $3, own_x => $4,
+            grp_r  => $5, grp_w => $6, grp_x => $7,
+            oth_r  => $8, oth_w => $9, oth_x => $10,
             suffix => $11
         };
     }

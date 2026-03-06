@@ -143,10 +143,9 @@
 
 (global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-x g") 'rgrep)
 (global-set-key (kbd "C-c a") 'align-regexp)
 (global-set-key (kbd "C-c c") 'calendar)
-(global-set-key (kbd "C-c C-c") 'compile)
+(global-set-key (kbd "C-c p") 'compile)
 
 (defun my/duplicate-line (&optional n)
   "Duplicate current line."

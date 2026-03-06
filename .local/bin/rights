@@ -46,6 +46,10 @@ sub explain_symbolic_perm {
     my $oth_x  = $perm->{oth_x};
     my $suffix = $perm->{suffix} // '';
 
+    my $spc_num = 0;
+    $spc_num += 4 if $own_x =~ /[sS]/;
+    $spc_num += 2 if $grp_x =~ /[sS]/;
+    $spc_num += 1 if $oth_x =~ /[tT]/;
     my $own_num = 0;
     $own_num += 4 if $own_r eq 'r';
     $own_num += 2 if $own_w eq 'w';
@@ -58,11 +62,7 @@ sub explain_symbolic_perm {
     $oth_num += 4 if $oth_r eq 'r';
     $oth_num += 2 if $oth_w eq 'w';
     $oth_num += 1 if $oth_x =~ /[xt]/;
-    my $special = 0;
-    $special += 4 if $own_x =~ /[sS]/;
-    $special += 2 if $grp_x =~ /[sS]/;
-    $special += 1 if $oth_x =~ /[tT]/;
-    
+
     print "File type:           ";
     if    ($type eq '-') { say "regular file" }
     elsif ($type eq 'd') { say "directory" }
@@ -71,90 +71,86 @@ sub explain_symbolic_perm {
     elsif ($type eq 'c') { say "character device" }
     elsif ($type eq 'b') { say "block device" }
     elsif ($type eq 's') { say "socket" }
-    elsif ($type eq '')  { say "not specified" }
+    elsif ($type eq '' ) { say "not specified" }
 
     print "Special bits:        ";
     print (($own_x =~ /[sS]/) ? "suid (+4), " : "no suid, " );
     print (($grp_x =~ /[sS]/) ? "sgid (+2), " : "no sgid, " );
     say   (($oth_x =~ /[tT]/) ? "sticky (+1)" : "no sticky" );
-    
+
     print "Owner permissions:   ";
     print (($own_r eq 'r') ? "read (+4), "  : "no read, " );
     print (($own_w eq 'w') ? "write (+2), " : "no write, " );
-    if    ($own_x eq 'x')  { say "execute (+1)" }
-    elsif ($own_x eq 's')  { say "execute with suid (run as file owner) (+1)" }
-    elsif ($own_x eq 'S')  { say "suid (run as file owner) set but no execute" }
-    elsif ($own_x eq '-')  { say "no execute" }    
+    if    ($own_x  eq 'x') { say "execute (+1)" }
+    elsif ($own_x  eq 's') { say "execute with suid (run as file owner) (+1)" }
+    elsif ($own_x  eq 'S') { say "suid (run as file owner) set but no execute" }
+    elsif ($own_x  eq '-') { say "no execute" }
 
     print "Group permissions:   ";
     print (($grp_r eq 'r') ? "read (+4), "  : "no read, " );
     print (($grp_w eq 'w') ? "write (+2), " : "no write, " );
-    if    ($grp_x eq 'x')  { say "execute (+1)" }
-    elsif ($grp_x eq 's')  { say "execute with sgid (run as group member) (+1)" }
-    elsif ($grp_x eq 'S')  { say "sgid (run as group member) set but no execute" }
-    elsif ($grp_x eq '-')  { say "no execute" }
+    if    ($grp_x  eq 'x') { say "execute (+1)" }
+    elsif ($grp_x  eq 's') { say "execute with sgid (run as group member) (+1)" }
+    elsif ($grp_x  eq 'S') { say "sgid (run as group member) set but no execute" }
+    elsif ($grp_x  eq '-') { say "no execute" }
 
     print "Others permissions:  ";
     print (($oth_r eq 'r') ? "read (+4), "  : "no read, " );
     print (($oth_w eq 'w') ? "write (+2), " : "no write, " );
-    if    ($oth_x eq 'x')  { say "execute (+1)" }
-    elsif ($oth_x eq 't')  { say "sticky (for directories: only file owner or root can delete files) (+1)" }
-    elsif ($oth_x eq 'T')  { say "sticky (for directories: only file owner or root can delete files) set but no execute" }
-    elsif ($oth_x eq '-')  { say "no execute" }
-    
+    if    ($oth_x  eq 'x') { say "execute (+1)" }
+    elsif ($oth_x  eq 't') { say "sticky (for directories: only file owner or root can delete files) (+1)" }
+    elsif ($oth_x  eq 'T') { say "sticky (for directories: only file owner or root can delete files) set but no execute" }
+    elsif ($oth_x  eq '-') { say "no execute" }
+
     print "Suffix:              ";
     if    ($suffix eq '+') { say "ACL present (Access Control Lists)" }
     elsif ($suffix eq '.') { say "SELinux context present" }
-    elsif ($suffix eq '')  { say "not specified" }
+    elsif ($suffix eq '' ) { say "not specified" }
 
     my $symbolic = $type.$own_r.$own_w.$own_x.$grp_r.$grp_w.$grp_x.$oth_r.$oth_w.$oth_x.$suffix;
     print "Symbolic:            $symbolic\n";
-    
-    print "Numeric:             ";
-    if ($special > 0) {
-        printf "%d%d%d%d\n", $special, $own_num, $grp_num, $oth_num;
-    } else {
-        printf "%d%d%d\n", $own_num, $grp_num, $oth_num;
-    }
+
+    my $numeric  = $spc_num > 0 ? $spc_num.$own_num.$grp_num.$oth_num : $own_num.$grp_num.$oth_num;
+    print "Numeric:             $numeric\n";
 }
 
 sub explain_numeric_perm {
     my ($num) = @_;
-    my ($special, $owner, $group, $other) = (0, 0, 0, 0);
+    my ($spc_num, $own_num, $grp_num, $oth_num) = (0, 0, 0, 0);
 
     if (length($num) == 3) {
-        ($owner, $group, $other) = split //, $num;
+        ($own_num, $grp_num, $oth_num) = split //, $num;
     } elsif (length($num) == 4) {
-        ($special, $owner, $group, $other) = split //, $num;
+        ($spc_num, $own_num, $grp_num, $oth_num) = split //, $num;
     }
 
     my %perm = (
         type   => '',
-        own_r  => ($owner & 4) ? 'r' : '-',
-        own_w  => ($owner & 2) ? 'w' : '-',
+        own_r  => ($own_num & 4) ? 'r' : '-',
+        own_w  => ($own_num & 2) ? 'w' : '-',
         own_x  => do {
-            if ($owner & 1) {
-                ($special & 4) ? 's' : 'x';
+            if ($own_num & 1) {
+                ($spc_num & 4) ? 's' : 'x';
             } else {
-                ($special & 4) ? 'S' : '-';
+                ($spc_num & 4) ? 'S' : '-';
             }
         },
-        grp_r  => ($group & 4) ? 'r' : '-',
-        grp_w  => ($group & 2) ? 'w' : '-',
+        grp_r  => ($grp_num & 4) ? 'r' : '-',
+        grp_w  => ($grp_num & 2) ? 'w' : '-',
         grp_x  => do {
-            if ($group & 1) {
-                ($special & 2) ? 's' : 'x';
+            if ($grp_num & 1) {
+                ($spc_num & 2) ? 's' : 'x';
             } else {
-                ($special & 2) ? 'S' : '-';
+                ($spc_num & 2) ? 'S' : '-';
             }
         },
-        oth_r  => ($other & 4) ? 'r' : '-',
-        oth_w  => ($other & 2) ? 'w' : '-',
+        oth_r  => ($oth_num & 4) ? 'r' : '-',
+        oth_w  => ($oth_num & 2) ? 'w' : '-',
         oth_x  => do {
-            if ($other & 1) {
-                ($special & 1) ? 't' : 'x';
+            if ($oth_num & 1) {
+                ($spc_num & 1) ? 't' : 'x';
             } else {
-                ($special & 1) ? 'T' : '-';
+                ($spc_num & 1) ? 'T' : '-';
             }
         },
         suffix => '',
@@ -163,9 +159,9 @@ sub explain_numeric_perm {
     explain_symbolic_perm(\%perm);
 }
 
-sub parse_perm_string {
+sub parse_symbolic_perm {
     my ($perm_string) = @_;
-    
+
     if ($perm_string =~ /^([-dlscbp]?)([r-])([w-])([xsS-])([r-])([w-])([xsS-])([r-])([w-])([xtT-])([+\.]?)$/) {
         return {
             type  => $1,
@@ -187,12 +183,12 @@ sub explain {
             say STDERR "ERROR: Program 'ls' is required to check file permissions";
             exit 1;
         }
-        
+
         my $perm_string = `$ls -ld "$arg" 2>/dev/null`;
         chomp $perm_string;
         $perm_string =~ s/\s.*$//;
-        
-        my $perm = parse_perm_string($perm_string);
+
+        my $perm = parse_symbolic_perm($perm_string);
         if ($perm) {
             explain_symbolic_perm($perm);
         } else {
@@ -202,7 +198,7 @@ sub explain {
     } elsif ($arg =~ /^[0-7]{3,4}$/) {
         explain_numeric_perm($arg);
     } else {
-        my $perm = parse_perm_string($arg);
+        my $perm = parse_symbolic_perm($arg);
         if ($perm) {
             explain_symbolic_perm($perm);
         } else {

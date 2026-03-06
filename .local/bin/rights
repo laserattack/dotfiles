@@ -26,18 +26,19 @@ sub usage {
     say "Usage      : rights [-hq] ARGUMENTS";
     say "";
     say "Flags:";
-    say "  -h  # Show this help message";
-    say "  -q  # Show only symbolic and numeric permissions without explanation";
+    say "  -h  Show this help message";
+    say "  -q  Show only symbolic and numeric permissions";
+    say "      without explanation, without file type and suffix";
     say "";
     say "Arguments:";
-    say "  Symbolic permissions  # rwxr-xr-x, rw-------, r-x--x--x";
-    say "  Numeric permissions   # 755, 644, 777, 600, 444";
-    say "  File/directory path   # /dev/video0, script.sh, /tmp";
+    say "  Symbolic permissions  rwxr-xr-x, rw-------, r-x--x--x";
+    say "  Numeric permissions   755, 644, 777, 600, 444";
+    say "  File/directory path   /dev/video0, script.sh, /tmp";
     say "";
     say "Examples:";
-    say "  rights 755            # Explain numeric permissions";
-    say "  rights rwxr-xr-x      # Explain symbolic permissions";
-    say "  rights /dev/video0    # Explain file permissions";
+    say "  rights 755            Explain numeric permissions";
+    say "  rights rwxr-xr-x      Explain symbolic permissions";
+    say "  rights /dev/video0    Explain file permissions";
 }
 
 sub explain_symbolic_perm {

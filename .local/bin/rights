@@ -74,32 +74,32 @@ sub explain_symbolic_perm {
     elsif ($type eq '' ) { say "not specified" }
 
     print "Special bits:        ";
-    print (($own_x =~ /[sS]/) ? "suid (+4), " : "no suid, " );
-    print (($grp_x =~ /[sS]/) ? "sgid (+2), " : "no sgid, " );
+    print (($own_x =~ /[sS]/) ? "SUID (+4), " : "no SUID, " );
+    print (($grp_x =~ /[sS]/) ? "SGID (+2), " : "no SGID, " );
     say   (($oth_x =~ /[tT]/) ? "sticky (+1)" : "no sticky" );
 
     print "Owner permissions:   ";
     print (($own_r eq 'r') ? "read (+4), "  : "no read, " );
     print (($own_w eq 'w') ? "write (+2), " : "no write, " );
     if    ($own_x  eq 'x') { say "execute (+1)" }
-    elsif ($own_x  eq 's') { say "execute with suid (run as file owner) (+1)" }
-    elsif ($own_x  eq 'S') { say "suid (run as file owner) set but no execute" }
+    elsif ($own_x  eq 's') { say "execute (+1) with SUID (run as file owner)" }
+    elsif ($own_x  eq 'S') { say "no execute but SUID set (run as file owner)" }
     elsif ($own_x  eq '-') { say "no execute" }
 
     print "Group permissions:   ";
     print (($grp_r eq 'r') ? "read (+4), "  : "no read, " );
     print (($grp_w eq 'w') ? "write (+2), " : "no write, " );
     if    ($grp_x  eq 'x') { say "execute (+1)" }
-    elsif ($grp_x  eq 's') { say "execute with sgid (run as group member) (+1)" }
-    elsif ($grp_x  eq 'S') { say "sgid (run as group member) set but no execute" }
+    elsif ($grp_x  eq 's') { say "execute (+1) with SGID (run as group member)" }
+    elsif ($grp_x  eq 'S') { say "no execute but SGID set (run as group member)" }
     elsif ($grp_x  eq '-') { say "no execute" }
 
     print "Others permissions:  ";
     print (($oth_r eq 'r') ? "read (+4), "  : "no read, " );
     print (($oth_w eq 'w') ? "write (+2), " : "no write, " );
     if    ($oth_x  eq 'x') { say "execute (+1)" }
-    elsif ($oth_x  eq 't') { say "sticky (for directories: only file owner or root can delete files) (+1)" }
-    elsif ($oth_x  eq 'T') { say "sticky (for directories: only file owner or root can delete files) set but no execute" }
+    elsif ($oth_x  eq 't') { say "execute (+1) with sticky (for directories: only file owner or root can delete files)" }
+    elsif ($oth_x  eq 'T') { say "no execute but sticky set (for directories: only file owner or root can delete files)" }
     elsif ($oth_x  eq '-') { say "no execute" }
 
     print "Suffix:              ";

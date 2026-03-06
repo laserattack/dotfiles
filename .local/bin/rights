@@ -1,11 +1,15 @@
 #!/usr/bin/env perl
 
 # What is it : Linux file permissions explainer
-# Usage      : rights ARGUMENTS
+# Usage      : rights [-hq] ARGUMENTS
 
 use strict;
 use warnings;
 use feature 'say';
+use Getopt::Long qw\:config bundling\;
+
+my $QUIET = 0;
+my $HELP  = 0;
 
 sub check_command {
     my ($cmd) = @_;
@@ -19,17 +23,21 @@ sub check_command {
 
 sub usage {
     say "What is it : Linux file permissions explainer";
-    say "Usage      : rights ARGUMENTS";
+    say "Usage      : rights [-hq] ARGUMENTS";
+    say "";
+    say "Flags:";
+    say "  -h  # Show this help message";
+    say "  -q  # Show only symbolic and numeric permissions without explanation";
     say "";
     say "Arguments:";
-    say "  Symbolic permissions : rwxr-xr-x, rw-------, r-x--x--x";
-    say "  Numeric permissions  : 755, 644, 777, 600, 444";
-    say "  File/directory path  : /dev/video0, script.sh, /tmp";
+    say "  Symbolic permissions  # rwxr-xr-x, rw-------, r-x--x--x";
+    say "  Numeric permissions   # 755, 644, 777, 600, 444";
+    say "  File/directory path   # /dev/video0, script.sh, /tmp";
     say "";
     say "Examples:";
-    say "  rights 755           # Explain numeric permissions";
-    say "  rights rwxr-xr-x     # Explain symbolic permissions";
-    say "  rights /dev/video0   # Explain file permissions";
+    say "  rights 755            # Explain numeric permissions";
+    say "  rights rwxr-xr-x      # Explain symbolic permissions";
+    say "  rights /dev/video0    # Explain file permissions";
 }
 
 sub explain_symbolic_perm {
@@ -63,6 +71,15 @@ sub explain_symbolic_perm {
     $oth_num += 2 if $oth_w eq 'w';
     $oth_num += 1 if $oth_x =~ /[xt]/;
 
+    my $symbolic_base = $own_r.$own_w.$own_x.$grp_r.$grp_w.$grp_x.$oth_r.$oth_w.$oth_x;
+    my $symbolic      = $type.$symbolic_base.$suffix;
+    my $numeric       = $spc_num > 0 ? $spc_num.$own_num.$grp_num.$oth_num : $own_num.$grp_num.$oth_num;
+
+    if ($QUIET) {
+        printf "%s %s\n", $symbolic_base, $numeric;
+        return;
+    }
+    
     print "File type:           ";
     if    ($type eq '-') { say "regular file" }
     elsif ($type eq 'd') { say "directory" }
@@ -107,10 +124,7 @@ sub explain_symbolic_perm {
     elsif ($suffix eq '.') { say "SELinux context present" }
     elsif ($suffix eq '' ) { say "not specified" }
 
-    my $symbolic = $type.$own_r.$own_w.$own_x.$grp_r.$grp_w.$grp_x.$oth_r.$oth_w.$oth_x.$suffix;
     print "Symbolic:            $symbolic\n";
-
-    my $numeric  = $spc_num > 0 ? $spc_num.$own_num.$grp_num.$oth_num : $own_num.$grp_num.$oth_num;
     print "Numeric:             $numeric\n";
 }
 
@@ -194,14 +208,16 @@ sub explain {
 sub main {
     for my $i (0..$#ARGV) {
         explain($ARGV[$i]);
-        say "" if $i < $#ARGV;
+        say "" if !$QUIET && $i < $#ARGV;
     }
     exit 0;
 }
 
-unless (@ARGV) {
-    usage();
-    exit 1;
-}
+GetOptions('quiet|q' => \$QUIET,
+           'help|h'  => \$HELP,
+          ) or usage() && exit 1;
+
+$HELP && usage() && exit 0;
+@ARGV or usage() && exit 1;
 
 main();

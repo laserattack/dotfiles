@@ -182,7 +182,7 @@ sub explain {
     my ($arg) = @_;
 
     if (-e $arg || -l $arg) {
-        my $ls  = check_command('ls');
+        my $ls = check_command('ls');
         unless ($ls) {
             say STDERR "ERROR: Program 'ls' is required to check file permissions";
             exit 1;
@@ -199,11 +199,9 @@ sub explain {
             say STDERR "ERROR: Cannot parse permissions for $arg";
             exit 1;
         }
-    }
-    elsif ($arg =~ /^[0-7]{3,4}$/) {
+    } elsif ($arg =~ /^[0-7]{3,4}$/) {
         explain_numeric_perm($arg);
-    }
-    else {
+    } else {
         my $perm = parse_perm_string($arg);
         if ($perm) {
             explain_symbolic_perm($perm);

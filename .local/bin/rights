@@ -128,31 +128,13 @@ sub explain_numeric_perm {
         type   => '',
         own_r  => ($own_num & 4) ? 'r' : '-',
         own_w  => ($own_num & 2) ? 'w' : '-',
-        own_x  => do {
-            if ($own_num & 1) {
-                ($spc_num & 4) ? 's' : 'x';
-            } else {
-                ($spc_num & 4) ? 'S' : '-';
-            }
-        },
+        own_x  => ($own_num & 1) ? (($spc_num & 4) ? 's' : 'x') : (($spc_num & 4) ? 'S' : '-'),
         grp_r  => ($grp_num & 4) ? 'r' : '-',
         grp_w  => ($grp_num & 2) ? 'w' : '-',
-        grp_x  => do {
-            if ($grp_num & 1) {
-                ($spc_num & 2) ? 's' : 'x';
-            } else {
-                ($spc_num & 2) ? 'S' : '-';
-            }
-        },
+        grp_x  => ($grp_num & 1) ? (($spc_num & 2) ? 's' : 'x') : (($spc_num & 2) ? 'S' : '-'),
         oth_r  => ($oth_num & 4) ? 'r' : '-',
         oth_w  => ($oth_num & 2) ? 'w' : '-',
-        oth_x  => do {
-            if ($oth_num & 1) {
-                ($spc_num & 1) ? 't' : 'x';
-            } else {
-                ($spc_num & 1) ? 'T' : '-';
-            }
-        },
+        oth_x  => ($oth_num & 1) ? (($spc_num & 1) ? 't' : 'x') : (($spc_num & 1) ? 'T' : '-'),
         suffix => '',
     );
 

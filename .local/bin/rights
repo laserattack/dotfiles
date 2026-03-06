@@ -46,49 +46,6 @@ sub explain_symbolic_perm {
     my $oth_x  = $perm->{oth_x};
     my $suffix = $perm->{suffix} // '';
 
-    print "File type:           ";
-    if    ($type eq '-') { say "regular file" }
-    elsif ($type eq 'd') { say "directory" }
-    elsif ($type eq 'l') { say "symbolic link" }
-    elsif ($type eq 'p') { say "named pipe" }
-    elsif ($type eq 'c') { say "character device" }
-    elsif ($type eq 'b') { say "block device" }
-    elsif ($type eq 's') { say "socket" }
-    elsif ($type eq '')  { say "not specified" }
-    
-    print "Owner permissions:   ";
-    print (($own_r eq 'r') ? "read, "  : "no read, " );
-    print (($own_w eq 'w') ? "write, " : "no write, " );
-    if    ($own_x eq 'x')  { say "execute" }
-    elsif ($own_x eq 's')  { say "execute with suid (run as file owner)" }
-    elsif ($own_x eq 'S')  { say "suid (run as file owner) set but no execute" }
-    elsif ($own_x eq '-')  { say "no execute" }    
-
-    print "Group permissions:   ";
-    print (($grp_r eq 'r') ? "read, "  : "no read, " );
-    print (($grp_w eq 'w') ? "write, " : "no write, " );
-    if    ($grp_x eq 'x')  { say "execute" }
-    elsif ($grp_x eq 's')  { say "execute with sgid (run as group member)" }
-    elsif ($grp_x eq 'S')  { say "sgid (run as group member) set but no execute" }
-    elsif ($grp_x eq '-')  { say "no execute" }
-
-    print "Others permissions:  ";
-    print (($oth_r eq 'r') ? "read, "  : "no read, " );
-    print (($oth_w eq 'w') ? "write, " : "no write, " );
-    if    ($oth_x eq 'x')  { say "execute" }
-    elsif ($oth_x eq 't')  { say "sticky bit (for directories: only file owner or root can delete files)" }
-    elsif ($oth_x eq 'T')  { say "sticky bit (for directories: only file owner or root can delete files) set but no execute" }
-    elsif ($oth_x eq '-')  { say "no execute" }
-
-    print "Suffix:              ";
-    if    ($suffix eq '+') { say "ACL present (Access Control Lists)" }
-    elsif ($suffix eq '.') { say "SELinux context present" }
-    elsif ($suffix eq '')  { say "not specified" }
-
-    my $symbolic = $type.$own_r.$own_w.$own_x.$grp_r.$grp_w.$grp_x.$oth_r.$oth_w.$oth_x.$suffix;
-    print "Symbolic:            $symbolic\n";
-    
-    print "Numeric:             ";
     my $own_num = 0;
     $own_num += 4 if $own_r eq 'r';
     $own_num += 2 if $own_w eq 'w';
@@ -105,6 +62,55 @@ sub explain_symbolic_perm {
     $special += 4 if $own_x =~ /[sS]/;
     $special += 2 if $grp_x =~ /[sS]/;
     $special += 1 if $oth_x =~ /[tT]/;
+    
+    print "File type:           ";
+    if    ($type eq '-') { say "regular file" }
+    elsif ($type eq 'd') { say "directory" }
+    elsif ($type eq 'l') { say "symbolic link" }
+    elsif ($type eq 'p') { say "named pipe" }
+    elsif ($type eq 'c') { say "character device" }
+    elsif ($type eq 'b') { say "block device" }
+    elsif ($type eq 's') { say "socket" }
+    elsif ($type eq '')  { say "not specified" }
+
+    print "Special bits:        ";
+    print (($own_x =~ /[sS]/) ? "suid (+4), " : "no suid, " );
+    print (($grp_x =~ /[sS]/) ? "sgid (+2), " : "no sgid, " );
+    say   (($oth_x =~ /[tT]/) ? "sticky (+1)" : "no sticky" );
+    
+    print "Owner permissions:   ";
+    print (($own_r eq 'r') ? "read (+4), "  : "no read, " );
+    print (($own_w eq 'w') ? "write (+2), " : "no write, " );
+    if    ($own_x eq 'x')  { say "execute (+1)" }
+    elsif ($own_x eq 's')  { say "execute with suid (run as file owner) (+1)" }
+    elsif ($own_x eq 'S')  { say "suid (run as file owner) set but no execute" }
+    elsif ($own_x eq '-')  { say "no execute" }    
+
+    print "Group permissions:   ";
+    print (($grp_r eq 'r') ? "read (+4), "  : "no read, " );
+    print (($grp_w eq 'w') ? "write (+2), " : "no write, " );
+    if    ($grp_x eq 'x')  { say "execute (+1)" }
+    elsif ($grp_x eq 's')  { say "execute with sgid (run as group member) (+1)" }
+    elsif ($grp_x eq 'S')  { say "sgid (run as group member) set but no execute" }
+    elsif ($grp_x eq '-')  { say "no execute" }
+
+    print "Others permissions:  ";
+    print (($oth_r eq 'r') ? "read (+4), "  : "no read, " );
+    print (($oth_w eq 'w') ? "write (+2), " : "no write, " );
+    if    ($oth_x eq 'x')  { say "execute (+1)" }
+    elsif ($oth_x eq 't')  { say "sticky (for directories: only file owner or root can delete files) (+1)" }
+    elsif ($oth_x eq 'T')  { say "sticky (for directories: only file owner or root can delete files) set but no execute" }
+    elsif ($oth_x eq '-')  { say "no execute" }
+    
+    print "Suffix:              ";
+    if    ($suffix eq '+') { say "ACL present (Access Control Lists)" }
+    elsif ($suffix eq '.') { say "SELinux context present" }
+    elsif ($suffix eq '')  { say "not specified" }
+
+    my $symbolic = $type.$own_r.$own_w.$own_x.$grp_r.$grp_w.$grp_x.$oth_r.$oth_w.$oth_x.$suffix;
+    print "Symbolic:            $symbolic\n";
+    
+    print "Numeric:             ";
     if ($special > 0) {
         printf "%d%d%d%d\n", $special, $own_num, $grp_num, $oth_num;
     } else {

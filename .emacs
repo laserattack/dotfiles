@@ -285,10 +285,10 @@
 
 ;; move text
 
-(use-package move-text
-  :ensure t
-  :bind (("M-n" . move-text-down)
-         ("M-p" . move-text-up)))
+;; (use-package move-text
+;;   :ensure t
+;;   :bind (("M-n" . move-text-down)
+;;          ("M-p" . move-text-up)))
 
 ;; company
 

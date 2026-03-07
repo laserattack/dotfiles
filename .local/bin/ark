@@ -110,7 +110,7 @@ sub create_backup {
     say $output if $VERBOSE && !$QUIET;
     die "ERROR: rsync failed" if $?;
     
-    say "Backup completed: '$BACKUP_PATH'" unless $QUIET;
+    say "Backup completed: $BACKUP_PATH" unless $QUIET;
 
     if ($TAR) {
         my $tar_path   = $BACKUP_PATH . '.tar';

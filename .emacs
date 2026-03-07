@@ -236,9 +236,9 @@
   :ensure t
   :config
   (vertico-mode 1)
-  (setq ;; vertico-preselect 'prompt
-        vertico-count 20)
-  (define-key vertico-map (kbd "C-j") #'minibuffer-complete-and-exit))
+  (setq vertico-count 20)
+  (with-eval-after-load 'vertico
+    (define-key vertico-map (kbd "C-j") #'minibuffer-complete-and-exit)))
 
 ;; hints on the right
 

@@ -237,10 +237,7 @@
   :config
   (vertico-mode 1)
   (setq vertico-count 20)
-  (define-key vertico-map (kbd "C-j") #'minibuffer-complete-and-exit)
-  ;; (with-eval-after-load 'vertico
-  ;;   (define-key vertico-map (kbd "C-j") #'minibuffer-complete-and-exit))
-  )
+  (define-key vertico-map (kbd "C-j") #'minibuffer-complete-and-exit))
 
 ;; hints on the right
 

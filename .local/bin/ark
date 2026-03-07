@@ -85,7 +85,7 @@ sub create_backup {
         $src_path =~ s/^~/$ENV{HOME}/;
         next unless $src_path;
         
-        if (-e $src_path) {
+        if (-e $src_path || -l $src_path) {
             push @paths, $src_path;
             say "Will be synchronized: $src_path";
         } else {

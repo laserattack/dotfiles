@@ -14,9 +14,7 @@ my $BACKUP_PATH_DEFAULT = "$ENV{HOME}/.ark/bak";
 # flags
 
 my $HELP        = 0;
-my $QUIET       = 0;
 my $TAR         = 0;
-my $VERBOSE     = 0;
 my $BACKUP_LIST = '';
 my $BACKUP_PATH = '';
 
@@ -32,15 +30,13 @@ sub check_command {
 
 sub usage {
     say "ark - simple and dirty script for making backups";
-    say "Usage: ark [-lptqvh]";
+    say "Usage: ark [-lpth]";
     say "";
     say "Flags:";
     say "  -l, --list FILE   Backup list file (default: '$BACKUP_LIST_DEFAULT')";
     say "  -p, --path DIR    Backup dir path (default: '$BACKUP_PATH_DEFAULT')";
     say "  -t, --tar         Create tar archive from backup directory";
     say "                    and put it near backup dir";
-    say "  -q, --quiet       Quiet mode (no output)";
-    say "  -v, --verbose     Verbose mode (with rsync --verbose output)";
     say "  -h, --help        This help";
     say "";
     say "RSYNC AND TAR ARE REQUIRED!!!!";
@@ -79,7 +75,7 @@ sub create_backup {
             my $pattern = $1;
             if ($pattern) {
                 push @exclude, $pattern;
-                say "Exclude pattern: $pattern" unless $QUIET;
+                say "Exclude pattern: $pattern";
             }
             next;
         }
@@ -89,7 +85,7 @@ sub create_backup {
         
         if (-e $src_path) {
             push @paths, $src_path;
-            say "Will be synchronized: $src_path" unless $QUIET;
+            say "Will be synchronized: $src_path";
         } else {
             warn "WARNING: '$src_path' does not exist";
         }
@@ -98,29 +94,33 @@ sub create_backup {
 
     die "ERROR: No paths to backup found in '$BACKUP_LIST'" unless @paths;
 
-    my $src_list = join ' ', map { "'$_'" } @paths;
-    my $exclude_opts = @exclude ? join ' ', map { "--exclude='$_'" } @exclude : '';
+    my @cmd = ('rsync', '-avxR', '--delete');
+    push @cmd, map { "--exclude=$_" } @exclude;
+    push @cmd, '--progress';
+    push @cmd, @paths;
+    push @cmd, "$BACKUP_PATH/";
     
-    my $cmd = "rsync -avxR --delete $exclude_opts --progress $src_list '$BACKUP_PATH/' 2>&1";
+    say "Starting backup...";
+    my $cmd_string = join ' ', map { $_ =~ /[\s]/ ? "'$_'" : $_ } @cmd;
+    say "Running: $cmd_string";
     
-    say "Starting backup..." unless $QUIET;
-    say "Running: $cmd" if $VERBOSE && !$QUIET;
+    system(@cmd);
+    my $exit_code = $? >> 8;
+    die "rsync failed with exit code $exit_code" if $exit_code != 0;
     
-    my $output = `$cmd`;
-    say $output if $VERBOSE && !$QUIET;
-    die "ERROR: rsync failed" if $?;
-    
-    say "Backup completed: $BACKUP_PATH" unless $QUIET;
+    say "Backup completed: $BACKUP_PATH";
 
     if ($TAR) {
         my $tar_path   = $BACKUP_PATH . '.tar';
         my $parent_dir = dirname($BACKUP_PATH);
         my $bak_name   = basename($BACKUP_PATH);
 
-        say "Start archiving...";
-        my $output = `tar -cf '$tar_path' --xattrs -C '$parent_dir' '$bak_name' 2>&1`;
-        die "ERROR: Failed to create tar archive: $output" if $?;
-        say "Tar archive created: $tar_path" unless $QUIET;
+        my @tar_cmd = ('tar', '-cf', $tar_path, '--xattrs', '-C', $parent_dir, $bak_name);
+        my $cmd_string = join ' ', map { $_ =~ /[\s]/ ? "'$_'" : $_ } @tar_cmd;
+        say "Running tar: $cmd_string";
+        system(@tar_cmd);
+        my $tar_exit = $? >> 8;
+        die "ERROR: Failed to create tar archive" if $tar_exit != 0;
     }
 }
 
@@ -128,8 +128,6 @@ GetOptions(
         'list|l=s'  => \$BACKUP_LIST,
         'path|p=s'  => \$BACKUP_PATH,
         'tar|t'     => \$TAR,
-        'quiet|q'   => \$QUIET,
-        'verbose|v' => \$VERBOSE,
         'help|h'    => \$HELP
     ) or die "ERROR: Invalid command line options\n";
 

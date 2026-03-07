@@ -193,16 +193,15 @@
 
 (global-set-key (kbd "C-c o a") 'org-todo-list)
 
-;; view images on hotkey
-(global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
-
 ;; paste images
 (use-package org-download
   :ensure t
   :config
-  (setq org-download-method 'directory))
+  (setq org-download-method 'directory
+        org-download-display-inline-images nil))
 (setq-default org-download-image-dir org-images-directory)
 (global-set-key (kbd "C-c o i") 'org-download-clipboard)
+(global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
 
 ;; ===== ORG MODE =====
 

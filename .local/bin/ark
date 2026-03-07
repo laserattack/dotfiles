@@ -33,8 +33,8 @@ sub usage {
     say "Usage: ark [-lpth]";
     say "";
     say "Flags:";
-    say "  -l, --list FILE   Backup list file (default: '$BACKUP_LIST_DEFAULT')";
-    say "  -p, --path DIR    Backup dir path (default: '$BACKUP_PATH_DEFAULT')";
+    say "  -l, --list FILE   Backup list file (default: $BACKUP_LIST_DEFAULT)";
+    say "  -p, --path DIR    Backup dir path (default: $BACKUP_PATH_DEFAULT)";
     say "  -t, --tar         Create tar archive from backup directory";
     say "                    and put it near backup dir";
     say "  -h, --help        This help";

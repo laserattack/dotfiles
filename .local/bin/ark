@@ -32,7 +32,7 @@ sub check_command {
 
 sub usage {
     say "ark - simple script for making backups";
-    say "Usage: $0 [-lptqvh]";
+    say "Usage: ark [-lptqvh]";
     say "";
     say "Flags:";
     say "  -l, --list FILE   Backup list file (default: '$BACKUP_LIST_DEFAULT')";

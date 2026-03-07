@@ -31,7 +31,7 @@ sub check_command {
 }
 
 sub usage {
-    say "ark - simple script for making backups";
+    say "ark - simple and dirty script for making backups";
     say "Usage: ark [-lptqvh]";
     say "";
     say "Flags:";

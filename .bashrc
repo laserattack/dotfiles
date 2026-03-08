@@ -44,16 +44,26 @@ alias .....='cd ../../../..'
 alias fastporno='gocryptfs ~/encrypted ~/private && cd ~/private/ && fusermount -uz ~/private'
 
 porno() {
+    if ! command -v gocryptfs &> /dev/null; then
+        echo "'gocryptfs' not installed!"
+        return 1
+    fi
+
     if [ ! -d ~/encrypted ]; then
         echo "'~/encrypted' folder doesn't exist!"
         return 1
     fi
+
+    if [ ! -d ~/private ]; then
+        echo "Creating '~/private' mountpoint..."
+        mkdir -p ~/private
+    fi
+    
     if mount | grep -q " $HOME/private "; then
         fusermount -u ~/private
         if [ $? -eq 0 ]; then
             echo "Bye-bye, tired hands!"
         else
-            echo "Failed to unmount"
             return 1
         fi
     else
@@ -61,7 +71,6 @@ porno() {
         if [ $? -eq 0 ]; then
             echo "Enjoy your viewing!"
         else
-            echo "Failed to mound"
             return 1
         fi
     fi

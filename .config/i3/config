@@ -50,7 +50,7 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec $HOME/.local/bin/st
 bindsym $mod+t      exec thunar
 bindsym $mod+i      exec firefox
-bindsym $mod+b exec --no-startup-id "if pgrep -f 'perl.*ark'; then notify-send -t 3000 'ARK BACKUP' 'Already running'; else $HOME/.local/bin/ark && notify-send -t 5000 'ARK BACKUP' 'Done'; fi"
+bindsym $mod+b exec --no-startup-id "if pgrep -f 'perl.*ark'; then notify-send -t 3000 'ARK BACKUP' 'Already running'; elif $HOME/.local/bin/ark; then notify-send -t 5000 'ARK BACKUP' 'Done'; else notify-send -t 5000 'ARK BACKUP' 'Failed'; fi"
 
 # kill focused window
 bindsym $mod+Shift+q kill

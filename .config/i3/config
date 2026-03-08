@@ -191,5 +191,5 @@ bar {
 
 # autostart
 
-exec --no-startup-id $HOME/.local/bin/cronshroom
+#exec --no-startup-id $HOME/.local/bin/cronshroom
 exec --no-startup-id $HOME/.local/bin/syncthing

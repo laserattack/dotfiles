@@ -3,7 +3,7 @@
 if pgrep -f 'perl.*ark'; then
     notify-send -t 3000 'ARK BACKUP' 'Already running'
 elif ark; then
-    notify-send -t 5000 'ARK BACKUP' 'Done'
+    notify-send -t 3000 'ARK BACKUP' 'Done'
 else
-    notify-send -t 5000 'ARK BACKUP' 'Failed'
+    notify-send -t 3000 'ARK BACKUP' 'Failed'
 fi

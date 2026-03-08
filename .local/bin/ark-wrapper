@@ -2,8 +2,11 @@
 
 if pgrep -f 'perl.*ark'; then
     notify-send -t 3000 'ARK BACKUP' 'Already running'
-elif $HOME/.local/bin/ark; then
-    notify-send -t 3000 'ARK BACKUP' 'Done'
 else
-    notify-send -t 3000 'ARK BACKUP' 'Failed'
+    notify-send -t 3000 'ARK BACKUP' 'Starting backup...'
+    if $HOME/.local/bin/ark; then
+        notify-send -t 3000 'ARK BACKUP' 'Done'
+    else
+        notify-send -t 3000 'ARK BACKUP' 'Failed'
+    fi
 fi

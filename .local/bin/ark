@@ -50,6 +50,10 @@ sub usage {
     say "  YOU'RE WEIRD, MAN, DON'T DO THAT!!!!!!!!";
     say "  5. MAKE SURE YOU HAVE ENOUGH DISK SPACE BEFORE STARTING";
     say "";
+    say "Examples:";
+    say "  ark";
+    say '  ark --tar="/run/media/serr/KINGSTON/bak_$(date +%y%m%dT%H%M%S).tar"';
+    say "";
     say "Backup list file example:";
     say "  # exclude patterns";
     say "  !buildroot";

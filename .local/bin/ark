@@ -39,9 +39,11 @@ sub usage {
     say "                    and put it near backup dir";
     say "  -h, --help        This help";
     say "";
-    say "1. RSYNC AND TAR ARE REQUIRED!!!!";
-    say "2. IF THE BACKUP DIR IS INSIDE THE DIRECTORIES YOU'RE BACKING UP";
-    say "(RECURSION), SOMETHING TERRIBLE CAN HAPPEN!!!!!!!!";
+    say "Notes:";
+    say "  1. RSYNC IS REQUIRED!!!!";
+    say "  2. TAR IS REQUIRED TO USE IT WITH -t/--tar flag!!!!";
+    say "  3. IF THE BACKUP DIR IS INSIDE THE DIRECTORIES YOU'RE BACKING UP";
+    say "  (RECURSION), SOMETHING TERRIBLE CAN HAPPEN!!!!!!!!";
     say "";
     say "Backup list file example:";
     say "  # exclude patterns";
@@ -127,10 +129,10 @@ sub create_backup {
 }
 
 GetOptions(
-        'list|l=s'  => \$BACKUP_LIST,
-        'path|p=s'  => \$BACKUP_PATH,
-        'tar|t'     => \$TAR,
-        'help|h'    => \$HELP
+        'list|l=s' => \$BACKUP_LIST,
+        'path|p=s' => \$BACKUP_PATH,
+        'tar|t'    => \$TAR,
+        'help|h'   => \$HELP
     ) or die "ERROR: Invalid command line options\n";
 
 usage() if $HELP;

@@ -41,6 +41,32 @@ alias .....='cd ../../../..'
 
 . $HOME/.local/bin/z.sh
 
+alias fastporno='gocryptfs ~/encrypted ~/private && cd ~/private/ && fusermount -uz ~/private'
+
+porno() {
+    if [ ! -d ~/encrypted ]; then
+        echo "'~/encrypted' folder doesn't exist!"
+        return 1
+    fi
+    if mount | grep -q " $HOME/private "; then
+        fusermount -u ~/private
+        if [ $? -eq 0 ]; then
+            echo "Bye-bye, tired hands!"
+        else
+            echo "Failed to unmount"
+            return 1
+        fi
+    else
+        gocryptfs ~/encrypted ~/private
+        if [ $? -eq 0 ]; then
+            echo "Enjoy your viewing!"
+        else
+            echo "Failed to mound"
+            return 1
+        fi
+    fi
+}
+
 m4exec() {
     if [ $# -eq 0 ]; then
         echo "Usage: m4exec <file1> [file2] ..."

@@ -15,6 +15,7 @@ my $BACKUP_PATH_DEFAULT = "$ENV{HOME}/.ark/bak";
 
 my $HELP        = 0;
 my $TAR         = 0;
+my $TAR_PATH    = '';
 my $BACKUP_LIST = '';
 my $BACKUP_PATH = '';
 
@@ -33,17 +34,21 @@ sub usage {
     say "Usage: ark [-lpth]";
     say "";
     say "Flags:";
-    say "  -l, --list FILE   Backup list file (default: $BACKUP_LIST_DEFAULT)";
-    say "  -p, --path DIR    Backup dir path (default: $BACKUP_PATH_DEFAULT)";
-    say "  -t, --tar         Create tar archive from backup directory";
-    say "                    and put it near backup dir";
-    say "  -h, --help        This help";
+    say "  -l, --list FILE          Backup list file (default: $BACKUP_LIST_DEFAULT)";
+    say "  -p, --path DIR           Backup dir path (default: $BACKUP_PATH_DEFAULT)";
+    say "  -t [PATH], --tar[=PATH]  Create tar archive. If PATH is specified,";
+    say "                           archive will be created at PATH, otherwise";
+    say "                           it will be placed near backup directory";
+    say "  -h, --help               This help";
     say "";
     say "Notes:";
     say "  1. RSYNC IS REQUIRED!!!!";
     say "  2. TAR IS REQUIRED TO USE IT WITH -t/--tar flag!!!!";
     say "  3. IF THE BACKUP DIR IS INSIDE THE DIRECTORIES YOU'RE BACKING UP";
     say "  (RECURSION), SOMETHING TERRIBLE CAN HAPPEN!!!!!!!!";
+    say "  4. IF YOU RUN THE SCRIPT TWICE AT THE SAME TIME WITH THE SAME PATHS,";
+    say "  YOU'RE WEIRD, MAN, DON'T DO THAT!!!!!!!!";
+    say "  5. MAKE SURE YOU HAVE ENOUGH DISK SPACE BEFORE STARTING";
     say "";
     say "Backup list file example:";
     say "  # exclude patterns";
@@ -115,7 +120,15 @@ sub create_backup {
     say "Backup completed: $BACKUP_PATH";
 
     if ($TAR) {
-        my $tar_path   = $BACKUP_PATH . '.tar';
+        my $tar_path = $TAR_PATH ? $TAR_PATH : $BACKUP_PATH . '.tar';
+
+        if ($TAR_PATH) {
+            die "ERROR: Tar archive must have .tar extension (got: $TAR_PATH)" unless $TAR_PATH =~ /.+\.tar$/;
+            my $tar_dir = dirname($TAR_PATH);
+            eval { make_path($tar_dir); };
+            die "ERROR: Cannot create path '$tar_dir': $@" if $@;
+        }
+
         my $parent_dir = dirname($BACKUP_PATH);
         my $bak_name   = basename($BACKUP_PATH);
 
@@ -131,16 +144,16 @@ sub create_backup {
 GetOptions(
         'list|l=s' => \$BACKUP_LIST,
         'path|p=s' => \$BACKUP_PATH,
-        'tar|t'    => \$TAR,
+        'tar|t:s'  => sub { $TAR = 1; $TAR_PATH = $_[1]; },
         'help|h'   => \$HELP
     ) or die "ERROR: Invalid command line options\n";
 
 usage() if $HELP;
 
-die "Download 'rsync' dude, plss"         if !check_command('rsync');
-die "You dont have 'tar' program?? Wtf??" if $TAR && !check_command('tar');
-
 $BACKUP_LIST = $BACKUP_LIST_DEFAULT unless $BACKUP_LIST;
 $BACKUP_PATH = $BACKUP_PATH_DEFAULT unless $BACKUP_PATH;
+
+die "Download 'rsync' dude, plss"         if !check_command('rsync');
+die "You dont have 'tar' program?? Wtf??" if $TAR && !check_command('tar');
 
 create_backup();

@@ -50,7 +50,7 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec $HOME/.local/bin/st
 bindsym $mod+t      exec thunar
 bindsym $mod+i      exec firefox
-bindsym $mod+b      exec --no-startup-id $HOME/.local/bin/ark && notify-send -t 5000 "ARK BACKUP" "$1 seconds elapsed"
+bindsym $mod+b      exec --no-startup-id "pgrep -f 'perl.*ark' || ($HOME/.local/bin/ark && notify-send -t 5000 'ARK BACKUP' 'COMPLETED')"
 
 # kill focused window
 bindsym $mod+Shift+q kill

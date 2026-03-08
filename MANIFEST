@@ -19,7 +19,7 @@
 
 .local/bin/emoji|symlink|
 .local/bin/ark|symlink|
-.local/bin/ark-wrapper|symlink|
+#.local/bin/ark-wrapper|symlink|
 .local/bin/rights|symlink|
 .local/bin/z.sh|symlink|
 .local/bin/gitrew|symlink|

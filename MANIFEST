@@ -18,7 +18,7 @@
 .config/gtk-3.0|symlink|
 
 .local/bin/emoji|symlink|
-.local/bin/ark|symlink|
+.local/bin/chains|symlink|
 .local/bin/git-auto-backup|symlink|
 #.local/bin/ark-wrapper|symlink|
 .local/bin/rights|symlink|

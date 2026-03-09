@@ -1,0 +1,207 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use feature 'say';
+use File::Path 'make_path';
+use File::Spec;
+use POSIX 'strftime';
+use Getopt::Long qw\:config bundling\;
+
+my $MAIN_DIR_DEFAULT = "$ENV{HOME}/.chains";
+
+# flags
+
+my $HELP        = 0;
+my $INCREMENTAL = 0;
+my $FULL        = 0;
+my $MAIN_DIR    = '';
+
+sub check_command {
+    my ($cmd) = @_;
+    my @paths = split(':', $ENV{PATH} || '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin');
+    foreach my $path (@paths) {
+        my $full_path = "$path/$cmd";
+        return $full_path if -x $full_path;
+    }
+    return;
+}
+
+sub usage {
+    say "chains - simple script for making incremental backups";
+    say "Usage: chains [-hifd]";
+    say "";
+    say "Flags:";
+    say "  -h, --help         This help";
+    say "  -i, --incremental  Make incremental backup";
+    say "  -f, --full         Make full backup";
+    say "  -d, --dir DIR      Backup dir (default: $MAIN_DIR_DEFAULT)";
+    say "";
+    say "Notes:";
+    say "  1. TAR IS REQUIRED";
+    say "";
+    say "Examples:";
+    exit 0;
+}
+
+sub verify_permissions {
+    my ($path) = @_;
+    die "ERROR: no permissions to read '$path'" unless -r $path;
+    die "ERROR: no permissions to write to '$path'" unless -w $path;
+}
+
+sub verify_dir {
+    my ($path) = @_;
+    unless (-d $path) {
+        say "INFO: '$path' is not a dir";
+        say "INFO: Try to create '$path'...";
+        eval { make_path($path); };
+        die "ERROR: Cannot create path '$path': $@" if $@;
+        die "ERROR: '$path' is not a valid dir" unless -d $path;
+    }
+    verify_permissions($path);
+}
+
+sub verify_file {
+    my ($path) = @_;
+    unless (-f $path) {
+        say "INFO: '$path' is not a file";
+        say "INFO: Try to create '$path'...";
+        eval {
+            open my $fh, '>', $path or die "ERROR: Cannot create file: $!";
+            close $fh or die "ERROR: Cannot close file: $!";
+        };
+        die "ERROR: Cannot create file '$path': $@" if $@;
+        die "ERROR: '$path' is not a valid file" unless -f $path;
+    }
+    verify_permissions($path);
+}
+
+sub make_backup {
+    my ($info) = @_;
+
+    my $snar_file             = $info->{snar_file};
+    my $include_paths_file    = $info->{include_paths_file};
+    my $exclude_patterns_file = $info->{exclude_patterns_file};
+    my $backup_file           = $info->{backup_file};
+
+    my $tar = check_command('tar');
+    die "ERROR: 'tar' program is required, but not found in PATH" unless $tar;
+    
+    my @tar_command = ($tar, '-g', $snar_file,
+                       '--one-file-system',
+                       '--exclude-from', $exclude_patterns_file,
+                       '--files-from', $include_paths_file,
+                       '-czf',  $backup_file);
+
+    my $tar_command_string = join ' ', map { $_ =~ /[\s]/ ? "'$_'" : $_ } @tar_command;
+    say "Tar command: $tar_command_string";
+
+    my $ret = system(@tar_command);
+
+    die "ERROR: Backup failed with exit code: " . ($? >> 8) unless $ret == 0;
+    say "Backup completed: $backup_file";
+}
+
+sub main {
+
+    # ==== PREPARE STRUCT ====
+
+    # check and create if no exists
+    verify_dir($MAIN_DIR);
+    say "Main dir: $MAIN_DIR";
+
+    # check and create if no exists
+    my $include_paths_file = File::Spec->catfile($MAIN_DIR, 'include_paths.txt');
+    verify_file($include_paths_file);
+    say "Include paths file: $include_paths_file";
+
+    # check and create if no exists
+    my $exclude_patterns_file = File::Spec->catfile($MAIN_DIR, 'exclude_patterns.txt');
+    verify_file($exclude_patterns_file);
+    say "Exclude patterns file: $exclude_patterns_file";
+
+    # check and create if no exists
+    my $backups_dir = File::Spec->catdir($MAIN_DIR, 'chains');
+    verify_dir($backups_dir);
+    say "Backups dir: $backups_dir";
+
+    # ==== MAKE BACKUP ====
+
+    # otherwise, it will make a backup of current dir (pwd)
+    die "ERROR: Include file '$include_paths_file' is empty" if -z $include_paths_file;
+
+    # TODO(20260309T142451): проверить что в include_paths_file только абсолютные пути!!
+
+    my $timestamp = strftime("%y%m%dT%H%M%S", localtime);
+
+    if ($FULL) {
+
+        # a chain of incremental backups in a timestamped folder
+        # full backup = first backup in chain
+        
+        my $backup_dir = File::Spec->catdir($backups_dir, 'since_'.$timestamp);
+        die "ERROR: '$backup_dir' already exists" if -d $backup_dir;
+        verify_dir($backup_dir);
+        say "Creating new backup chain in: $backup_dir";
+
+        # tar will create it itself if no exists
+        my $snar_file = File::Spec->catfile($backup_dir, 'incremental.snar');
+        say "Snar file: $snar_file";
+        my $backup_file = File::Spec->catfile($backup_dir, "${timestamp}.tar.gz");
+
+        die "ERROR: Backup file '$backup_file' already exists" if -f $backup_file;
+
+        my $info = {
+            snar_file             => $snar_file,
+            include_paths_file    => $include_paths_file,
+            exclude_patterns_file => $exclude_patterns_file,
+            backup_file           => $backup_file,
+        };
+
+        make_backup($info);
+
+    } elsif ($INCREMENTAL) {
+
+        # incremental backup = backup to latest backup chain
+
+        # try found latest backup chain
+        opendir(my $dh, $backups_dir) or die "ERROR: Cannot open dir '$backups_dir': $!";
+        my @dirs = grep { -d "$backups_dir/$_" && /^since_\d{6}T\d{6}$/ } readdir($dh);
+        closedir($dh) or die "ERROR: Cannot close dir '$backups_dir': $!";
+        @dirs = sort { $b cmp $a } @dirs;
+        my $backup_dir = $dirs[0] ? File::Spec->catdir($backups_dir, $dirs[0]) : undef;
+
+        die "ERROR: No existing backup chain found" unless $backup_dir;
+
+        # tar will create it itself if no exists
+        my $snar_file = File::Spec->catfile($backup_dir, 'incremental.snar');
+        say "Snar file: $snar_file";
+        my $backup_file = File::Spec->catfile($backup_dir, "${timestamp}.tar.gz");
+
+        die "ERROR: Backup file '$backup_file' already exists" if -f $backup_file;
+
+        my $info = {
+            snar_file             => $snar_file,
+            include_paths_file    => $include_paths_file,
+            exclude_patterns_file => $exclude_patterns_file,
+            backup_file           => $backup_file,
+        };
+
+        make_backup($info);
+
+    }
+}
+
+GetOptions(
+        'help|h'        => \$HELP,
+        'dir|d=s'       => \$MAIN_DIR,
+        'incremental|i' => \$INCREMENTAL,
+        'full|f'        => \$FULL,
+    ) or die "ERROR: Invalid command line options";
+
+usage() if $HELP;
+
+$MAIN_DIR = $MAIN_DIR_DEFAULT unless $MAIN_DIR;
+
+main();

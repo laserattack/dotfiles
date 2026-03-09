@@ -33,7 +33,7 @@ sub check_command {
 
 sub usage {
     say "chains - simple script for making incremental backups";
-    say "Usage: chains [-hifrgd]";
+    say "Usage: chains [-hpifrgd]";
     say "";
     say "Flags:";
     say "  -h, --help                 This help";
@@ -123,18 +123,15 @@ sub get_chains_structure {
 sub print_chains_structure {
     my ($backups_dir) = @_;
     my $chains_structure = get_chains_structure($backups_dir);
-    foreach my $chain_ref (@$chains_structure) {
-        my ($chain_name, $backups) = @$chain_ref;
-        say "Chain      : $chain_name";
-        my $i = 0;
-        foreach my $backup (@$backups) {
-            if ($i == 0) {
-                say "Full       : $backup";
-            } else {
-                say "Incremental: $backup";
-            }
-            $i++;
+    
+    for my $i (0 .. $#$chains_structure) {
+        my ($chain_name, $backups) = @{$chains_structure->[$i]};
+        say "Chain: $chain_name";
+        foreach my $j (0 .. $#$backups) {
+            my $backup = $backups->[$j];
+            say $j == 0 ? "Full: $backup" : "Incremental: $backup";
         }
+        say "" if $i < $#$chains_structure;
     }
 }
 
@@ -194,7 +191,7 @@ sub restore_backup {
         extract($backup_path, $restore_dir);
     }
     
-    say "INFO: Restored state $RECOVER to $restore_dir";
+    say "INFO: Restored state $RECOVER to " . getcwd();
 }
 
 sub make_backup {

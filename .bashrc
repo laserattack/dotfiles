@@ -41,6 +41,8 @@ alias .....='cd ../../../..'
 
 . $HOME/.local/bin/z.sh
 
+export KINGSTON="/run/media/serr/KINGSTON"
+
 alias fastporno='gocryptfs ~/encrypted ~/private && cd ~/private/ && fusermount -uz ~/private'
 
 porno() {

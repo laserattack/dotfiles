@@ -24,7 +24,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 
 (advice-add #'display-startup-echo-area-message :override #'ignore)
-(setq initial-scratch-message ";; !!!!CHECK AGENDA PLSSSS!!!!")
+(setq initial-scratch-message ";; HELLO, SAILOR!\n;; CHECK TODOS PLS\n\n")
 
 (setq warning-minimum-level :error)
 
@@ -187,11 +187,6 @@
 ;; ===== ORG MODE =====
 
 (setq org-capture-bookmark nil)
-
-;; agenda
-(setq org-agenda-files (list org-journal-directory))
-
-(global-set-key (kbd "C-c o a") 'org-todo-list)
 
 ;; paste images
 (use-package org-download

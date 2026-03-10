@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use feature 'say';
 use File::Path 'make_path';
+use File::Basename;
 use File::Spec;
 use Cwd;
 use POSIX 'strftime';
@@ -19,7 +20,7 @@ my $FULL        = 0;
 my $PRINT       = 0;
 my $RECOVER     = undef;
 my $MAIN_DIR    = undef;
-my $GOTO        = undef;
+my $DIR         = undef;
 
 sub check_command {
     my ($cmd) = @_;
@@ -32,21 +33,20 @@ sub check_command {
 }
 
 sub usage {
-    say "chains - simple script for making incremental backups";
-    say "Usage: chains [-hpifrgd]";
+    say "chains - incremental backups without any bullshit";
+    say "Usage: chains [-hmifrCp]";
     say "";
     say "Flags:";
     say "  -h, --help                 This help";
-    say "  -p, --print                Print all backup chains structure";
-    say "  -i, --incremental          Make incremental backup";
-    say "  -f, --full                 Make full backup";
-    say "  -r, --recover [TIMESTAMP]  Recover backup chain to current dir.";
-    say "                             If TIMESTAMP omitted, recovers latest state.";
+    say "  -m, --main-directory DIR   Main program directory (default: $MAIN_DIR_DEFAULT)";
+    say "  -i, --incremental          Make incremental backup (to the last chain)";
+    say "  -f, --full                 Make full backup (new chain)";
+    say "  -r, --recover [TIMESTAMP]  Restore the chain to the specified timestamp";
+    say "                             If TIMESTAMP omitted, recovers latest state";
     say "                             TIMESTAMP format: YYMMDDTHHMMSS (e.g. 250309T143045)";
-    say "                             Use 'latest' explicitly if needed (default when omitted)";
-    say "  -g, --goto DIR             Change to DIR before any operation";
+    say "  -C, --directory DIR        Change to DIR before any operation";
     say "                             If DIR omitted, goes to HOME directory";
-    say "  -d, --dir DIR              Backup dir (default: $MAIN_DIR_DEFAULT)";
+    say "  -p, --print                Print all backup chains structure";
     say "";
     say "Notes:";
     say "  1. TAR IS REQUIRED";
@@ -56,35 +56,47 @@ sub usage {
     exit 0;
 }
 
+sub go_ahead {
+    chomp(my $input = <STDIN>);
+    $input    =~ s/^\s+|\s+$//g;
+    $input    = lc($input);
+
+    return 1 if $input eq '';
+    return $input =~ /^(y|yes|yas)$/? 1: 0;
+}
+
 sub verify_permissions {
     my ($path) = @_;
-    die "ERROR: no permissions to read '$path'" unless -r $path;
-    die "ERROR: no permissions to write to '$path'" unless -w $path;
+    die "ERROR: no permissions to read '$path'\n" unless -r $path;
+    die "ERROR: no permissions to write to '$path'\n" unless -w $path;
 }
 
 sub verify_dir {
     my ($path) = @_;
     unless (-d $path) {
         say "INFO: '$path' is not a dir";
-        say "INFO: Try to create '$path'...";
+        print "INFO: Try to create '$path'? [Y/n] ";
+        die "ERROR: Cannot proceed without directory '$path'\n" unless go_ahead();
         eval { make_path($path); };
-        die "ERROR: Cannot create path '$path': $@" if $@;
-        die "ERROR: '$path' is not a valid dir" unless -d $path;
+        die "ERROR: Cannot create path '$path': $@\n" if $@;
+        die "ERROR: '$path' is not a valid dir\n" unless -d $path;
     }
     verify_permissions($path);
 }
 
 sub verify_file {
     my ($path) = @_;
+    verify_dir(dirname($path)); # verify parent dir
     unless (-f $path) {
         say "INFO: '$path' is not a file";
-        say "INFO: Try to create '$path'...";
+        print "INFO: Try to create '$path'? [Y/n] ";
+        die "ERROR: Cannot proceed without file '$path'\n" unless go_ahead();
         eval {
-            open my $fh, '>', $path or die "ERROR: Cannot create file: $!";
-            close $fh or die "ERROR: Cannot close file: $!";
+            open my $fh, '>', $path or die "ERROR: Cannot create file: $!\n";
+            close $fh or die "ERROR: Cannot close file: $!\n";
         };
-        die "ERROR: Cannot create file '$path': $@" if $@;
-        die "ERROR: '$path' is not a valid file" unless -f $path;
+        die "ERROR: Cannot create file '$path': $@\n" if $@;
+        die "ERROR: '$path' is not a valid file\n" unless -f $path;
     }
     verify_permissions($path);
 }
@@ -95,9 +107,9 @@ sub get_chains_structure {
     my @chains_structure = ();
 
     # get all chains dirs
-    opendir(my $dh, $backups_dir) or die "ERROR: Cannot open dir '$backups_dir': $!";
+    opendir(my $dh, $backups_dir) or die "ERROR: Cannot open dir '$backups_dir': $!\n";
     my @chains = grep { -d "$backups_dir/$_" && /^since_\d{6}T\d{6}$/ } readdir($dh);
-    closedir($dh) or die "ERROR: Cannot close dir '$backups_dir': $!";
+    closedir($dh) or die "ERROR: Cannot close dir '$backups_dir': $!\n";
 
     # sort chains: new ones first
     @chains = sort { $b cmp $a } @chains;
@@ -107,9 +119,9 @@ sub get_chains_structure {
         my @backups = ();
 
         # get all backups in chain
-        opendir(my $dh2, $chain_dir) or die "ERROR: Cannot open chain dir '$chain_dir': $!";
+        opendir(my $dh2, $chain_dir) or die "ERROR: Cannot open chain dir '$chain_dir': $!\n";
         @backups = grep { /^\d{6}T\d{6}\.tar\.gz$/ } readdir($dh2);
-        closedir($dh2) or die "ERROR: Cannot close chain dir '$chain_dir': $!";
+        closedir($dh2) or die "ERROR: Cannot close chain dir '$chain_dir': $!\n";
 
         # sort backups in chain: old ones first (the order of restoration)
         @backups = sort { $a cmp $b } @backups;
@@ -139,18 +151,18 @@ sub print_chains_structure {
 sub extract {
     my ($src, $dest) = @_;
     
-    die "ERROR: File '$src' not found" unless -f $src;
+    die "ERROR: File '$src' not found\n" unless -f $src;
     verify_dir($dest);
     
     my $tar = check_command('tar');
-    die "ERROR: 'tar' program is required, but not found in PATH" unless $tar;
+    die "ERROR: 'tar' program is required, but not found in PATH\n" unless $tar;
     
-    say "INFO: Extracting '$src' to '$dest'";
+    say "INFO: Extracting '$src'";
     
     my @cmd = ($tar, '-xzf', $src, '-C', $dest);
     my $ret = system(@cmd);
     
-    die "ERROR: Extract failed: $?" unless $ret == 0;
+    die "ERROR: Extract failed: $?\n" unless $ret == 0;
 }
 
 # restoring a part of the chain to timestamp
@@ -182,7 +194,7 @@ sub restore_backup {
             }
         }
         
-        die "ERROR: No backup found with timestamp: $RECOVER" unless defined $target_chain_name;
+        die "ERROR: No backup found with timestamp: $RECOVER\n" unless defined $target_chain_name;
     }
 
     foreach my $i (0 .. $target_index) {
@@ -191,7 +203,7 @@ sub restore_backup {
         extract($backup_path, $restore_dir);
     }
     
-    say "INFO: Restored state $RECOVER to " . getcwd();
+    say "INFO: Restored state '$RECOVER' to " . getcwd();
 }
 
 sub make_backup {
@@ -203,7 +215,7 @@ sub make_backup {
     my $backup_file           = $info->{backup_file};
 
     my $tar = check_command('tar');
-    die "ERROR: 'tar' program is required, but not found in PATH" unless $tar;
+    die "ERROR: 'tar' program is required, but not found in PATH\n" unless $tar;
 
     my @tar_command = ($tar, '-g', $snar_file,
                        '--one-file-system',
@@ -216,7 +228,7 @@ sub make_backup {
 
     my $ret = system(@tar_command);
 
-    die "ERROR: Backup failed with exit code: " . ($? >> 8) unless $ret == 0;
+    die "ERROR: Backup failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
     say "INFO: Backup completed: $backup_file";
 }
 
@@ -251,16 +263,16 @@ sub main {
     # ==== MAKE BACKUP ====
     if ($FULL || $INCREMENTAL) {
         # otherwise, it will make a backup of current dir (pwd)
-        die "ERROR: Include file '$include_paths_file' is empty" if -z $include_paths_file;
+        die "ERROR: Include file '$include_paths_file' is empty\n" if -z $include_paths_file;
 
         # only absolute paths in include_paths_file
-        open my $fh, '<', $include_paths_file or die "ERROR: Cannot open file: $!";
+        open my $fh, '<', $include_paths_file or die "ERROR: Cannot open file: $!\n";
         while (my $line = <$fh>) {
             chomp $line;
             next if $line =~ /^\s*$/; # empty lines are OK
-            die "ERROR: Only absolute paths should be in '$include_paths_file'" unless $line =~ /^\//;
+            die "ERROR: Only absolute paths should be in '$include_paths_file'\n" unless $line =~ /^\//;
         }
-        close $fh or die "ERROR: Cannot close file: $!";
+        close $fh or die "ERROR: Cannot close file: $!\n";
 
         my $timestamp = strftime("%y%m%dT%H%M%S", localtime);
 
@@ -270,7 +282,7 @@ sub main {
             # full backup = first backup in chain
 
             my $backup_dir = File::Spec->catdir($backups_dir, 'since_'.$timestamp);
-            die "ERROR: '$backup_dir' already exists" if -d $backup_dir;
+            die "ERROR: '$backup_dir' already exists\n" if -d $backup_dir;
             verify_dir($backup_dir);
             say "INFO: Creating new backup chain in: $backup_dir";
 
@@ -279,7 +291,7 @@ sub main {
             say "INFO: Snar file: $snar_file";
             my $backup_file = File::Spec->catfile($backup_dir, "${timestamp}.tar.gz");
 
-            die "ERROR: Backup file '$backup_file' already exists" if -f $backup_file;
+            die "ERROR: Backup file '$backup_file' already exists\n" if -f $backup_file;
 
             my $info = {
                 snar_file             => $snar_file,
@@ -295,20 +307,20 @@ sub main {
             # incremental backup = backup to latest backup chain
 
             # try found latest backup chain
-            opendir(my $dh, $backups_dir) or die "ERROR: Cannot open dir '$backups_dir': $!";
+            opendir(my $dh, $backups_dir) or die "ERROR: Cannot open dir '$backups_dir': $!\n";
             my @dirs = grep { -d "$backups_dir/$_" && /^since_\d{6}T\d{6}$/ } readdir($dh);
-            closedir($dh) or die "ERROR: Cannot close dir '$backups_dir': $!";
+            closedir($dh) or die "ERROR: Cannot close dir '$backups_dir': $!\n";
             @dirs = sort { $b cmp $a } @dirs;
             my $backup_dir = $dirs[0] ? File::Spec->catdir($backups_dir, $dirs[0]) : undef;
 
-            die "ERROR: No existing backup chain found" unless $backup_dir;
+            die "ERROR: No existing backup chain found\n" unless $backup_dir;
 
             # tar will create it itself if no exists
             my $snar_file = File::Spec->catfile($backup_dir, 'incremental.snar');
             say "INFO: Snar file: $snar_file";
             my $backup_file = File::Spec->catfile($backup_dir, "${timestamp}.tar.gz");
 
-            die "ERROR: Backup file '$backup_file' already exists" if -f $backup_file;
+            die "ERROR: Backup file '$backup_file' already exists\n" if -f $backup_file;
 
             my $info = {
                 snar_file             => $snar_file,
@@ -323,34 +335,33 @@ sub main {
 }
 
 GetOptions(
-        'help|h'        => \$HELP,
-        'dir|d=s'       => \$MAIN_DIR,
-        'incremental|i' => \$INCREMENTAL,
-        'full|f'        => \$FULL,
-        'recover|r:s'   => \$RECOVER,
-        'goto|g:s'      => \$GOTO,
-        'print|p'       => \$PRINT,
-    ) or die "ERROR: Invalid command line options";
+        'help|h'             => \$HELP,
+        'main-directory|m=s' => \$MAIN_DIR,
+        'incremental|i'      => \$INCREMENTAL,
+        'full|f'             => \$FULL,
+        'recover|r'          => sub { $RECOVER = 'latest' },
+        'directory|C:s'      => \$DIR,
+        'print|p'            => \$PRINT,
+    ) or die "ERROR: Invalid command line options\n";
 
 usage() if $HELP;
 
-if (defined $GOTO) {
-    $GOTO = $ENV{HOME} if $GOTO eq '';
-    say "INFO: Changing directory to: $GOTO";
-    verify_dir($GOTO);
-    chdir $GOTO or die "ERROR: Cannot change to directory '$GOTO': $!";
+if (defined $DIR) {
+    $DIR = $ENV{HOME} if $DIR eq '';
+    say "INFO: Changing directory to: $DIR";
+    verify_dir($DIR);
+    chdir $DIR or die "ERROR: Cannot change to directory '$DIR': $!\n";
     say "INFO: Now in: " . getcwd();
 }
 
-if (defined $RECOVER) {
-    if ($RECOVER eq '' || $RECOVER eq 'latest') {
-        say "INFO: Recovering state: latest";
-        $RECOVER = 'latest';
-    } elsif ($RECOVER =~ /^\d{6}T\d{6}$/) {
-        say "INFO: Recovering state: $RECOVER";
+if ($RECOVER) {
+    my $timestamp = shift @ARGV;
+    if ($timestamp && $timestamp =~ /^\d{6}T\d{6}$/) {
+        $RECOVER = $timestamp;
     } else {
-        die "ERROR: Invalid timestamp format";
+        unshift @ARGV, $timestamp if $timestamp;
     }
+    say "INFO: Recovering state: $RECOVER";
 }
 
 $MAIN_DIR = $MAIN_DIR_DEFAULT unless $MAIN_DIR;

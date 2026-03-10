@@ -36,9 +36,9 @@ sub check_command {
 
 sub usage {
     say "chains - incremental backups without any bullshit";
-    say "Usage: chains [-hmifrwCpv]";
+    say "Usage: chains [OPTION]...";
     say "";
-    say "Flags:";
+    say "Options:";
     say "  -h, --help                 This help";
     say "  -m, --main-directory DIR   Main program directory (default: ~/.chains)";
     say "  -i, --incremental          Make incremental backup (to the last chain)";
@@ -67,7 +67,7 @@ sub go_ahead {
     $input    = lc($input);
 
     return 1 if $input eq '';
-    return $input =~ /^(y|yes|yas)$/? 1: 0;
+    return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
 }
 
 sub suppress_output {
@@ -163,10 +163,10 @@ sub print_chains_structure {
 
     for my $i (0 .. $#$chains_structure) {
         my ($chain_name, $backups) = @{$chains_structure->[$i]};
-        say "Chain: $chain_name";
+        say "Chain        $chain_name";
         foreach my $j (0 .. $#$backups) {
             my $backup = $backups->[$j];
-            say $j == 0 ? "Full: $backup" : "Incremental: $backup";
+            say $j == 0 ? "Full         $backup" : "Incremental  $backup";
         }
         say "" if $i < $#$chains_structure;
     }
@@ -212,7 +212,7 @@ sub extract {
 
     say "INFO: Extracting '$src'";
 
-    my $flags = $VERBOSE? '-vxzf': '-xzf';
+    my $flags = $VERBOSE ? '-vxzf' : '-xzf';
     my @cmd = ($tar, '--xattrs', $flags, $src, '-C', $dest);
     my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
 
@@ -281,7 +281,7 @@ sub make_backup {
     my $tar = check_command('tar');
     die "ERROR: 'tar' program is required, but not found in PATH\n" unless $tar;
 
-    my $flags = $VERBOSE? '-vg': '-g';
+    my $flags = $VERBOSE ? '-vg' : '-g';
     my @tar_command = ($tar, $flags, $snar_file,
                        '--one-file-system', '--xattrs',
                        '--exclude-from', $exclude_patterns_file,
@@ -293,8 +293,39 @@ sub make_backup {
 
     my $ret = $VERBOSE ? system(@tar_command) : suppress_output(sub { system(@tar_command) });
 
-    die "ERROR: Backup failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
-    say "INFO: Backup completed: $backup_file";
+    # ================ FROM info tar ================
+    #    Possible exit codes of GNU ‘tar’ are summarized in the following
+    # table:
+
+    # 0
+    #      ‘Successful termination’.
+
+    # 1
+    #      ‘Some files differ’.  If tar was invoked with ‘--compare’
+    #      (‘--diff’, ‘-d’) command line option, this means that some files in
+    #      the archive differ from their disk counterparts (*note compare::).
+    #      If tar was given ‘--create’, ‘--append’ or ‘--update’ option, this
+    #      exit code means that some files were changed while being archived
+    #      and so the resulting archive does not contain the exact copy of the
+    #      file set.
+
+    # 2
+    #      ‘Fatal error’.  This means that some fatal, unrecoverable error
+    #      occurred.
+
+    my $exitcode = ($? >> 8);
+    if ($exitcode == 0) {
+        say "INFO: Backup '$backup_file' completed (exitcode: $exitcode)";
+    } elsif ($exitcode == 1) {
+        warn "WARNING: Backup '$backup_file' completed with changed files (exitcode: $exitcode)\n";
+    } elsif ($exitcode == 2) {
+        warn "ERROR: Backup '$backup_file' failed (exitcode: $exitcode)\n";
+        say "INFO: Deleting incomplete archive '$backup_file'";
+        unlink $backup_file or die "ERROR: Could not delete incomplete archive: $backup_file\n" if -f $backup_file;
+        die "INFO: Incomplete archive was deleted\n"
+    } else {
+        die "ERROR: unexpected exitcode: $exitcode. WTF???\n";
+    }
 }
 
 sub main {

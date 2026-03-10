@@ -34,6 +34,11 @@ alias fzfh='history | fzf'
 alias fzfp='ps aux | fzf'
 fzfv() { f=$(rg --files "${1:-.}" 2>/dev/null | fzf) && nvim "$f"; }
 
+alias cp='cp -iv'
+alias ln='ln -i'
+alias mv='mv -iv'
+alias rm='rm -iv'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

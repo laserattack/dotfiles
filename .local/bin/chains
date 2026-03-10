@@ -317,7 +317,7 @@ sub main {
             @dirs = sort { $b cmp $a } @dirs;
             my $backup_dir = $dirs[0] ? File::Spec->catdir($backups_dir, $dirs[0]) : undef;
 
-            die "ERROR: No existing backup chain found\n" unless $backup_dir;
+            die "ERROR: No existing backup chain found in '$backups_dir'. Use -f (--full) first\n" unless $backup_dir;
 
             # tar will create it itself if no exists
             my $snar_file = File::Spec->catfile($backup_dir, 'incremental.snar');

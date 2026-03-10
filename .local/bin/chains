@@ -50,12 +50,11 @@ sub usage {
     say "                             If TIMESTAMP omitted, verifies entire latest chain";
     say "                             TIMESTAMP format: YYMMDDTHHMMSS (e.g. 250309T143045)";
     say "  -C, --directory DIR        Change to DIR before any operation";
-    say "                             If DIR omitted, goes to HOME directory";
     say "  -p, --print                Print all backup chains structure";
     say "  -v, --verbose              Verbosely list files processed";
     say "";
     say "Notes:";
-    say "  1. TAR IS REQUIRED";
+    say "  1. GNU TAR IS REQUIRED";
     say "  2. Interrupting backup creation may leave incomplete archives";
     say "  3. Always verify your backups can be restored";
     say "  4. EXCLUDE BACKUP DIR FROM BACKUP";
@@ -185,7 +184,7 @@ sub find_chain_and_backup {
         return ($chain_name, $backups, $#{$backups});
     }
 
-    CHAIN: foreach my $chain_ref (@$chains_structure) {
+    foreach my $chain_ref (@$chains_structure) {
         my ($chain_name, $backups) = @$chain_ref;
         
         foreach my $i (0 .. $#$backups) {
@@ -214,7 +213,7 @@ sub extract {
     say "INFO: Extracting '$src'";
 
     my $flags = $VERBOSE? '-vxzf': '-xzf';
-    my @cmd = ($tar, $flags, $src, '-C', $dest);
+    my @cmd = ($tar, '--xattrs', $flags, $src, '-C', $dest);
     my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
 
     die "ERROR: Extract failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
@@ -410,7 +409,7 @@ GetOptions(
         'full|f'             => \$FULL,
         'recover|r'          => sub { $RECOVER = 'latest' },
         'verify|w'           => sub { $VERIFY  = 'latest' },
-        'directory|C:s'      => \$DIR,
+        'directory|C=s'      => \$DIR,
         'print|p'            => \$PRINT,
         'verbose|v'          => \$VERBOSE,
     ) or die "ERROR: Invalid command line options\n";
@@ -418,7 +417,6 @@ GetOptions(
 usage() if $HELP;
 
 if (defined $DIR) {
-    $DIR = $ENV{HOME} if $DIR eq '';
     say "INFO: Changing directory to: $DIR";
     verify_dir($DIR);
     chdir $DIR or die "ERROR: Cannot change to directory '$DIR': $!\n";

@@ -20,6 +20,7 @@ my $FULL        = 0;
 my $PRINT       = 0;
 my $VERBOSE     = 0;
 my $RECOVER     = undef;
+my $VERIFY      = undef;
 my $MAIN_DIR    = undef;
 my $DIR         = undef;
 
@@ -35,7 +36,7 @@ sub check_command {
 
 sub usage {
     say "chains - incremental backups without any bullshit";
-    say "Usage: chains [-hmifrCpv]";
+    say "Usage: chains [-hmifrwCpv]";
     say "";
     say "Flags:";
     say "  -h, --help                 This help";
@@ -44,6 +45,9 @@ sub usage {
     say "  -f, --full                 Make full backup (new chain)";
     say "  -r, --recover [TIMESTAMP]  Restore the chain to the specified timestamp";
     say "                             If TIMESTAMP omitted, recovers latest state";
+    say "                             TIMESTAMP format: YYMMDDTHHMMSS (e.g. 250309T143045)";
+    say "  -w, --verify [TIMESTAMP]   Verify integrity of chain up to specified timestamp";
+    say "                             If TIMESTAMP omitted, verifies entire latest chain";
     say "                             TIMESTAMP format: YYMMDDTHHMMSS (e.g. 250309T143045)";
     say "  -C, --directory DIR        Change to DIR before any operation";
     say "                             If DIR omitted, goes to HOME directory";
@@ -65,6 +69,26 @@ sub go_ahead {
 
     return 1 if $input eq '';
     return $input =~ /^(y|yes|yas)$/? 1: 0;
+}
+
+sub suppress_output {
+    my $code = shift;
+    
+    open my $oldout, '>&', \*STDOUT or die "ERROR: Can't dup STDOUT: $!";
+    open my $olderr, '>&', \*STDERR or die "ERROR: Can't dup STDERR: $!";
+    
+    open STDOUT, '>', '/dev/null' or die "ERROR: Can't redirect STDOUT: $!";
+    open STDERR, '>', '/dev/null' or die "ERROR: Can't redirect STDERR: $!";
+    
+    my @ret = $code->();
+    
+    open STDOUT, '>&', $oldout or die "ERROR: Can't restore STDOUT: $!";
+    open STDERR, '>&', $olderr or die "ERROR: Can't restore STDERR: $!";
+    
+    close $oldout;
+    close $olderr;
+    
+    return wantarray ? @ret : $ret[0];
 }
 
 sub verify_permissions {
@@ -137,7 +161,7 @@ sub get_chains_structure {
 sub print_chains_structure {
     my ($backups_dir) = @_;
     my $chains_structure = get_chains_structure($backups_dir);
-    
+
     for my $i (0 .. $#$chains_structure) {
         my ($chain_name, $backups) = @{$chains_structure->[$i]};
         say "Chain: $chain_name";
@@ -149,64 +173,102 @@ sub print_chains_structure {
     }
 }
 
-# extract ONE archive
-sub extract {
-    my ($src, $dest) = @_;
-    
-    die "ERROR: File '$src' not found\n" unless -f $src;
-    verify_dir($dest);
-    
-    my $tar = check_command('tar');
-    die "ERROR: 'tar' program is required, but not found in PATH\n" unless $tar;
-    
-    say "INFO: Extracting '$src'";
-
-    my $flags = $VERBOSE? '-vxzf': '-xzf';
-    my @cmd = ($tar, $flags, $src, '-C', $dest);
-    my $ret = system(@cmd);
-    
-    die "ERROR: Extract failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
-}
-
-# restoring a part of the chain to timestamp
-sub restore_backup {
-    my ($backups_dir, $restore_dir) = @_;
-    my $chains_structure = get_chains_structure($backups_dir);
+sub find_chain_and_backup {
+    my ($chains_structure, $target_timestamp) = @_;
 
     my $target_chain_name    = undef;
     my $target_chain_backups = undef;
     my $target_index         = -1;
-    
-    if ($RECOVER eq 'latest') {
-        ($target_chain_name, $target_chain_backups) = @{$chains_structure->[0]};
-        $target_index = $#{$target_chain_backups};
-    } else {
-        CHAIN: foreach my $chain_ref (@$chains_structure) {
-            my ($chain_name, $backups) = @$chain_ref;
+
+    if ($target_timestamp eq 'latest') {
+        my ($chain_name, $backups) = @{$chains_structure->[0]};
+        return ($chain_name, $backups, $#{$backups});
+    }
+
+    CHAIN: foreach my $chain_ref (@$chains_structure) {
+        my ($chain_name, $backups) = @$chain_ref;
+        
+        foreach my $i (0 .. $#$backups) {
+            my $backup      = $backups->[$i];
+            my ($timestamp) = $backup =~ /^(\d{6}T\d{6})\.tar\.gz$/;
             
-            foreach my $i (0 .. $#$backups) {
-                my $backup      = $backups->[$i];
-                my ($timestamp) = $backup =~ /^(\d{6}T\d{6})\.tar\.gz$/;
-                
-                if ($timestamp eq $RECOVER) {
-                    $target_chain_name    = $chain_name;
-                    $target_chain_backups = $backups;
-                    $target_index         = $i;
-                    last CHAIN;
-                }
+            if ($timestamp eq $target_timestamp) {
+                return ($chain_name, $backups, $i);
             }
         }
-        
-        die "ERROR: No backup found with timestamp: $RECOVER\n" unless defined $target_chain_name;
     }
+
+    return (undef, undef, -1);
+}
+
+# extract ONE archive
+sub extract {
+    my ($src, $dest) = @_;
+
+    die "ERROR: File '$src' not found\n" unless -f $src;
+    verify_dir($dest);
+
+    my $tar = check_command('tar');
+    die "ERROR: 'tar' program is required, but not found in PATH\n" unless $tar;
+
+    say "INFO: Extracting '$src'";
+
+    my $flags = $VERBOSE? '-vxzf': '-xzf';
+    my @cmd = ($tar, $flags, $src, '-C', $dest);
+    my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
+
+    die "ERROR: Extract failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
+}
+
+# restoring a part of the chain to timestamp
+sub restore_subchain {
+    my ($backups_dir, $restore_dir) = @_;
+    my $chains_structure = get_chains_structure($backups_dir);
+
+    my ($target_chain_name, $target_chain_backups, $target_index) = find_chain_and_backup($chains_structure, $RECOVER);
+
+    die "ERROR: No backup found with timestamp: $RECOVER\n" unless defined $target_chain_name;
 
     foreach my $i (0 .. $target_index) {
         my $backup_name = $target_chain_backups->[$i];
         my $backup_path = File::Spec->catfile($backups_dir, $target_chain_name, $backup_name);
         extract($backup_path, $restore_dir);
     }
-    
+
     say "INFO: Restored state '$RECOVER' to " . getcwd();
+}
+
+sub verify {
+    my ($path) = @_;
+    die "ERROR: File '$path' not found\n" unless -f $path;
+
+    my $tar = check_command('tar');
+    die "ERROR: 'tar' program is required, but not found in PATH\n" unless $tar;
+
+    say "INFO: Verifying '$path'";
+
+    my $flags = $VERBOSE ? '-vtzf' : '-tzf';
+    my @cmd = ($tar, $flags, $path);
+    my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
+    
+    die "ERROR: Verify failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
+}
+
+sub verify_subchain {
+    my ($backups_dir) = @_;
+    my $chains_structure = get_chains_structure($backups_dir);
+
+    my ($target_chain_name, $target_chain_backups, $target_index) = find_chain_and_backup($chains_structure, $VERIFY);
+
+    die "ERROR: No backup found with timestamp: $VERIFY\n" unless defined $target_chain_name;
+
+    foreach my $i (0 .. $target_index) {
+        my $backup_name = $target_chain_backups->[$i];
+        my $backup_path = File::Spec->catfile($backups_dir, $target_chain_name, $backup_name);
+        verify($backup_path);
+    }
+
+    say "INFO: Chain verification successful up to timestamp: $VERIFY";
 }
 
 sub make_backup {
@@ -222,7 +284,7 @@ sub make_backup {
 
     my $flags = $VERBOSE? '-vg': '-g';
     my @tar_command = ($tar, $flags, $snar_file,
-                       '--one-file-system',
+                       '--one-file-system', '--xattrs',
                        '--exclude-from', $exclude_patterns_file,
                        '--files-from', $include_paths_file,
                        '-czf',  $backup_file);
@@ -230,7 +292,7 @@ sub make_backup {
     my $tar_command_string = join ' ', map { $_ =~ /[\s]/ ? "'$_'" : $_ } @tar_command;
     say "INFO: Tar command: $tar_command_string";
 
-    my $ret = system(@tar_command);
+    my $ret = $VERBOSE ? system(@tar_command) : suppress_output(sub { system(@tar_command) });
 
     die "ERROR: Backup failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
     say "INFO: Backup completed: $backup_file";
@@ -260,10 +322,13 @@ sub main {
     say "INFO: Backups dir: $backups_dir";
 
     print_chains_structure($backups_dir) if $PRINT;
+
+    # ==== VERIFY SUBCHAIN ====
+    verify_subchain($backups_dir) if $VERIFY;
     
     # ==== RESTORE STATE ====
-    restore_backup($backups_dir, '.') if $RECOVER;
-
+    restore_subchain($backups_dir, '.') if $RECOVER;
+    
     # ==== MAKE BACKUP ====
     if ($FULL || $INCREMENTAL) {
         # otherwise, it will make a backup of current dir (pwd)
@@ -344,6 +409,7 @@ GetOptions(
         'incremental|i'      => \$INCREMENTAL,
         'full|f'             => \$FULL,
         'recover|r'          => sub { $RECOVER = 'latest' },
+        'verify|w'           => sub { $VERIFY  = 'latest' },
         'directory|C:s'      => \$DIR,
         'print|p'            => \$PRINT,
         'verbose|v'          => \$VERBOSE,
@@ -367,6 +433,16 @@ if ($RECOVER) {
         unshift @ARGV, $timestamp if $timestamp;
     }
     say "INFO: Recovering state: $RECOVER";
+}
+
+if ($VERIFY) {
+    my $timestamp = shift @ARGV;
+    if ($timestamp && $timestamp =~ /^\d{6}T\d{6}$/) {
+        $VERIFY = $timestamp;
+    } else {
+        unshift @ARGV, $timestamp if $timestamp;
+    }
+    say "INFO: Verify integrity of chain up to: $VERIFY";
 }
 
 $MAIN_DIR = $MAIN_DIR_DEFAULT unless $MAIN_DIR;

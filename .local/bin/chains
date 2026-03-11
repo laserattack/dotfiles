@@ -376,15 +376,7 @@ sub make_backup {
             warn "WARNING: Backup '$backup_file' is empty (interrupted?)\n";
             say "INFO: Deleting empty archive '$backup_file'";
             unlink $backup_file or die "ERROR: Could not delete empty archive: $backup_file\n"
-        } elsif (-f $backup_file) {
-            print "INFO: Verify backup '$backup_file'? [Y/n] ";
-            if (go_ahead()) {
-                verify($backup_file);
-            } else {
-                say "INFO: Always verify your backups!";
-                say "INFO: Even if tar returns 0 (success), the backup might be corrupted — for example, if you interrupted the program, or for some other reason";
-            }
-        }
+        } 
     } elsif ($exitcode == 1) {
         warn "WARNING: Backup '$backup_file' completed with changed files (exitcode: $exitcode)\n";
     } elsif ($exitcode == 2) {
@@ -394,6 +386,17 @@ sub make_backup {
         die "INFO: Incomplete archive was deleted\n"
     } else {
         die "ERROR: unexpected exitcode: $exitcode. WTF???\n";
+    }
+
+    if (-f $backup_file) {
+        # if backup created
+        print "INFO: Verify backup '$backup_file'? [Y/n] ";
+        if (go_ahead()) {
+            verify($backup_file);
+        } else {
+            say "INFO: Always verify your backups!";
+            say "INFO: Even if tar returns 0 (success), the backup might be corrupted — for example, if you interrupted the program, or for some other reason";
+        }
     }
 }
 

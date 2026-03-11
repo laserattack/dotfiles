@@ -44,11 +44,16 @@ sub usage {
     say "  -i, --incremental          Make incremental backup (to the last chain)";
     say "  -f, --full                 Make full backup (new chain)";
     say "  -r, --recover [TIMESTAMP]  Restore the chain to the specified timestamp";
+    say "                             TIMESTAMP: YYMMDDTHHMMSS | latest";
     say "                             If TIMESTAMP omitted, recovers latest state";
-    say "                             TIMESTAMP format: YYMMDDTHHMMSS (e.g. 250309T143045)";
-    say "  -w, --verify [TIMESTAMP]   Verify integrity of chain up to specified timestamp";
-    say "                             If TIMESTAMP omitted, verifies entire latest chain";
-    say "                             TIMESTAMP format: YYMMDDTHHMMSS (e.g. 250309T143045)";
+    say "  -w, --verify [RANGE]       Verify integrity of chain";
+    say "                             TIMESTAMP: YYMMDDTHHMMSS | latest";
+    say "                             RANGE: TIMESTAMP | TIMESTAMP:TIMESTAMP";
+    say "                             Examples: 250309T143045";
+    say "                                       latest";
+    say "                                       250309T143045:250310T102030";
+    say "                                       250309T143045:latest";
+    say "                                       latest:latest";
     say "  -C, --directory DIR        Change to DIR before any operation";
     say "  -p, --print                Print all backup chains structure";
     say "  -v, --verbose              Verbosely list files processed";
@@ -72,21 +77,21 @@ sub go_ahead {
 
 sub suppress_output {
     my $code = shift;
-    
+
     open my $oldout, '>&', \*STDOUT or die "ERROR: Can't dup STDOUT: $!";
     open my $olderr, '>&', \*STDERR or die "ERROR: Can't dup STDERR: $!";
-    
+
     open STDOUT, '>', '/dev/null' or die "ERROR: Can't redirect STDOUT: $!";
     open STDERR, '>', '/dev/null' or die "ERROR: Can't redirect STDERR: $!";
-    
+
     my @ret = $code->();
-    
+
     open STDOUT, '>&', $oldout or die "ERROR: Can't restore STDOUT: $!";
     open STDERR, '>&', $olderr or die "ERROR: Can't restore STDERR: $!";
-    
+
     close $oldout;
     close $olderr;
-    
+
     return wantarray ? @ret : $ret[0];
 }
 
@@ -157,17 +162,49 @@ sub get_chains_structure {
     return \@chains_structure;
 }
 
+sub format_bytes {
+    my ($bytes) = @_;
+    my @units   = ('B', 'K', 'M', 'G', 'T', 'P');
+
+    return "0 B" if $bytes == 0;
+
+    my $unit = 0;
+    my $size = $bytes;
+
+    while ($size >= 1024 && $unit < $#units) {
+        $size /= 1024;
+        $unit++;
+    }
+
+    if ($unit == 0) {
+        # for bytes
+        return sprintf("%d%s", $size, $units[$unit]);
+    } else {
+        # everything except bytes
+        return sprintf("%.2f%s", $size, $units[$unit]);
+    }
+}
+
 sub print_chains_structure {
     my ($backups_dir) = @_;
     my $chains_structure = get_chains_structure($backups_dir);
 
     for my $i (0 .. $#$chains_structure) {
         my ($chain_name, $backups) = @{$chains_structure->[$i]};
-        say "Chain        $chain_name";
+
+        say "┌─ Chain: $chain_name";
+
         foreach my $j (0 .. $#$backups) {
-            my $backup = $backups->[$j];
-            say $j == 0 ? "Full         $backup" : "Incremental  $backup";
+            my $backup_name = $backups->[$j];
+            my $prefix = $j == $#$backups ? "└──" : "├──";
+            my $backup_info = $j == 0 ? "FUL " : "INC ";
+
+            my $backup_path = File::Spec->catfile($backups_dir, $chain_name, $backup_name);
+            my $backup_size = -s $backup_path;
+            $backup_info = $backup_size ? $backup_info.format_bytes($backup_size) : '??';
+            say "$prefix $backup_name [$backup_info]";
         }
+
         say "" if $i < $#$chains_structure;
     }
 }
@@ -186,11 +223,11 @@ sub find_chain_and_backup {
 
     foreach my $chain_ref (@$chains_structure) {
         my ($chain_name, $backups) = @$chain_ref;
-        
+
         foreach my $i (0 .. $#$backups) {
             my $backup      = $backups->[$i];
             my ($timestamp) = $backup =~ /^(\d{6}T\d{6})\.tar\.gz$/;
-            
+
             if ($timestamp eq $target_timestamp) {
                 return ($chain_name, $backups, $i);
             }
@@ -249,25 +286,42 @@ sub verify {
     my $flags = $VERBOSE ? '-vtzf' : '-tzf';
     my @cmd = ($tar, $flags, $path);
     my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
-    
+
     die "ERROR: Verify failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
 }
 
+
+# Parse verification string - either TIMESTAMP or TIMESTAMP:TIMESTAMP format
 sub verify_subchain {
-    my ($backups_dir) = @_;
+    my ($backups_dir)    = @_;
     my $chains_structure = get_chains_structure($backups_dir);
 
-    my ($target_chain_name, $target_chain_backups, $target_index) = find_chain_and_backup($chains_structure, $VERIFY);
+    my ($start_timestamp, $end_timestamp) = (undef, undef);
 
-    die "ERROR: No backup found with timestamp: $VERIFY\n" unless defined $target_chain_name;
+    # validation of the fact that there is either $timestamp or $timestamp:$timestamp during flag processing
+    ($start_timestamp, $end_timestamp) = ($VERIFY =~ /:/) ? split(/:/, $VERIFY) : (undef, $VERIFY);
 
-    foreach my $i (0 .. $target_index) {
-        my $backup_name = $target_chain_backups->[$i];
-        my $backup_path = File::Spec->catfile($backups_dir, $target_chain_name, $backup_name);
+    my ($start_chain_name, $start_chain_backups, $start_index) = (undef, undef, 0);
+    my ($end_chain_name, $end_chain_backups, $end_index)       = find_chain_and_backup($chains_structure, $end_timestamp);
+    die "ERROR: No backup found with timestamp: $end_timestamp\n" unless $end_chain_name;
+
+    if ($start_timestamp) {
+        ($start_chain_name, $start_chain_backups, $start_index) = find_chain_and_backup($chains_structure, $start_timestamp);
+        die "ERROR: No backup found with timestamp: $start_timestamp\n" unless $start_chain_name;
+        die "ERROR: Start and end timestamps must be from the same chain\n" if $start_chain_name ne $end_chain_name;
+    }
+
+    foreach my $i ($start_index .. $end_index) {
+        my $backup_name = $end_chain_backups->[$i];
+        my $backup_path = File::Spec->catfile($backups_dir, $end_chain_name, $backup_name);
         verify($backup_path);
     }
 
-    say "INFO: Chain verification successful up to timestamp: $VERIFY";
+    if ($start_timestamp) {
+        say "INFO: Chain verification successful from $start_timestamp to $end_timestamp";
+    } else {
+        say "INFO: Chain verification successful up to timestamp: $VERIFY";
+    }
 }
 
 sub make_backup {
@@ -316,6 +370,10 @@ sub make_backup {
     my $exitcode = ($? >> 8);
     if ($exitcode == 0) {
         say "INFO: Backup '$backup_file' completed (exitcode: $exitcode)";
+        if (-z $backup_file) {
+            warn "WARNING: Backup '$backup_file' is empty (interrupted?)\n";
+            unlink $backup_file or die "ERROR: Could not delete empty archive: $backup_file\n"
+        }
     } elsif ($exitcode == 1) {
         warn "WARNING: Backup '$backup_file' completed with changed files (exitcode: $exitcode)\n";
     } elsif ($exitcode == 2) {
@@ -355,10 +413,10 @@ sub main {
 
     # ==== VERIFY SUBCHAIN ====
     verify_subchain($backups_dir) if $VERIFY;
-    
+
     # ==== RESTORE STATE ====
     restore_subchain($backups_dir, '.') if $RECOVER;
-    
+
     # ==== MAKE BACKUP ====
     if ($FULL || $INCREMENTAL) {
         # otherwise, it will make a backup of current dir (pwd)
@@ -465,13 +523,16 @@ if ($RECOVER) {
 }
 
 if ($VERIFY) {
-    my $timestamp = shift @ARGV;
-    if ($timestamp && $timestamp =~ /^\d{6}T\d{6}$/) {
-        $VERIFY = $timestamp;
+    my $timestamp_pattern = qr/(?:\d{6}T\d{6}|latest)/;
+    my $range             = shift @ARGV;
+
+    if ($range && ($range =~ /^$timestamp_pattern$/ ||
+                   $range =~ /^$timestamp_pattern:$timestamp_pattern$/)) {
+        $VERIFY = $range;
+        say "INFO: Verify chain mode: $VERIFY";
     } else {
-        unshift @ARGV, $timestamp if $timestamp;
+        unshift @ARGV, $range if $range;
     }
-    say "INFO: Verify integrity of chain up to: $VERIFY";
 }
 
 $MAIN_DIR = $MAIN_DIR_DEFAULT unless $MAIN_DIR;

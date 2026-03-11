@@ -286,8 +286,10 @@ sub verify {
     my $flags = $VERBOSE ? '-vtzf' : '-tzf';
     my @cmd = ($tar, $flags, $path);
     my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
+    my $exitcode = ($? >> 8);
 
-    die "ERROR: Verify failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
+    die "ERROR: Verify '$path' failed with exit code: $exitcode. Maybe you should delete this archive\n" unless $exitcode == 0;
+    say "INFO: Verified '$path'";
 }
 
 
@@ -372,7 +374,16 @@ sub make_backup {
         say "INFO: Backup '$backup_file' completed (exitcode: $exitcode)";
         if (-z $backup_file) {
             warn "WARNING: Backup '$backup_file' is empty (interrupted?)\n";
+            say "INFO: Deleting empty archive '$backup_file'";
             unlink $backup_file or die "ERROR: Could not delete empty archive: $backup_file\n"
+        } elsif (-f $backup_file) {
+            print "INFO: Verify backup '$backup_file'? [Y/n] ";
+            if (go_ahead()) {
+                verify($backup_file);
+            } else {
+                say "INFO: Always verify your backups!";
+                say "INFO: Even if tar returns 0 (success), the backup might be corrupted — for example, if you interrupted the program, or for some other reason";
+            }
         }
     } elsif ($exitcode == 1) {
         warn "WARNING: Backup '$backup_file' completed with changed files (exitcode: $exitcode)\n";

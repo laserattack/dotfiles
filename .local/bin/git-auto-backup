@@ -14,7 +14,9 @@ echo "==== Processing: dotfiles ===="
 cd /home/serr/projects/dotfiles/ || exit 1
 
 xbps-query -l > xbps-packages.txt
-echo "Packages list saved ($(wc -l < xbps-packages.txt) packages)"
+echo "Saved all packages ($(wc -l < xbps-packages.txt) packages)"
+xbps-query -m > xbps-packages-manual.txt
+echo "Saved manually installed packages ($(wc -l < xbps-packages-manual.txt) packages)"
 
 git -c user.name="Backup Bot" -c user.email="pi@pis.ka" add .
 git -c user.name="Backup Bot" -c user.email="pi@pis.ka" commit -m "quick update"

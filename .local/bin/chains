@@ -288,8 +288,8 @@ sub verify {
     my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
     my $exitcode = ($? >> 8);
 
-    die "ERROR: Verify '$path' failed with exit code: $exitcode. Maybe you should delete this archive\n" unless $exitcode == 0;
-    say "INFO: Verified '$path'";
+    die "ERROR: Verification of '$path' failed with exit code: $exitcode. Maybe you should delete this archive\n" unless $exitcode == 0;
+    say "INFO: Verification successful for '$path'";
 }
 
 
@@ -543,10 +543,10 @@ if ($VERIFY) {
     if ($range && ($range =~ /^$timestamp_pattern$/ ||
                    $range =~ /^$timestamp_pattern:$timestamp_pattern$/)) {
         $VERIFY = $range;
-        say "INFO: Verify chain mode: $VERIFY";
     } else {
         unshift @ARGV, $range if $range;
     }
+    say "INFO: Verify chain mode: $VERIFY";
 }
 
 $MAIN_DIR = $MAIN_DIR_DEFAULT unless $MAIN_DIR;

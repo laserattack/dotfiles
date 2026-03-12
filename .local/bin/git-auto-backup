@@ -24,6 +24,8 @@ gacp() {
 
 # ================ DOCS
 
+echo ""
+
 echo "Processing: documents"
 cd /home/serr/projects/documents/ || { echo "  [FAILED] Cannot enter documents directory"; exit 1; }
 
@@ -32,6 +34,8 @@ gacp "documents"
 
 
 # ================ DOTS
+
+echo ""
 
 echo "Processing: dotfiles"
 cd /home/serr/projects/dotfiles/ || { echo "  [FAILED] Cannot enter dotfiles directory"; exit 1; }

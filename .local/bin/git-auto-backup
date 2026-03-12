@@ -48,13 +48,13 @@ echo ""
 echo "[INFO  ] Processing dotfiles"
 cd /home/serr/projects/dotfiles/ || { echo "  [FAILED] Cannot enter dotfiles directory"; exit 1; }
 
-xbps-query -l > xbps-packages.txt
+xbps-query -l > no-deploy/xbps-packages.txt
 check_result "save all packages to file"
 
-xbps-query -m > xbps-packages-manual.txt
+xbps-query -m > no-deploy/xbps-packages-manual.txt
 check_result "save manually installed packages to file"
 
-crontab -l > crontab.txt
+crontab -l > no-deploy/crontab.txt
 check_result "save crontab to file"
 
 gacp "dotfiles"

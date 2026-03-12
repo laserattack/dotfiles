@@ -456,62 +456,45 @@ sub main {
         close $fh or die "ERROR: Cannot close file: $!\n";
 
         my $timestamp = strftime("%y%m%dT%H%M%S", localtime);
-
+        my $backup_dir;
+        
         if ($FULL) {
 
             # a chain of incremental backups in a timestamped folder
             # full backup = first backup in chain
 
-            my $backup_dir = File::Spec->catdir($backups_dir, 'since_'.$timestamp);
+            $backup_dir = File::Spec->catdir($backups_dir, 'since_'.$timestamp);
             die "ERROR: '$backup_dir' already exists\n" if -d $backup_dir;
             verify_dir($backup_dir);
             say "INFO: Creating new backup chain in: $backup_dir";
-
-            # tar will create it itself if no exists
-            my $snar_file = File::Spec->catfile($backup_dir, 'incremental.snar');
-            say "INFO: Snar file: $snar_file";
-            my $backup_file = File::Spec->catfile($backup_dir, "${timestamp}.tar.gz");
-
-            die "ERROR: Backup file '$backup_file' already exists\n" if -f $backup_file;
-
-            my $info = {
-                snar_file             => $snar_file,
-                include_paths_file    => $include_paths_file,
-                exclude_patterns_file => $exclude_patterns_file,
-                backup_file           => $backup_file,
-            };
-
-            make_backup($info);
 
         } elsif ($INCREMENTAL) {
 
             # incremental backup = backup to latest backup chain
 
             # try found latest backup chain
-            opendir(my $dh, $backups_dir) or die "ERROR: Cannot open dir '$backups_dir': $!\n";
-            my @dirs = grep { -d "$backups_dir/$_" && /^since_\d{6}T\d{6}$/ } readdir($dh);
-            closedir($dh) or die "ERROR: Cannot close dir '$backups_dir': $!\n";
-            @dirs = sort { $b cmp $a } @dirs;
-            my $backup_dir = $dirs[0] ? File::Spec->catdir($backups_dir, $dirs[0]) : undef;
+            my $chains_structure = get_chains_structure($backups_dir);
+            my $last_chain_name = @$chains_structure ? $chains_structure->[0]->[0] : undef;
+            $backup_dir = $last_chain_name ? File::Spec->catdir($backups_dir, $last_chain_name) : undef;
 
             die "ERROR: No existing backup chain found in '$backups_dir'. Use -f (--full) first\n" unless $backup_dir;
-
-            # tar will create it itself if no exists
-            my $snar_file = File::Spec->catfile($backup_dir, 'incremental.snar');
-            say "INFO: Snar file: $snar_file";
-            my $backup_file = File::Spec->catfile($backup_dir, "${timestamp}.tar.gz");
-
-            die "ERROR: Backup file '$backup_file' already exists\n" if -f $backup_file;
-
-            my $info = {
-                snar_file             => $snar_file,
-                include_paths_file    => $include_paths_file,
-                exclude_patterns_file => $exclude_patterns_file,
-                backup_file           => $backup_file,
-            };
-
-            make_backup($info);
         }
+
+        # tar will create it itself if no exists
+        my $snar_file = File::Spec->catfile($backup_dir, 'incremental.snar');
+        say "INFO: Snar file: $snar_file";
+        my $backup_file = File::Spec->catfile($backup_dir, "${timestamp}.tar.gz");
+
+        die "ERROR: Backup file '$backup_file' already exists\n" if -f $backup_file;
+
+        my $info = {
+            snar_file             => $snar_file,
+            include_paths_file    => $include_paths_file,
+            exclude_patterns_file => $exclude_patterns_file,
+            backup_file           => $backup_file,
+        };
+        
+        make_backup($info);
     } # if ($FULL || $INCREMENTAL)
 }
 

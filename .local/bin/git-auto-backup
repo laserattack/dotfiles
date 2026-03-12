@@ -15,8 +15,14 @@ gacp() {
     
     git -c user.name="Backup Bot" -c user.email="pi@pis.ka" add .
     check_result "git add $repo_name"
-    git -c user.name="Backup Bot" -c user.email="pi@pis.ka" commit -m "quick update"
-    check_result "git commit $repo_name"
+    
+     if git diff --cached --quiet; then
+        echo "[INFO ] No changes to commit in $repo_name"
+    else
+        git -c user.name="Backup Bot" -c user.email="pi@pis.ka" commit -m "quick update"
+        check_result "git commit $repo_name"
+    fi
+    
     git push
     check_result "git push $repo_name"
 }

@@ -4,9 +4,9 @@ echo "==== Git backup started ===="
 
 check_result() {
     if [ $? -eq 0 ]; then
-        echo "  [OK] $1"
+        echo "[OK] $1"
     else
-        echo "  [FAILED] $1"
+        echo "[FAILED] $1"
     fi
 }
 

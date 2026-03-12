@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "==== Git backup started ===="
+echo "[INFO] Git backup started"
 
 check_result() {
     if [ $? -eq 0 ]; then
@@ -27,7 +27,7 @@ gacp() {
 echo ""
 echo ""
 
-echo "Processing: documents"
+echo "[INFO] Processing documents"
 cd /home/serr/projects/documents/ || { echo "  [FAILED] Cannot enter documents directory"; exit 1; }
 
 gacp "documents"
@@ -39,7 +39,7 @@ gacp "documents"
 echo ""
 echo ""
 
-echo "Processing: dotfiles"
+echo "[INFO] Processing dotfiles"
 cd /home/serr/projects/dotfiles/ || { echo "  [FAILED] Cannot enter dotfiles directory"; exit 1; }
 
 xbps-query -l > xbps-packages.txt
@@ -54,4 +54,4 @@ check_result "save crontab to file"
 gacp "dotfiles"
 
 
-echo "==== Git backup finished ===="
+echo "[INFO] Git backup finished"

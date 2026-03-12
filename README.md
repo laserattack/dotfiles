@@ -1,6 +1,6 @@
 # dotfiles
 
-Just config files for some programs that I actively use
+Some stuff for easy restoration of my working environment
 
 # Deploy
 

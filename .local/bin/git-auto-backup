@@ -1,29 +1,69 @@
 #!/usr/bin/env bash
 
 echo "==== Git backup started ===="
+echo ""
 
+check_result() {
+    if [ $? -eq 0 ]; then
+        echo "  [OK] $1"
+    else
+        echo "  [FAILED] $1"
+    fi
+}
 
 echo "Processing: documents"
-cd /home/serr/projects/documents/ || exit 1
-git -c user.name="Backup Bot" -c user.email="pi@pis.ka" add .
-git -c user.name="Backup Bot" -c user.email="pi@pis.ka" commit -m "quick update"
-git push
+cd /home/serr/projects/documents/ || { echo "  [FAILED] Cannot enter documents directory"; exit 1; }
 
+git -c user.name="Backup Bot" -c user.email="pi@pis.ka" add .
+check_result "git add documents"
+
+git -c user.name="Backup Bot" -c user.email="pi@pis.ka" commit -m "quick update"
+check_result "git commit documents"
+
+git push
+check_result "git push documents"
+echo ""
 
 echo "Processing: dotfiles"
-cd /home/serr/projects/dotfiles/ || exit 1
+cd /home/serr/projects/dotfiles/ || { echo "  [FAILED] Cannot enter dotfiles directory"; exit 1; }
 
 xbps-query -l > xbps-packages.txt
-echo "Saved all packages ($(wc -l < xbps-packages.txt) packages)"
+if [ $? -eq 0 ]; then
+    count=$(wc -l < xbps-packages.txt)
+    echo "  [OK] Saved all packages ($count packages)"
+else
+    echo "  [FAILED] Cannot save all packages"
+fi
+
 xbps-query -m > xbps-packages-manual.txt
-echo "Saved manually installed packages ($(wc -l < xbps-packages-manual.txt) packages)"
+if [ $? -eq 0 ]; then
+    count=$(wc -l < xbps-packages-manual.txt)
+    echo "  [OK] Saved manually installed packages ($count packages)"
+else
+    echo "  [FAILED] Cannot save manually installed packages"
+fi
 
 crontab -l > crontab.txt
-echo "Crontab list saved"
+if [ $? -eq 0 ]; then
+    echo "  [OK] Crontab saved ($(wc -l < crontab.txt) lines)"
+else
+    echo "  [FAILED] Cannot save crontab"
+fi
+
+echo ""
 
 git -c user.name="Backup Bot" -c user.email="pi@pis.ka" add .
-git -c user.name="Backup Bot" -c user.email="pi@pis.ka" commit -m "quick update"
-git push
+check_result "git add dotfiles"
 
+if git diff --cached --quiet; then
+    echo "  [INFO] No changes to commit in dotfiles"
+else
+    git -c user.name="Backup Bot" -c user.email="pi@pis.ka" commit -m "quick update"
+    check_result "git commit dotfiles"
+    
+    git push
+    check_result "git push dotfiles"
+fi
 
+echo ""
 echo "==== Git backup finished ===="

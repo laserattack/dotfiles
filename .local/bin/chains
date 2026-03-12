@@ -15,6 +15,8 @@ my $MAIN_DIR_DEFAULT = "$ENV{HOME}/.chains";
 # flags
 
 my $HELP        = 0;
+my $YES         = 0;
+my $NO          = 0;
 my $INCREMENTAL = 0;
 my $FULL        = 0;
 my $PRINT       = 0;
@@ -47,6 +49,11 @@ sub usage {
     say "";
     say "  -f, --full                 Make full backup (new chain)";
     say "";
+    say "  -y, --yes                  Automatically answer yes to all prompts";
+    say "";
+    say "  -n, --no                   Automatically answer no to all prompts";
+    say "                             Overrides --yes";
+    say "";
     say "  -r, --recover [TIMESTAMP]  Restore the chain to the specified timestamp";
     say "                             TIMESTAMP: YYMMDDTHHMMSS | latest";
     say "                             If TIMESTAMP omitted, recovers latest state";
@@ -77,6 +84,9 @@ sub usage {
 }
 
 sub go_ahead {
+    if ($NO)  { say "n"; return 0; }
+    if ($YES) { say "y"; return 1; }
+
     chomp(my $input = <STDIN>);
     $input    =~ s/^\s+|\s+$//g;
     $input    = lc($input);
@@ -298,7 +308,8 @@ sub verify {
     my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
     my $exitcode = ($? >> 8);
 
-    die "ERROR: Verification of '$path' failed with exit code: $exitcode. Maybe you should delete this archive\n" unless $exitcode == 0;
+    die "ERROR: Verification of '$path' failed with exit code: $exitcode. " .
+        "Maybe you should delete this archive\n" unless $exitcode == 0;
     say "INFO: Verification successful for '$path'";
 }
 
@@ -386,7 +397,7 @@ sub make_backup {
             warn "WARNING: Backup '$backup_file' is empty (interrupted?)\n";
             say "INFO: Deleting empty archive '$backup_file'";
             unlink $backup_file or die "ERROR: Could not delete empty archive: $backup_file\n"
-        } 
+        }
     } elsif ($exitcode == 1) {
         warn "WARNING: Backup '$backup_file' completed with changed files (exitcode: $exitcode)\n";
     } elsif ($exitcode == 2) {
@@ -399,13 +410,13 @@ sub make_backup {
     }
 
     if (-f $backup_file) {
-        # if backup created
         print "INFO: Verify backup '$backup_file'? [Y/n] ";
         if (go_ahead()) {
             verify($backup_file);
         } else {
-            say "INFO: Always verify your backups!";
-            say "INFO: Even if tar returns 0 (success), the backup might be corrupted — for example, if you interrupted the program, or for some other reason";
+            say "INFO: Always verify your backups!\n" .
+                "INFO: Even if tar returns 0 (success), the backup might be corrupted — for example, " .
+                "if you interrupted the program, or for some other reason";
         }
     }
 }
@@ -457,7 +468,7 @@ sub main {
 
         my $timestamp = strftime("%y%m%dT%H%M%S", localtime);
         my $backup_dir;
-        
+
         if ($FULL) {
 
             # a chain of incremental backups in a timestamped folder
@@ -493,13 +504,15 @@ sub main {
             exclude_patterns_file => $exclude_patterns_file,
             backup_file           => $backup_file,
         };
-        
+
         make_backup($info);
     } # if ($FULL || $INCREMENTAL)
 }
 
 GetOptions(
         'help|h'             => \$HELP,
+        'yes|y'              => \$YES,
+        'no|n'               => \$NO,
         'main-directory|m=s' => \$MAIN_DIR,
         'incremental|i'      => \$INCREMENTAL,
         'full|f'             => \$FULL,

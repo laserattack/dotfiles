@@ -20,17 +20,18 @@ $| = 1;
 
 # flags
 
-my $HELP        = 0;
-my $YES         = 0;
-my $NO          = 0;
-my $INCREMENTAL = 0;
-my $FULL        = 0;
-my $PRINT       = 0;
-my $VERBOSE     = 0;
-my $RECOVER     = undef;
-my $VERIFY      = undef;
-my $MAIN_DIR    = undef;
-my $DIR         = undef;
+my $HELP            = 0;
+my $YES             = 0;
+my $NO              = 0;
+my $INCREMENTAL     = 0;
+my $FULL            = 0;
+my $PRINT           = 0;
+my $VERBOSE         = 0;
+my $NO_CHECK_DEVICE = 0;
+my $RECOVER         = undef;
+my $VERIFY          = undef;
+my $MAIN_DIR        = undef;
+my $DIR             = undef;
 
 sub check_command {
     my ($cmd) = @_;
@@ -81,6 +82,9 @@ sub usage {
     say "";
     say "  -n, --no                   Automatically answer no to all prompts";
     say "                             Overrides --yes";
+    say "";
+    say "      --no-check-device      Ignore device number changes when";
+    say "                             determining changed files";
     say "";
     say "Notes:";
     say "  1. GNU TAR IS REQUIRED";
@@ -250,12 +254,21 @@ sub print_chains_structure {
 
     for my $i (0 .. $#$chains_structure) {
         my ($chain_name, $backups) = @{$chains_structure->[$i]};
+        my $backups_count = $#$backups + 1;
 
-        say "┌─ Chain: $chain_name";
+        my $chain_size = 0;
+        foreach my $backup_name (@$backups) {
+            my $backup_path = File::Spec->catfile($backups_dir, $chain_name, $backup_name);
+            my $size = -s $backup_path;
+            $chain_size += $size if defined $size;
+        }
+        my $chain_size_str = format_bytes($chain_size);
 
-        foreach my $j (0 .. $#$backups) {
+        say "┌─ Chain: $chain_name [COUNT $backups_count, SIZE $chain_size_str]";
+
+        foreach my $j (0 .. $backups_count - 1) {
             my $backup_name = $backups->[$j];
-            my $prefix = $j == $#$backups ? "└──" : "├──";
+            my $prefix = $j == $backups_count - 1 ? "└──" : "├──";
             my $backup_info = $j == 0 ? "FUL " : "INC ";
 
             my $backup_path = File::Spec->catfile($backups_dir, $chain_name, $backup_name);
@@ -400,9 +413,11 @@ sub make_backup {
     my $flags = $VERBOSE ? '-vg' : '-g';
     my @tar_command = ($tar, $flags, $snar_file,
                        '--one-file-system', '--xattrs',
-                       '--exclude-from', $exclude_patterns_file,
-                       '--files-from', $include_paths_file,
-                       '-czf',  $backup_file);
+                       '--exclude-from', $exclude_patterns_file);
+
+    push @tar_command, '--no-check-device' if $NO_CHECK_DEVICE;
+
+    push @tar_command, '--files-from', $include_paths_file, '-czf', $backup_file;
 
     my $tar_command_string = join ' ', map { $_ =~ /[\s]/ ? "'$_'" : $_ } @tar_command;
     say "INFO: Tar command: $tar_command_string";
@@ -488,15 +503,15 @@ sub main {
 
 
     # ==== SOME STUFF FOR GRACEFUL SHUTDOWN ====
-    
+
     acquire_lock();
 
     # https://perldoc.perl.org/perlmod#BEGIN%2C-UNITCHECK%2C-CHECK%2C-INIT-and-END
-    # An END code block is executed as late as possible, that is, after perl has 
+    # An END code block is executed as late as possible, that is, after perl has
     # finished running the program and just before the interpreter is being exited,
     # even if it is exiting as a result of a die() function.
     # (But not if it's morphing into another program via exec, or being blown out of
-    # the water by a signal--you have to trap that yourself (if you can).) 
+    # the water by a signal--you have to trap that yourself (if you can).)
     END { byebye(); }
 
     # Not strictly necessary (tar handles signals itself), but kept for safety
@@ -507,7 +522,7 @@ sub main {
     $SIG{'TERM'} = sub { byebye('INFO: chains was sent TERM signal... cleaning up'); };
 
     # ==== MAIN LOGIC ====
-    
+
     print_chains_structure($backups_dir) if $PRINT;
 
     # ==== VERIFY SUBCHAIN ====
@@ -578,6 +593,7 @@ GetOptions(
         'yes|y'              => \$YES,
         'no|n'               => \$NO,
         'main-directory|m=s' => \$MAIN_DIR,
+        'no-check-device'    => \$NO_CHECK_DEVICE,
         'incremental|i'      => \$INCREMENTAL,
         'full|f'             => \$FULL,
         'recover|r'          => sub { $RECOVER = 'latest' },

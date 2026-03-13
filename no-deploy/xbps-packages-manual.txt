@@ -66,6 +66,7 @@ mpv-0.41.0_1
 mumble-1.5.857_2
 ncurses-devel-6.6_1
 network-manager-applet-1.36.0_1
+nim-2.2.8_1
 nmap-7.98_2
 noto-fonts-cjk-1_1
 noto-fonts-emoji-2.051_2

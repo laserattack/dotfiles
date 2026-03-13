@@ -801,6 +801,7 @@ ii newt-0.52.24_3                            Library for color text mode, widget
 ii nghttp2-1.68.0_1                          HTTP/2 C Library
 ii nghttp3-1.15.0_1                          HTTP/3 library written in C
 ii ngtcp2-1.21.0_1                           Effort to implement IETF QUIC protocol
+ii nim-2.2.8_1                               Nim programming language
 ii nmap-7.98_2                               Utility for network discovery and security auditing
 ii noto-fonts-cjk-1_1                        Google Noto CJK fonts (meta package)
 ii noto-fonts-cjk-sans-2.004_1               Google Noto CJK Fonts - sans serif fonts
@@ -829,6 +830,7 @@ ii openjdk11-jre-11.0.25+5_3                 OpenJDK Java Development Kit (versi
 ii openresolv-3.17.4_1                       Management framework for resolv.conf
 ii openssh-10.2p1_1                          OpenSSH free Secure Shell (SSH) client and server implementation
 ii openssl-3.5.5_1                           Toolkit for Secure Sockets Layer and Transport Layer Security
+ii openssl-devel-3.5.5_1                     Toolkit for Secure Sockets Layer and Transport Layer Security - development files
 ii opus-1.6.1_1                              Totally open, royalty-free, highly versatile audio codec
 ii opus-devel-1.6.1_1                        Totally open, royalty-free, highly versatile audio codec - development files
 ii opusfile-0.12_3                           Library for opening, seeking, and decoding .opus files

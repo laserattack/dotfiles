@@ -20,6 +20,7 @@ ii alsa-lib-1.2.15.1_1                       Advanced Linux Sound Architecture (
 ii alsa-lib-devel-1.2.15.1_1                 Advanced Linux Sound Architecture (ALSA) library - development files
 ii alsa-pipewire-1.4.9_1                     Server and user space API to deal with multimedia pipelines - ALSA client library
 ii alsa-utils-1.2.15.1_1                     Advanced Linux Sound Architecture (ALSA) utilities
+ii amberol-2025.1_1                          Small and simple sound and music player
 ii amiri-font-1.003_1                        Classical Arabic typeface in Naskh style
 ii android-tools-35.0.2_2                    Android platform tools (adb and fastboot)
 ii ascii-3.30_1                              List ASCII idiomatic names and octal/decimal code-point forms
@@ -72,8 +73,6 @@ ii clang21-headers-21.1.7_1                  LLVM Compiler Infrastructure Projec
 ii cloc-2.08_1                               Count Lines of Code
 ii clucene-2.3.3.4_11                        Text search engine written in C++
 ii cmake-4.2.2_1                             Cross-platform, open-source build system
-ii cmus-2.12.0_2                             Small, fast and powerful console music player
-ii cmus-pulseaudio-2.12.0_2                  Small, fast and powerful console music player - Pulseaudio output plugin
 ii compiler-rt21-21.1.7_1                    LLVM Compiler Infrastructure Project - Version 21 - runtime libraries
 ii confuse-3.3_1                             Small configuration file parser library for C
 ii containerd-2.2.0_1                        Open and reliable container runtime
@@ -344,6 +343,7 @@ ii libXv-1.0.13_2                            Xv Extension library
 ii libXxf86vm-1.1.6_2                        Library for the XFree86-VidMode X extension
 ii liba52-0.8.0_1                            Free ATSC A/52 stream decoder
 ii libabw-0.1.3_3                            Library that parses the file format of AbiWord documents
+ii libadwaita-1.8.1_1                        GTK4 building blocks for modern adaptive applications
 ii libaio-0.3.113_1                          Linux-native asynchronous I/O facility (aio) library
 ii libanthy-unicode-1.0.0.20260127_2         Japanese character set input library for Unicode - libraries
 ii libao-1.2.2_4                             Cross-platform audio output library
@@ -416,7 +416,6 @@ ii libdebuginfod-0.192_2                     Utilities to handle ELF object file
 ii libdecor-0.2.4_1                          Client-side decorations library for Wayland client
 ii libdecor-devel-0.2.4_1                    Client-side decorations library for Wayland client - development files
 ii libdeflate-1.25_1                         Optimized library for DEFLATE/zlib/gzip (de)compression
-ii libdiscid-0.6.4_1                         Library for creating MusicBrainz DiscIDs
 ii libdisplay-info-0.2.0_1                   EDID and DisplayID library
 ii libdrm-2.4.131_1                          Userspace interface to kernel DRM services
 ii libdrm-devel-2.4.131_1                    Userspace interface to kernel DRM services - development files

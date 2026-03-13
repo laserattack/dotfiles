@@ -1,5 +1,6 @@
 SDL3-devel-3.4.0_1
 alsa-pipewire-1.4.9_1
+amberol-2025.1_1
 android-tools-35.0.2_2
 ascii-3.30_1
 asciinema-2.4.0_3
@@ -13,8 +14,6 @@ chrony-4.8_1
 clang-21_3
 cloc-2.08_1
 cmake-4.2.2_1
-cmus-2.12.0_2
-cmus-pulseaudio-2.12.0_2
 cryptsetup-2.8.3_1
 curl-8.18.0_1
 dcron-4.6_1

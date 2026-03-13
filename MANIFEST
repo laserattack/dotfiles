@@ -17,6 +17,8 @@
 .config/i3/config|symlink|
 .config/gtk-3.0|symlink|
 
+.config/audacious/config|symlink|
+
 .local/bin/emoji|symlink|
 .local/bin/chains|symlink|
 .local/bin/git-auto-backup|symlink|

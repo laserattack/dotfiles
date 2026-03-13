@@ -1,0 +1,17 @@
+
+[audgui]
+filesel_path=/home/serr/Music
+no_confirm_playlist_delete=TRUE
+
+[audqt]
+icon_theme=audacious-flat-dark
+theme=dark
+
+[qtui]
+menu_visible=FALSE
+player_height=687
+player_width=1280
+playlist_tabs_visible=0
+
+[search-tool]
+path=/home/serr/Music

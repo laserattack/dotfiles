@@ -88,8 +88,8 @@ sub go_ahead {
     if ($YES) { say "y"; return 1; }
 
     chomp(my $input = <STDIN>);
-    $input    =~ s/^\s+|\s+$//g;
-    $input    = lc($input);
+    $input =~ s/^\s+|\s+$//g;
+    $input = lc($input);
 
     return 1 if $input eq '';
     return $input =~ /^(y|yes|yas)$/ ? 1 : 0;

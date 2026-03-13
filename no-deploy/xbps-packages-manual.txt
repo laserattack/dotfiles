@@ -1,9 +1,9 @@
 SDL3-devel-3.4.0_1
 alsa-pipewire-1.4.9_1
-amberol-2025.1_1
 android-tools-35.0.2_2
 ascii-3.30_1
 asciinema-2.4.0_3
+audacious-4.5.1_1
 bandwhich-0.23.1_1
 base-devel-20181003_2
 base-system-0.114_2

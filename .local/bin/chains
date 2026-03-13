@@ -10,7 +10,13 @@ use Cwd;
 use POSIX 'strftime';
 use Getopt::Long qw\:config bundling\;
 
-my $MAIN_DIR_DEFAULT = "$ENV{HOME}/.chains";
+my $MAIN_DIR_DEFAULT = "$ENV{HOME}/.chains"; # you can hack it
+
+my $LOCKFILE;
+my $LOCK_ACQUIRE = 0;
+
+# turn off buffering
+$| = 1;
 
 # flags
 
@@ -38,6 +44,7 @@ sub check_command {
 
 sub usage {
     say "chains - incremental backups without any bullshit";
+    say "";
     say "Usage: chains [OPTION]...";
     say "";
     say "Options:";
@@ -77,10 +84,42 @@ sub usage {
     say "";
     say "Notes:";
     say "  1. GNU TAR IS REQUIRED";
+    say "";
     say "  2. Interrupting backup creation may leave incomplete archives";
+    say "";
     say "  3. Always verify your backups can be restored";
+    say "";
     say "  4. EXCLUDE BACKUP DIR FROM BACKUP";
     exit 0;
+}
+
+# only one chains process can run at a time
+
+sub acquire_lock {
+    if (-f $LOCKFILE) {
+        open my $fh, '<', $LOCKFILE or die "ERROR: Cannot read lockfile: $!\n";
+        my $pid = <$fh>;
+        close $fh or die "ERROR: Cannot close lockfile: $!\n";
+        if (kill(0, $pid)) {
+            die "ERROR: Another chains process (PID $pid) is already running\n";
+        } else {
+            warn "WARNING: Removing stale lockfile from dead process $pid\n";
+            die "ERROR: Can't remove stale lockfile\n" unless unlink $LOCKFILE;
+        }
+    }
+
+    open my $fh, '>', $LOCKFILE or die "ERROR: Cannot create lockfile: $!\n";
+    print $fh $$;
+    close $fh or die "ERROR: Cannot close lockfile: $!\n";
+
+    $LOCK_ACQUIRE = 1;
+}
+
+sub release_lock {
+    if ($LOCK_ACQUIRE && -f $LOCKFILE) {
+        die "ERROR: Can't remove lockfile\n" unless unlink $LOCKFILE;
+        $LOCK_ACQUIRE = 0;
+    }
 }
 
 sub go_ahead {
@@ -421,6 +460,13 @@ sub make_backup {
     }
 }
 
+sub byebye {
+    my $msg = shift(@_);
+    say $msg if $msg;
+    release_lock();
+    exit 0;
+}
+
 sub main {
 
     # ==== PREPARE STRUCT ====
@@ -444,6 +490,28 @@ sub main {
     verify_dir($backups_dir);
     say "INFO: Backups dir: $backups_dir";
 
+
+    # ==== SOME STUFF FOR GRACEFUL SHUTDOWN ====
+    
+    acquire_lock();
+
+    # https://perldoc.perl.org/perlmod#BEGIN%2C-UNITCHECK%2C-CHECK%2C-INIT-and-END
+    # An END code block is executed as late as possible, that is, after perl has 
+    # finished running the program and just before the interpreter is being exited,
+    # even if it is exiting as a result of a die() function.
+    # (But not if it's morphing into another program via exec, or being blown out of
+    # the water by a signal--you have to trap that yourself (if you can).) 
+    END { byebye(); }
+
+    # Not strictly necessary (tar handles signals itself), but kept for safety
+    $SIG{'HUP'}  = 'IGNORE';
+    $SIG{'INT'}  = sub { byebye('INFO: chains was sent INT signal... cleaning up'); };
+    $SIG{'QUIT'} = sub { byebye('INFO: chains was sent QUIT signal... cleaning up'); };
+    $SIG{'ABRT'} = sub { byebye('INFO: chains was sent ABRT signal... cleaning up'); };
+    $SIG{'TERM'} = sub { byebye('INFO: chains was sent TERM signal... cleaning up'); };
+
+    # ==== MAIN LOGIC ====
+    
     print_chains_structure($backups_dir) if $PRINT;
 
     # ==== VERIFY SUBCHAIN ====
@@ -556,5 +624,6 @@ if ($VERIFY) {
 }
 
 $MAIN_DIR = $MAIN_DIR_DEFAULT unless $MAIN_DIR;
+$LOCKFILE = File::Spec->catfile($MAIN_DIR, 'chains.lock');
 
 main();

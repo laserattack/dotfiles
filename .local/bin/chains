@@ -56,11 +56,6 @@ sub usage {
     say "";
     say "  -f, --full                 Make full backup (new chain)";
     say "";
-    say "  -y, --yes                  Automatically answer yes to all prompts";
-    say "";
-    say "  -n, --no                   Automatically answer no to all prompts";
-    say "                             Overrides --yes";
-    say "";
     say "  -r, --recover [TIMESTAMP]  Restore the chain to the specified timestamp";
     say "                             TIMESTAMP: YYMMDDTHHMMSS | latest";
     say "                             If TIMESTAMP omitted, recovers latest state";
@@ -81,6 +76,11 @@ sub usage {
     say "  -p, --print                Print all backup chains structure";
     say "";
     say "  -v, --verbose              Verbosely list files processed";
+    say "";
+    say "  -y, --yes                  Automatically answer yes to all prompts";
+    say "";
+    say "  -n, --no                   Automatically answer no to all prompts";
+    say "                             Overrides --yes";
     say "";
     say "Notes:";
     say "  1. GNU TAR IS REQUIRED";
@@ -449,14 +449,10 @@ sub make_backup {
     }
 
     if (-f $backup_file) {
-        print "INFO: Verify backup '$backup_file'? [Y/n] ";
-        if (go_ahead()) {
-            verify($backup_file);
-        } else {
-            say "INFO: Always verify your backups!\n" .
-                "INFO: Even if tar returns 0 (success), the backup might be corrupted — for example, " .
-                "if you interrupted the program, or for some other reason";
-        }
+        say "INFO: Always verify your backups!";
+        say "INFO: A successful exit code (0) from tar does not guarantee the backup is valid";
+        say "INFO: For example, if the program execution was interrupted (by you or for any other reason)";
+        say "INFO: You can verify backups using 'chains -w ...'";
     }
 }
 

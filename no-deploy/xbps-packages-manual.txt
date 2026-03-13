@@ -13,6 +13,8 @@ chrony-4.8_1
 clang-21_3
 cloc-2.08_1
 cmake-4.2.2_1
+cmus-2.12.0_2
+cmus-pulseaudio-2.12.0_2
 cryptsetup-2.8.3_1
 curl-8.18.0_1
 dcron-4.6_1

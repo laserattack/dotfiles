@@ -72,6 +72,8 @@ ii clang21-headers-21.1.7_1                  LLVM Compiler Infrastructure Projec
 ii cloc-2.08_1                               Count Lines of Code
 ii clucene-2.3.3.4_11                        Text search engine written in C++
 ii cmake-4.2.2_1                             Cross-platform, open-source build system
+ii cmus-2.12.0_2                             Small, fast and powerful console music player
+ii cmus-pulseaudio-2.12.0_2                  Small, fast and powerful console music player - Pulseaudio output plugin
 ii compiler-rt21-21.1.7_1                    LLVM Compiler Infrastructure Project - Version 21 - runtime libraries
 ii confuse-3.3_1                             Small configuration file parser library for C
 ii containerd-2.2.0_1                        Open and reliable container runtime
@@ -414,6 +416,7 @@ ii libdebuginfod-0.192_2                     Utilities to handle ELF object file
 ii libdecor-0.2.4_1                          Client-side decorations library for Wayland client
 ii libdecor-devel-0.2.4_1                    Client-side decorations library for Wayland client - development files
 ii libdeflate-1.25_1                         Optimized library for DEFLATE/zlib/gzip (de)compression
+ii libdiscid-0.6.4_1                         Library for creating MusicBrainz DiscIDs
 ii libdisplay-info-0.2.0_1                   EDID and DisplayID library
 ii libdrm-2.4.131_1                          Userspace interface to kernel DRM services
 ii libdrm-devel-2.4.131_1                    Userspace interface to kernel DRM services - development files

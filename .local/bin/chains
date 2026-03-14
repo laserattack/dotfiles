@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use feature 'say';
 use File::Path 'make_path';
+use File::Copy;
 use File::Basename;
 use File::Spec;
 use Cwd;
@@ -94,6 +95,8 @@ sub usage {
     say "  3. Always verify your backups can be restored";
     say "";
     say "  4. EXCLUDE BACKUP DIR FROM BACKUP";
+    say "";
+    say "  5. CHECK AVAILABLE SPACE";
     exit 0;
 }
 
@@ -252,7 +255,7 @@ sub print_chains_structure {
     my ($backups_dir) = @_;
     my $chains_structure = get_chains_structure($backups_dir);
 
-    for my $i (0 .. $#$chains_structure) {
+    for (my $i = @$chains_structure; $i-- > 0;) {
         my ($chain_name, $backups) = @{$chains_structure->[$i]};
         my $backups_count = $#$backups + 1;
 
@@ -277,7 +280,7 @@ sub print_chains_structure {
             say "$prefix $backup_name [$backup_info]";
         }
 
-        say "" if $i < $#$chains_structure;
+        say "" if $i > 0;
     }
 }
 
@@ -323,9 +326,11 @@ sub extract {
 
     my $flags = $VERBOSE ? '-vxzf' : '-xzf';
     my @cmd = ($tar, '--xattrs', $flags, $src, '-C', $dest);
-    my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
 
-    die "ERROR: Extract failed with exit code: " . ($? >> 8) . "\n" unless $ret == 0;
+    $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
+    my $exitcode = ($? >> 8);
+
+    die "ERROR: Extract failed with exit code: $exitcode\n" if $exitcode;
 }
 
 # restoring a part of the chain to timestamp
@@ -357,7 +362,9 @@ sub verify {
 
     my $flags = $VERBOSE ? '-vtzf' : '-tzf';
     my @cmd = ($tar, $flags, $path);
-    my $ret = $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
+
+    $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
+
     my $exitcode = ($? >> 8);
 
     die "ERROR: Verification of '$path' failed with exit code: $exitcode. " .
@@ -408,6 +415,10 @@ sub make_backup {
     my $exclude_patterns_file = $info->{exclude_patterns_file};
     my $backup_file           = $info->{backup_file};
 
+    my $snar_file_backup = "$snar_file.bak";
+    copy($snar_file, $snar_file_backup) or die "ERROR: Cannot back up $snar_file: $!\n";
+    say "INFO: Metadata file '$snar_file' was backed up";
+
     my $tar = check_command('tar');
     die "ERROR: 'tar' program is required, but not found in PATH\n" unless $tar;
 
@@ -423,7 +434,7 @@ sub make_backup {
     my $tar_command_string = join ' ', map { $_ =~ /[\s]/ ? "'$_'" : $_ } @tar_command;
     say "INFO: Tar command: $tar_command_string";
 
-    my $ret = $VERBOSE ? system(@tar_command) : suppress_output(sub { system(@tar_command) });
+    $VERBOSE ? system(@tar_command) : suppress_output(sub { system(@tar_command) });
 
     # ================ FROM info tar ================
     #    Possible exit codes of GNU ‘tar’ are summarized in the following
@@ -446,22 +457,52 @@ sub make_backup {
     #      occurred.
 
     my $exitcode = ($? >> 8);
-    if ($exitcode == 0) {
-        say "INFO: Backup '$backup_file' completed (exitcode: $exitcode)";
+    if ($exitcode == 0 || $exitcode == 1) {
         if (-z $backup_file) {
             warn "WARNING: Backup '$backup_file' is empty (interrupted?)\n";
+
+            # restore snar file
+            if (copy($snar_file_backup, $snar_file)) {
+                say "INFO: Metadata file '$snar_file' was restored";
+            } else {
+                warn "ERROR: Cannot restore metadata file '$snar_file': $!\n"
+            }
+
+            # delete empty archive
             say "INFO: Deleting empty archive '$backup_file'";
-            unlink $backup_file or die "ERROR: Could not delete empty archive: $backup_file\n"
+            unlink $backup_file or die "ERROR: Could not delete empty archive: $backup_file\n" if -f $backup_file;
+
+            # DIE
+            die "INFO: Empty archive was deleted\n"
+        } else {
+            # good exitcode (0/1) and not empty archive
+
+            say "INFO: Backup '$backup_file' completed (exitcode: $exitcode)" if $exitcode == 0;
+            say "INFO: Backup '$backup_file' completed with changed files (exitcode: $exitcode)" if $exitcode == 1;
+            # GOOD
         }
-    } elsif ($exitcode == 1) {
-        warn "WARNING: Backup '$backup_file' completed with changed files (exitcode: $exitcode)\n";
     } elsif ($exitcode == 2) {
         warn "ERROR: Backup '$backup_file' failed (exitcode: $exitcode)\n";
+
+        # restore snar file
+        if (copy($snar_file_backup, $snar_file)) {
+            say "INFO: Metadata file '$snar_file' was restored";
+        } else {
+            warn "ERROR: Cannot restore metadata file '$snar_file': $!\n"
+        }
+
+        # delete incomplete archive
         say "INFO: Deleting incomplete archive '$backup_file'";
         unlink $backup_file or die "ERROR: Could not delete incomplete archive: $backup_file\n" if -f $backup_file;
-        die "INFO: Incomplete archive was deleted\n"
+        die "INFO: Incomplete archive was deleted\n";
+        # DIE
     } else {
-        die "ERROR: unexpected exitcode: $exitcode. WTF???\n";
+        say "ERROR: unexpected exitcode: $exitcode. WTF???";
+
+        # restore snar file !!!
+        copy($snar_file_backup, $snar_file) or die "ERROR: Cannot restore metadata file '$snar_file': $!\n";
+        die "INFO: Metadata file '$snar_file' was restored\n";
+        # DIE
     }
 
     if (-f $backup_file) {
@@ -573,7 +614,7 @@ sub main {
 
         # tar will create it itself if no exists
         my $snar_file = File::Spec->catfile($backup_dir, 'incremental.snar');
-        say "INFO: Snar file: $snar_file";
+        say "INFO: Metadata file: $snar_file";
         my $backup_file = File::Spec->catfile($backup_dir, "${timestamp}.tar.gz");
 
         die "ERROR: Backup file '$backup_file' already exists\n" if -f $backup_file;
@@ -649,4 +690,4 @@ if ($VERIFY) {
 $MAIN_DIR = $MAIN_DIR_DEFAULT unless $MAIN_DIR;
 $LOCKFILE = File::Spec->catfile($MAIN_DIR, 'chains.lock');
 
-main();
+main()

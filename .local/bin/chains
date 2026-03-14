@@ -282,6 +282,8 @@ my $LOCK_ACQUIRE = 0;
 
 my $USE_COLOR = 0;
 
+my $TIMESTAMP_FORMAT = qr/\d{6}T\d{6}/;
+
 # turn off buffering
 $| = 1;
 
@@ -499,7 +501,7 @@ sub get_chains_structure {
 
     # get all chains dirs
     opendir(my $dh, $backups_dir) or die color("ERROR:", 31)." Cannot open dir '$backups_dir': $!\n";
-    my @chains = grep { -d "$backups_dir/$_" && /^since_\d{6}T\d{6}$/ } readdir($dh);
+    my @chains = grep { -d "$backups_dir/$_" && /^since_$TIMESTAMP_FORMAT$/ } readdir($dh);
     closedir($dh) or die color("ERROR:", 31)." Cannot close dir '$backups_dir': $!\n";
 
     # sort chains: new ones first
@@ -511,7 +513,7 @@ sub get_chains_structure {
 
         # get all backups in chain
         opendir(my $dh2, $chain_dir) or die color("ERROR:", 31)." Cannot open chain dir '$chain_dir': $!\n";
-        @backups = grep { /^\d{6}T\d{6}\.tar\.gz$/ } readdir($dh2);
+        @backups = grep { /^$TIMESTAMP_FORMAT\.tar\.gz$/ } readdir($dh2);
         closedir($dh2) or die color("ERROR:", 31)." Cannot close chain dir '$chain_dir': $!\n";
 
         # sort backups in chain: old ones first (the order of restoration)
@@ -596,7 +598,7 @@ sub find_chain_and_backup {
 
         foreach my $i (0 .. $#$backups) {
             my $backup      = $backups->[$i];
-            my ($timestamp) = $backup =~ /^(\d{6}T\d{6})\.tar\.gz$/;
+            my ($timestamp) = $backup =~ /^($TIMESTAMP_FORMAT)\.tar\.gz$/;
 
             if ($timestamp eq $target_timestamp) {
                 return ($chain_name, $backups, $i);
@@ -958,7 +960,7 @@ if ($RECOVER) {
     my $timestamp = shift @ARGV;
 
     if (!defined $timestamp) {
-    } elsif ($timestamp =~ /^\d{6}T\d{6}$/) {
+    } elsif ($timestamp =~ /^$TIMESTAMP_FORMAT$/) {
         $RECOVER = $timestamp;
     } else {
         unshift @ARGV, $timestamp;
@@ -967,7 +969,7 @@ if ($RECOVER) {
 }
 
 if ($VERIFY) {
-    my $timestamp_pattern = qr/(?:\d{6}T\d{6}|latest)/;
+    my $timestamp_pattern = qr/(?:$TIMESTAMP_FORMAT|latest)/;
     my $range             = shift @ARGV;
 
     if (!defined $range) {

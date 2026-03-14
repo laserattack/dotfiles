@@ -87,7 +87,7 @@ sub usage {
     say "      --no-check-device      Ignore device number changes when";
     say "                             determining changed files";
     say "";
-    say "Notes:";
+    say "Notes (!!!!!!! PLS READ THIS !!!!!!!):";
     say "  1. GNU TAR IS REQUIRED";
     say "";
     say "  2. Interrupting backup creation may leave incomplete archives";
@@ -99,6 +99,11 @@ sub usage {
     say "  5. CHECK AVAILABLE SPACE";
     say "";
     say "  6. Run with sudo if backing up system files";
+    say "";
+    say "  7. IMPORTANT: After modifying include_paths.txt, create a new full backup (-f)";
+    say "     The snar metadata file only tracks files that existed when it was created";
+    say "     New paths won't be included in incremental backups without a fresh chain";
+    say "     THIS IS HOW TAR WORKS. I DON'T LIKE IT EITHER!";
     exit 0;
 }
 

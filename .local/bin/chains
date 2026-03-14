@@ -367,6 +367,7 @@ sub verify {
 
 
 # Parse verification string - either TIMESTAMP or TIMESTAMP:TIMESTAMP format
+# TIMESTAMP: YYMMDDTHHMMSS | latest
 sub verify_subchain {
     my ($backups_dir)    = @_;
     my $chains_structure = get_chains_structure($backups_dir);
@@ -614,10 +615,12 @@ if (defined $DIR) {
 
 if ($RECOVER) {
     my $timestamp = shift @ARGV;
-    if ($timestamp && $timestamp =~ /^\d{6}T\d{6}$/) {
+
+    if (!defined $timestamp) {
+    } elsif ($timestamp =~ /^\d{6}T\d{6}$/) {
         $RECOVER = $timestamp;
     } else {
-        unshift @ARGV, $timestamp if $timestamp;
+        unshift @ARGV, $timestamp;
     }
     say "INFO: Recovering state: $RECOVER";
 }
@@ -626,11 +629,19 @@ if ($VERIFY) {
     my $timestamp_pattern = qr/(?:\d{6}T\d{6}|latest)/;
     my $range             = shift @ARGV;
 
-    if ($range && ($range =~ /^$timestamp_pattern$/ ||
-                   $range =~ /^$timestamp_pattern:$timestamp_pattern$/)) {
-        $VERIFY = $range;
+    if (!defined $range) {
+    } elsif ($range =~ /^($timestamp_pattern)$/) {
+        $VERIFY = $1;
+    } elsif ($range =~ /^($timestamp_pattern):($timestamp_pattern)$/) {
+        $VERIFY = $1.':'.$2;
+    } elsif ($range =~ /^:($timestamp_pattern)$/) {
+        $VERIFY = $1;
+    } elsif ($range =~ /^($timestamp_pattern):$/) {
+        $VERIFY = $1.':latest';
+    } elsif ($range =~ /^:$/) {
+        $VERIFY = 'latest:latest';
     } else {
-        unshift @ARGV, $range if $range;
+        unshift @ARGV, $range;
     }
     say "INFO: Verify chain mode: $VERIFY";
 }

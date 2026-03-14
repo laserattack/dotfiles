@@ -97,6 +97,8 @@ sub usage {
     say "  4. EXCLUDE BACKUP DIR FROM BACKUP";
     say "";
     say "  5. CHECK AVAILABLE SPACE";
+    say "";
+    say "  6. Run with sudo if backing up system files";
     exit 0;
 }
 
@@ -416,8 +418,11 @@ sub make_backup {
     my $backup_file           = $info->{backup_file};
 
     my $snar_file_backup = "$snar_file.bak";
-    copy($snar_file, $snar_file_backup) or die "ERROR: Cannot back up $snar_file: $!\n";
-    say "INFO: Metadata file '$snar_file' was backed up";
+
+    if (-f $snar_file) {
+        copy($snar_file, $snar_file_backup) or die "ERROR: Cannot back up $snar_file: $!\n";
+        say "INFO: Metadata file '$snar_file' was backed up";
+    }
 
     my $tar = check_command('tar');
     die "ERROR: 'tar' program is required, but not found in PATH\n" unless $tar;

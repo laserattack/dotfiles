@@ -235,12 +235,19 @@
 
 ;; vertical completion UI
 
+;; (use-package vertico
+;;   :ensure t
+;;   :config
+;;   (vertico-mode 1)
+;;   (setq vertico-count 20)
+;;   (define-key vertico-map (kbd "C-j") #'minibuffer-complete-and-exit))
+
 (use-package vertico
   :ensure t
   :config
   (vertico-mode 1)
-  (setq vertico-count 20)
-  (define-key vertico-map (kbd "C-j") #'minibuffer-complete-and-exit))
+  (setq vertico-preselect 'prompt)
+  (setq vertico-count 20))
 
 ;; hints on the right
 

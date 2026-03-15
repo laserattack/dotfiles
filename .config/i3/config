@@ -59,8 +59,7 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec env PATH="$HOME/.local/bin:$PATH" dmenu_run -i -fn "Monospace-12"
 bindsym $mod+d exec env PATH="$HOME/.local/bin:$PATH" dmenu_run -i -l 10 -fn "Monospace-12"
 
-# zoom (https://github.com/laserattack/boomer)
-bindsym $mod+v exec --no-startup-id $HOME/.local/bin/boomer
+bindsym $mod+v exec --no-startup-id $HOME/.local/bin/cboomer
 
 # screenshot using xclip (see clipshot.sh in this repo root)
 bindsym Print exec --no-startup-id $HOME/.local/bin/clipshot

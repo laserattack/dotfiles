@@ -17,8 +17,16 @@ font pango:monospace 12
 
 hide_edge_borders smart
 
-# Edit your i3 config (usually ~/.config/i3/config)
-exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:caps_toggle"
+# BEST WAY - USE:
+# ~
+# [serr@lap]-> cat /etc/X11/xorg.conf.d/00-keyboard.conf
+# Section "InputClass"
+#     Identifier "system-keyboard"
+#     MatchIsKeyboard "on"
+#     Option "XkbLayout" "us,ru"
+#     Option "XkbOptions" "grp:caps_toggle"
+# EndSection
+# exec --no-startup-id setxkbmap -layout "us,ru" -option "grp:caps_toggle"
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.

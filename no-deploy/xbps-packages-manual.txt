@@ -7,6 +7,7 @@ audacious-4.5.1_1
 bandwhich-0.23.1_1
 base-devel-20181003_2
 base-system-0.114_2
+bluez-5.78_1
 brltty-6.8_2
 btop-1.4.6_1
 cairo-devel-1.18.4_2

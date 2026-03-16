@@ -49,6 +49,7 @@ ii binutils-2.44_2                           GNU binary utilities
 ii binutils-doc-2.44_2                       GNU binary utilities - info files
 ii binutils-libs-2.44_2                      GNU binary utilities - shared libraries
 ii bison-3.8.2_1                             GNU yacc(1) replacement
+ii bluez-5.78_1                              Bluetooth tools and daemons
 ii box2d-2.4.2_1                             2D physics engine for games
 ii brltty-6.8_2                              Braille display driver for Linux/Unix
 ii brotli-1.2.0_1                            Generic-purpose lossless compression algorithm

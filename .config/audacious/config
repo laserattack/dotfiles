@@ -1,4 +1,7 @@
 
+[audacious]
+repeat=TRUE
+
 [audgui]
 filesel_path=/home/serr/Music
 no_confirm_playlist_delete=TRUE

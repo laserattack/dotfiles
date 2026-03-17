@@ -931,6 +931,7 @@ sub main {
 }
 
 init_color();
+system('stty -echoctl 2>/dev/null');
 
 GetOptions(
         'help|h'             => \$HELP,
@@ -948,6 +949,10 @@ GetOptions(
     ) or die color("ERROR:", 31)." Invalid command line options\n";
 
 usage() if $HELP;
+
+if ($> != 0 && ($FULL || $INCREMENTAL)) {
+    warn color("WARNING:", 33)." Running without root privileges. If backing up system files, tar may fail with exit code 2. Consider using: sudo chains ...\n";
+}
 
 if (defined $DIR) {
     say color("INFO:", 32)." Changing directory to: $DIR";

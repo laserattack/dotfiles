@@ -203,7 +203,13 @@
   :config
   (setq org-download-method 'directory
         org-download-display-inline-images nil)
-  (setq-default org-download-image-dir org-images-directory))
+  (setq-default org-download-image-dir org-images-directory)
+
+  ;; Prevent org-id from creating :PROPERTIES: :ID: when pasting images
+  (advice-add 'org-download-clipboard :around
+              (lambda (orig-fun &rest args)
+                (cl-letf (((symbol-function 'org-id-get-create) #'ignore))
+                  (apply orig-fun args)))))
 (global-set-key (kbd "C-c o i") 'org-download-clipboard)
 (global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
 
@@ -234,13 +240,6 @@
 ;;   (load-theme 'zenburn t))
 
 ;; vertical completion UI
-
-;; (use-package vertico
-;;   :ensure t
-;;   :config
-;;   (vertico-mode 1)
-;;   (setq vertico-count 20)
-;;   (define-key vertico-map (kbd "C-j") #'minibuffer-complete-and-exit))
 
 (use-package vertico
   :ensure t

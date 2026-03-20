@@ -80,6 +80,7 @@ ii confuse-3.3_1                             Small configuration file parser lib
 ii containerd-2.2.0_1                        Open and reliable container runtime
 ii coreutils-9.4_3                           GNU core utilities
 ii cpio-2.15_1                               GNU copy-in/out (cpio) with remote magnetic tape (rmt) support
+ii cppcheck-2.19.1_2                         Static analysis of C/C++ code
 ii cppdap-1.58.0+a_1                         C++ library for the Debug Adapter Protocol
 ii cryptsetup-2.8.4_1                        Setup virtual encryption devices under Linux dm-crypt
 ii culmus-0.140_1                            Collection of free Hebrew fonts
@@ -1076,6 +1077,7 @@ ii thin-provisioning-tools-1.0.4_1           Tools for manipulating the metadata
 ii thunar-volman-4.20.0_1                    Thunar Volume Manager
 ii tiff-4.7.1_2                              Library and tools for reading and writing TIFF data files
 ii tini-0.19.0_2                             Tiny but valid init for containers
+ii tinyxml2-11.0.0_1                         Simple, small and efficient C++ XML parser
 ii tk-8.6.14_1                               TK graphical user interface toolkit for TCL
 ii tldr-1.0.0.alpha_5                        Fast and interactive TLDR client written in Go
 ii tmux-3.6a_1                               Terminal Multiplexer

@@ -15,6 +15,7 @@ chrony-4.8_1
 clang-21_3
 cloc-2.08_1
 cmake-4.2.2_1
+cppcheck-2.19.1_2
 cryptsetup-2.8.4_1
 curl-8.19.0_1
 dcron-4.6_1

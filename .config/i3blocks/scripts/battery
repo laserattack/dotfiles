@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+sta=$(cat /sys/class/power_supply/BAT0/status)
+now=$(cat /sys/class/power_supply/BAT0/energy_now)
+full=$(cat /sys/class/power_supply/BAT0/energy_full)
+val=$(echo "scale=1; 100 * $now / $full" | bc)
+
+case "$sta" in
+    "Charging")
+        s="CHG"
+        ;;
+    "Discharging")
+        s="DIS"
+        ;;
+    "Not charging")
+        s="NCH"
+        ;;
+    "Full")
+        s="FUL"
+        ;;
+    *)
+        s="UNK"
+        ;;
+esac
+
+echo "${s} ${val}%"

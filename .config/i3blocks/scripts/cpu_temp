@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+temp=$(cat /sys/class/thermal/thermal_zone0/temp)
+degrees=$((temp / 1000))
+
+if [ $degrees -lt 60 ]; then
+    color="#FFFFFF"
+elif [ $degrees -lt 80 ]; then
+    color="#FFF600"
+elif [ $degrees -lt 90 ]; then
+    color="#FFAE00"
+else
+    color="#FF0000"
+fi
+
+echo '{"full_text":"coffee '"${degrees}"'°C", "color":"'"$color"'"}'

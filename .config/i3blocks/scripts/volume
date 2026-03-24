@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+vol=`pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+%' | head -1`
+mute_status=`pactl get-sink-mute @DEFAULT_SINK@`
+if echo "$mute_status" | grep -q "yes"; then
+    color="#FFFF00"
+    text="mute ${vol}"
+else
+    color="#FFFFFF"
+    text="${vol}"
+fi
+
+echo '{"full_text":"'"${text}"'", "color":"'"$color"'"}'

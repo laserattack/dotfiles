@@ -676,31 +676,49 @@ sub verify_subchain {
     my ($backups_dir)    = @_;
     my $chains_structure = get_chains_structure($backups_dir);
 
-    my ($start_timestamp, $end_timestamp) = (undef, undef);
+    my ($start_timestamp, $end_timestamp)                      = (undef, undef);
+    my ($start_chain_name, $start_chain_backups, $start_index) = (undef, undef, 0);
+    my ($end_chain_name, $end_chain_backups, $end_index)       = (undef, undef, -1);
 
     # validation of the fact that there is either $timestamp or $timestamp:$timestamp during flag processing
     ($start_timestamp, $end_timestamp) = ($VERIFY =~ /:/) ? split(/:/, $VERIFY) : (undef, $VERIFY);
 
-    my ($start_chain_name, $start_chain_backups, $start_index) = (undef, undef, 0);
-    my ($end_chain_name, $end_chain_backups, $end_index)       = find_chain_and_backup($chains_structure, $end_timestamp);
-    die color("ERROR:", 31)." No backup found with timestamp: $end_timestamp\n" unless $end_chain_name;
+    if (!$start_timestamp) {
+        # Case 1: single timestamp or "latest"
+        ($end_chain_name, $end_chain_backups, $end_index) = find_chain_and_backup($chains_structure, $end_timestamp);
+        die color("ERROR:", 31)." No backup found with timestamp: $end_timestamp\n" unless $end_chain_name;
+        foreach my $i ($start_index .. $end_index) {
+            my $backup_name = $end_chain_backups->[$i];
+            my $backup_path = File::Spec->catfile($backups_dir, $end_chain_name, $backup_name);
+            verify($backup_path);
+        }
+        say color("INFO:", 32)." Chain verification successful up to timestamp: $end_timestamp";
+        return;
+    } else {
+        # Case 2: range
 
-    if ($start_timestamp) {
+        # Find start backup first
         ($start_chain_name, $start_chain_backups, $start_index) = find_chain_and_backup($chains_structure, $start_timestamp);
         die color("ERROR:", 31)." No backup found with timestamp: $start_timestamp\n" unless $start_chain_name;
-        die color("ERROR:", 31)." Start and end timestamps must be from the same chain\n" if $start_chain_name ne $end_chain_name;
-    }
 
-    foreach my $i ($start_index .. $end_index) {
-        my $backup_name = $end_chain_backups->[$i];
-        my $backup_path = File::Spec->catfile($backups_dir, $end_chain_name, $backup_name);
-        verify($backup_path);
-    }
+        if ($end_timestamp eq 'latest') {
+            $end_index         = $#{$start_chain_backups};
+            $end_chain_name    = $start_chain_name;
+            $end_chain_backups = $start_chain_backups;
+        } else {
+            # Explicit timestamp
+            ($end_chain_name, $end_chain_backups, $end_index) = find_chain_and_backup($chains_structure, $end_timestamp);
+            die color("ERROR:", 31)." No backup found with timestamp: $end_timestamp\n" unless $end_chain_name;
+            die color("ERROR:", 31)." Start and end timestamps must be from the same chain\n" if $start_chain_name ne $end_chain_name;
+        }
 
-    if ($start_timestamp) {
+        die color("ERROR:", 31)." Start timestamp ($start_timestamp) is after end timestamp ($end_timestamp)\n" if $start_index > $end_index;
+        foreach my $i ($start_index .. $end_index) {
+            my $backup_name = $end_chain_backups->[$i];
+            my $backup_path = File::Spec->catfile($backups_dir, $end_chain_name, $backup_name);
+            verify($backup_path);
+        }
         say color("INFO:", 32)." Chain verification successful from $start_timestamp to $end_timestamp";
-    } else {
-        say color("INFO:", 32)." Chain verification successful up to timestamp: $VERIFY";
     }
 }
 
@@ -961,6 +979,7 @@ if (defined $DIR) {
     say color("INFO:", 32)." Now in: " . getcwd();
 }
 
+# latest by default
 if ($RECOVER) {
     my $timestamp = shift @ARGV;
 
@@ -973,6 +992,7 @@ if ($RECOVER) {
     say color("INFO:", 32)." Recovering state: $RECOVER";
 }
 
+# latest by default
 if ($VERIFY) {
     my $timestamp_pattern = qr/(?:$TIMESTAMP_FORMAT|latest)/;
     my $range             = shift @ARGV;
@@ -987,7 +1007,7 @@ if ($VERIFY) {
     } elsif ($range =~ /^($timestamp_pattern):$/) {
         $VERIFY = $1.':latest';
     } elsif ($range =~ /^:$/) {
-        $VERIFY = 'latest:latest';
+        $VERIFY = 'latest';
     } else {
         unshift @ARGV, $range;
     }

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+IF="wlo1"
+
+# Проверка наличия беспроводного интерфейса
+if [[ ! -d /sys/class/net/${IF}/wireless ]]; then
+    echo '{"full_text":"No wifi","color":"#FF0000"}'
+    exit
+fi
+
+# Проверка состояния интерфейса
+if [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
+    echo '{"full_text":"wifi down","color":"#FF0000"}'
+    exit
+fi
+
+# Получение уровня сигнала
+Q=$(iw dev $IF link | grep 'dBm$' | grep -Eoe '-[0-9]{2}' | awk '{print ($1 > -50 ? 100 : ($1 < -100 ? 0 : ($1+100)*2))}')
+
+# Проверка наличия сигнала
+if [ -z "$Q" ]; then
+    echo '{"full_text":"wifi (no signal)","color":"#FF0000"}'
+    exit
+fi
+
+# Определение цвета на основе качества сигнала
+if [ $Q -ge 80 ]; then
+    C="#00FF00"  # Зеленый - отличный сигнал
+elif [ $Q -ge 60 ]; then
+    C="#FFF600"  # Желтый - хороший сигнал
+elif [ $Q -ge 40 ]; then
+    C="#FFAE00"  # Оранжевый - средний сигнал
+else
+    C="#FF0000"  # Красный - плохой сигнал
+fi
+
+# Вывод результата в формате JSON для i3blocks
+echo '{"full_text":"wifi '"$Q"'%","color":"'"$C"'"}'

@@ -275,14 +275,15 @@ use Cwd;
 use POSIX 'strftime';
 use Getopt::Long qw\:config bundling\;
 
-my $MAIN_DIR_DEFAULT = "$ENV{HOME}/.chains"; # you can hack it
+#
+my $MAIN_DIR_DEFAULT          = "$ENV{HOME}/.chains";
+my $TIMESTAMP_FORMAT          = qr/\d{6}T\d{6}/;
+my $TIMESTAMP_FORMAT_STRFTIME = '%y%m%dT%H%M%S';
+#
 
 my $LOCKFILE;
 my $LOCK_ACQUIRE = 0;
-
-my $USE_COLOR = 0;
-
-my $TIMESTAMP_FORMAT = qr/\d{6}T\d{6}/;
+my $USE_COLOR    = 0;
 
 # turn off buffering
 $| = 1;
@@ -905,7 +906,7 @@ sub main {
         }
         close $fh or die color("ERROR:", 31)." Cannot close file: $!\n";
 
-        my $timestamp = strftime("%y%m%dT%H%M%S", localtime);
+        my $timestamp = strftime($TIMESTAMP_FORMAT_STRFTIME, localtime);
         my $backup_dir;
 
         if ($FULL) {

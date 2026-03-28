@@ -1,7 +1,150 @@
 #!/usr/bin/env perl
 
+
 # What is it : Linux process killer script
 # Usage      : murder [-hfqoncr] PID|NAME|:PORT
+
+
+# ================ LICENSE
+
+
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#                    Version 2, December 2004
+ 
+# Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+
+# Everyone is permitted to copy and distribute verbatim or modified
+# copies of this license document, and changing it is allowed as long
+# as the name is changed.
+ 
+#            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+#   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+#  0. You just DO WHAT THE FUCK YOU WANT TO.
+
+
+# ================ README
+
+
+# MURDER(1)			 User Commands			     MURDER(1)
+
+# NAME
+#        murder - smart Linux process killer
+
+#        Inspired by Evan Hahn's murder script
+
+# SYNOPSIS
+#        murder [-hfqoncr] PID|NAME|:PORT
+
+# OPTIONS
+#        -h, --help
+# 	      Show help message
+
+#        -f, --force
+# 	      Kill without confirmation
+
+#        -q, --quiet
+# 	      Quiet mode (minimal output)
+
+#        -o, --one
+# 	      Kill only the specified process, not the entire tree
+
+#        -c, --name-only
+# 	      Search by process name only (not full command line)
+
+#        -n, --dry-run
+# 	      Show what would be killed without actually killing
+
+#        -r, --reverse
+# 	      Kill parent processes before children
+# 	      Default is children first (usually safer)
+
+# ARGUMENTS
+#        PID
+# 	      Process ID to kill (e.g., 1234)
+
+#        NAME
+# 	      Process name to kill (e.g., python, emacs, firefox)
+
+#        :PORT
+# 	      Port number to kill process on (e.g., :3000)
+
+# EXAMPLES
+#        murder 1234
+# 	      Kill process with PID 1234
+
+#        murder -f ruby
+# 	      Kill all ruby processes without asking
+
+#        murder -q :3000
+# 	      Kill process on port 3000 quietly
+
+#        murder -fq python
+# 	      Kill python processes without asking and quietly
+
+#        murder -nf firefox
+# 	      Show what would be killed (search by full command)
+
+#        murder -nfc firefox
+# 	      Show what would be killed (search by name only)
+
+#        murder -nfq firefox
+# 	      Show what would be killed with minimal output
+
+# NOTES
+#    Signal escalation
+#        murder uses graduated signals with timeouts:
+
+#        SIGTERM (15)
+# 	      wait 3 seconds
+
+#        SIGINT  (2)
+# 	      wait 3 seconds
+
+#        SIGHUP  (1)
+# 	      wait 4 seconds
+
+#        SIGKILL (9)
+# 	      no wait
+
+#        murder verifies the process exists and hasn't been replaced (PID reuse)
+#        both before and after each signal. If the process dies during
+#        escalation, it stops sending further signals
+
+#    Process tree
+#        By default, murder kills the entire process tree. It finds all
+#        descendants by parsing /proc/*/stat and kills them in order: children
+#        first
+
+#        Use -r to change order
+#        Use -o to kill only the specified process
+
+#    Search behavior
+#        PID   mode
+# 	      Direct kill by process ID
+
+#        NAME  mode
+# 	      Searches ps -eo command (or ps -eo comm with -c) Matches
+# 	      substring, excludes itself (won't kill murder process)
+
+#        :PORT mode
+# 	      Uses ss first, falls back to lsof
+
+# REQUIREMENTS
+#        Perl 5.005 or higher
+# 	      Usually pre-installed on any Linux system
+
+#        ps
+# 	      Standard Unix tool (pre-installed)
+
+#        lsof or ss
+# 	      Optional, required only for port killing mode (:PORT)
+
+# SEE ALSO
+#        kill(1), pkill(1), lsof(8), ss(8)
+
+# murder				 February 2026			     MURDER(1)
+
 
 use strict;
 use Getopt::Long;
@@ -46,11 +189,11 @@ sub log_message {
 
 sub go_ahead {
     chomp(my $input = <STDIN>);
-    $input    =~ s/^\s+|\s+$//g;
-    $input    = lc($input);
+    $input =~ s/^\s+|\s+$//g;
+    $input = lc($input);
 
     return 1 if $input eq '';
-    return $input =~ /^(y|yes|yas)$/? 1: 0;
+    return $input =~ /^(y|yes|yas)$/ ? 1 : 0;
 }
 
 sub is_running {
@@ -90,7 +233,12 @@ sub kill_process_single {
 sub get_children {
     my ($pid) = @_;
     local *DIR;
-    opendir(DIR, '/proc') or return;
+
+    if (!opendir(DIR, '/proc')) {
+        log_message "WARNING: Cannot open /proc directory: $!";
+        return [];
+    }
+
     my @children;
 
     while (readdir(DIR)) {
@@ -98,19 +246,25 @@ sub get_children {
 
         if (open(STAT, "/proc/$_/stat")) {
             my $stat = <STAT>;
-            close STAT;
+            if (!close(STAT)) {
+                log_message "WARNING: Cannot close stat file for pid $_: $!";
+                next;
+            }
             my ($ppid) = ($stat =~ /^.*\)\s+.\s+(\d+)/);
             push @children, $_ if (defined $ppid && $ppid == $pid);
         }
     }
 
-    closedir DIR;
+    if (!closedir(DIR)) {
+        log_message "WARNING: Cannot close /proc directory: $!";
+    }
+
     return \@children; # return ptr, no array!
 }
 
 sub get_all_descendants {
-    my ($pid)  = @_;
-    my @queue  = ($pid);
+    my ($pid) = @_;
+    my @queue = ($pid);
     my @result;
     my %seen;
 
@@ -148,7 +302,7 @@ sub kill_process_tree {
     }
 
     my $descendants = get_all_descendants($pid);
-    
+
     my @names;
     foreach my $proc (@$descendants) {
         my $pid = $proc->[0];
@@ -159,7 +313,7 @@ sub kill_process_tree {
 
     # changing the real array, there are no copies
     @$descendants = reverse @$descendants unless $REVERSE;
-    
+
     foreach my $proc (@$descendants) {
         my ($target_pid, $start_time) = @$proc;
         my $exists = is_running($target_pid);

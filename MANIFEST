@@ -32,3 +32,4 @@
 .local/bin/xxx|symlink|
 .local/bin/sucklog|symlink|
 .local/bin/ai|symlink|
+.local/bin/deltachat|symlink|

@@ -63,7 +63,7 @@ sub go_ahead {
     $input = lc($input);
 
     return 1 if $input eq '';
-    return $input =~ /^(y|yes|yas|д|да)$/? 1: 0;
+    return $input =~ /^(y|yes|yas|д|да)$/ ? 1 : 0;
 }
 
 sub usage {

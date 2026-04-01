@@ -333,41 +333,6 @@
 
 ;; denote system
 
-(defun my/denote-load-tags ()
-  "Load custom tags from file."
-  (when (file-exists-p my/denote-tags-file)
-    (load my/denote-tags-file)))
-
-(defun my/denote-save-tags ()
-  "Save current denote-known-keywords to file."
-  (with-temp-file my/denote-tags-file
-    (insert ";; Auto-generated denote tags file\n")
-    (insert "(setq denote-known-keywords\n")
-    (insert (prin1-to-string denote-known-keywords))
-    (insert ")\n")))
-
-(defun my/denote-add-tag-persist ()
-  "Add a new tag and save to file."
-  (interactive)
-  (let ((new-tag (read-string "New tag name: ")))
-    (when (string-match-p "^[a-z-]+$" new-tag)
-      (add-to-list 'denote-known-keywords new-tag)
-      (my/denote-save-tags)
-      (message "Tag '%s' added and saved!" new-tag))
-    (unless (string-match-p "^[a-z-]+$" new-tag)
-      (message "Tag must contain only lowercase letters and hyphens"))))
-
-(defun my/denote-remove-tag-persist ()
-  "Remove a tag and save to file."
-  (interactive)
-  (let* ((tags (denote--keywords-add-hyphens denote-known-keywords))
-         (tag-to-remove (completing-read "Remove tag: " tags nil t)))
-    (when tag-to-remove
-      (setq denote-known-keywords
-            (delete (substring tag-to-remove 1 -1) denote-known-keywords))
-      (my/denote-save-tags)
-      (message "Tag '%s' removed and saved!" tag-to-remove))))
-
 (defun my/denote-dired-all ()
   "Open denote directory in dired without filters."
   (interactive)
@@ -387,8 +352,9 @@
   :config
   (setq denote-directory org-notes-directory
         denote-dired-directories (list org-notes-directory org-journal-directory)
-        denote-known-keywords '("emacs" "philosophy" "prog" "it"
-                                "study" "ideas" "linux" "list" "personal" "guide"))
+        ;; there are no default tags, they are derived from the names of existing notes
+        ;; check denote-infer-keywords variable
+        denote-known-keywords '())
   ;; Automatically rename Denote buffers when opening them so that
   ;; instead of their long file name they have, for example, a literal
   ;; "[D]" followed by the file's title.  Read the doc string of

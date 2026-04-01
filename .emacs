@@ -71,9 +71,9 @@
 
 (column-number-mode 1)
 
-;; save positions in buffer on exit (limit: 400 by default)
+;; save positions in buffer on exit (limit: 400 by default (check save-place-limit var))
 (save-place-mode 1)
-;; save minibuffer history on exit (limit: 100 by default)
+;; save minibuffer history on exit (limit: 100 by default (check history-length var))
 (savehist-mode 1)
 
 ;; emacs will reload the file if it is modified from the outside

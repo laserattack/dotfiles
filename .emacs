@@ -4,7 +4,6 @@
       yas-snippet-dirs '("~/.emacs.snippets/")
       local-dir "~/.emacs.local"
       org-directory "~/org"
-      org-tasks-file (expand-file-name "tasks.org" org-directory)
       org-images-directory (expand-file-name "images" org-directory)
       org-notes-directory (expand-file-name "notes" org-directory)
       org-journal-directory (expand-file-name "1journal1" org-notes-directory))

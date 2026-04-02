@@ -423,6 +423,11 @@
 (use-package nim-mode
   :ensure t)
 
+;; rust
+
+(use-package rust-mode
+  :ensure t)
+
 ;; ===== LANGUAGES MODES =====
 
 

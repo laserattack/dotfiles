@@ -302,3 +302,4 @@ gcf() {
         git checkout
     )
 }
+. "$HOME/.cargo/env"

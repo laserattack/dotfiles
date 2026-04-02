@@ -1034,6 +1034,7 @@ ii run-parts-5.23.2_1                        Run scripts or programs in a direct
 ii runc-1.4.0_1                              CLI tool for spawning and running OCI containers
 ii runit-2.3.1_1                             UNIX init scheme with service supervision
 ii runit-void-20250212_3                     Void Linux runit scripts
+ii rustup-1.29.0_1                           Rust toolchain installer
 ii samba-libs-4.20.1_4                       SMB/CIFS file, print, and login server for Unix - core libraries
 ii sane-1.3.1_2                              Scanner Access Now Easy
 ii sbc-2.0_1                                 Bluetooth Subband Codec (SBC) library

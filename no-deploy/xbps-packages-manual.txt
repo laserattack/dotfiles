@@ -78,6 +78,7 @@ p7zip-26.00_1
 pipewire-1.6.2_1
 portaudio-devel-190600.20161030_6
 psmisc-23.7_1
+puddletag-2.5.0_1
 pulseaudio-16.1_2
 putty-0.81_1
 python3-devel-3.14.3_1

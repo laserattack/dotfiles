@@ -50,6 +50,7 @@ i3-4.24_1
 i3blocks-1.5_2
 i3status-2.15_1
 inetutils-telnet-2.7_1
+jq-1.8.1_1
 krita-5.2.14_1
 libX11-devel-1.8.13_1
 libXft-devel-2.3.9_2

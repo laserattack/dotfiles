@@ -281,6 +281,7 @@ ii iw-6.17_1                                 Utility for nl80211 based CLI confi
 ii jack-devel-1.9.22_1                       JACK Audio Connection Kit low-latency sound server (pro audio) - development files
 ii jansson-2.14.1_1                          Library for encoding, decoding and manipulating JSON data
 ii jbigkit-libs-2.2_2                        Data compression library/utilities for bi-level high-resolution images - shared libraries
+ii jq-1.8.1_1                                Command-line JSON processor
 ii json-c-0.18_1                             JSON implementation in C
 ii json-glib-1.10.8_1                        JSON parser for GLib-based libraries and applications
 ii jsoncpp-1.9.5_1                           JSON implementation in C++

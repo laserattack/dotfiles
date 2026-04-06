@@ -954,19 +954,19 @@ init_color();
 system('stty -echoctl 2>/dev/null');
 
 GetOptions(
-        'help|h'             => \$HELP,
-        'yes|y'              => \$YES,
-        'no|n'               => \$NO,
-        'main-directory|m=s' => \$MAIN_DIR,
-        'no-check-device'    => \$NO_CHECK_DEVICE,
-        'incremental|i'      => \$INCREMENTAL,
-        'full|f'             => \$FULL,
-        'recover|r'          => sub { $RECOVER = 'latest' },
-        'verify|w'           => sub { $VERIFY  = 'latest' },
-        'directory|C=s'      => \$DIR,
-        'print|p'            => \$PRINT,
-        'verbose|v'          => \$VERBOSE,
-    ) or die color("ERR:", 31)." Invalid command line options\n";
+    'help|h'             => \$HELP,
+    'yes|y'              => \$YES,
+    'no|n'               => \$NO,
+    'main-directory|m=s' => \$MAIN_DIR,
+    'no-check-device'    => \$NO_CHECK_DEVICE,
+    'incremental|i'      => \$INCREMENTAL,
+    'full|f'             => \$FULL,
+    'recover|r'          => sub { $RECOVER = 'latest' },
+    'verify|w'           => sub { $VERIFY  = 'latest' },
+    'directory|C=s'      => \$DIR,
+    'print|p'            => \$PRINT,
+    'verbose|v'          => \$VERBOSE,
+) or die color("ERR:", 31)." Invalid command line options\n";
 
 my $count = grep { $_ } $PRINT, $RECOVER, $VERIFY, $INCREMENTAL, $FULL;
 if ($count > 1) {

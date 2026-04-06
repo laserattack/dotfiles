@@ -968,6 +968,11 @@ GetOptions(
         'verbose|v'          => \$VERBOSE,
     ) or die color("ERR:", 31)." Invalid command line options\n";
 
+my $count = grep { $_ } $PRINT, $RECOVER, $VERIFY, $INCREMENTAL, $FULL;
+if ($count > 1) {
+    die color("ERR:", 31)." Options -p, -r, -w, -i, -f cannot be used together\n";
+}
+
 usage() if $HELP;
 
 if ($> != 0 && ($FULL || $INCREMENTAL)) {

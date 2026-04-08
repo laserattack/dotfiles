@@ -27,6 +27,8 @@
 
 (setq warning-minimum-level :error)
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; close the buffer without question if it holds the process
 (remove-hook 'kill-buffer-query-functions
              'process-kill-buffer-query-function)

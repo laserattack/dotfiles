@@ -297,7 +297,21 @@
 (use-package move-text
   :ensure t
   :bind (("M-n" . move-text-down)
-         ("M-p" . move-text-up)))
+         ("M-p" . move-text-up))
+  :config
+  (defun move-text-region (start end n)
+    "Move each line in region (START END) up or down by N lines."
+    (interactive (move-text-get-region-and-prefix))
+    (save-excursion
+      (goto-char start)
+      (let ((count (abs n))
+            (dir (if (> n 0) 'down 'up)))
+        (while (< (point) end)
+          (dotimes (_ count)
+            (if (eq dir 'down)
+                (move-text-line-down)
+              (move-text-line-up)))
+          (forward-line 1))))))
 
 ;; company
 

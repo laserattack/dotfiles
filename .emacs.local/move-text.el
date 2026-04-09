@@ -37,6 +37,7 @@
 ;;
 ;; Features:
 ;; - Always moves whole lines (region expands to full lines)
+;; - Default keybindings changed to M-p (up) and M-n (down)
 ;;
 ;; Using the prefix (C-u *number* or META *number*) you can predefine how
 ;; many lines move-text will travel.

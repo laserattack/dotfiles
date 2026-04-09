@@ -297,21 +297,7 @@
 (use-package move-text
   :ensure t
   :bind (("M-n" . move-text-down)
-         ("M-p" . move-text-up))
-  :config
-  (defun move-text-region (start end n)
-    "Move region including trailing newline if missing"
-    (interactive (move-text-get-region-and-prefix))
-    (save-excursion
-      (goto-char end)
-      (unless (bolp)
-        (setq end (1+ end))))
-    (let ((line-text (delete-and-extract-region start end)))
-      (forward-line n)
-      (let ((start-pos (point)))
-        (insert line-text)
-        (setq deactivate-mark nil)
-        (set-mark start-pos)))))
+         ("M-p" . move-text-up)))
 
 ;; company
 

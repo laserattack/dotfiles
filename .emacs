@@ -300,18 +300,19 @@
          ("M-p" . move-text-up))
   :config
   (defun move-text-region (start end n)
-    "Move each line in region (START END) up or down by N lines."
     (interactive (move-text-get-region-and-prefix))
     (save-excursion
       (goto-char start)
-      (let ((count (abs n))
-            (dir (if (> n 0) 'down 'up)))
-        (while (< (point) end)
-          (dotimes (_ count)
-            (if (eq dir 'down)
-                (move-text-line-down)
-              (move-text-line-up)))
-          (forward-line 1))))))
+      (setq start (line-beginning-position))
+      (goto-char end)
+      (unless (bolp)
+        (setq end (1+ (line-end-position)))))
+    (let ((line-text (delete-and-extract-region start end)))
+      (forward-line n)
+      (let ((start-pos (point)))
+        (insert line-text)
+        (setq deactivate-mark nil)
+        (set-mark start-pos)))))
 
 ;; company
 

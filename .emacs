@@ -294,9 +294,10 @@
 
 ;; move text
 
-(require 'move-text)
-(global-set-key (kbd "M-n") 'move-text-down)
-(global-set-key (kbd "M-p") 'move-text-up)
+(use-package move-text
+  :ensure t
+  :bind (("M-n" . move-text-down)
+         ("M-p" . move-text-up)))
 
 ;; company
 

@@ -294,25 +294,8 @@
 
 ;; move text
 
-(use-package move-text
-  :ensure t
-  :bind (("M-n" . move-text-down)
-         ("M-p" . move-text-up))
-  :config
-  (defun move-text-region (start end n)
-    (interactive (move-text-get-region-and-prefix))
-    (save-excursion
-      (goto-char start)
-      (setq start (line-beginning-position))
-      (goto-char end)
-      (unless (bolp)
-        (setq end (1+ (line-end-position)))))
-    (let ((line-text (delete-and-extract-region start end)))
-      (forward-line n)
-      (let ((start-pos (point)))
-        (insert line-text)
-        (setq deactivate-mark nil)
-        (set-mark start-pos)))))
+(require 'move-text)
+(move-text-default-bindings)
 
 ;; company
 

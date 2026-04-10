@@ -6,13 +6,13 @@
 
 #            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 #                    Version 2, December 2004
- 
+
 # Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
 
 # Everyone is permitted to copy and distribute verbatim or modified
 # copies of this license document, and changing it is allowed as long
 # as the name is changed.
- 
+
 #            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 #   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
@@ -80,17 +80,19 @@
 # Notes (!!!!!!! PLS READ THIS !!!!!!!):
 #   1. GNU TAR IS REQUIRED
 
-#   2. Interrupting backup creation may leave incomplete archives
+#   2. NEVER RUN MULTIPLE chains PROCESSES WITH THE SAME MAIN DIRECTORY
 
-#   3. Always verify your backups can be restored
+#   3. Interrupting backup creation may leave incomplete archives
 
-#   4. EXCLUDE BACKUP DIR FROM BACKUP
+#   4. Always verify your backups can be restored
 
-#   5. CHECK AVAILABLE SPACE
+#   5. EXCLUDE BACKUP DIR FROM BACKUP
 
-#   6. Run with sudo if backing up system files
+#   6. CHECK AVAILABLE SPACE
 
-#   7. IMPORTANT: After modifying include_paths.txt, create a new full backup (-f)
+#   7. Run with sudo if backing up system files
+
+#   8. IMPORTANT: After modifying include_paths.txt, create a new full backup (-f)
 #      The snar metadata file only tracks files that existed when it was created
 #      New paths won't be included in incremental backups without a fresh chain
 #      THIS IS HOW TAR WORKS. I DON'T LIKE IT EITHER!
@@ -281,8 +283,6 @@ my $TIMESTAMP_FORMAT          = qr/\d{6}T\d{6}/;
 my $TIMESTAMP_FORMAT_STRFTIME = '%y%m%dT%H%M%S';
 #
 
-my $LOCKFILE;
-my $LOCK_ACQUIRE = 0;
 my $USE_COLOR    = 0;
 
 # turn off buffering
@@ -315,7 +315,7 @@ sub check_command {
 
 sub init_color {
     return unless -t STDOUT;
-    
+
     my $term = $ENV{TERM} || '';
     return if $term eq 'dumb' || $term eq '';
 
@@ -325,7 +325,7 @@ sub init_color {
     my $colors = `$tput colors 2>/dev/null`;
     chomp $colors;
     return if !$colors || $colors < 8;
-    
+
     $USE_COLOR = 1;
 }
 
@@ -381,50 +381,23 @@ sub usage {
     say "Notes ". color("(!!!!!!! PLS READ THIS !!!!!!!)",31).":";
     say "  1. GNU TAR IS REQUIRED";
     say "";
-    say "  2. Interrupting backup creation may leave incomplete archives";
+    say "  2. NEVER RUN MULTIPLE chains PROCESSES WITH THE SAME MAIN DIRECTORY";
     say "";
-    say "  3. Always verify your backups can be restored";
+    say "  3. Interrupting backup creation may leave incomplete archives";
     say "";
-    say "  4. EXCLUDE BACKUP DIR FROM BACKUP";
+    say "  4. Always verify your backups can be restored";
     say "";
-    say "  5. CHECK AVAILABLE SPACE";
+    say "  5. EXCLUDE BACKUP DIR FROM BACKUP";
     say "";
-    say "  6. Run with sudo if backing up system files";
+    say "  6. CHECK AVAILABLE SPACE";
     say "";
-    say "  7. IMPORTANT: After modifying include_paths.txt, create a new full backup (-f)";
+    say "  7. Run with sudo if backing up system files";
+    say "";
+    say "  8. IMPORTANT: After modifying include_paths.txt, create a new full backup (-f)";
     say "     The snar metadata file only tracks files that existed when it was created";
     say "     New paths won't be included in incremental backups without a fresh chain";
     say "     THIS IS HOW TAR WORKS. I DON'T LIKE IT EITHER!";
     exit 0;
-}
-
-# only one chains process can run at a time
-
-sub acquire_lock {
-    if (-f $LOCKFILE) {
-        open my $fh, '<', $LOCKFILE or die color("ERR:", 31)." Cannot read lockfile: $!\n";
-        my $pid = <$fh>;
-        close $fh or die color("ERR:", 31)." Cannot close lockfile: $!\n";
-        if (kill(0, $pid)) {
-            die color("ERR:", 31)." Another chains process (PID $pid) is already running\n";
-        } else {
-            warn color("WRN:", 33)." Removing stale lockfile from dead process $pid\n";
-            die color("ERR:", 31)." Can't remove stale lockfile\n" unless unlink $LOCKFILE;
-        }
-    }
-
-    open my $fh, '>', $LOCKFILE or die color("ERR:", 31)." Cannot create lockfile: $!\n";
-    print $fh $$;
-    close $fh or die color("ERR:", 31)." Cannot close lockfile: $!\n";
-
-    $LOCK_ACQUIRE = 1;
-}
-
-sub release_lock {
-    if ($LOCK_ACQUIRE && -f $LOCKFILE) {
-        die color("ERR:", 31)." Can't remove lockfile\n" unless unlink $LOCKFILE;
-        $LOCK_ACQUIRE = 0;
-    }
 }
 
 sub go_ahead {
@@ -833,13 +806,6 @@ sub make_backup {
     }
 }
 
-sub byebye {
-    my $msg = shift(@_);
-    say $msg if $msg;
-    release_lock();
-    exit 0;
-}
-
 sub main {
 
     # ==== PREPARE STRUCT ====
@@ -862,26 +828,6 @@ sub main {
     my $backups_dir = File::Spec->catdir($MAIN_DIR, 'chains');
     verify_dir($backups_dir);
     say color("INF:", 32)." Backups dir: $backups_dir";
-
-
-    # ==== SOME STUFF FOR GRACEFUL SHUTDOWN ====
-
-    acquire_lock();
-
-    # https://perldoc.perl.org/perlmod#BEGIN%2C-UNITCHECK%2C-CHECK%2C-INIT-and-END
-    # An END code block is executed as late as possible, that is, after perl has
-    # finished running the program and just before the interpreter is being exited,
-    # even if it is exiting as a result of a die() function.
-    # (But not if it's morphing into another program via exec, or being blown out of
-    # the water by a signal--you have to trap that yourself (if you can).)
-    END { byebye(); }
-
-    # Not strictly necessary (tar handles signals itself), but kept for safety
-    $SIG{'HUP'}  = 'IGNORE';
-    $SIG{'INT'}  = sub { byebye(color("INF:", 32) . " chains was sent INT signal... cleaning up"); };
-    $SIG{'QUIT'} = sub { byebye(color("INF:", 32) . " chains was sent QUIT signal... cleaning up"); };
-    $SIG{'ABRT'} = sub { byebye(color("INF:", 32) . " chains was sent ABRT signal... cleaning up"); };
-    $SIG{'TERM'} = sub { byebye(color("INF:", 32) . " chains was sent TERM signal... cleaning up"); };
 
     # ==== MAIN LOGIC ====
 
@@ -1022,6 +968,5 @@ if ($VERIFY) {
 }
 
 $MAIN_DIR = $MAIN_DIR_DEFAULT unless $MAIN_DIR;
-$LOCKFILE = File::Spec->catfile($MAIN_DIR, 'chains.lock');
 
 main()

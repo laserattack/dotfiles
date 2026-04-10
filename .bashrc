@@ -47,6 +47,7 @@ alias .....='cd ../../../..'
 . $HOME/.local/bin/z.sh
 
 export KINGSTON="/run/media/serr/KINGSTON"
+export KESU="/run/media/serr/KESU"
 
 alias fastporno='gocryptfs ~/encrypted ~/private && cd ~/private/ && fusermount -uz ~/private'
 
@@ -65,7 +66,7 @@ porno() {
         echo "Creating '~/private' mountpoint..."
         mkdir -p ~/private
     fi
-    
+
     if mount | grep -q " $HOME/private "; then
         fusermount -u ~/private
         if [ $? -eq 0 ]; then
@@ -88,19 +89,19 @@ m4exec() {
         echo "Usage: m4exec <file1> [file2] ..."
         return 1
     fi
-    
+
     for file in "$@"; do
         if [ ! -f "$file" ]; then
             echo "Warning: Skipping '$file' - not found"
             continue
         fi
-        
+
         echo "Processing: $file..."
-        
+
         local tmp_file=$(mktemp)
-        
+
          m4 -D "CMD=esyscmd(\`\$1 | tr -d \"\n\"')" "$file" > "$tmp_file"
-        
+
         if [ $? -eq 0 ]; then
             mv "$tmp_file" "$file"
             echo "Updated: $file"
@@ -123,7 +124,7 @@ proctree() {
     fi
     local pid=$1
     echo "$pid"
-    ps -eo pid,ppid | awk -v p="$pid" '$2 == p {print $1}' | while read child; do 
+    ps -eo pid,ppid | awk -v p="$pid" '$2 == p {print $1}' | while read child; do
         proctree "$child"
     done
 }
@@ -292,7 +293,7 @@ gcf() {
     fi
 
     local repo_url="$1"
-    local folder_path="$2" 
+    local folder_path="$2"
     local repo_name=$(basename "$repo_url" .git)
 
     (

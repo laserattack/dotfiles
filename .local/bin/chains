@@ -305,7 +305,8 @@ my $DIR             = undef;
 
 sub check_command {
     my ($cmd) = @_;
-    my @paths = split(':', $ENV{PATH} || '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin');
+    my @paths = split(':', $ENV{PATH}
+                      || '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin');
     foreach my $path (@paths) {
         my $full_path = "$path/$cmd";
         return $full_path if -x $full_path;
@@ -334,6 +335,10 @@ sub color {
     return $text unless $USE_COLOR;
     return "\e[${code}m$text\e[0m";
 }
+
+sub log_info  { say color("INF: ", 32)."@_"    }
+sub log_warn  { warn color("WRN: ", 33)."@_\n" }
+sub log_error { die color("ERR: ", 31)."@_\n"  }
 
 sub usage {
     say "chains - incremental backups without any bullshit";
@@ -378,7 +383,7 @@ sub usage {
     say "      --no-check-device      Ignore device number changes when";
     say "                             determining changed files";
     say "";
-    say "Notes ". color("(!!!!!!! PLS READ THIS !!!!!!!)",31).":";
+    say "Notes (!!!!!!! PLS READ THIS !!!!!!!):";
     say "  1. GNU TAR IS REQUIRED";
     say "";
     say "  2. NEVER RUN MULTIPLE chains PROCESSES WITH THE SAME MAIN DIRECTORY";
@@ -415,38 +420,38 @@ sub go_ahead {
 sub suppress_output {
     my $code = shift;
 
-    open my $oldout, '>&', \*STDOUT or die color("ERR:", 31)." Can't dup STDOUT: $!\n";
-    open my $olderr, '>&', \*STDERR or die color("ERR:", 31)." Can't dup STDERR: $!\n";
+    open my $oldout, '>&', \*STDOUT or log_error("Can't dup STDOUT: $!");
+    open my $olderr, '>&', \*STDERR or log_error("Can't dup STDERR: $!");
 
-    open STDOUT, '>', '/dev/null' or die color("ERR:", 31)." Can't redirect STDOUT: $!\n";
-    open STDERR, '>', '/dev/null' or die color("ERR:", 31)." Can't redirect STDERR: $!\n";
+    open STDOUT, '>', '/dev/null' or log_error("Can't redirect STDOUT: $!");
+    open STDERR, '>', '/dev/null' or log_error("Can't redirect STDERR: $!");
 
     my @ret = $code->();
 
-    open STDOUT, '>&', $oldout or die color("ERR:", 31)." Can't restore STDOUT: $!\n";
-    open STDERR, '>&', $olderr or die color("ERR:", 31)." Can't restore STDERR: $!\n";
+    open STDOUT, '>&', $oldout or log_error("Can't restore STDOUT: $!");
+    open STDERR, '>&', $olderr or log_error("Can't restore STDERR: $!");
 
-    close $oldout or die color("ERR:", 31)." Can't close stdout descriptor: $!\n";
-    close $olderr or die color("ERR:", 31)." Can't close stderr descriptor: $!\n";
+    close $oldout or log_error("Can't close stdout descriptor: $!");
+    close $olderr or log_error("Can't close stderr descriptor: $!");
 
     return wantarray ? @ret : $ret[0];
 }
 
 sub verify_permissions {
     my ($path) = @_;
-    die color("ERR:", 31)." no permissions to read '$path'\n" unless -r $path;
-    die color("ERR:", 31)." no permissions to write to '$path'\n" unless -w $path;
+    log_error("No permissions to read '$path'") unless -r $path;
+    log_error("No permissions to write to '$path'") unless -w $path;
 }
 
 sub verify_dir {
     my ($path) = @_;
     unless (-d $path) {
-        say color("INF:", 32)." '$path' is not a dir";
+        log_info("'$path' is not a dir");
         print color("INF:", 32)." Try to create '$path'? [Y/n] ";
-        die color("ERR:", 31)." Cannot proceed without directory '$path'\n" unless go_ahead();
+        log_error("Cannot proceed without directory '$path'") unless go_ahead();
         eval { make_path($path); };
-        die color("ERR:", 31)." Cannot create path '$path': $@\n" if $@;
-        die color("ERR:", 31)." '$path' is not a valid dir\n" unless -d $path;
+        log_error("Cannot create path '$path': $@") if $@;
+        log_error("'$path' is not a valid dir") unless -d $path;
     }
     verify_permissions($path);
 }
@@ -455,15 +460,15 @@ sub verify_file {
     my ($path) = @_;
     verify_dir(dirname($path)); # verify parent dir
     unless (-f $path) {
-        say color("INF:", 32)." '$path' is not a file";
+        log_info("'$path' is not a file");
         print color("INF:", 32)." Try to create '$path'? [Y/n] ";
-        die color("ERR:", 31)." Cannot proceed without file '$path'\n" unless go_ahead();
+        log_error("Cannot proceed without file '$path'") unless go_ahead();
         eval {
-            open my $fh, '>', $path or die color("ERR:", 31)." Cannot create file: $!\n";
-            close $fh or die color("ERR:", 31)." Cannot close file: $!\n";
+            open my $fh, '>', $path or log_error("Cannot create file: $!");
+            close $fh or log_error("Cannot close file: $!");
         };
-        die color("ERR:", 31)." Cannot create file '$path': $@\n" if $@;
-        die color("ERR:", 31)." '$path' is not a valid file\n" unless -f $path;
+        log_error("Cannot create file '$path': $@") if $@;
+        log_error("'$path' is not a valid file") unless -f $path;
     }
     verify_permissions($path);
 }
@@ -474,9 +479,10 @@ sub get_chains_structure {
     my @chains_structure = ();
 
     # get all chains dirs
-    opendir(my $dh, $backups_dir) or die color("ERR:", 31)." Cannot open dir '$backups_dir': $!\n";
+    # TODO(20260410T175126): add similar repeating blocks to the function
+    opendir(my $dh, $backups_dir) or log_error("Cannot open dir '$backups_dir': $!");
     my @chains = grep { -d "$backups_dir/$_" && /^since_$TIMESTAMP_FORMAT$/ } readdir($dh);
-    closedir($dh) or die color("ERR:", 31)." Cannot close dir '$backups_dir': $!\n";
+    closedir($dh) or log_error("Cannot close dir '$backups_dir': $!");
 
     # sort chains: new ones first
     @chains = sort { $b cmp $a } @chains;
@@ -486,9 +492,9 @@ sub get_chains_structure {
         my @backups = ();
 
         # get all backups in chain
-        opendir(my $dh2, $chain_dir) or die color("ERR:", 31)." Cannot open chain dir '$chain_dir': $!\n";
+        opendir(my $dh2, $chain_dir) or log_error("Cannot open chain dir '$chain_dir': $!");
         @backups = grep { /^$TIMESTAMP_FORMAT\.tar\.gz$/ } readdir($dh2);
-        closedir($dh2) or die color("ERR:", 31)." Cannot close chain dir '$chain_dir': $!\n";
+        closedir($dh2) or log_error("Cannot close chain dir '$chain_dir': $!");
 
         # sort backups in chain: old ones first (the order of restoration)
         @backups = sort { $a cmp $b } @backups;
@@ -588,13 +594,13 @@ sub find_chain_and_backup {
 sub extract {
     my ($src, $dest) = @_;
 
-    die color("ERR:", 31)." File '$src' not found\n" unless -f $src;
+    log_error("File '$src' not found") unless -f $src;
     verify_dir($dest);
 
     my $tar = check_command('tar');
-    die color("ERR:", 31)." 'tar' program is required, but not found in PATH\n" unless $tar;
+    log_error("'tar' program is required, but not found in PATH") unless $tar;
 
-    say color("INF:", 32)." Extracting '$src'";
+    log_info("Extracting '$src'");
 
     my $flags = $VERBOSE ? '-vxzf' : '-xzf';
     my @cmd = ($tar, '--xattrs', $flags, $src, '-C', $dest);
@@ -602,7 +608,7 @@ sub extract {
     $VERBOSE ? system(@cmd) : suppress_output(sub { system(@cmd) });
     my $exitcode = ($? >> 8);
 
-    die color("ERR:", 31)." Extract failed with exit code: $exitcode\n" if $exitcode;
+    log_error("Extract failed with exit code: $exitcode") if $exitcode;
 }
 
 # restoring a part of the chain to timestamp
@@ -612,7 +618,7 @@ sub restore_subchain {
 
     my ($target_chain_name, $target_chain_backups, $target_index) = find_chain_and_backup($chains_structure, $RECOVER);
 
-    die color("ERR:", 31)." No backup found with timestamp: $RECOVER\n" unless defined $target_chain_name;
+    log_error("No backup found with timestamp: $RECOVER") unless defined $target_chain_name;
 
     foreach my $i (0 .. $target_index) {
         my $backup_name = $target_chain_backups->[$i];
@@ -620,17 +626,17 @@ sub restore_subchain {
         extract($backup_path, $restore_dir);
     }
 
-    say color("INF:", 32)." Restored state '$RECOVER' to " . getcwd();
+    log_info("Restored state '$RECOVER' to " . getcwd());
 }
 
 sub verify {
     my ($path) = @_;
-    die color("ERR:", 31)." File '$path' not found\n" unless -f $path;
+    log_error("File '$path' not found") unless -f $path;
 
     my $tar = check_command('tar');
-    die color("ERR:", 31)." 'tar' program is required, but not found in PATH\n" unless $tar;
+    log_error("'tar' program is required, but not found in PATH") unless $tar;
 
-    say color("INF:", 32)." Verifying '$path'";
+    log_info("Verifying '$path'");
 
     my $flags = $VERBOSE ? '-vtzf' : '-tzf';
     my @cmd = ($tar, $flags, $path);
@@ -639,9 +645,9 @@ sub verify {
 
     my $exitcode = ($? >> 8);
 
-    die color("ERR:", 31)." Verification of '$path' failed with exit code: $exitcode. " .
-        "Maybe you should delete this archive\n" unless $exitcode == 0;
-    say color("INF:", 32)." Verification successful for '$path'";
+    log_error("Verification of '$path' failed with exit code: $exitcode. " .
+              "Maybe you should delete this archive") unless $exitcode == 0;
+    log_info("Verification successful for '$path'");
 }
 
 
@@ -661,20 +667,20 @@ sub verify_subchain {
     if (!$start_timestamp) {
         # Case 1: single timestamp or "latest"
         ($end_chain_name, $end_chain_backups, $end_index) = find_chain_and_backup($chains_structure, $end_timestamp);
-        die color("ERR:", 31)." No backup found with timestamp: $end_timestamp\n" unless $end_chain_name;
+        log_error("No backup found with timestamp: $end_timestamp") unless $end_chain_name;
         foreach my $i ($start_index .. $end_index) {
             my $backup_name = $end_chain_backups->[$i];
             my $backup_path = File::Spec->catfile($backups_dir, $end_chain_name, $backup_name);
             verify($backup_path);
         }
-        say color("INF:", 32)." Chain verification successful up to timestamp: $end_timestamp";
+        log_info("Chain verification successful up to timestamp: $end_timestamp");
         return;
     } else {
         # Case 2: range
 
         # Find start backup first
         ($start_chain_name, $start_chain_backups, $start_index) = find_chain_and_backup($chains_structure, $start_timestamp);
-        die color("ERR:", 31)." No backup found with timestamp: $start_timestamp\n" unless $start_chain_name;
+        log_error("No backup found with timestamp: $start_timestamp") unless $start_chain_name;
 
         if ($end_timestamp eq 'latest') {
             $end_index         = $#{$start_chain_backups};
@@ -683,17 +689,17 @@ sub verify_subchain {
         } else {
             # Explicit timestamp
             ($end_chain_name, $end_chain_backups, $end_index) = find_chain_and_backup($chains_structure, $end_timestamp);
-            die color("ERR:", 31)." No backup found with timestamp: $end_timestamp\n" unless $end_chain_name;
-            die color("ERR:", 31)." Start and end timestamps must be from the same chain\n" if $start_chain_name ne $end_chain_name;
+            log_error("No backup found with timestamp: $end_timestamp") unless $end_chain_name;
+            log_error("Start and end timestamps must be from the same chain") if $start_chain_name ne $end_chain_name;
         }
 
-        die color("ERR:", 31)." Start timestamp ($start_timestamp) is after end timestamp ($end_timestamp)\n" if $start_index > $end_index;
+        log_error("Start timestamp ($start_timestamp) is after end timestamp ($end_timestamp)") if $start_index > $end_index;
         foreach my $i ($start_index .. $end_index) {
             my $backup_name = $end_chain_backups->[$i];
             my $backup_path = File::Spec->catfile($backups_dir, $end_chain_name, $backup_name);
             verify($backup_path);
         }
-        say color("INF:", 32)." Chain verification successful from $start_timestamp to $end_timestamp";
+        log_info("Chain verification successful from $start_timestamp to $end_timestamp");
     }
 }
 
@@ -708,12 +714,12 @@ sub make_backup {
     my $snar_file_backup = "$snar_file.bak";
 
     if (-f $snar_file) {
-        copy($snar_file, $snar_file_backup) or die color("ERR:", 31)." Cannot back up $snar_file: $!\n";
-        say color("INF:", 32)." Metadata file '$snar_file' was backed up";
+        copy($snar_file, $snar_file_backup) or log_error("Cannot back up $snar_file: $!");
+        log_info("Metadata file '$snar_file' was backed up");
     }
 
     my $tar = check_command('tar');
-    die color("ERR:", 31)." 'tar' program is required, but not found in PATH\n" unless $tar;
+    log_error("'tar' program is required, but not found in PATH") unless $tar;
 
     my $flags = $VERBOSE ? '-vg' : '-g';
     my @tar_command = ($tar, $flags, $snar_file,
@@ -721,11 +727,10 @@ sub make_backup {
                        '--exclude-from', $exclude_patterns_file);
 
     push @tar_command, '--no-check-device' if $NO_CHECK_DEVICE;
-
     push @tar_command, '--files-from', $include_paths_file, '-czf', $backup_file;
 
     my $tar_command_string = join ' ', map { $_ =~ /[\s]/ ? "'$_'" : $_ } @tar_command;
-    say color("INF:", 32)." Tar command: $tar_command_string";
+    log_info("Tar command: $tar_command_string");
 
     $VERBOSE ? system(@tar_command) : suppress_output(sub { system(@tar_command) });
 
@@ -752,57 +757,60 @@ sub make_backup {
     my $exitcode = ($? >> 8);
     if ($exitcode == 0 || $exitcode == 1) {
         if (-z $backup_file) {
-            warn color("WRN:", 33)." Backup '$backup_file' is empty (interrupted?)\n";
+            log_warn("Backup '$backup_file' is empty (interrupted?)");
 
             # restore snar file
             if (copy($snar_file_backup, $snar_file)) {
-                say color("INF:", 32)." Metadata file '$snar_file' was restored";
+                log_info("Metadata file '$snar_file' was restored");
             } else {
-                warn color("ERR:", 31)." Cannot restore metadata file '$snar_file': $!\n"
+                log_warn("Cannot restore metadata file '$snar_file': $!");
             }
 
             # delete empty archive
-            say color("INF:", 32)." Deleting empty archive '$backup_file'";
-            unlink $backup_file or die color("ERR:", 31)." Could not delete empty archive: $backup_file\n" if -f $backup_file;
+            log_info("Deleting empty archive '$backup_file'");
+            unlink $backup_file or log_error("Could not delete empty archive: $backup_file") if -f $backup_file;
 
             # DIE
-            die color("INF:", 32)." Empty archive was deleted\n"
+            log_info("Empty archive was deleted");
+            exit 1;
         } else {
             # good exitcode (0/1) and not empty archive
 
-            say color("INF:", 32)." Backup '$backup_file' completed (exitcode: $exitcode)" if $exitcode == 0;
-            say color("INF:", 32)." Backup '$backup_file' completed with changed files (exitcode: $exitcode)" if $exitcode == 1;
+            log_info("Backup '$backup_file' completed (exitcode: $exitcode)") if $exitcode == 0;
+            log_info("Backup '$backup_file' completed with changed files (exitcode: $exitcode)") if $exitcode == 1;
             # GOOD
         }
     } elsif ($exitcode == 2) {
-        warn color("ERR:", 31)." Backup '$backup_file' failed (exitcode: $exitcode)\n";
+        log_warn("Backup '$backup_file' failed (exitcode: $exitcode)");
 
         # restore snar file
         if (copy($snar_file_backup, $snar_file)) {
-            say color("INF:", 32)." Metadata file '$snar_file' was restored";
+            log_info("Metadata file '$snar_file' was restored");
         } else {
-            warn color("ERR:", 31)." Cannot restore metadata file '$snar_file': $!\n"
+            log_warn("Cannot restore metadata file '$snar_file': $!");
         }
 
         # delete incomplete archive
-        say color("INF:", 32)." Deleting incomplete archive '$backup_file'";
-        unlink $backup_file or die color("ERR:", 31)." Could not delete incomplete archive: $backup_file\n" if -f $backup_file;
-        die color("INF:", 32)." Incomplete archive was deleted\n";
+        log_info("Deleting incomplete archive '$backup_file'");
+        unlink $backup_file or log_error("Could not delete incomplete archive: $backup_file") if -f $backup_file;
+        log_info("Incomplete archive was deleted");
+        exit 1;
         # DIE
     } else {
-        say color("ERR:", 31)." unexpected exitcode: $exitcode. WTF???";
+        log_info("Unexpected exitcode: $exitcode. WTF???");
 
         # restore snar file !!!
-        copy($snar_file_backup, $snar_file) or die color("ERR:", 31)." Cannot restore metadata file '$snar_file': $!\n";
-        die color("INF:", 32)." Metadata file '$snar_file' was restored\n";
+        copy($snar_file_backup, $snar_file) or log_error("Cannot restore metadata file '$snar_file': $!");
+        log_info("Metadata file '$snar_file' was restored");
+        exit 1;
         # DIE
     }
 
     if (-f $backup_file) {
-        say color("WRN:", 33)." Always verify your backups!";
-        say color("WRN:", 33)." A successful exit code (0) from tar does not guarantee the backup is valid";
-        say color("WRN:", 33)." For example, if the program execution was interrupted (by you or for any other reason)";
-        say color("WRN:", 33)." You can verify backups using 'chains -w ...'";
+        log_warn("Always verify your backups!");
+        log_warn("A successful exit code (0) from tar does not guarantee the backup is valid");
+        log_warn("For example, if the program execution was interrupted (by you or for any other reason)");
+        log_warn("You can verify backups using 'chains -w ...'");
     }
 }
 
@@ -812,22 +820,22 @@ sub main {
 
     # check and create if no exists
     verify_dir($MAIN_DIR);
-    say color("INF:", 32)." Main dir: $MAIN_DIR";
+    log_info("Main dir: $MAIN_DIR");
 
     # check and create if no exists
     my $include_paths_file = File::Spec->catfile($MAIN_DIR, 'include_paths.txt');
     verify_file($include_paths_file);
-    say color("INF:", 32)." Include paths file: $include_paths_file";
+    log_info("Include paths file: $include_paths_file");
 
     # check and create if no exists
     my $exclude_patterns_file = File::Spec->catfile($MAIN_DIR, 'exclude_patterns.txt');
     verify_file($exclude_patterns_file);
-    say color("INF:", 32)." Exclude patterns file: $exclude_patterns_file";
+    log_info("Exclude patterns file: $exclude_patterns_file");
 
     # check and create if no exists
     my $backups_dir = File::Spec->catdir($MAIN_DIR, 'chains');
     verify_dir($backups_dir);
-    say color("INF:", 32)." Backups dir: $backups_dir";
+    log_info("Backups dir: $backups_dir");
 
     # ==== MAIN LOGIC ====
 
@@ -842,16 +850,16 @@ sub main {
     # ==== MAKE BACKUP ====
     if ($FULL || $INCREMENTAL) {
         # otherwise, it will make a backup of current dir (pwd)
-        die color("ERR:", 31)." Include file '$include_paths_file' is empty\n" if -z $include_paths_file;
+        log_error("Include file '$include_paths_file' is empty") if -z $include_paths_file;
 
         # only absolute paths in include_paths_file
-        open my $fh, '<', $include_paths_file or die color("ERR:", 31)." Cannot open file: $!\n";
+        open my $fh, '<', $include_paths_file or log_error("Cannot open file: $!");
         while (my $line = <$fh>) {
             chomp $line;
             next if $line =~ /^\s*$/; # empty lines are OK
-            die color("ERR:", 31)." Only absolute paths should be in '$include_paths_file'\n" unless $line =~ /^\//;
+            log_error("Only absolute paths should be in '$include_paths_file'") unless $line =~ /^\//;
         }
-        close $fh or die color("ERR:", 31)." Cannot close file: $!\n";
+        close $fh or log_error("Cannot close file: $!");
 
         my $timestamp = strftime($TIMESTAMP_FORMAT_STRFTIME, localtime);
         my $backup_dir;
@@ -862,9 +870,9 @@ sub main {
             # full backup = first backup in chain
 
             $backup_dir = File::Spec->catdir($backups_dir, 'since_'.$timestamp);
-            die color("ERR:", 31)." '$backup_dir' already exists\n" if -d $backup_dir;
+            log_error("'$backup_dir' already exists") if -d $backup_dir;
             verify_dir($backup_dir);
-            say color("INF:", 32)." Creating new backup chain in: $backup_dir";
+            log_info("Creating new backup chain in: $backup_dir");
 
         } elsif ($INCREMENTAL) {
 
@@ -875,15 +883,15 @@ sub main {
             my $last_chain_name = @$chains_structure ? $chains_structure->[0]->[0] : undef;
             $backup_dir = $last_chain_name ? File::Spec->catdir($backups_dir, $last_chain_name) : undef;
 
-            die color("ERR:", 31)." No existing backup chain found in '$backups_dir'. Use -f (--full) first\n" unless $backup_dir;
+            log_error("No existing backup chain found in '$backups_dir'. Use -f (--full) first") unless $backup_dir;
         }
 
         # tar will create it itself if no exists
         my $snar_file = File::Spec->catfile($backup_dir, 'incremental.snar');
-        say color("INF:", 32)." Metadata file: $snar_file";
+        log_info("Metadata file: $snar_file");
         my $backup_file = File::Spec->catfile($backup_dir, "${timestamp}.tar.gz");
 
-        die color("ERR:", 31)." Backup file '$backup_file' already exists\n" if -f $backup_file;
+        log_error("Backup file '$backup_file' already exists") if -f $backup_file;
 
         my $info = {
             snar_file             => $snar_file,
@@ -912,24 +920,26 @@ GetOptions(
     'directory|C=s'      => \$DIR,
     'print|p'            => \$PRINT,
     'verbose|v'          => \$VERBOSE,
-) or die color("ERR:", 31)." Invalid command line options\n";
+) or log_error("Invalid command line options");
 
 my $count = grep { $_ } $PRINT, $RECOVER, $VERIFY, $INCREMENTAL, $FULL;
 if ($count > 1) {
-    die color("ERR:", 31)." Options -p, -r, -w, -i, -f cannot be used together\n";
+    log_error("Options -p, -r, -w, -i, -f cannot be used together");
 }
 
 usage() if $HELP;
 
 if ($> != 0 && ($FULL || $INCREMENTAL)) {
-    warn color("WRN:", 33)." Running without root privileges. If backing up system files, tar may fail with exit code 2. Consider using: sudo chains ...\n";
+    log_warn("Running without root privileges");
+    log_warn("If backing up system files, tar may fail with exit code 2");
+    log_warn("Consider using: sudo chains ...");
 }
 
 if (defined $DIR) {
-    say color("INF:", 32)." Changing directory to: $DIR";
+    log_info("Changing directory to: $DIR");
     verify_dir($DIR);
-    chdir $DIR or die color("ERR:", 31)." Cannot change to directory '$DIR': $!\n";
-    say color("INF:", 32)." Now in: " . getcwd();
+    chdir $DIR or log_error("Cannot change to directory '$DIR': $!");
+    log_info("Now in: ".getcwd());
 }
 
 # latest by default
@@ -942,7 +952,7 @@ if ($RECOVER) {
     } else {
         unshift @ARGV, $timestamp;
     }
-    say color("INF:", 32)." Recovering state: $RECOVER";
+    log_info("Recovering state: $RECOVER");
 }
 
 # latest by default
@@ -964,7 +974,7 @@ if ($VERIFY) {
     } else {
         unshift @ARGV, $range;
     }
-    say color("INF:", 32)." Verify chain mode: $VERIFY";
+    log_info("Verify chain mode: $VERIFY");
 }
 
 $MAIN_DIR = $MAIN_DIR_DEFAULT unless $MAIN_DIR;

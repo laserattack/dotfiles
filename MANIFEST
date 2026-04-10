@@ -19,6 +19,8 @@
 
 .config/audacious/config|symlink|
 
+wallpapers|symlink|
+
 .local/bin/emoji|symlink|
 .local/bin/chains|symlink|
 .local/bin/git-auto-backup|symlink|

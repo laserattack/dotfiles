@@ -25,6 +25,7 @@ dmidecode-3.7_1
 docker-29.3.1_1
 emacs-gtk3-30.2_2
 fastfetch-2.60.0_1
+feh-3.11.3_1
 firefox-149.0_1
 flatpak-1.16.3_2
 font-misc-misc-1.1.3_1

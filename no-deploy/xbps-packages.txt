@@ -135,6 +135,7 @@ ii faac-1.30_1                               AAC audio encoder library
 ii faad2-2.11.2_1                            AAC decoding library
 ii fastfetch-2.60.0_1                        System information fetching tool
 ii fdk-aac-2.0.3_1                           Fraunhofer FDK AAC codec library
+ii feh-3.11.3_1                              Fast and light imlib2-based image viewer
 ii ffmpeg-4.4.6_4                            Decoding, encoding and streaming software (transitional dummy package)
 ii ffmpeg6-6.1.4_1                           Decoding, encoding and streaming software
 ii ffmpegthumbnailer-2.2.3_1                 Lightweight video thumbnailer
@@ -499,6 +500,7 @@ ii libjack-1.9.22_1                          JACK Audio Connection Kit low-laten
 ii libjasper-2.0.25_1                        Software-based reference implementation of the JPEG-2000 codec - shared library
 ii libjbig2dec-0.20_1                        Decoder implementation of the JBIG2 image compression format - runtime library
 ii libjpeg-turbo-3.1.1_1                     Derivative of libjpeg which uses SIMD instructions
+ii libjpeg-turbo-tools-3.1.1_1               Derivative of libjpeg which uses SIMD instructions - bundled tools
 ii libjxl-0.11.1_3                           JPEG XL image format reference implementation
 ii libkdcraw5-25.12.3_1                      C++ interface around LibRaw library used to decode RAW
 ii libkeybinder3-0.3.2_2                     Library for registering global keyboard shortcuts (GTK+3)

@@ -23,7 +23,9 @@
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 
 (advice-add #'display-startup-echo-area-message :override #'ignore)
-(setq initial-scratch-message ";; HELLO, SAILOR!\n;; CHECK TODOS PLS\n\n")
+
+(setq initial-scratch-message "HELLO, SAILOR!\nCHECK TODOS PLS!!\n\n")
+(setq initial-major-mode 'org-mode)
 
 (setq warning-minimum-level :error)
 

@@ -1,6 +1,6 @@
 ;;; move-text.el --- Move current line or region with M-p or M-n. -*- lexical-binding: t; -*-
 
-;; filename: move-text.el
+
 ;; Description: Move current line or region with M-p (up) or M-n (down).
 ;; Author: Jason Milkins <jasonm23@gmail.com> (modified by laserattack)
 ;; Keywords: edit
@@ -153,12 +153,19 @@ We use `prefix-numeric-value' to return a number.
 (defun move-text-region (start end n)
   "Move the current region (START END) up or down by N lines."
   (interactive (move-text-get-region-and-prefix))
+
   (save-excursion
     (goto-char start)
     (setq start (line-beginning-position))
+
     (goto-char end)
+    ;; (unless (eq (char-after (point)) ?\n)
+    ;;   (insert "\n")
+    ;;   (setq end (1+ end)))
+
     (unless (bolp)
       (setq end (1+ (line-end-position)))))
+
   (let ((line-text (delete-and-extract-region start end)))
     (forward-line n)
     (let ((start-pos (point)))

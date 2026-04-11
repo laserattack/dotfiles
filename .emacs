@@ -334,11 +334,6 @@
 
 ;; denote system
 
-(defun my/denote-dired-all ()
-  "Open denote directory in dired without filters."
-  (interactive)
-  (dired org-notes-directory))
-
 (use-package denote
   :ensure t
   :hook
@@ -348,7 +343,7 @@
    ("C-c n r" . denote-rename-file)
    ("C-c n l" . denote-link)
    ("C-c n b" . denote-backlinks)
-   ("C-c n d" . my/denote-dired-all)
+   ("C-c n d" . (lambda () (interactive) (dired org-notes-directory)))
    ("C-c n g" . denote-grep))
   :config
   (setq denote-directory org-notes-directory

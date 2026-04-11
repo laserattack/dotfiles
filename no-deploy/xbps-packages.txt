@@ -1040,6 +1040,7 @@ ii quazip-1.4_1                              Qt5/C++ wrapper for the Gilles Voll
 ii radeontop-1.4_1                           View radeon GPU utilization
 ii rdiff-backup-2.2.6_4                      Local/remote mirroring and incremental backups
 ii removed-packages-0.1.20260131_1           Uninstalls packages removed from repository
+ii restic-0.18.1_1                           Backup solution written in Go
 ii rhash-1.4.6_1                             Utility for computing hash sums and creating magnet links
 ii rhino-1.7.15_1                            Mozilla's JavaScript written entirely in Java
 ii ripgrep-15.1.0_1                          Fast search tool inspired by ag and grep

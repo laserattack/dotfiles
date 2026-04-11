@@ -90,6 +90,7 @@ python3-tkinter-3.14.3_1
 qemu-10.2.0_1
 radeontop-1.4_1
 rdiff-backup-2.2.6_4
+restic-0.18.1_1
 ripgrep-15.1.0_1
 rsync-3.4.1_1
 rustup-1.29.0_1

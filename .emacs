@@ -25,7 +25,7 @@
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 
 (setq initial-scratch-message "HELLO, SAILOR!\nCHECK TODOS PLS!!\n\n")
-(setq initial-major-mode 'org-mode)
+(setq initial-major-mode 'fundamental-mode)
 
 (setq warning-minimum-level :error)
 
@@ -372,15 +372,6 @@
   (setq denote-journal-keyword "journal"
         denote-journal-directory org-journal-directory
         denote-journal-title-format 'day-date-month-year))
-
-(defun my/scratch-buffer-with-denote (orig-fun &rest args)
-  "Replace scratch buffer with today's denote journal."
-  (let ((buf (apply orig-fun args)))
-    (when (string= (buffer-name buf) "*scratch*")
-      (kill-buffer buf)
-      (denote-journal-new-or-existing-entry))))
-
-(advice-add 'scratch-buffer :around #'my/scratch-buffer-with-denote)
 
 ;; GCMH - the Garbage Collector Magic Hack
 

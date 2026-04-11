@@ -162,7 +162,7 @@ We use `prefix-numeric-value' to return a number.
       (when (not (eq (char-after (line-end-position)) ?\n))
         (goto-char (line-end-position))
         (insert "\n"))
-      (setq end (1+ (line-end-position)))))
+      (setq end (min (1+ (line-end-position)) (point-max)))))
 
   (let ((line-text (delete-and-extract-region start end)))
     (forward-line n)
@@ -215,5 +215,3 @@ We use `prefix-numeric-value' to return a number.
 (provide 'move-text)
 
 ;;; move-text.el ends here
-
-12312312311

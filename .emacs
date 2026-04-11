@@ -373,6 +373,15 @@
         denote-journal-directory org-journal-directory
         denote-journal-title-format 'day-date-month-year))
 
+(defun my/scratch-buffer-with-denote (orig-fun &rest args)
+  "Replace scratch buffer with today's denote journal."
+  (let ((buf (apply orig-fun args)))
+    (when (string= (buffer-name buf) "*scratch*")
+      (kill-buffer buf)
+      (denote-journal-new-or-existing-entry))))
+
+(advice-add 'scratch-buffer :around #'my/scratch-buffer-with-denote)
+
 ;; GCMH - the Garbage Collector Magic Hack
 
 (use-package gcmh

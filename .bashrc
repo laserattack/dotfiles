@@ -49,33 +49,34 @@ alias .....='cd ../../../..'
 export KINGSTON="/run/media/serr/KINGSTON"
 export KESU="/run/media/serr/KESU"
 
-alias fastporno='gocryptfs ~/encrypted ~/private && cd ~/private/ && fusermount -uz ~/private'
-
 porno() {
+    local ENCRYPTED_DIR="$HOME/encrypted"
+    local MOUNT_POINT="$HOME/mnt/private"
+
     if ! command -v gocryptfs &> /dev/null; then
         echo "'gocryptfs' not installed!"
         return 1
     fi
 
-    if [ ! -d ~/encrypted ]; then
-        echo "'~/encrypted' folder doesn't exist!"
+    if [ ! -d "$ENCRYPTED_DIR" ]; then
+        echo "'$ENCRYPTED_DIR' folder doesn't exist!"
         return 1
     fi
 
-    if [ ! -d ~/private ]; then
-        echo "Creating '~/private' mountpoint..."
-        mkdir -p ~/private
+    if [ ! -d "$MOUNT_POINT" ]; then
+        echo "Creating '$MOUNT_POINT' mountpoint..."
+        mkdir -p "$MOUNT_POINT"
     fi
 
-    if mount | grep -q " $HOME/private "; then
-        fusermount -u ~/private
+    if mount | grep -q " $MOUNT_POINT "; then
+        fusermount -u "$MOUNT_POINT"
         if [ $? -eq 0 ]; then
             echo "Bye-bye, tired hands!"
         else
             return 1
         fi
     else
-        gocryptfs ~/encrypted ~/private
+        gocryptfs "$ENCRYPTED_DIR" "$MOUNT_POINT"
         if [ $? -eq 0 ]; then
             echo "Enjoy your viewing!"
         else

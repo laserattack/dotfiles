@@ -46,8 +46,9 @@ alias .....='cd ../../../..'
 
 . $HOME/.local/bin/z.sh
 
-export KINGSTON="/run/media/serr/KINGSTON"
-export KESU="/run/media/serr/KESU"
+# mountpoints
+export SSD="/run/media/serr/KINGSTON"
+export HDD="/run/media/serr/KESU"
 
 porno() {
     local ENCRYPTED_DIR="$HOME/encrypted"

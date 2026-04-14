@@ -50,85 +50,8 @@ alias .....='cd ../../../..'
 export SSD="/run/media/serr/KINGSTON"
 export HDD="/run/media/serr/KESU"
 
-porno() {
-    local ENCRYPTED_DIR="$HOME/encrypted/gocryptfs/"
-    local MOUNT_POINT="$HOME/mnt/private"
-
-    if ! command -v gocryptfs &> /dev/null; then
-        echo "'gocryptfs' not installed!"
-        return 1
-    fi
-
-    if [ ! -d "$ENCRYPTED_DIR" ]; then
-        echo "'$ENCRYPTED_DIR' folder doesn't exist!"
-        return 1
-    fi
-
-    if [ ! -d "$MOUNT_POINT" ]; then
-        echo "Creating '$MOUNT_POINT' mountpoint..."
-        mkdir -p "$MOUNT_POINT"
-    fi
-
-    if mount | grep -q " $MOUNT_POINT "; then
-        fusermount -u "$MOUNT_POINT"
-        if [ $? -eq 0 ]; then
-            echo "Bye-bye, tired hands!"
-        else
-            return 1
-        fi
-    else
-        gocryptfs "$ENCRYPTED_DIR" "$MOUNT_POINT"
-        if [ $? -eq 0 ]; then
-            echo "Enjoy your viewing!"
-        else
-            return 1
-        fi
-    fi
-}
-
-m4exec() {
-    if [ $# -eq 0 ]; then
-        echo "Usage: m4exec <file1> [file2] ..."
-        return 1
-    fi
-
-    for file in "$@"; do
-        if [ ! -f "$file" ]; then
-            echo "Warning: Skipping '$file' - not found"
-            continue
-        fi
-
-        echo "Processing: $file..."
-
-        local tmp_file=$(mktemp)
-
-         m4 -D "CMD=esyscmd(\`\$1 | tr -d \"\n\"')" "$file" > "$tmp_file"
-
-        if [ $? -eq 0 ]; then
-            mv "$tmp_file" "$file"
-            echo "Updated: $file"
-        else
-            echo "Error: Failed to process $file"
-            rm "$tmp_file"
-        fi
-    done
-}
-
 backupthis () {
     cp -riv $1 ${1}-$(date +%Y%m%d%H%M).backup;
-}
-
-proctree() {
-    local usage="Usage: proctree <PID>"
-    if [ "$#" -ne 1 ]; then
-        echo "$usage"
-        return 1
-    fi
-    local pid=$1
-    echo "$pid"
-    ps -eo pid,ppid | awk -v p="$pid" '$2 == p {print $1}' | while read child; do
-        proctree "$child"
-    done
 }
 
 pyvenv() {
@@ -148,51 +71,6 @@ pyvenv() {
 
 cacheclean() {
     sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
-}
-
-radio() {
-    local usage="Usage: radio [jazz|lofi|relax|classic|black|kfai]"
-    local url
-
-    if [ "$#" -ne 1 ]; then
-        echo "$usage"
-        return 1
-    fi
-
-    case "$1" in
-        jazz)      url="https://stream.srg-ssr.ch/srgssr/rsj/mp3/128";;
-        lofi)      url="https://live.hunter.fm/lofi_low";;
-        relax)     url="https://pub0201.101.ru/stream/trust/mp3/128/24?";;
-        classic)   url="https://stream.srg-ssr.ch/srgssr/rsc_de/mp3/128";;
-        black)     url="https://moshhead-blackmetal.stream.laut.fm/moshhead-blackmetal";;
-        kfai)      url="https://kfai.broadcasttool.stream/kfai-1";;
-        *)
-            echo "$usage"
-            return 1
-            ;;
-    esac
-
-    mpv --really-quiet "$url"
-}
-
-sfx() {
-    local file="$HOME/Music/Sounds/$1"
-    for ext in ogg mp3 wav; do
-        if [[ -f "$file.$ext" ]]; then
-            mpv --really-quiet --no-video "$file.$ext"
-            return
-        fi
-    done
-}
-
-timer() {
-    if [ "$#" -ne 1 ]; then
-        echo "Usage: timer <seconds>"
-        return
-    fi
-    sleep "$1"
-    sfx good
-    notify-send -t 5000 "timer complete" "$1 seconds elapsed"
 }
 
 bb() {
@@ -254,20 +132,6 @@ line() {
 
 trash() {
     gio trash "$@"
-}
-
-tempe() {
-    cd "$(mktemp -d)"
-    chmod -R 0700 .
-    if [[ $# -eq 1 ]]; then
-        \mkdir -p "$1"
-        cd "$1"
-        chmod -R 0700 .
-    fi
-}
-
-tempec() {
-    rm -rf /tmp/tmp.*
 }
 
 mkcd() {

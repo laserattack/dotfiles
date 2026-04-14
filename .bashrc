@@ -51,7 +51,7 @@ export SSD="/run/media/serr/KINGSTON"
 export HDD="/run/media/serr/KESU"
 
 porno() {
-    local ENCRYPTED_DIR="$HOME/encrypted"
+    local ENCRYPTED_DIR="$HOME/encrypted/gocryptfs/"
     local MOUNT_POINT="$HOME/mnt/private"
 
     if ! command -v gocryptfs &> /dev/null; then

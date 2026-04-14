@@ -242,6 +242,7 @@ ii gvfs-afc-1.56.1_3                         Userspace virtual filesystem - Appl
 ii gvfs-mtp-1.56.1_3                         Userspace virtual filesystem - MTP backend
 ii gvfs-smb-1.56.1_3                         Userspace virtual filesystem - SMB/CIFS (Windows client) backend
 ii gzip-1.14_1                               GNU compression utility (replacement for compress)
+ii hdparm-9.65_1                             Utility to access IDE device parameters
 ii hicolor-icon-theme-0.18_1                 Standard icon theme called hicolor
 ii highway-1.3.0_1                           C++ library providing portable SIMD/vector intrinsics
 ii hsqldb1.8.0-1.8.0.10_1                    HyperSQL Database Engine - v1.8.0

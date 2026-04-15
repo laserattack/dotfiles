@@ -1223,6 +1223,7 @@ ii yajl-2.1.0_4                              Yet Another JSON Library
 ii yaml-cpp-0.8.0_1                          YAML parser and emitter in C++
 ii yyjson-0.12.0_1                           High performance JSON library
 ii zd1211-firmware-1.5_3                     Firmware for the Zydas 1211 wifi cards
+ii zip-3.0_6                                 Create/update ZIP files compatible with pkzip
 ii zix-0.6.2_1                               C library of portability wrappers and data structures
 ii zlib-1.3.2_1                              Compression/decompression Library
 ii zlib-devel-1.3.2_1                        Compression/decompression Library - development files

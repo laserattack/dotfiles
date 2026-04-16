@@ -1111,6 +1111,7 @@ ii tzdata-2026a_1                            Time zone and daylight-saving time 
 ii uchardet-0.0.8_1                          Encoding detector library ported from Mozilla
 ii udiskie-2.6.2_1                           Removable disk automounter using udisks
 ii udisks2-2.10.1_1                          Disk Management Service, version 2
+ii unrar-7.2.5_1                             Unarchiver for .rar files (non-free version)
 ii unzip-6.0_15                              List, test and extract compressed files in a ZIP archive
 ii upower-1.90.9_2                           Abstraction for enumerating power devices
 ii usbredir-0.15.0_1                         USB traffic redirection protocol

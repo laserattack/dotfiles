@@ -107,6 +107,7 @@ tree-2.2.1_1
 typespeed-0.6.5_2
 udiskie-2.6.2_1
 udisks2-2.10.1_1
+unrar-7.2.5_1
 unzip-6.0_15
 valgrind-3.25.1_1
 vim-x11-9.2.0280_1

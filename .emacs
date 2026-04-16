@@ -329,7 +329,7 @@
           (when (and beg end)
             (deactivate-mark)
             (kill-new (buffer-substring-no-properties beg end))
-            (message "Hunk copied"))))))
+            (message "Magit hunk copied"))))))
 
   :bind (("C-c m" . magit-status)
          (:map magit-mode-map

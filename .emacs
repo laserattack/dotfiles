@@ -319,6 +319,26 @@
   :ensure t
   :config
   (setq magit-auto-revert-mode nil)
+
+  (defun my/magit-copy-whole-hunk ()
+    (interactive)
+    (when-let ((section (magit-current-section)))
+      (when (magit-section-match 'hunk section)
+        (let ((beg (oref section start))
+              (end (oref section end)))
+          (when (and beg end)
+            (deactivate-mark)
+            (kill-new (buffer-substring-no-properties beg end))
+            (message "Hunk copied"))))))
+
+  :bind (("C-c m" . magit-status)
+         (:map magit-mode-map
+               ("C-w" . my/magit-copy-whole-hunk))))
+
+(use-package magit
+  :ensure t
+  :config
+  (setq magit-auto-revert-mode nil)
   :bind (("C-c m" . magit-status)))
 
 ;; multiple cursors

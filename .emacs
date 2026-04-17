@@ -320,20 +320,20 @@
   :config
   (setq magit-auto-revert-mode nil)
 
-  (defun my/magit-copy-hunk ()
+  (defun my/magit-copy-section ()
     (interactive)
-    (when-let ((section (magit-current-section)))
-      (when (magit-section-match 'hunk section)
-        (let ((beg (oref section start))
-              (end (oref section end)))
-          (when (and beg end)
-            (deactivate-mark)
-            (kill-new (buffer-substring-no-properties beg end))
-            (message "Magit hunk copied"))))))
+    (if (use-region-p)
+        (kill-ring-save (region-beginning) (region-end))
+      (when-let ((section (magit-current-section))
+                 (beg (oref section start))
+                 (end (oref section end)))
+        (deactivate-mark)
+        (kill-ring-save beg end)
+        (message "Magit section copied"))))
 
   :bind (("C-c m" . magit-status)
          (:map magit-mode-map
-               ("C-w" . my/magit-copy-hunk))))
+               ("M-w" . my/magit-copy-section))))
 
 (use-package magit
   :ensure t

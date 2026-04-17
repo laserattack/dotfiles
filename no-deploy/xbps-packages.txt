@@ -8,6 +8,7 @@ ii SDL2-2.32.10_1                            Simple DirectMedia Layer (version 2
 ii SDL2_image-2.8.8_2                        Load images as SDL surfaces (SDL 2.x)
 ii SDL3-3.4.2_1                              Simple DirectMedia Layer (version 3)
 ii SDL3-devel-3.4.2_1                        Simple DirectMedia Layer (version 3) - development files
+ii SDL3_ttf-3.2.2_1                          Use TrueType fonts in your SDL 3.x applications
 ii SPIRV-LLVM-Translator21-21.1.5_1          API and commands for processing SPIR-V modules - LLVM 21
 ii Thunar-4.20.8_1                           Thunar File Manager
 ii Vulkan-Headers-1.4.341.0_1                Vulkan header files
@@ -61,6 +62,7 @@ ii bubblewrap-0.11.1_1                       Unprivileged sandboxing tool
 ii bzip2-1.0.8_2                             Freely available, patent free, high-quality data compressor
 ii bzip2-devel-1.0.8_2                       Freely available, patent free, high-quality data compressor - development files
 ii c-ares-1.34.6_1                           Library for asynchronous DNS requests
+ii cJSON-1.7.19_1                            Ultralightweight JSON parser in ANSI C
 ii ca-certificates-20250419+3.121_1          Common CA certificates for SSL/TLS from Mozilla
 ii cairo-1.18.4_2                            Vector graphics library with cross-device output support
 ii cairo-devel-1.18.4_2                      Vector graphics library with cross-device output support - development files
@@ -77,9 +79,14 @@ ii clang21-headers-21.1.7_1                  LLVM Compiler Infrastructure Projec
 ii cloc-2.08_1                               Count Lines of Code
 ii clucene-2.3.3.4_11                        Text search engine written in C++
 ii cmake-4.2.2_1                             Cross-platform, open-source build system
+ii cni-plugins-1.7.1_1                       Container Network Interface (plugins)
 ii compiler-rt21-21.1.7_1                    LLVM Compiler Infrastructure Project - Version 21 - runtime libraries
 ii confuse-3.3_1                             Small configuration file parser library for C
+ii conmon-2.2.1_1                            OCI container runtime monitor
 ii containerd-2.2.0_1                        Open and reliable container runtime
+ii containers-common-0.66.1_1                Docs and configs shared by podman, buildah, and skopeo
+ii containers.image-5.38.0_1                 Configuration shared by podman, buildah, and skopeo
+ii containers.storage-1.61.0_1               Storage configuration shared by podman, buildah, and skopeo
 ii coreutils-9.4_3                           GNU core utilities
 ii cpio-2.15_1                               GNU copy-in/out (cpio) with remote magnetic tape (rmt) support
 ii cppcheck-2.19.1_2                         Static analysis of C/C++ code
@@ -165,10 +172,12 @@ ii font-sil-scheherazade-2.100_2             Font designed in a similar style to
 ii font-util-1.4.1_1                         Tools for truncating and subseting of ISO10646-1 BDF fonts
 ii fontconfig-2.16.0_3                       Library for configuring and customizing font access
 ii fontconfig-devel-2.16.0_3                 Library for configuring and customizing font access - development files
+ii freerdp-3.24.0_2                          Free RDP (Remote Desktop Protocol) client
 ii freetype-2.14.3_1                         Font rendering engine and library API
 ii freetype-devel-2.14.3_1                   Font rendering engine and library API - development files
 ii fribidi-1.0.16_1                          Free Implementation of the Unicode Bidirectional Algorithm
 ii fuse-2.9.9_1                              Filesystem in Userspace
+ii fuse-overlayfs-1.14_2                     FUSE implementation for overlayfs
 ii fuse3-3.18.1_1                            Filesystem in Userspace 3.x
 ii fzf-0.70.0_1                              Command-line fuzzy finder
 ii garcon-4.20.0_1                           Glib/GIO freedesktop.org compliant menu implementation
@@ -458,6 +467,7 @@ ii libfluidsynth-2.4.8_1                     Real-time software synthesizer base
 ii libfontenc-1.1.8_1                        Fontenc Library from X.org
 ii libfreeglut-3.8.0_1                       Open source implementation of the OpenGL Utility Toolkit library
 ii libfreehand-0.1.2_5                       Parser for Aldus/Macromedia/Adobe FreeHand documents
+ii libfreerdp-3.24.0_2                       Free RDP (Remote Desktop Protocol) client - runtime libraries
 ii libgbm-25.3.3_1                           Mesa Generic buffer management API - runtime
 ii libgbm-devel-25.3.3_1                     Mesa Generic buffer management API - development files
 ii libgcc-14.2.1+20250405_4                  GNU Compiler Collection - GCC library
@@ -587,6 +597,7 @@ ii libproxy-0.5.11_1                         Library handling all the details of
 ii libpsl-0.21.5_1                           Public Suffix List library functions
 ii libpulseaudio-16.1_2                      Featureful, general-purpose sound server - shared libraries
 ii libpyldb-util-2.9.0_3                     LDAP-like database from samba - Python3 utility library
+ii libpyside6-6.10.2_2                       Python bindings of Qt6-based libraries - shared library
 ii libpytalloc-util-2.4.3_3                  Hierarchical pool based memory allocator with destructors - Python3 utility library
 ii libqt6shadertools-6.10.2_1                Cross-platform application and UI framework - shadertools - libraries
 ii libqxp-0.0.2_11                           Parser for QuarkXPress file format documents
@@ -629,6 +640,7 @@ ii libsecret-0.21.7_1                        GObject based library for accessing
 ii libsensors-3.6.0_2                        Library to read temperature/voltage/fan sensors
 ii libserd-0.32.2_1                          Lightweight C library for RDF syntax - Runtime library
 ii libsharpyuv-1.6.0_3                       Library to expose libwebp's sharpyuv functionality
+ii libshiboken6-6.10.2_2                     CPython bindings generator for C++ libraries - shared library
 ii libsidplayfp-2.3.1_1                      Library to play Commodore 64 SID music
 ii libsigc++3-3.4.0_1                        Type-safe callback system for C++ programs
 ii libslirp-4.8.0_1                          User-mode networking library used by VMs and containers
@@ -798,6 +810,7 @@ ii ncurses-base-6.6_1                        System V Release 4.0 curses emulati
 ii ncurses-devel-6.6_1                       System V Release 4.0 curses emulation library - development files
 ii ncurses-libs-6.6_1                        System V Release 4.0 curses emulation library -- shared libraries
 ii neon-0.32.2_2                             HTTP and WebDAV client library, with a C interface
+ii netavark-1.17.2_1                         Container network stack
 ii nettle-3.10.2_1                           Low-level cryptographic library
 ii network-manager-applet-1.36.0_1           NetworkManager panel applet for GNOME
 ii newt-0.52.24_3                            Library for color text mode, widget based user interfaces
@@ -849,6 +862,7 @@ ii pam-libs-1.5.3_4                          Flexible mechanism for authenticati
 ii pango-1.56.3_2                            Library for layout and rendering of text
 ii pangomm2.48-2.50.0_1                      C++ bindings for the pango library
 ii parole-4.20.0_1                           Modern simple media player
+ii passt-2026.01.20.386b5f5_1                Plug A Simple Socket Transport
 ii patch-2.7.6_4                             Patch files using diff output
 ii pavucontrol-6.2_1                         PulseAudio Volume Control
 ii pcaudiolib-1.2_2                          Portable C Audio Library
@@ -877,6 +891,8 @@ ii pipewire-devel-1.6.2_1                    Server and user space API to deal w
 ii pixman-0.46.4_1                           Library of low-level pixel manipulation routines
 ii pixman-devel-0.46.4_1                     Library of low-level pixel manipulation routines - development files
 ii pkg-config-0.29.2_3                       System for managing library compile/link flags
+ii podman-5.8.1_1                            Simple management tool for containers and images
+ii podman-compose-1.5.0_2                    Script to run docker-compose.yml using podman
 ii polkit-127_1                              Authorization Toolkit
 ii poppler-data-0.4.12_1                     Encoding data for the poppler PDF rendering library
 ii poppler-glib-25.12.0_1                    PDF rendering library - GLib bindings
@@ -911,10 +927,12 @@ ii python3-brlapi-6.8_2                      Braille display driver for Linux/Un
 ii python3-cairo-1.27.0_3                    Python3 bindings for the cairo graphics library
 ii python3-certifi-2025.1.31_2               Curated collection of Root Certificates
 ii python3-charset-normalizer-3.4.4_1        Encoding and language detection
+ii python3-click-8.3.1_1                     Python3 package for creating beautiful command line interfaces
 ii python3-configobj-5.0.8_4                 Simple but powerful config file reader and writer (Python3)
 ii python3-dbus-1.3.2_5                      D-Bus Python3 bindings
 ii python3-devel-3.14.3_1                    Python programming language (3.14 series) - development files
 ii python3-docopt-0.6.2_12                   Pythonic argument parser, that will make you smile (Python3)
+ii python3-dotenv-1.1.0_2                    Python module to get and set variables in .env files
 ii python3-gobject-3.56.2_1                  Python3 bindings for GObject
 ii python3-idna-3.11_1                       Internationalized Domain Names in Applications (IDNA) for Python3
 ii python3-keyutils-0.6_11                   Python3 bindings for keyutils
@@ -924,10 +942,12 @@ ii python3-packaging-26.0_1                  Core utilities for Python packages 
 ii python3-parsing-3.3.2_1                   Python parsing module
 ii python3-pip-26.0.1_1                      PyPA recommended tool for installing PyPI packages (Python3)
 ii python3-pyacoustid-1.3.0_3                Python3 bindings for Chromaprint and the Acoustid API
+ii python3-pyside6-6.10.2_2                  Python bindings of Qt6-based libraries
 ii python3-pyxattr-0.8.1_4                   Filesystem extended attributes for python
 ii python3-rapidfuzz-3.13.0_2                Rapid fuzzy string matching in Python using various string metrics
 ii python3-requests-2.32.5_1                 Python3 HTTP library for human beings
 ii python3-setuptools-80.10.2_1              Easily build and distribute Python3 packages
+ii python3-shiboken6-6.10.2_2                Python shiboken6 bindings
 ii python3-sip-PyQt5-12.17.1_2               Python 3 PyQt5 SIP bindings with C and C++
 ii python3-six-1.17.0_2                      Python 2 and 3 compatibility utilities (Python3)
 ii python3-smartypants-2.0.2_2               Python with the SmartyPants
@@ -1063,6 +1083,7 @@ ii shaderc-2026.1_1                          Collection of tools, libraries and 
 ii shadow-4.8.1_3                            Shadow password file utilities
 ii shared-mime-info-2.4_2                    Core database of common types
 ii slang-2.3.2_2                             S-Lang programming library
+ii slirp4netns-1.3.3_1                       User-mode networking for unprivileged network namespaces
 ii slock-1.6_1                               Simple screen locker for X
 ii snappy-1.2.2_2                            Fast compressor/decompressor library
 ii sndio-devel-1.10.0_1                      Small audio and MIDI framework part of the OpenBSD project -- development files
@@ -1115,6 +1136,7 @@ ii udisks2-2.10.1_1                          Disk Management Service, version 2
 ii unrar-7.2.5_1                             Unarchiver for .rar files (non-free version)
 ii unzip-6.0_15                              List, test and extract compressed files in a ZIP archive
 ii upower-1.90.9_2                           Abstraction for enumerating power devices
+ii uriparser-0.9.8_1                         RFC 3986 compliant URI parsing and handling library
 ii usbredir-0.15.0_1                         USB traffic redirection protocol
 ii usbutils-019_1                            Linux USB utilities
 ii usrsctp-0.9.5.0_1                         Portable SCTP userland stack

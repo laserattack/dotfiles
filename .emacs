@@ -320,7 +320,7 @@
   :config
   (setq magit-auto-revert-mode nil)
 
-  (defun my/magit-copy-whole-hunk ()
+  (defun my/magit-copy-hunk ()
     (interactive)
     (when-let ((section (magit-current-section)))
       (when (magit-section-match 'hunk section)
@@ -333,7 +333,7 @@
 
   :bind (("C-c m" . magit-status)
          (:map magit-mode-map
-               ("C-w" . my/magit-copy-whole-hunk))))
+               ("C-w" . my/magit-copy-hunk))))
 
 (use-package magit
   :ensure t

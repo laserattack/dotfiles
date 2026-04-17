@@ -116,6 +116,7 @@ ii duktape-2.7.0_2                           Embeddable JavaScript engine
 ii e2fsprogs-1.47.2_1                        Ext2/3/4 Filesystem Utilities
 ii e2fsprogs-libs-1.47.2_1                   Ext2/3/4 Filesystem Utilities - shared libraries
 ii ed-1.22.4_1                               GNU Line-oriented text editor
+ii edk2-ovmf-202511_1                        EFI Development Kit II - Open Virtual Machine Firmware
 ii efibootmgr-18_1                           Tool to modify UEFI Firmware Boot Manager Variables
 ii elfutils-devel-0.194_1                    Utilities to handle ELF object files - development files
 ii elogind-252.39_1                          Standalone logind fork

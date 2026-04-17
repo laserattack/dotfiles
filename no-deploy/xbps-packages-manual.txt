@@ -29,7 +29,6 @@ feh-3.11.3_1
 firefox-149.0_1
 flatpak-1.16.3_2
 font-misc-misc-1.1.3_1
-freerdp-3.24.0_2
 fzf-0.70.0_1
 gcc-14.2.1+20250405_4
 gdu-5.33.0_1
@@ -78,8 +77,6 @@ obs-32.1.0_1
 orca-48.6_2
 p7zip-26.00_1
 pipewire-1.6.2_1
-podman-5.8.1_1
-podman-compose-1.5.0_2
 portaudio-devel-190600.20161030_6
 psmisc-23.7_1
 puddletag-2.5.0_1
@@ -87,7 +84,6 @@ pulseaudio-16.1_2
 putty-0.81_1
 python3-devel-3.14.3_1
 python3-pip-26.0.1_1
-python3-pyside6-6.10.2_2
 python3-setuptools-80.10.2_1
 python3-tkinter-3.14.3_1
 qemu-10.2.0_1

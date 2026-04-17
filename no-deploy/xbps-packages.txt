@@ -1080,6 +1080,7 @@ ii spice-gtk-0.42_1                          GTK+ SPICE widget
 ii sqlite-3.51.2_1                           SQL Database Engine in a C Library
 ii sqlite-devel-3.51.2_1                     SQL Database Engine in a C Library - development files
 ii sratom-0.6.18_2                           Library for serialising LV2 atoms to/from RDF (Turtle syntax)
+ii ssr-0.4.4_3                               Simple Screen Recorder for programs and games
 ii startup-notification-0.12_11              Library for tracking application startup
 ii strace-6.18_1                             System Call Tracer
 ii sudo-1.9.17p1_1                           Allow others to run commands as root

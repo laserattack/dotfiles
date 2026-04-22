@@ -912,6 +912,7 @@ ii python3-brlapi-6.8_2                      Braille display driver for Linux/Un
 ii python3-cairo-1.27.0_3                    Python3 bindings for the cairo graphics library
 ii python3-certifi-2025.1.31_2               Curated collection of Root Certificates
 ii python3-charset-normalizer-3.4.4_1        Encoding and language detection
+ii python3-click-8.3.1_1                     Python3 package for creating beautiful command line interfaces
 ii python3-configobj-5.0.8_4                 Simple but powerful config file reader and writer (Python3)
 ii python3-dbus-1.3.2_5                      D-Bus Python3 bindings
 ii python3-devel-3.14.4_1                    Python programming language (3.14 series) - development files
@@ -924,6 +925,8 @@ ii python3-mutagen-1.46.0_5                  Python3 multimedia tagging library
 ii python3-packaging-26.0_1                  Core utilities for Python packages (Python3)
 ii python3-parsing-3.3.2_1                   Python parsing module
 ii python3-pip-26.0.1_1                      PyPA recommended tool for installing PyPI packages (Python3)
+ii python3-pipx-1.11.1_1                     Install and Run Python Applications in Isolated Environments
+ii python3-platformdirs-4.4.0_2              Library to determine platform-specific system directories
 ii python3-pyacoustid-1.3.0_3                Python3 bindings for Chromaprint and the Acoustid API
 ii python3-pyxattr-0.8.1_4                   Filesystem extended attributes for python
 ii python3-rapidfuzz-3.13.0_2                Rapid fuzzy string matching in Python using various string metrics
@@ -936,6 +939,7 @@ ii python3-tkinter-3.14.4_1                  Python programming language - GUI t
 ii python3-toml-0.10.2_6                     Python3 library for TOML
 ii python3-typogrify-2.1.0_2                 Filters to enhance web typography
 ii python3-urllib3-2.6.3_1                   HTTP library with thread-safe connection pooling
+ii python3-userpath-1.9.2_3                  Cross-platform tool for adding locations to the user PATH
 ii python3-xdg-0.28_6                        Python3 library to access freedesktop.org standards
 ii python3-yaml-6.0.2_3                      YAML parser and emitter for Python 3
 ii qemu-10.2.0_2                             Open source processor emulator

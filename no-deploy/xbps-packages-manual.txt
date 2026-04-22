@@ -85,6 +85,7 @@ pulseaudio-16.1_2
 putty-0.81_1
 python3-devel-3.14.4_1
 python3-pip-26.0.1_1
+python3-pipx-1.11.1_1
 python3-setuptools-80.10.2_1
 python3-tkinter-3.14.4_1
 qemu-10.2.0_2

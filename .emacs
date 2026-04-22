@@ -22,6 +22,8 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ;; also support <space> for y
 
+(setq confirm-kill-emacs 'y-or-n-p)
+
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 
 (setq initial-scratch-message "HELLO, SAILOR!\nCHECK TODOS PLS!!\n\n")

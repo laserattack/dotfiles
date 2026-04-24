@@ -15,6 +15,7 @@ ii aalib-1.4rc5_3                            Portable ASCII art GFX library
 ii abseil-cpp-20250512.1_1                   Abseil common libraries
 ii acl-2.3.2_1                               Access Control List filesystem support
 ii acpid-2.0.34_4                            ACPI Daemon (acpid) With Netlink Support
+ii ada-3.4.4_1                               WHATWG-compliant and fast URL parser written
 ii adwaita-icon-theme-49.0_1                 Theme consisting of a set of icons for GTK+
 ii alsa-firmware-1.2.4_1                     Advanced Linux Sound Architecture (ALSA) firmware
 ii alsa-lib-1.2.15.1_2                       Advanced Linux Sound Architecture (ALSA) library
@@ -746,6 +747,7 @@ ii linux-firmware-nvidia-20260309_1          Binary firmware blobs for the Linux
 ii linux-headers-6.12_1                      Linux kernel headers meta package
 ii linux6.12-6.12.82_1                       Linux kernel and modules (6.12 series)
 ii linux6.12-headers-6.12.82_1               Linux kernel and modules (6.12 series) - source headers for 3rd party modules
+ii llhttp-9.3.1_1                            Port of http_parser to llparse
 ii lmdb-0.9.35_1                             Lightning Memory-Mapped Database Manager
 ii lowdown-2.0.4_1                           Simple markdown translator
 ii lpsolve-5.5.2.11_1                        Mixed Integer Linear Programming (MILP) solver
@@ -806,6 +808,7 @@ ii nghttp2-1.68.1_1                          HTTP/2 C Library
 ii nghttp3-1.15.0_1                          HTTP/3 library written in C
 ii ngtcp2-1.22.1_1                           Effort to implement IETF QUIC protocol
 ii nmap-7.98_2                               Utility for network discovery and security auditing
+ii nodejs-24.14.1_1                          Evented I/O for V8 javascript
 ii noto-fonts-cjk-1_1                        Google Noto CJK fonts (meta package)
 ii noto-fonts-cjk-sans-2.004_1               Google Noto CJK Fonts - sans serif fonts
 ii noto-fonts-cjk-serif-2.003_1              Google Noto CJK Fonts - serif fonts

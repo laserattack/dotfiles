@@ -209,6 +209,7 @@ ii gnome-themes-standard-3.28_4              Extra GNOME themes (transitional du
 ii gnupg-2.4.9_1                             GNU Privacy Guard (2.x)
 ii gnutls-3.8.10_1                           GNU Transport Layer Security library
 ii gobject-introspection-1.86.0_2            Introspection system for GObject-based libraries
+ii gocryptfs-2.6.1_1                         Encrypted overlay filesystem written in Go
 ii gpgmepp-2.0.0_1                           GnuPG Made Easy - C++ libraries
 ii gpick-0.3_1                               Advanced color picker written in C++ using GTK+ toolkit
 ii graphene-1.10.8_1                         Thin layer of types for graphic libraries

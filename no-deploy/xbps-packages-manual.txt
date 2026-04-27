@@ -40,6 +40,7 @@ glxinfo-9.0.0_2
 gnome-keyring-48.0_1
 gnome-themes-standard-3.28_4
 gobject-introspection-1.86.0_2
+gocryptfs-2.6.1_1
 gpick-0.3_1
 graphviz-14.1.5_1
 grub-i386-efi-2.12_2

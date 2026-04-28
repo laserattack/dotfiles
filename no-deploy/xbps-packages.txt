@@ -186,6 +186,7 @@ ii gi-docgen-2026.1_1                        Documentation generator for GObject
 ii giflib-5.2.2_1                            Library to handle, display and manipulate GIF images
 ii gir-freedesktop-1.86.0_2                  Introspection data for some FreeDesktop components
 ii git-2.53.0_1                              Git Tree History Storage Tool
+ii git-lfs-3.6.1_1                           Git extension for versioning large files
 ii glew-2.2.0_1                              OpenGL Extension Wrangler Library
 ii glew-devel-2.2.0_1                        OpenGL Extension Wrangler Library - development files
 ii glfw-3.4_1                                Multi-platform library for creating windows with OpenGL contexts

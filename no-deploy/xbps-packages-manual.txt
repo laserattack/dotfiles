@@ -34,6 +34,7 @@ fzf-0.71.0_1
 gcc-14.2.1+20250405_4
 gdu-5.33.0_1
 git-2.53.0_1
+git-lfs-3.6.1_1
 glew-devel-2.2.0_1
 glfw-devel-3.4_1
 glxinfo-9.0.0_2

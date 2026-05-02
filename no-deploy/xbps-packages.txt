@@ -224,7 +224,6 @@ ii grub-i386-efi-2.12_2                      GRand Unified Bootloader 2 - i386 E
 ii grub-x86_64-efi-2.12_2                    GRand Unified Bootloader 2 - x86_64 EFI support
 ii gsettings-desktop-schemas-48.0_1          Collection of GSettings schemas
 ii gsl-2.8_1                                 Numerical library for C and C++ programmers
-ii gsoap-2.8.124_2                           Toolkit for SOAP and REST Web Services and XML-Based Applications
 ii gspell-1.14.2_1                           Flexible API to add spell checking to a GTK+ application
 ii gst-libav-1.28.1_1                        GStreamer libav plugin (1.x)
 ii gst-plugins-bad1-1.28.1_1                 GStreamer plugins from the bad set (v1.x)
@@ -672,7 +671,6 @@ ii libtinysparql-3.11.0_1                    Low-footprint RDF triple store libr
 ii libtirpc-1.3.7_2                          Transport Independent RPC library (SunRPC replacement)
 ii libtommath-1.3.0_1                        Portable number theoretic multiple-precision integer library
 ii libtool-2.4.7_8                           Generic library support script
-ii libtpms-0.10.2_1                          Software emulation of a Trusted Platform Module (TPM 1.2 and TPM 2.0)
 ii libunbound-1.24.2_1                       Validating, recursive, and caching DNS resolver - shared library
 ii libunibreak-5.1_1                         Implementation of the Unicode line breaking algorithm
 ii libunistring-1.0_1                        Library for manipulating Unicode strings and C strings
@@ -1033,7 +1031,6 @@ ii qt6-core-6.10.2_1                         Cross-platform application and UI f
 ii qt6-dbus-6.10.2_1                         Cross-platform application and UI framework (QT6) - DBus
 ii qt6-declarative-6.10.2_1                  Cross-platform application and UI framework - Declarative
 ii qt6-gui-6.10.2_1                          Cross-platform application and UI framework (QT6) - Gui
-ii qt6-help-6.10.2_1                         Cross-platform application and UI framework (QT6) - qt6-tools component - Help libraries
 ii qt6-multimedia-6.10.2_1                   Cross-platform application and UI framework - multimedia
 ii qt6-network-6.10.2_1                      Cross-platform application and UI framework (QT6) - Network
 ii qt6-opengl-widgets-6.10.2_1               Cross-platform application and UI framework (QT6) - OpenGL Widgets
@@ -1041,7 +1038,6 @@ ii qt6-printsupport-6.10.2_1                 Cross-platform application and UI f
 ii qt6-qt5compat-6.10.2_1                    Cross-platform application and UI framework - Qt5 Compatibilty Component
 ii qt6-quick3d-6.10.2_1                      Cross-platform application and UI framework - Quick3d
 ii qt6-quicktimeline-6.10.2_1                Cross-platform application and UI framework - quicktimeline
-ii qt6-scxml-6.10.2_1                        Cross-platform application and UI framework - scxml
 ii qt6-sql-6.10.2_1                          Cross-platform application and UI framework (QT6) - Sql
 ii qt6-svg-6.10.2_1                          Cross-platform application and UI framework (QT6) - qt6-svg component
 ii qt6-widgets-6.10.2_1                      Cross-platform application and UI framework (QT6) - Widgets
@@ -1140,8 +1136,6 @@ ii virglrenderer-1.0.1_1                     Virgl GL renderer library
 ii virt-manager-5.1.0_2                      User interface for managing virtual machines
 ii virt-manager-tools-5.1.0_2                Programs to create and clone virtual machines
 ii virt-viewer-11.0_1                        Tool for displaying the graphical console of a virtual machine
-ii virtualbox-ose-7.2.8_1                    General-purpose full virtualizer for x86 hardware
-ii virtualbox-ose-dkms-7.2.8_1               General-purpose full virtualizer for x86 hardware - kernel module sources for dkms
 ii vmaf-3.0.0_1                              Perceptual video quality assessment algorithm developed by Netflix
 ii vmtouch-1.3.1_1                           The Virtual Memory Toucher
 ii void-artwork-20221013_1                   Void Linux artwork

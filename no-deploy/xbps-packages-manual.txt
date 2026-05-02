@@ -119,7 +119,6 @@ valgrind-3.25.1_1
 vim-x11-9.2.0280_1
 virt-manager-5.1.0_2
 virt-viewer-11.0_1
-virtualbox-ose-7.2.8_1
 vmtouch-1.3.1_1
 void-docs-browse-2026.04.13_1
 void-live-audio-0.1.1_1

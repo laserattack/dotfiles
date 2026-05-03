@@ -22,6 +22,14 @@ window#waybar {
     margin-right: 8px;
 }
 
+#tray > widget:first-child > * {
+    margin-left: 0;
+}
+
+#tray > widget:last-child > * {
+    margin-right: 0;
+}
+
 #tray > widget > * {
     margin-left: 4px;
     margin-right: 4px;

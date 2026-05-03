@@ -3,17 +3,20 @@
     "position": "top",
     "modules-left": ["niri/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "battery", "network", "wireplumber", "tray"],
+    "modules-right": ["cpu", "memory", "battery", "network", "wireplumber", "backlight", "tray"],
     "clock": {
         "format": "{:%H:%M}",
         "tooltip": false
     },
+    "backlight": {
+        "format": "L{percent}%"
+    },
     "battery": {
-        "format": "{capacity}%",
+        "format": "B{capacity}%",
         "format-icons": ["", "", "", "", ""]
     },
     "wireplumber": {
-        "format": "{volume}%",
+        "format": "S{volume}%",
         "format-muted": "MUTE",
         "format-icons": ["", "", ""],
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"

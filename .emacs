@@ -61,7 +61,7 @@
 (package-initialize)
 
 (add-to-list 'default-frame-alist
-             '(font . "Liberation Mono-15"))
+             '(font . "Liberation Mono-12"))
 
 (global-hl-line-mode t)
 

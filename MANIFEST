@@ -1,38 +1,38 @@
-#.alacritty.toml|symlink|
-.xinitrc|symlink|
-.Xresources|symlink|
-.i3status.conf|symlink|
-.bash_profile|symlink|
-.bashrc|symlink|
-.xprofile|symlink|
+.alacritty.toml|symlink|
+#.xinitrc|symlink|
+#.Xresources|symlink|
+#.i3status.conf|symlink|
+#.bash_profile|symlink|
+#.bashrc|symlink|
+#.xprofile|symlink|
 .tmux.conf|symlink|
 
 .emacs|symlink|
 .emacs.local|symlink|
 .emacs.snippets|symlink|
 
-.config/auto-cpufreq|symlink|
-.config/nvim|symlink|
-.config/i3blocks|symlink|
-.config/i3/config|symlink|
+#.config/auto-cpufreq|symlink|
+#.config/nvim|symlink|
+#.config/i3blocks|symlink|
+#.config/i3/config|symlink|
 .config/gtk-3.0|symlink|
 
-.ssh/config|symlink|
+#.ssh/config|symlink|
 
-.config/audacious/config|symlink|
+#.config/audacious/config|symlink|
 
-wallpapers|symlink|
+#wallpapers|symlink|
 
-.local/bin/emoji|symlink|
-.local/bin/chains|symlink|
-.local/bin/git-auto-backup|symlink|
-.local/bin/rights|symlink|
-.local/bin/z.sh|symlink|
-.local/bin/gitrew|symlink|
-.local/bin/greek|symlink|
-.local/bin/clipshot|symlink|
-.local/bin/murder|symlink|
-.local/bin/xxx|symlink|
-.local/bin/sucklog|symlink|
-.local/bin/ai|symlink|
-.local/bin/deltachat|symlink|
+#.local/bin/emoji|symlink|
+#.local/bin/chains|symlink|
+#.local/bin/git-auto-backup|symlink|
+#.local/bin/rights|symlink|
+#.local/bin/z.sh|symlink|
+#.local/bin/gitrew|symlink|
+#.local/bin/greek|symlink|
+#.local/bin/clipshot|symlink|
+#.local/bin/murder|symlink|
+#.local/bin/xxx|symlink|
+#.local/bin/sucklog|symlink|
+#.local/bin/ai|symlink|
+#.local/bin/deltachat|symlink|

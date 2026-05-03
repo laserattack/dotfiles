@@ -21,3 +21,8 @@ window#waybar {
     margin-left: 8px;
     margin-right: 8px;
 }
+
+#tray > widget > * {
+    margin-left: 4px;
+    margin-right: 4px;
+}

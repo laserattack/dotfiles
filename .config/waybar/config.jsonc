@@ -5,10 +5,17 @@
     "modules-center": ["clock"],
     "modules-right": ["cpu", "memory", "battery", "network", "wireplumber", "tray"],
     "clock": {
-        "format": "{:%H:%M}"
+        "format": "{:%H:%M}",
+        "tooltip": false
     },
     "battery": {
         "format": "{capacity}%",
         "format-icons": ["", "", "", "", ""]
+    },
+    "wireplumber": {
+        "format": "{volume}%",
+        "format-muted": "MUTE",
+        "format-icons": ["", "", ""],
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     }
 }

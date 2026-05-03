@@ -12,6 +12,7 @@
 .config/gtk-3.0|symlink|
 .config/niri|symlink|
 .config/fuzzel|symlink|
+.config/waybar|symlink|
 .ssh/config|symlink|
 
 #.config/audacious/config|symlink|

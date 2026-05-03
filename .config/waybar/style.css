@@ -1,0 +1,23 @@
+* {
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+window#waybar {
+    background: #000000;
+    color: #ffffff;
+}
+
+#workspaces button {
+    color: #888888;
+}
+
+#workspaces button.focused {
+    color: #ffffff;
+}
+
+#cpu, #memory, #battery, #network, #pulseaudio, #tray {
+    margin-left: 8px;
+    margin-right: 8px;
+}

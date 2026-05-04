@@ -322,6 +322,8 @@
   :config
   (setq magit-auto-revert-mode nil)
 
+  (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
+
   (defun my/magit-copy-section ()
     (interactive)
     (if (use-region-p)
@@ -336,12 +338,6 @@
   :bind (("C-c m" . magit-status)
          (:map magit-mode-map
                ("M-w" . my/magit-copy-section))))
-
-(use-package magit
-  :ensure t
-  :config
-  (setq magit-auto-revert-mode nil)
-  :bind (("C-c m" . magit-status)))
 
 ;; multiple cursors
 

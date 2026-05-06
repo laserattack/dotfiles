@@ -50,6 +50,7 @@ grub-x86_64-efi-2.12_2
 gvfs-afc-1.56.1_3
 gvfs-mtp-1.56.1_3
 gvfs-smb-1.56.1_3
+herbstluftwm-0.9.6_1
 i3-4.24_1
 i3blocks-1.5_2
 i3status-2.15_1

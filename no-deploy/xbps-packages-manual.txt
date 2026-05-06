@@ -50,7 +50,6 @@ grub-x86_64-efi-2.12_2
 gvfs-afc-1.56.1_3
 gvfs-mtp-1.56.1_3
 gvfs-smb-1.56.1_3
-herbstluftwm-0.9.6_1
 i3-4.24_1
 i3blocks-1.5_2
 i3status-2.15_1
@@ -74,6 +73,7 @@ mpv-0.41.0_2
 ncurses-devel-6.6_1
 network-manager-applet-1.36.0_1
 nmap-7.98_2
+nodejs-24.14.1_2
 noto-fonts-cjk-1_1
 noto-fonts-emoji-2.051_2
 nvidia-595.58.03_1

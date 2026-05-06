@@ -831,6 +831,8 @@ ii opencore-amr-0.1.6_1                      AMRNB/AMRWB Encoder Decoder
 ii openh264-2.6.0_2                          OpenH264 is a codec library which supports H.264 encoding and decoding
 ii openjdk-common-3_1                        Common files for OpenJDK packages
 ii openjdk11-jre-11.0.25+5_3                 OpenJDK Java Development Kit (version 11) - runtime components
+ii openjdk17-17.0.15+2_2                     OpenJDK Java Development Kit (version 17)
+ii openjdk17-jre-17.0.15+2_2                 OpenJDK Java Development Kit (version 17) - runtime components
 ii openresolv-3.17.4_1                       Management framework for resolv.conf
 ii openssh-10.3p1_1                          OpenSSH free Secure Shell (SSH) client and server implementation
 ii openssl-3.6.2_1                           Toolkit for Secure Sockets Layer and Transport Layer Security

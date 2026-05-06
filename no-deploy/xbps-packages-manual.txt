@@ -78,6 +78,7 @@ noto-fonts-cjk-1_1
 noto-fonts-emoji-2.051_2
 nvidia-595.58.03_1
 nvidia-container-toolkit-1.17.5_1
+openjdk17-17.0.15+2_2
 orca-48.6_2
 pipewire-1.6.2_1
 portaudio-devel-190600.20161030_6

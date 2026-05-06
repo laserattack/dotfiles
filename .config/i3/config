@@ -94,7 +94,8 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # https://github.com/i3/i3/discussions/6081
-bindsym $mod+r layout tabbed, mark _tabbed, [workspace=__focused__] move to window mark _tabbed
+# bindsym $mod+r layout tabbed, mark _tabbed, [workspace=__focused__] move to window mark _tabbed
+bindsym $mod+r focus parent, layout toggle split, layout tabbed, mark _tabbed, [workspace=__focused__] move to window mark _tabbed, focus child
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle

@@ -443,6 +443,10 @@
 (use-package rust-mode
   :ensure t)
 
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . jtsx-typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . jtsx-tsx-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . jtsx-jsx-mode))
+
 ;; ===== LANGUAGES MODES =====
 
 

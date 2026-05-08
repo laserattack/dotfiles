@@ -44,8 +44,6 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-. $HOME/.local/bin/z.sh
-
 # mountpoints
 export SSD="/run/media/serr/KINGSTON"
 export HDD="/run/media/serr/KESU"

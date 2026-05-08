@@ -13,7 +13,6 @@
 .emacs.snippets|symlink|
 
 .config/auto-cpufreq|symlink|
-.config/nvim|symlink|
 .config/i3blocks|symlink|
 .config/i3/config|symlink|
 .config/gtk-3.0|symlink|

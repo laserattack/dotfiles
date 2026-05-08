@@ -6,6 +6,7 @@
 .bashrc|symlink|
 .xprofile|symlink|
 .tmux.conf|symlink|
+.vimrc|symlink|
 
 .emacs|symlink|
 .emacs.local|symlink|
@@ -24,11 +25,8 @@
 wallpapers|symlink|
 
 .local/bin/git-auto-backup|symlink|
-.local/bin/rights|symlink|
-.local/bin/z.sh|symlink|
 .local/bin/greek|symlink|
 .local/bin/clipshot|symlink|
-.local/bin/murder|symlink|
 .local/bin/sucklog|symlink|
 .local/bin/ai|symlink|
 .local/bin/deltachat|symlink|

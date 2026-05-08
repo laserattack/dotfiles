@@ -1173,6 +1173,7 @@ ii xcb-util-renderutil-0.3.10_1              Utility libraries for XCB - Render 
 ii xcb-util-wm-0.4.2_1                       Utility libraries for XC Binding - window-manager helpers for ICCCM
 ii xcb-util-xrm-1.3_1                        XCB utility functions for the X resource manager
 ii xclip-0.13_2                              Command line interface to the X11 clipboard
+ii xcolor-0.5.1_2                            Lightweight color picker for X11
 ii xcursor-vanilla-dmz-0.4.5_2               Vanilla DMZ cursor theme
 ii xcursor-vanilla-dmz-aa-0.4.5_2            Vanilla DMZ cursor theme
 ii xdg-dbus-proxy-0.1.7_1                    Filtering proxy for D-Bus connections

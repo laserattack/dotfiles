@@ -50,10 +50,6 @@ alias .....='cd ../../../..'
 export SSD="/run/media/serr/KINGSTON"
 export HDD="/run/media/serr/KESU"
 
-backupthis () {
-    cp -riv $1 ${1}-$(date +%Y%m%d%H%M).backup;
-}
-
 pyvenv() {
     if [ -n "$VIRTUAL_ENV" ]; then
         echo "Already in virtual environment '$VIRTUAL_ENV'. Deactivating..."
@@ -71,16 +67,6 @@ pyvenv() {
 
 cacheclean() {
     sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches'
-}
-
-bb() {
-    for cmd in "$@"; do
-        setsid "$cmd" &>/dev/null
-    done
-}
-
-hoy() {
-    echo "$(date '+%Y-%m-%d')"
 }
 
 copy() {
@@ -105,42 +91,9 @@ prettypath() {
     /g'
 }
 
-running() {
-    process_list="$(ps -eo 'pid command')"
-    if [[ $# != 0 ]]; then
-        process_list="$(echo "$process_list" | grep -Fi "$@")"
-    fi
-
-    echo "$process_list" |
-        grep -Fv "${BASH_SOURCE[0]}" |
-        grep -Fv grep |
-        GREP_COLORS='mt=00;35' grep -E --colour=auto '^\s*[[:digit:]]+'
-}
-
-uppered() {
-    tr '[:lower:]' '[:upper:]'
-}
-
-lowered() {
-    tr '[:upper:]' '[:lower:]'
-}
-
-# example: cat some_big_file | line 10
-line() {
-    head -n "$1" | tail -n 1
-}
-
-trash() {
-    gio trash "$@"
-}
-
 mkcd() {
     \mkdir -p "$1"
     cd "$1"
-}
-
-cpwd() {
-    pwd | tr -d '\n' | copy
 }
 
 gacp() {
@@ -169,6 +122,7 @@ gcf() {
         git checkout
     )
 }
+
 . "$HOME/.cargo/env"
 
 export NVM_DIR="$HOME/.nvm"

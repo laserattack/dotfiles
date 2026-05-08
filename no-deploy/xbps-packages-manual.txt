@@ -130,6 +130,7 @@ wireless-regdb-2025.07.10_1
 wireshark-qt-4.6.4_1
 xauth-1.1.5_1
 xclip-0.13_2
+xcolor-0.5.1_2
 xcursor-vanilla-dmz-0.4.5_2
 xcursor-vanilla-dmz-aa-0.4.5_2
 xfce4-4.20_2

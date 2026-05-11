@@ -459,12 +459,12 @@
   :mode (("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
 
-;; bison/yacc/flex/lex (один пакет на всё)
+;; bison/flex
 
 (use-package bison-mode
   :ensure t
-  :mode (("\\.y\\'"  . yacc-mode)
-         ("\\.yy\\'" . yacc-mode)
+  :mode (("\\.y\\'"  . bison-mode)
+         ("\\.yy\\'" . bison-mode)
          ("\\.l\\'"  . flex-mode)
          ("\\.ll\\'" . flex-mode)))
 

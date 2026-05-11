@@ -452,6 +452,13 @@
          ("\\.tsx\\'" . jtsx-tsx-mode)
          ("\\.jsx\\'" . jtsx-jsx-mode)))
 
+;; markdown
+
+(use-package markdown-mode
+  :ensure t
+  :mode (("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
+
 ;; ===== LANGUAGES MODES =====
 
 

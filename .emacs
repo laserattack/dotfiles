@@ -413,18 +413,13 @@
 
 ;; c mode (https://github.com/rexim/simpc-mode)
 
-;; (require 'simpc-mode)
-;; ;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
-;; (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
+(require 'simpc-mode)
+;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
+(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
-;; c mode
-
-(use-package cc-mode
+(use-package clang-format
   :ensure t
-  :mode (("\\.c\\'" . c-mode)
-         ("\\.h\\'" . c-mode))
-  :config
-  (setq c-basic-offset 4))
+  :hook (simpc-mode . clang-format-on-save-mode))
 
 ;; dockerfile
 

@@ -68,6 +68,9 @@
 (setq-default tab-width 4
               compilation-scroll-output t)
 
+;; so that the ediff control window is not in a separate frame
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
 ;; ===== CHANGE SETTINGS =====
 
 

@@ -95,14 +95,17 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
 
-;; colorize compilation buffer
-;; stolen from https://stackoverflow.com/questions/13397737/ansi-coloring-in-compilation-mode
+;; adding ansi sequence support to some buffers
+;; https://stackoverflow.com/questions/13397737/ansi-coloring-in-compilation-mode
 (ignore-errors
   (require 'ansi-color)
+
   (defun my/colorize-compilation-buffer ()
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  (add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer))
+
+  (add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer)
+  (setq magit-process-apply-ansi-colors 'filter))
 
 ;; ===== ENABLE COOL STUFF =====
 

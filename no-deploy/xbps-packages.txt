@@ -108,6 +108,7 @@ ii dnsmasq-2.92rel2_1                        Lightweight, easy to configure DNS 
 ii dnssec-anchors-20260505_1                 DNSSEC trust anchors for the root zone
 ii docker-29.4.1_1                           Docker container runtime
 ii docker-cli-29.4.1_1                       Command-line interface for the Docker daemon
+ii docker-compose-5.1.4_1                    Tool to define and run multi-container Docker applications
 ii dosfstools-4.2_1                          DOS filesystem tools
 ii dotconf-1.3_3                             A C library for parsing configuration files
 ii double-conversion-3.4.0_1                 Efficient binary-decimal and decimal-binary routines for IEEE doubles

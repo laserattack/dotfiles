@@ -472,6 +472,7 @@ ii libgccjit-14.2.1+20250405_1               Just-In-Time Compilation library fo
 ii libgcrypt-1.12.2_1                        GNU cryptographic library
 ii libgirepository-1.86.0_2                  Library for handling GObject introspection data (runtime library)
 ii libgirepository-devel-1.86.0_2            Library for handling GObject introspection data (development files)
+ii libgit2-1.9-1.9.4_1                       Git linkable library 1.9
 ii libglib-devel-2.88.0_1                    GNU library of C routines - development files
 ii libglvnd-1.7.0_1                          GL Vendor-Neutral Dispatch library
 ii libglvnd-devel-1.7.0_1                    GL Vendor-Neutral Dispatch library - development files

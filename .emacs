@@ -348,6 +348,7 @@
 ;; emado
 
 (require 'emado)
+(global-set-key (kbd "C-c t") 'emado-menu)
 
 ;; multiple cursors
 

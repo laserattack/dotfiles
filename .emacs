@@ -345,6 +345,10 @@
          (:map magit-mode-map
                ("M-w" . my/magit-copy-section))))
 
+;; emado
+
+(require 'emado)
+
 ;; multiple cursors
 
 (use-package multiple-cursors

@@ -348,14 +348,14 @@
 ;; emado
 
 (require 'emado)
-(global-set-key (kbd "C-c t") 'emado-info)
+(global-set-key (kbd "C-c e") 'emado-info)
 (set-face-attribute 'emado-field-face nil :foreground "#dcaf79" :weight 'bold)
 
 ;; multiple cursors
 
 (use-package multiple-cursors
   :ensure t
-  :bind (("C-c e" . mc/edit-lines)
+  :bind (("C-c s" . mc/edit-lines)
          ("C->"   . mc/mark-next-like-this)
          ("C-<"   . mc/mark-previous-like-this)
          ("C-c l" . mc/mark-all-like-this)

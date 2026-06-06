@@ -349,7 +349,6 @@
 
 (require 'emado)
 (global-set-key (kbd "C-c e") 'emado-info)
-(set-face-attribute 'emado-field-face nil :foreground "#dcaf79" :weight 'bold)
 
 ;; multiple cursors
 

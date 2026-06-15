@@ -73,7 +73,10 @@ ii celt-0.11.3_3                             An audio codec for use in low-delay
 ii chromaprint-1.5.1_2                       Library that extracts fingerprints from any audio source
 ii chrony-4.8_1                              Versatile implementation of the Network Time Protocol (NTP)
 ii clang-21_3                                LLVM meta package - clang
+ii clang-analyzer21-21.1.7_1                 LLVM Compiler Infrastructure Project - Version 21 - A source code analysis framework
+ii clang-tools-extra21-21.1.7_1              LLVM Compiler Infrastructure Project - Version 21 - Extra Clang tools
 ii clang21-21.1.7_1                          LLVM Compiler Infrastructure Project - Version 21 - C language family frontend
+ii clang21-devel-21.1.7_1                    LLVM Compiler Infrastructure Project - Version 21 - C language family frontend - development Files
 ii clang21-headers-21.1.7_1                  LLVM Compiler Infrastructure Project - Version 21 - C language family frontend - Headers
 ii cloc-2.08_1                               Count Lines of Code
 ii clucene-2.3.3.4_11                        Text search engine written in C++
@@ -562,6 +565,8 @@ ii libnvme-1.16.1_1                          C Library for NVM Express on Linux
 ii libodfgen-0.1.8_2                         Library for generating documents in Open Document Format
 ii libogg-1.3.6_1                            Ogg bitstream file format library
 ii libogg-devel-1.3.6_1                      Ogg bitstream file format library - development files
+ii libomp21-21.1.7_1                         LLVM Compiler Infrastructure Project - Version 21 - Clang OpenMP support library
+ii libomp21-devel-21.1.7_1                   LLVM Compiler Infrastructure Project - Version 21 - Clang OpenMP support library - development files
 ii libopenal-1.24.3_1                        Cross-platform 3D audio library
 ii libopencv-4.12.0_2                        Computer vision and machine learning software library - library files
 ii libopenexr-3.2.1_1                        High dynamic-range (HDR) image file format - runtime libraries
@@ -751,6 +756,8 @@ ii linux-headers-6.18_1                      Linux kernel headers meta package
 ii linux6.18-6.18.34_1                       Linux kernel and modules (6.18 series)
 ii linux6.18-headers-6.18.34_1               Linux kernel and modules (6.18 series) - source headers for 3rd party modules
 ii llhttp-9.4.1_1                            Port of http_parser to llparse
+ii llvm21-21.1.7_1                           LLVM Compiler Infrastructure Project - Version 21
+ii llvm21-devel-21.1.7_1                     LLVM Compiler Infrastructure Project - Version 21 - development files
 ii lmdb-0.9.35_1                             Lightning Memory-Mapped Database Manager
 ii lowdown-2.0.4_1                           Simple markdown translator
 ii lpsolve-5.5.2.11_1                        Mixed Integer Linear Programming (MILP) solver
@@ -779,6 +786,8 @@ ii minizip-1.3_1                             Zip file manipulation library
 ii minizip-ng-4.0.10_1                       Zlib-ng fork of minizip
 ii mit-krb5-libs-1.21.3_1                    MIT Kerberos 5 implementation - runtime libraries
 ii mkfontscale-1.2.4_1                       X11 Scalable Font Index Generator
+ii mlir21-21.1.7_1                           LLVM Compiler Infrastructure Project - Version 21 - multi-level IR compiler framework
+ii mlir21-devel-21.1.7_1                     LLVM Compiler Infrastructure Project - Version 21 - multi-level IR compiler framework - development files
 ii mlt7-7.36.1_1                             Multimedia framework, designed for television broadcasting
 ii mlt7-data-7.36.1_1                        Multimedia framework, designed for television broadcasting - data files
 ii mobile-broadband-provider-info-20250613_1 Database of mobile broadband service providers

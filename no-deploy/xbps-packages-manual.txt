@@ -14,6 +14,7 @@ btop-1.4.7_1
 cairo-devel-1.18.4_2
 chrony-4.8_1
 clang-21_3
+clang21-devel-21.1.7_1
 cloc-2.08_1
 cmake-4.2.2_2
 cppcheck-2.20.1_1
@@ -63,6 +64,7 @@ libreoffice-26.2.3.2_1
 libxkbfile-devel-1.1.3_1
 light-1.2.2_1
 linux-6.18_1
+llvm21-devel-21.1.7_1
 lsof-4.99.6_1
 lvm2-2.03.29_1
 make-4.4.1_1

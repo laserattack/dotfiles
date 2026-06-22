@@ -187,14 +187,14 @@
   (interactive)
   (let ((current-time (current-time)))
     (insert (format-time-string "(%Y%m%dT%H%M%S)" current-time))))
-(global-set-key (kbd "C-c i d") 'my/insert-timestamp)
+(global-set-key (kbd "C-c i t") 'my/insert-timestamp)
 
-(defun my/insert-todo-timestamp ()
-   "Insert todo in format TODO(%Y%m%dT%H%M%S) using current timestamp."
+(defun my/insert-note ()
+   "Insert note."
   (interactive)
   (let ((current-time (current-time)))
-    (insert (format-time-string "TODO(%Y%m%dT%H%M%S): " current-time))))
-(global-set-key (kbd "C-c i t") 'my/insert-todo-timestamp)
+    (insert (format-time-string "NOTE(serr): " current-time))))
+(global-set-key (kbd "C-c i n") 'my/insert-note)
 
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)

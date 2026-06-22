@@ -192,8 +192,7 @@
 (defun my/insert-note ()
    "Insert note."
   (interactive)
-  (let ((current-time (current-time)))
-    (insert (format-time-string "NOTE(serr): " current-time))))
+  (insert "NOTE(serr): "))
 (global-set-key (kbd "C-c i n") 'my/insert-note)
 
 ;; switch between windows using shift+arrows

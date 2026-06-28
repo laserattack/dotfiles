@@ -406,6 +406,7 @@ ii libboost_program_options-1.91.0_1         Free peer-reviewed portable C++ sou
 ii libboost_thread-1.91.0_1                  Free peer-reviewed portable C++ source libraries - libboost_thread
 ii libbpf-1.7.0_1                            Library for working with (e)BPF
 ii libbs2b-3.1.0_3                           Audiofilter for headphones
+ii libbsd-0.12.2_1                           Provides useful functions commonly found on BSD system
 ii libbytesize-2.10_3                        Library for operations with sizes in bytes
 ii libcaca-0.99.beta20_1                     Graphics library that outputs text instead of pixels
 ii libcacard-2.8.1_1                         Library to provide emulation of smart cards to a virtual card reader
@@ -555,6 +556,7 @@ ii libmanette-0.2.6_1                        Simple GObject game controller libr
 ii libmariadbclient-11.1.2_2                 Fast SQL database server, drop-in replacement for MySQL - client library
 ii libmaxminddb-1.9.1_1                      C library for the MaxMind DB file format
 ii libmcpp-2.7.2_8                           Portable C preprocessor - Runtime library
+ii libmd-1.2.0_1                             Message Digest functions from BSD systems
 ii libmd4c-0.5.2_1                           Markdown for C - libraries
 ii libmm-glib-1.24.2_1                       Mobile broadband modem management service - GLib library
 ii libmms-0.6.4_2                            MMS stream protocol library

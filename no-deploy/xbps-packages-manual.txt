@@ -62,6 +62,7 @@ jq-1.8.2_1
 krita-5.2.14_1
 libX11-devel-1.8.13_1
 libXft-devel-2.3.9_2
+libbsd-0.12.2_1
 libdrm-32bit-2.4.134_1
 libglvnd-32bit-1.7.0_1
 libreoffice-26.2.4.2_1

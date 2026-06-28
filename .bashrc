@@ -109,6 +109,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Android SDK
 export ANDROID_HOME=$HOME/software/android-sdk
+export ANDROID_SDK_ROOT=$HOME/software/android-sdk
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator

@@ -477,6 +477,14 @@
          ("\\.l\\'"  . flex-mode)
          ("\\.ll\\'" . flex-mode)))
 
+;; kotlin
+
+(use-package kotlin-mode
+  :ensure t
+  :mode (("\\.kt\\'" . kotlin-mode)
+         ("\\.kts\\'" . kotlin-mode)))
+
+
 ;; ===== LANGUAGES MODES =====
 
 

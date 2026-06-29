@@ -1,6 +1,7 @@
 ii 7zip-26.01_1                              File archiver with a high compression ratio
 ii AppStream-1.1.2_1                         Tools and libraries to work with AppStream metadata
 ii CoinMP-1.8.4_1                            Library that supports most of Coin CLP, CBC and CGL
+ii ImageMagick-7.1.2.25_1                    Create, edit, compose, or convert bitmap images
 ii LuaJIT-2.1.1748459687_1                   Just-In-Time Compiler for Lua
 ii MesaLib-devel-26.1.3_1                    Open source implementation of OpenGL and Vulkan - development files
 ii NetworkManager-1.56.0_1                   Network Management daemon
@@ -234,6 +235,7 @@ ii grub-2.12_2                               GRand Unified Bootloader 2
 ii grub-i386-efi-2.12_2                      GRand Unified Bootloader 2 - i386 EFI support
 ii grub-x86_64-efi-2.12_2                    GRand Unified Bootloader 2 - x86_64 EFI support
 ii gsettings-desktop-schemas-48.0_1          Collection of GSettings schemas
+ii gsfonts-20200910_1                        URW+ base35 fonts
 ii gsl-2.8_1                                 Numerical library for C and C++ programmers
 ii gspell-1.14.2_1                           Flexible API to add spell checking to a GTK+ application
 ii gst-libav-1.28.2_1                        GStreamer libav plugin (1.x)
@@ -446,6 +448,7 @@ ii libdecor-0.2.5_1                          Client-side decorations library for
 ii libdecor-devel-0.2.5_1                    Client-side decorations library for Wayland client - development files
 ii libdeflate-1.25_1                         Optimized library for DEFLATE/zlib/gzip (de)compression
 ii libdisplay-info-0.2.0_1                   EDID and DisplayID library
+ii libdjvulibre-3.5.29_1                     Utilities for the DjVu image format - runtime libraries
 ii libdrm-2.4.134_1                          Userspace interface to kernel DRM services
 ii libdrm-32bit-2.4.134_1                    Userspace interface to kernel DRM services (32bit)
 ii libdrm-devel-2.4.134_1                    Userspace interface to kernel DRM services - development files
@@ -544,6 +547,7 @@ ii liblilv-0.24.26_3                         Simple yet powerful C API for using
 ii libllvm21-21.1.7_1                        LLVM Compiler Infrastructure Project - Version 21 - library
 ii libllvm21-32bit-21.1.7_1                  LLVM Compiler Infrastructure Project - Version 21 - library (32bit)
 ii liblouis-3.37.0_1                         Open-source braille translator and back-translator
+ii liblqr-0.4.2_1                            C/C++ API for resizing of images by the seam-carving technique
 ii liblrdf-0.6.1_2                           Lightweight RDF library with special support for LADSPA plugins
 ii libltdl-2.4.7_8                           Runtime libraries for GNU Libtool Dynamic Module Loader
 ii liblz4-1.10.0_1                           LZ4 compression library
@@ -552,6 +556,7 @@ ii liblzma-32bit-5.8.3_1                     XZ-format compression library (32bi
 ii liblzma-devel-5.8.3_1                     XZ-format compression library - development files
 ii libmad-0.15.1b_10                         High-quality MPEG audio decoder
 ii libmagic-5.46_2                           File type identification library
+ii libmagick-7.1.2.25_1                      ImageMagick low-level image manipulation libraries
 ii libmanette-0.2.6_1                        Simple GObject game controller library
 ii libmariadbclient-11.1.2_2                 Fast SQL database server, drop-in replacement for MySQL - client library
 ii libmaxminddb-1.9.1_1                      C library for the MaxMind DB file format
@@ -627,6 +632,7 @@ ii libpytalloc-util-2.4.3_3                  Hierarchical pool based memory allo
 ii libqt6shadertools-6.10.2_1                Cross-platform application and UI framework - shadertools - libraries
 ii libqxp-0.0.3_1                            Parser for QuarkXPress file format documents
 ii libraptor-2.0.16_2                        Raptor RDF Syntax Library - Runtime libraries
+ii libraqm-0.10.5_1                          Library for complex text layout
 ii librasqal-0.9.33_3                        RDF Query Library - Runtime libraries
 ii libraw-0.21.4_2                           Raw image decoder library
 ii librdf-1.0.17_6                           Redland Resource Description Framework (RDF) - library
@@ -742,6 +748,7 @@ ii libwavpack-5.9.0_1                        Hybrid lossless audio compression -
 ii libwebkitgtk60-2.50.4_1                   GTK4 port of the WebKit browser engine
 ii libwebp-1.6.0_3                           WebP image format
 ii libwireshark-4.6.6_1                      Network protocol analyzer - library
+ii libwmf-0.2.15_1                           Library for reading and converting WMF (Windows Meta Files)
 ii libwnck-43.2_1                            Library for layout and rendering of text
 ii libwoff2common1.0.2-1.0.2_1               Web Open Font Format 2 reference implementaton - common library
 ii libwoff2dec1.0.2-1.0.2_1                  Web Open Font Format 2 reference implementaton - decoder library

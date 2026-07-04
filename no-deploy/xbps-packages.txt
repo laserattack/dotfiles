@@ -993,6 +993,7 @@ ii python3-parsing-3.3.2_1                   Python parsing module
 ii python3-pip-26.1.2_1                      PyPA recommended tool for installing PyPI packages (Python3)
 ii python3-pipx-1.12.0_1                     Install and Run Python Applications in Isolated Environments
 ii python3-platformdirs-4.4.0_2              Library to determine platform-specific system directories
+ii python3-psutil-5.9.8_3                    Cross-platform process and system utilities module for Python3
 ii python3-pyacoustid-1.3.0_3                Python3 bindings for Chromaprint and the Acoustid API
 ii python3-pyxattr-0.8.1_4                   Filesystem extended attributes for python
 ii python3-rapidfuzz-3.14.5_1                Rapid fuzzy string matching in Python using various string metrics
@@ -1152,6 +1153,7 @@ ii spice-gtk-0.42_1                          GTK+ SPICE widget
 ii sqlite-3.53.2_1                           SQL Database Engine in a C Library
 ii sqlite-devel-3.53.2_1                     SQL Database Engine in a C Library - development files
 ii sratom-0.6.22_1                           Library for serialising LV2 atoms to/from RDF (Turtle syntax)
+ii sshuttle-1.3.2_1                          Transparent proxy server that forwards TCP packets over ssh
 ii ssr-0.4.4_3                               Simple Screen Recorder for programs and games
 ii startup-notification-0.12_11              Library for tracking application startup
 ii steam-1.0.0.85_1                          Digital distribution client bootstrap package - Valve's steam client

@@ -831,7 +831,6 @@ ii mesa-dri-26.1.3_1                         Mesa DRI drivers
 ii mesa-libgallium-26.1.3_1                  Mesa internal shared platform for building graphics drivers
 ii mesa-libgallium-32bit-26.1.3_1            Mesa internal shared platform for building graphics drivers (32bit)
 ii mesa-opencl-26.1.3_1                      Mesa implementation of OpenCL (r600+ only)
-ii miniupnpc-2.2.7_1                         Small UPnP client library/tool to access Internet Gateway Devices
 ii minizip-1.3_1                             Zip file manipulation library
 ii minizip-ng-4.0.10_1                       Zlib-ng fork of minizip
 ii mit-krb5-libs-1.21.3_1                    MIT Kerberos 5 implementation - runtime libraries

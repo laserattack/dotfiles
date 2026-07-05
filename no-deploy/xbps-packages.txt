@@ -1098,10 +1098,12 @@ ii qt6-gui-6.10.2_1                          Cross-platform application and UI f
 ii qt6-multimedia-6.10.2_1                   Cross-platform application and UI framework - multimedia
 ii qt6-network-6.10.2_1                      Cross-platform application and UI framework (QT6) - Network
 ii qt6-opengl-widgets-6.10.2_1               Cross-platform application and UI framework (QT6) - OpenGL Widgets
+ii qt6-plugin-tls-openssl-6.10.2_1           Cross-platform application and UI framework (QT6) - TLS plugin
 ii qt6-printsupport-6.10.2_1                 Cross-platform application and UI framework (QT6) - Print Support
 ii qt6-qt5compat-6.10.2_1                    Cross-platform application and UI framework - Qt5 Compatibilty Component
 ii qt6-quick3d-6.10.2_1                      Cross-platform application and UI framework - Quick3d
 ii qt6-quicktimeline-6.10.2_1                Cross-platform application and UI framework - quicktimeline
+ii qt6-remoteobjects-6.10.2_1                Cross-platform application and UI framework - Remote Objects
 ii qt6-sql-6.10.2_1                          Cross-platform application and UI framework (QT6) - Sql
 ii qt6-svg-6.10.2_1                          Cross-platform application and UI framework (QT6) - qt6-svg component
 ii qt6-widgets-6.10.2_1                      Cross-platform application and UI framework (QT6) - Widgets

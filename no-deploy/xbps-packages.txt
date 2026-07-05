@@ -279,6 +279,7 @@ ii hyphen-fr-26.2.0.3_1                      French hyphenation rules
 ii hyphen-it_IT-26.2.0.3_1                   Italian hyphenation rules
 ii hyphen-pl-26.2.0.3_1                      Polish hyphenation rules
 ii hyphen-pt_PT-26.2.0.3_1                   Portuguese (Portugal) hyphenation rules
+ii i2pd-2.60.0_2                             Full-featured C++ implementation of I2P client
 ii i3-4.25.1_1                               Improved tiling window manager
 ii i3blocks-1.5_2                            Flexible scheduler for i3bar
 ii i3status-2.15_1                           Status bar generator for i3bar, dzen2, xmobar or similar programs
@@ -831,6 +832,7 @@ ii mesa-dri-26.1.3_1                         Mesa DRI drivers
 ii mesa-libgallium-26.1.3_1                  Mesa internal shared platform for building graphics drivers
 ii mesa-libgallium-32bit-26.1.3_1            Mesa internal shared platform for building graphics drivers (32bit)
 ii mesa-opencl-26.1.3_1                      Mesa implementation of OpenCL (r600+ only)
+ii miniupnpc-2.2.7_1                         Small UPnP client library/tool to access Internet Gateway Devices
 ii minizip-1.3_1                             Zip file manipulation library
 ii minizip-ng-4.0.10_1                       Zlib-ng fork of minizip
 ii mit-krb5-libs-1.21.3_1                    MIT Kerberos 5 implementation - runtime libraries

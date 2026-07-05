@@ -140,6 +140,7 @@ void-repo-multilib-6_4
 void-repo-nonfree-9_6
 webp-pixbuf-loader-0.2.7_1
 wget-1.25.0_1
+wireguard-0.0.20191226_1
 wireless-regdb-2026.05.30_1
 wireshark-qt-4.6.6_1
 xauth-1.1.5_1

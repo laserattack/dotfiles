@@ -1226,6 +1226,9 @@ ii webrtc-audio-processing-1.3_1             AudioProcessing library based on Go
 ii wget-1.25.0_1                             GNU wget download utility
 ii which-2.23_1                              Displays where a particular program in your path is located
 ii wifi-firmware-1.3_4                       WiFi firmware meta-package
+ii wireguard-0.0.20191226_1                  Fast, modern, secure VPN tunnel - transitional package
+ii wireguard-dkms-1.0.20220627_1             Fast, modern, secure VPN tunnel (DKMS module for Linux <= 5.5)
+ii wireguard-tools-1.0.20260223_1            Fast, modern, secure VPN tunnel - userland tools
 ii wireless-regdb-2026.05.30_1               Regulatory database used by Linux
 ii wireplumber-0.5.14_1                      Session and policy manager implementation for PipeWire
 ii wireshark-4.6.6_1                         Network protocol analyzer

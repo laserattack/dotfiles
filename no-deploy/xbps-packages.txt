@@ -135,6 +135,7 @@ ii eudev-3.2.14_2                            Fork of systemd-udev (enhanced user
 ii eudev-libudev-3.2.14_2                    Fork of systemd-udev (enhanced userland device daemon) - runtime library
 ii eudev-libudev-32bit-3.2.14_2              Fork of systemd-udev (enhanced userland device daemon) - runtime library (32bit)
 ii eudev-libudev-devel-3.2.14_2              Fork of systemd-udev (enhanced userland device daemon) - development files
+ii exfatprogs-1.2.9_1                        Tools to create, check and label exFAT filesystems
 ii exiv2-0.28.8_1                            Image metadata manipulation
 ii exo-4.20.0_1                              Extension library for the Xfce desktop environment
 ii expat-2.8.1_1                             XML parser library written in C

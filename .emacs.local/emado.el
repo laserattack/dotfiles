@@ -1,0 +1,1 @@
+/home/serr/projects/emado/emado.el

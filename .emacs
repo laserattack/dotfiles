@@ -344,6 +344,12 @@
          (:map magit-mode-map
                ("M-w" . my/magit-copy-section))))
 
+;; emado
+
+(require 'emado)
+(set-face-attribute 'emado-field-face nil :foreground "#dcaf79" :weight 'bold)
+(global-set-key (kbd "C-c e") 'emado-info)
+
 ;; multiple cursors
 
 (use-package multiple-cursors

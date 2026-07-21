@@ -1,10 +1,10 @@
 
 [audacious]
+no_confirm_playlist_delete=TRUE
 repeat=TRUE
 
 [audgui]
 filesel_path=/home/serr/Music
-no_confirm_playlist_delete=TRUE
 
 [audqt]
 icon_theme=audacious-flat-dark

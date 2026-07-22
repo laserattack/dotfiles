@@ -715,6 +715,7 @@ ii libtinysparql-3.11.0_1                    Low-footprint RDF triple store libr
 ii libtirpc-1.3.7_2                          Transport Independent RPC library (SunRPC replacement)
 ii libtommath-1.3.0_1                        Portable number theoretic multiple-precision integer library
 ii libtool-2.4.7_8                           Generic library support script
+ii libtorrent-rasterbar-2.0.10_7             C++ bittorrent library by Rasterbar Software
 ii libunbound-1.25.1_1                       Validating, recursive, and caching DNS resolver - shared library
 ii libunibreak-5.1_1                         Implementation of the Unicode line breaking algorithm
 ii libunistring-1.0_1                        Library for manipulating Unicode strings and C strings
@@ -1010,6 +1011,7 @@ ii python3-urllib3-2.7.0_1                   HTTP library with thread-safe conne
 ii python3-userpath-1.9.2_3                  Cross-platform tool for adding locations to the user PATH
 ii python3-xdg-0.28_6                        Python3 library to access freedesktop.org standards
 ii python3-yaml-6.0.2_3                      YAML parser and emitter for Python 3
+ii qbittorrent-5.2.3_1                       Free software alternative to µtorrent
 ii qemu-11.0.1_1                             Open source processor emulator
 ii qemu-common-11.0.1_1                      Open source processor emulator - common files
 ii qemu-doc-11.0.1_1                         Open source processor emulator - documentation

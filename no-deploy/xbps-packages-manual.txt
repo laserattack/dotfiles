@@ -103,6 +103,7 @@ python3-pip-26.1.2_1
 python3-pipx-1.15.0_1
 python3-setuptools-80.10.2_2
 python3-tkinter-3.14.6_1
+qbittorrent-5.2.3_1
 qemu-11.0.1_1
 qt6-remoteobjects-6.11.1_1
 radeontop-1.4_1

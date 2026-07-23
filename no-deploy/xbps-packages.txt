@@ -87,6 +87,7 @@ ii compiler-rt21-21.1.7_1                    LLVM Compiler Infrastructure Projec
 ii confuse-3.3_1                             Small configuration file parser library for C
 ii containerd-2.3.2_1                        Open and reliable container runtime
 ii coreutils-9.4_3                           GNU core utilities
+ii coyim-0.4.1_4                             Safe and secure XMPP chat client
 ii cpio-2.15_1                               GNU copy-in/out (cpio) with remote magnetic tape (rmt) support
 ii cppcheck-2.21.1_1                         Static analysis of C/C++ code
 ii cppdap-1.58.0+a_1                         C++ library for the Debug Adapter Protocol

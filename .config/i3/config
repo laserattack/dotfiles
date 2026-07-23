@@ -172,3 +172,4 @@ bar {
 # autostart
 
 exec --no-startup-id $HOME/.local/bin/syncthing
+exec --no-startup-id snixembed

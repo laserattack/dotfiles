@@ -1196,6 +1196,7 @@ ii slang-2.3.2_2                             S-Lang programming library
 ii slock-1.6_1                               Simple screen locker for X
 ii snappy-1.2.2_2                            Fast compressor/decompressor library
 ii sndio-devel-1.10.0_1                      Small audio and MIDI framework part of the OpenBSD project -- development files
+ii snixembed-0.3.0_1                         Proxy StatusNotifierItem systray API to XEmbed API
 ii socklog-2.1.2_1                           Small and secure syslogd replacement for use with runit
 ii socklog-void-20200115_2                   Void Linux socklog configuration
 ii sof-firmware-2025.12.2_1                  Sound Open Firmware and topology binaries

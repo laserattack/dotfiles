@@ -126,6 +126,7 @@ tcpdump-4.99.6_1
 terminus-font-4.49.1_1
 tldr-1.0.0.alpha_5
 tmux-3.6b_1
+torsocks-2.5.0_1
 tree-2.2.1_1
 typespeed-0.6.5_2
 udiskie-2.6.2_1

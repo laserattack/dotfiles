@@ -668,6 +668,7 @@ ii libsamplerate-0.2.2_1                     Sample Rate Converter for audio
 ii libsamplerate-devel-0.2.2_1               Sample Rate Converter for audio - development files
 ii libsane-1.3.1_2                           Scanner Access Now Easy - runtime shared library
 ii libsasl-2.1.28_2                          Cyrus SASL - runtime shared libraries
+ii libscrypt-1.22_2                          Library that implements scrypt() functionality
 ii libseccomp-2.5.5_1                        High level interface to the Linux Kernel's seccomp filter
 ii libsecret-0.21.7_1                        GObject based library for accessing the Secret Service API
 ii libsensors-3.6.0_2                        Library to read temperature/voltage/fan sensors
@@ -1181,6 +1182,8 @@ ii tinyxml2-11.0.0_1                         Simple, small and efficient C++ XML
 ii tk-8.6.17_1                               TK graphical user interface toolkit for TCL
 ii tldr-1.0.0.alpha_5                        Fast and interactive TLDR client written in Go
 ii tmux-3.6b_1                               Terminal Multiplexer
+ii tor-0.4.9.11_1                            Anonymizing overlay network
+ii torsocks-2.5.0_1                          Transparent socks proxy for use with tor
 ii tpm2-tss-4.1.3_1                          OSS implementation of the TCG TPM2 Software Stack
 ii traceroute-2.1.6_1                        Traces the route taken by packets over an IPv4/IPv6 network
 ii tree-2.2.1_1                              Recursive directory listing program

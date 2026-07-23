@@ -36,7 +36,6 @@ firefox-152.0.6_1
 flatpak-1.18.0_1
 font-misc-misc-1.1.3_1
 fzf-0.74.0_1
-gajim-2.4.6_1
 gcc-14.2.1+20250405_4
 gdu-5.36.1_1
 git-2.55.0_1

@@ -457,6 +457,11 @@
 (use-package rust-mode
   :ensure t)
 
+;; lua
+
+(use-package lua-mode
+  :ensure t)
+
 ;; typescript, tsx, jsx
 ;; you need also `M-x jtsx-install-treesit-language`
 

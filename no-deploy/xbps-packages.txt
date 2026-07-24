@@ -400,6 +400,7 @@ ii libavutil6-6.1.6_1                        FFmpeg utility library
 ii libayatana-appindicator-0.5.94_1          Ayatana Application Indicators Shared Library
 ii libayatana-indicator-0.9.4_1              Ayatana Indicators Shared Library
 ii libb2-0.98.1_1                            BLAKE2 cryptographic hash function
+ii libb64-1.2.1_1                            Library for fast encoding/decoding data into and from Base64 format
 ii libblkid-2.41.4_1                         Library to handle device identification
 ii libblkid-devel-2.41.4_1                   Library to handle device identification - development files
 ii libblockdev-3.3.1_2                       Library for manipulating block devices
@@ -583,6 +584,7 @@ ii libmtp-1.1.23_1                           Library for Microsoft's Media Trans
 ii libmwaw-0.3.22_2                          Import library for legacy Mac documents
 ii libmypaint-1.6.1_1                        MyPaint brush engine library
 ii libmysofa-1.3.2_1                         Reader for AES SOFA files to get better HRTFs
+ii libnatpmp-20230423_1                      Libraries for client side of NAT-PMP
 ii libndctl-70.1_1                           Utility library for managing libnvdimm - ndctl library
 ii libndp-1.9_1                              Library for Neighbor Discovery Protocol
 ii libnetfilter_conntrack-1.1.0_1            Library providing an API to the in-kernel connection tracking table
@@ -839,6 +841,7 @@ ii mesa-dri-26.1.5_1                         Mesa DRI drivers
 ii mesa-libgallium-26.1.5_1                  Mesa internal shared platform for building graphics drivers
 ii mesa-libgallium-32bit-26.1.5_1            Mesa internal shared platform for building graphics drivers (32bit)
 ii mesa-opencl-26.1.5_1                      Mesa implementation of OpenCL (r600+ only)
+ii miniupnpc-2.2.7_1                         Small UPnP client library/tool to access Internet Gateway Devices
 ii minizip-1.3_1                             Zip file manipulation library
 ii minizip-ng-4.0.10_1                       Zlib-ng fork of minizip
 ii mit-krb5-libs-1.21.3_1                    MIT Kerberos 5 implementation - runtime libraries
@@ -1239,6 +1242,8 @@ ii tor-0.4.9.11_1                            Anonymizing overlay network
 ii torsocks-2.5.0_1                          Transparent socks proxy for use with tor
 ii tpm2-tss-4.1.3_1                          OSS implementation of the TCG TPM2 Software Stack
 ii traceroute-2.1.6_1                        Traces the route taken by packets over an IPv4/IPv6 network
+ii transmission-4.1.3_1                      Fast, easy and free BitTorrent client
+ii transmission-qt-4.1.3_1                   Fast, easy and free BitTorrent client - Qt frontend
 ii tree-2.2.1_1                              Recursive directory listing program
 ii tree-sitter-0.25.10_2                     Parser generator tool and incremental parsing library
 ii tslib-1.24_1                              Touchscreen access library

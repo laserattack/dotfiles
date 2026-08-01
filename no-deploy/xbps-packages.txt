@@ -1194,6 +1194,7 @@ ii shadow-4.8.1_3                            Shadow password file utilities
 ii shared-mime-info-2.4_2                    Core database of common types
 ii slang-2.3.2_2                             S-Lang programming library
 ii slock-1.6_1                               Simple screen locker for X
+ii slop-7.7_1                                Utility to query for a selection and print the region to stdout
 ii snappy-1.2.2_2                            Fast compressor/decompressor library
 ii sndio-devel-1.10.0_1                      Small audio and MIDI framework part of the OpenBSD project -- development files
 ii snixembed-0.3.0_1                         Proxy StatusNotifierItem systray API to XEmbed API

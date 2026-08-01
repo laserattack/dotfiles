@@ -118,6 +118,7 @@ screenkey-1.5_5
 scrot-2.0.0_1
 setxkbmap-1.3.4_1
 slock-1.6_1
+slop-7.7_1
 snixembed-0.3.0_1
 socklog-void-20200115_2
 sshuttle-1.3.2_1

@@ -4,7 +4,7 @@ no_confirm_playlist_delete=TRUE
 repeat=TRUE
 
 [audgui]
-filesel_path=/run/media/serr/0040-4580
+filesel_path=/run/media/serr/0040-4580/Music/Lil Peep
 
 [audqt]
 icon_theme=audacious-flat-dark

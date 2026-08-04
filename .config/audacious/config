@@ -4,7 +4,7 @@ no_confirm_playlist_delete=TRUE
 repeat=TRUE
 
 [audgui]
-filesel_path=/home/serr/Music
+filesel_path=/run/media/serr/0040-4580
 
 [audqt]
 icon_theme=audacious-flat-dark
@@ -17,4 +17,4 @@ player_width=1280
 playlist_tabs_visible=0
 
 [search-tool]
-path=/home/serr/Music/Music
+path=/run/media/serr/0040-4580/Music

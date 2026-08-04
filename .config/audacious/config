@@ -4,13 +4,14 @@ no_confirm_playlist_delete=TRUE
 repeat=TRUE
 
 [audgui]
-filesel_path=/run/media/serr/0040-4580/Music/Darkthrone
+filesel_path=/run/media/serr/0040-4580/Music/Brazzaville/Albums
 
 [audqt]
 icon_theme=audacious-flat-dark
 theme=dark
 
 [qtui]
+column_widths=25,25,275,175,50,173,175,25,100,111,75,275,275,275,75,275,175,75,25,190
 menu_visible=FALSE
 player_height=687
 player_width=1280

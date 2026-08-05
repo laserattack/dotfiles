@@ -24,6 +24,7 @@ curl-8.21.0_1
 dcron-4.6_1
 dejavu-fonts-ttf-2.37_3
 dialog-1.3.20260107_1
+dino-0.5.1_2
 dmidecode-3.7_1
 docker-29.6.1_1
 docker-compose-5.1.4_1

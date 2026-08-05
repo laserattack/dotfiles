@@ -107,6 +107,7 @@ ii device-mapper-2.03.29_1                   Device Mapper userspace library and
 ii dhcpcd-10.3.1_1                           RFC2131 compliant DHCP client
 ii dialog-1.3.20260107_1                     Tool to display dialog boxes from shell scripts
 ii diffutils-3.12_1                          GNU diff utilities
+ii dino-0.5.1_2                              Modern XMPP ("Jabber") Chat Client using GTK/Vala
 ii dkms-3.3.0_1                              Dynamic Kernel Module Support
 ii dmidecode-3.7_1                           Desktop Management Interface table related utilities
 ii dnsmasq-2.93_1                            Lightweight, easy to configure DNS forwarder and DHCP server
@@ -500,6 +501,7 @@ ii libgcc-32bit-14.2.1+20250405_4            GNU Compiler Collection - GCC libra
 ii libgcc-devel-14.2.1+20250405_4            GNU Compiler Collection - GCC library - development files
 ii libgccjit-14.2.1+20250405_1               Just-In-Time Compilation library for GCC
 ii libgcrypt-1.12.2_1                        GNU cryptographic library
+ii libgee-0.20.8_2                           GObject collection library
 ii libgirepository-1.86.0_2                  Library for handling GObject introspection data (runtime library)
 ii libgirepository-devel-1.86.0_2            Library for handling GObject introspection data (development files)
 ii libglib-devel-2.88.0_1                    GNU library of C routines - development files
@@ -600,6 +602,7 @@ ii libnvme-1.16.2_1                          C Library for NVM Express on Linux
 ii libodfgen-0.1.8_2                         Library for generating documents in Open Document Format
 ii libogg-1.3.6_1                            Ogg bitstream file format library
 ii libogg-devel-1.3.6_1                      Ogg bitstream file format library - development files
+ii libomemo-c-0.5.1_2                        Fork of libsignal-protocol-c adding support for OMEMO XEP-0384
 ii libomp21-21.1.7_1                         LLVM Compiler Infrastructure Project - Version 21 - Clang OpenMP support library
 ii libomp21-devel-21.1.7_1                   LLVM Compiler Infrastructure Project - Version 21 - Clang OpenMP support library - development files
 ii libopenal-1.24.3_1                        Cross-platform 3D audio library
@@ -629,11 +632,13 @@ ii libpng-devel-1.6.58_1                     Library for manipulating PNG images
 ii libpoppler-26.06.0_1                      PDF rendering library - poppler runtime library
 ii libpostproc6-6.1.6_1                      FFmpeg video postprocessing library
 ii libprotobuf-25.2_5                        Protocol buffers C++ library
+ii libprotoc-25.2_5                          Protocol buffers compiler library
 ii libproxy-0.5.11_1                         Library handling all the details of proxy configuration
 ii libpsl-0.21.5_1                           Public Suffix List library functions
 ii libpulseaudio-16.1_2                      Featureful, general-purpose sound server - shared libraries
 ii libpyldb-util-2.9.0_3                     LDAP-like database from samba - Python3 utility library
 ii libpytalloc-util-2.4.3_3                  Hierarchical pool based memory allocator with destructors - Python3 utility library
+ii libqrencode-4.1.1_1                       Library for encoding data in a QR Code symbol - runtime library
 ii libqt6shadertools-6.11.1_1                Cross-platform application and UI framework - shadertools - libraries
 ii libqxp-0.0.3_1                            Parser for QuarkXPress file format documents
 ii libraptor-2.0.16_2                        Raptor RDF Syntax Library - Runtime libraries
@@ -960,6 +965,7 @@ ii portaudio-190600.20161030_6               Portable cross-platform audio I/O l
 ii portaudio-devel-190600.20161030_6         Portable cross-platform audio I/O library - development files
 ii postgresql-libs-18.4_1                    PostgreSQL shared libraries
 ii procps-ng-4.0.6_1                         Utilities for monitoring your system and its processes
+ii protobuf-c-1.5.0_2                        C implementation of the Google Protocol Buffers
 ii psmisc-23.7_1                             Small set of utilities that use the linux proc filesystem
 ii public-suffix-2026.01.13_1                Public Suffix List
 ii puddletag-2.5.0_1                         Powerful, simple, spreadsheet-like audio tag editor
@@ -1284,6 +1290,7 @@ ii wayland-devel-1.25.0_1                    Core Wayland window system code and
 ii wayland-protocols-1.49_1                  Protocols and extensions complementing the Wayland core protocol
 ii webp-pixbuf-loader-0.2.7_1                WebP Image format loader for GdkPixbuf
 ii webrtc-audio-processing-1.3_1             AudioProcessing library based on Google's implementation of WebRTC
+ii webrtc-audio-processing-2-2.1_1           AudioProcessing library based on Google's implementation of WebRTC v2
 ii wget-1.25.0_1                             GNU wget download utility
 ii which-2.23_1                              Displays where a particular program in your path is located
 ii wifi-firmware-1.3_4                       WiFi firmware meta-package

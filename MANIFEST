@@ -16,6 +16,7 @@
 .config/i3blocks|symlink|
 .config/i3/config|symlink|
 .config/gtk-3.0|symlink|
+.config/gtk-4.0|symlink|
 
 .ssh/config|symlink|
 
@@ -27,7 +28,6 @@ wallpapers|symlink|
 .local/bin/greek|symlink|
 .local/bin/clipshot|symlink|
 .local/bin/sucklog|symlink|
-.local/bin/ai|symlink|
 .local/bin/deltachat|symlink|
 .local/bin/copy|symlink|
 .local/bin/colorpick|symlink|

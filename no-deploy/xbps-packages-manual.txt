@@ -156,6 +156,7 @@ xcursor-vanilla-dmz-0.4.5_2
 xcursor-vanilla-dmz-aa-0.4.5_2
 xfce4-4.20_2
 xfce4-pulseaudio-plugin-0.5.1_1
+xhost-1.0.10_1
 xinput-1.6.4_1
 xmodmap-1.0.11_1
 xorg-input-drivers-7.6_4

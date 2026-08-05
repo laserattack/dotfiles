@@ -1341,6 +1341,7 @@ ii xfdesktop-4.20.2_1                        Desktop manager for the Xfce Deskto
 ii xfsprogs-6.19.0_1                         Utilities for managing the XFS filesystem
 ii xfwm4-4.20.0_1                            Next generation window manager for Xfce
 ii xfwm4-themes-4.10.0_4                     Themes for the XFCE window manager
+ii xhost-1.0.10_1                            Server access control program for X
 ii xinit-1.4.4_1                             X init program
 ii xinput-1.6.4_1                            Utility to configure and test X input devices
 ii xkbcomp-1.5.0_1                           XKBD keymap compiler

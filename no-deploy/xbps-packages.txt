@@ -192,6 +192,7 @@ ii gd-2.3.3_2                                Graphics library for the dynamic cr
 ii gdbm-1.26_1                               GNU database routines
 ii gdk-pixbuf-2.42.12_2                      Image loading library for The GTK+ toolkit (v2)
 ii gdu-5.36.1_1                              Disk usage analyzer intended primarily for SSD disks
+ii gedit-50.0_1                              Text editor for GNOME
 ii gettext-0.22.5_1                          Internationalized Message Handling Library and tools
 ii gi-docgen-2026.1_1                        Documentation generator for GObject-based libraries
 ii giflib-5.2.2_1                            Library to handle, display and manipulate GIF images
@@ -500,6 +501,10 @@ ii libgcc-32bit-14.2.1+20250405_4            GNU Compiler Collection - GCC libra
 ii libgcc-devel-14.2.1+20250405_4            GNU Compiler Collection - GCC library - development files
 ii libgccjit-14.2.1+20250405_1               Just-In-Time Compilation library for GCC
 ii libgcrypt-1.12.2_1                        GNU cryptographic library
+ii libgedit-amtk-5.10.0_1                    Actions, Menus, and Toolbars Kit for GTK applications
+ii libgedit-gfls-0.4.0_1                     Module dedicated to file loading and saving
+ii libgedit-gtksourceview-299.7.0_1          Source code editing widget
+ii libgedit-tepl-6.14.0_1                    Text editor product line
 ii libgirepository-1.86.0_2                  Library for handling GObject introspection data (runtime library)
 ii libgirepository-devel-1.86.0_2            Library for handling GObject introspection data (development files)
 ii libglib-devel-2.88.0_1                    GNU library of C routines - development files
@@ -519,6 +524,7 @@ ii libgsm-1.0.24_1                           GSM 06.10 lossy speech compression
 ii libgtop-2.41.3_1                          Library to retrieve system information, used in GNOME
 ii libgudev-238_1                            Library providing GObject bindings for libudev
 ii libgusb-0.4.9_1                           GLib wrapper around libusb1
+ii libhandy1-1.8.3_1                         GTK+3 building blocks for modern adaptive applications
 ii libharfbuzz-14.2.1_1                      OpenType text shaping engine - runtime library
 ii libheif-1.23.0_2                          ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
 ii libhunspell1.7-1.7.2_1                    Spell checker and morphological analyzer - runtime library
@@ -621,6 +627,7 @@ ii libpciaccess-devel-0.19_1                 X11 PCI Access library - developmen
 ii libpcre-8.45_3                            Perl Compatible Regular Expressions - shared libraries
 ii libpcre2-10.47_1                          Perl Compatible Regular Expressions (2nd version) - shared libraries
 ii libpcsclite-2.4.1_1                       Middleware to access a smart card using SCard API (PC/SC) - library files
+ii libpeas-1.38.1_1                          Gobject-based plugins engine
 ii libpipewire-1.6.7_1                       Server and user space API to deal with multimedia pipelines - pipewire library
 ii libplacebo-7.360.1_1                      Reusable library for GPU-accelerated video/image rendering
 ii libplist-2.2.0_7                          Apple Property List library

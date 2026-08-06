@@ -347,7 +347,7 @@
 ;; emado
 
 (require 'emado)
-(global-set-key (kbd "C-c e") 'emado-info)
+(emado-default-bindings)
 
 ;; multiple cursors
 

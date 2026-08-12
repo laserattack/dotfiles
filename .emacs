@@ -167,6 +167,19 @@
 (global-set-key (kbd "C-c c") 'calendar)
 (global-set-key (kbd "C-c p") 'compile)
 
+(defun my/nuke-everything ()
+  "Kill all buffers without confirmation and switch to *scratch*.
+Modified buffers will be killed WITHOUT saving. Use with caution."
+  (interactive)
+  (mapc (lambda (buf)
+          (with-current-buffer buf
+            (set-buffer-modified-p nil)
+            (kill-buffer buf)))
+        (buffer-list))
+  (switch-to-buffer "*scratch*")
+  (message "Everything nuked. Just you and *scratch* now"))
+(global-set-key (kbd "C-c k") 'my/nuke-everything)
+
 (defun my/duplicate-line (&optional n)
   "Duplicate current line."
   (interactive "p")

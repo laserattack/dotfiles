@@ -2,11 +2,7 @@
 
 (setq custom-file "~/.emacs.custom.el"
       yas-snippet-dirs '("~/.emacs.snippets/")
-      local-dir "~/.emacs.local"
-      org-directory "~/org"
-      org-images-directory (expand-file-name "images" org-directory)
-      org-notes-directory (expand-file-name "notes" org-directory)
-      org-journal-directory (expand-file-name "0-journal" org-notes-directory))
+      local-dir "~/.emacs.local")
 
 ;; ===== PATHS =====
 
@@ -216,31 +212,6 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 
 
 
-;; ===== ORG MODE =====
-
-(setq org-capture-bookmark nil)
-
-;; paste images
-(use-package org-download
-  :ensure t
-  :config
-  (setq org-download-method 'directory
-        org-download-display-inline-images nil)
-  (setq-default org-download-image-dir org-images-directory)
-
-  ;; Prevent org-id from creating :PROPERTIES: :ID: when pasting images
-  (advice-add 'org-download-clipboard :around
-              (lambda (orig-fun &rest args)
-                (cl-letf (((symbol-function 'org-id-get-create) #'ignore))
-                  (apply orig-fun args)))))
-(global-set-key (kbd "C-c o i") 'org-download-clipboard)
-(global-set-key (kbd "C-c o v") 'org-toggle-inline-images)
-
-;; ===== ORG MODE =====
-
-
-
-
 ;; ===== PLUGINS =====
 
 ;; expand region
@@ -372,42 +343,6 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
          ("C-c l" . mc/mark-all-like-this)
          ("C-\""  . mc/skip-to-next-like-this)
          ("C-}"   . mc/skip-to-previous-like-this)))
-
-;; denote system
-
-(use-package denote
-  :ensure t
-  :hook
-  ((dired-mode . denote-dired-mode-in-directories))
-  :bind
-  (("C-c n n" . denote)
-   ("C-c n r" . denote-rename-file)
-   ("C-c n l" . denote-link)
-   ("C-c n b" . denote-backlinks)
-   ("C-c n d" . (lambda () (interactive) (dired org-notes-directory)))
-   ("C-c n g" . denote-grep))
-  :config
-  (setq denote-directory org-notes-directory
-        denote-dired-directories (list org-notes-directory org-journal-directory)
-        ;; there are no default tags, they are derived from the names of existing notes
-        ;; check denote-infer-keywords variable
-        denote-known-keywords '())
-  ;; Automatically rename Denote buffers when opening them so that
-  ;; instead of their long file name they have, for example, a literal
-  ;; "[D]" followed by the file's title.  Read the doc string of
-  ;; `denote-rename-buffer-format' for how to modify this.
-  (denote-rename-buffer-mode 1))
-
-(use-package denote-journal
-  :ensure t
-  :bind (("C-c n j" . denote-journal-new-or-existing-entry)
-         :map calendar-mode-map
-         ("j" . denote-journal-calendar-new-or-existing))
-  :hook (calendar-mode . denote-journal-calendar-mode)
-  :config
-  (setq denote-journal-keyword "journal"
-        denote-journal-directory org-journal-directory
-        denote-journal-title-format 'day-date-month-year))
 
 ;; GCMH - the Garbage Collector Magic Hack
 

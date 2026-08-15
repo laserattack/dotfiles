@@ -20,6 +20,8 @@
 
 .ssh/config|symlink|
 
+.gnupg/gpg-agent.conf|symlink|
+
 .config/audacious/config|symlink|
 
 wallpapers|symlink|

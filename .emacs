@@ -310,6 +310,7 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :ensure t
   :config
   (setq magit-auto-revert-mode nil)
+  (setq magit-delete-by-moving-to-trash nil)
 
   (remove-hook 'git-commit-setup-hook 'git-commit-turn-on-auto-fill)
 

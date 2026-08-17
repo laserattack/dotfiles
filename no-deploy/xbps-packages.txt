@@ -189,6 +189,8 @@ ii gcc-14.2.1+20250405_4                     GNU Compiler Collection
 ii gcr-3.41.2_1                              GNOME crypto package
 ii gcr4-4.4.0.1_2                            GNOME crypto package
 ii gd-2.3.3_2                                Graphics library for the dynamic creation of images
+ii gdb-17.2_1                                GNU Debugger
+ii gdb-common-17.2_1                         GNU Debugger - common files
 ii gdbm-1.26_1                               GNU database routines
 ii gdk-pixbuf-2.42.12_2                      Image loading library for The GTK+ toolkit (v2)
 ii gdu-5.36.1_1                              Disk usage analyzer intended primarily for SSD disks

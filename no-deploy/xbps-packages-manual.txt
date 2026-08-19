@@ -156,6 +156,7 @@ xclip-0.13_2
 xcolor-0.5.1_2
 xcursor-vanilla-dmz-0.4.5_2
 xcursor-vanilla-dmz-aa-0.4.5_2
+xdg-utils-1.2.1_1
 xfce4-4.20_2
 xfce4-pulseaudio-plugin-0.5.1_1
 xhost-1.0.10_1

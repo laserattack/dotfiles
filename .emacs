@@ -214,6 +214,20 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 
 ;; ===== PLUGINS =====
 
+;; hydra
+
+(use-package hydra
+  :ensure t
+  :bind ("C-c w" . hydra-window/body))
+
+(defhydra hydra-window (:color red :hint nil)
+  "Move: [h] left [j] down [k] up [l] right | [q] quit"
+  ("h" windmove-left)
+  ("j" windmove-down)
+  ("k" windmove-up)
+  ("l" windmove-right)
+  ("q" nil))
+
 ;; expand region
 
 (use-package expand-region

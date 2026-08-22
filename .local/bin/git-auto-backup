@@ -50,4 +50,17 @@ gacp "dotfiles"
 echo ""
 echo ""
 
+# ================ MADO
+
+echo ""
+echo ""
+
+echo "[INFO  ] Processing MADO"
+cd /home/serr/projects/documents/MADO/ || { echo "  [FAILED] Cannot enter MADO directory"; exit 1; }
+
+gacp "MADO"
+
+echo ""
+echo ""
+
 echo "[INFO  ] Git backup finished"

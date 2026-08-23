@@ -474,35 +474,49 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
     "
 System
 ------
-[_p_]: List processes     [_b_]: List bookmarks
-[_e_]: Eval expression    [_l_]: List packages
+[_e_]: Eval expression
 [_r_]: Reset tags table
 "
-    ("p" list-processes)
-    ("b" list-bookmarks)
     ("e" eval-expression)
-    ("l" list-packages)
     ("r" tags-reset-tags-tables)
     ("q" my/hydra-menu/body "quit" :exit t))
 
-  (defhydra my/hydra-describe (:color red :hint nil)
+  (defhydra my/hydra-system (:color red :hint nil)
     "
-Describe
---------
-[_v_]: Variable   [_f_]: Function
-[_k_]: Key        [_m_]: Mode
+System
+------
+[_e_]: Eval expression
+[_r_]: Reset tags table
+[_v_]: Revert buffer
+[_n_]: Rename buffer
 "
-    ("v" describe-variable)
-    ("f" describe-function)
-    ("k" describe-key)
-    ("m" describe-mode)
+    ("e" eval-expression)
+    ("r" tags-reset-tags-tables)
+    ("v" revert-buffer)
+    ("n" rename-buffer)
+    ("q" my/hydra-menu/body "quit" :exit t))
+
+  (defhydra my/hydra-open (:color red :hint nil)
+    "
+Open
+----
+[_p_]: List processes   [_d_]: Dired home
+[_l_]: List packages
+[_b_]: List bookmarks
+[_r_]: Re-builder
+"
+    ("p" list-processes)
+    ("b" list-bookmarks)
+    ("l" list-packages)
+    ("r" re-builder)
+    ("d" my/dired-home)
     ("q" my/hydra-menu/body "quit" :exit t))
 
   (defhydra my/hydra-utils (:color red :hint nil)
     "
 Utils
 -----
-[_n_]: Nuke everything       [_d_]: Dired home
+[_n_]: Nuke everything
 [_g_]: Grep in all buffers
 [_t_]: Insert timestamp
 [_i_]: Insert note
@@ -511,7 +525,6 @@ Utils
     ("t" my/insert-timestamp)
     ("i" my/insert-note)
     ("g" my/occur-all-buffers)
-    ("d" my/dired-home)
     ("q" my/hydra-menu/body "quit" :exit t))
 
   (defhydra my/hydra-menu (:color red :hint nil)
@@ -522,6 +535,7 @@ Main
     ("s" my/hydra-system/body "system" :exit t)
     ("u" my/hydra-utils/body "utils" :exit t)
     ("d" my/hydra-describe/body "describe" :exit t)
+    ("o" my/hydra-open/body "open" :exit t)
     ("q" nil "quit" :color blue))
 
   (global-set-key (kbd "C-c h") 'my/hydra-menu/body))

@@ -153,7 +153,7 @@
 
 
 
-;; ===== SOME USEFUL BINDS =====
+;; ===== SOME USEFUL STUFF =====
 
 ;; binds
 
@@ -162,6 +162,11 @@
 (global-set-key (kbd "C-c a") 'align-regexp)
 (global-set-key (kbd "C-c c") 'calendar)
 (global-set-key (kbd "C-c p") 'compile)
+
+(defun my/dired-home ()
+  "Open dired in home directory."
+  (interactive)
+  (dired "~/"))
 
 (defun my/occur-all-buffers ()
   "Search across all open buffers."
@@ -218,7 +223,7 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 
 (global-set-key (kbd "C-c d") 'my/duplicate-line)
 
-;; ===== SOME USEFUL BINDS =====
+;; ===== SOME USEFUL STUFF =====
 
 
 
@@ -465,46 +470,58 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :ensure t
   :config
 
-  (defhydra my/hydra-system (:color red :hint nil :verbosity 0)
+  (defhydra my/hydra-system (:color red :hint nil)
     "
 System
 ------
-[_p_]: List processes      [_b_]: List bookmarks
-[_v_]: Describe variable   [_e_]: Eval expression
-[_f_]: Describe function
+[_p_]: List processes     [_b_]: List bookmarks
+[_e_]: Eval expression    [_l_]: List packages
 [_r_]: Reset tags table
 "
     ("p" list-processes)
-    ("v" describe-variable)
-    ("f" describe-function)
-    ("r" tags-reset-tags-tables)
     ("b" list-bookmarks)
     ("e" eval-expression)
-    ("g" my/occur-all-buffers)
+    ("l" list-packages)
+    ("r" tags-reset-tags-tables)
     ("q" my/hydra-menu/body "quit" :exit t))
 
-  (defhydra my/hydra-utils (:color red :hint nil :verbosity 0)
+  (defhydra my/hydra-describe (:color red :hint nil)
+    "
+Describe
+--------
+[_v_]: Variable   [_f_]: Function
+[_k_]: Key        [_m_]: Mode
+"
+    ("v" describe-variable)
+    ("f" describe-function)
+    ("k" describe-key)
+    ("m" describe-mode)
+    ("q" my/hydra-menu/body "quit" :exit t))
+
+  (defhydra my/hydra-utils (:color red :hint nil)
     "
 Utils
 -----
-[_n_]: Nuke everything
+[_n_]: Nuke everything       [_d_]: Dired home
+[_g_]: Grep in all buffers
 [_t_]: Insert timestamp
 [_i_]: Insert note
-[_g_]: Grep in all buffers
 "
     ("n" my/nuke-everything)
     ("t" my/insert-timestamp)
     ("i" my/insert-note)
     ("g" my/occur-all-buffers)
+    ("d" my/dired-home)
     ("q" my/hydra-menu/body "quit" :exit t))
 
-  (defhydra my/hydra-menu (:color red :hint nil :verbosity 0)
+  (defhydra my/hydra-menu (:color red :hint nil)
     "
 Main
 ----
 "
     ("s" my/hydra-system/body "system" :exit t)
-    ("m" my/hydra-utils/body "my" :exit t)
+    ("u" my/hydra-utils/body "utils" :exit t)
+    ("d" my/hydra-describe/body "describe" :exit t)
     ("q" nil "quit" :color blue))
 
   (global-set-key (kbd "C-c h") 'my/hydra-menu/body))

@@ -363,18 +363,6 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :config
   (reverse-im-mode t))
 
-;; tramp
-
-(with-eval-after-load 'tramp
-  (let ((ssh-method (assoc "ssh" tramp-methods)))
-    (when ssh-method
-      (let ((login-args (assq 'tramp-login-args ssh-method)))
-        (when login-args
-          (setcdr login-args
-                  (append (cdr login-args)
-                          '((("-t")
-                             ("gpg-connect-agent updatestartuptty /bye 2>/dev/null; exec $SHELL"))))))))))
-
 ;; ===== PLUGINS =====
 
 

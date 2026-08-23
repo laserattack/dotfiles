@@ -17,15 +17,13 @@ HISTFILESIZE=10000000
 PS1='\[\e[34m\]\w\n\[\e[32m\][\u@\h]-> \[\e[0m\]'
 
 # Использовать gpg-agent вместо ssh-agent
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# update_gpg_tty() {
+#     gpg-connect-agent updatestartuptty /bye &>/dev/null
+# }
+# export PROMPT_COMMAND="history -a; update_gpg_tty; $PROMPT_COMMAND"
 
-update_gpg_tty() {
-    gpg-connect-agent updatestartuptty /bye &>/dev/null
-}
-
-# Forces bash to save the command history immediately
-# after each command is executed
-export PROMPT_COMMAND="history -a; update_gpg_tty; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     export PATH="$HOME/.local/bin:$PATH"

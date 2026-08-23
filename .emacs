@@ -163,6 +163,19 @@
 (global-set-key (kbd "C-c c") 'calendar)
 (global-set-key (kbd "C-c p") 'compile)
 
+(defun my/occur-all-buffers ()
+  "Search across all open buffers."
+  (interactive)
+  (let* ((regexp (read-regexp "Search in all buffers: "))
+         (buffers (seq-filter
+                   (lambda (buf)
+                     (and (buffer-live-p buf)
+                          (not (string-prefix-p " " (buffer-name buf)))))
+                   (buffer-list))))
+    (if buffers
+        (multi-occur buffers regexp)
+      (message "No buffers to search"))))
+
 (defun my/nuke-everything ()
   "Kill all buffers without confirmation and switch to *scratch*.
 Modified buffers will be killed WITHOUT saving. Use with caution."
@@ -441,8 +454,9 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :mode (("\\.kt\\'" . kotlin-mode)
          ("\\.kts\\'" . kotlin-mode)))
 
-
 ;; ===== LANGUAGES MODES =====
+
+
 
 
 ;; ===== HYDRA MENU =====
@@ -453,49 +467,51 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 
   (defhydra my/hydra-system (:color red :hint nil :verbosity 0)
     "
-^System^
---------
-_p_  List processes
-_v_  Describe variable
-_f_  Describe function
-_r_  Reset tags table
-_q_  Quit
+System
+------
+[_p_]: List processes      [_b_]: List bookmarks
+[_v_]: Describe variable   [_e_]: Eval expression
+[_f_]: Describe function
+[_r_]: Reset tags table
 "
     ("p" list-processes)
     ("v" describe-variable)
     ("f" describe-function)
-    ("r" tags-reset-tags-table)
+    ("r" tags-reset-tags-tables)
+    ("b" list-bookmarks)
+    ("e" eval-expression)
+    ("g" my/occur-all-buffers)
     ("q" my/hydra-menu/body "quit" :exit t))
 
   (defhydra my/hydra-utils (:color red :hint nil :verbosity 0)
     "
-^Utils^
---------
-_n_  Nuke everything
-_t_  Insert timestamp
-_i_  Insert note
-_q_  Quit
+Utils
+-----
+[_n_]: Nuke everything
+[_t_]: Insert timestamp
+[_i_]: Insert note
+[_g_]: Grep in all buffers
 "
     ("n" my/nuke-everything)
     ("t" my/insert-timestamp)
     ("i" my/insert-note)
+    ("g" my/occur-all-buffers)
     ("q" my/hydra-menu/body "quit" :exit t))
 
   (defhydra my/hydra-menu (:color red :hint nil :verbosity 0)
     "
-^Main Menu^
------------
-_s_  System commands
-_u_  Utils commands
-_q_  Quit
+Main
+----
 "
     ("s" my/hydra-system/body "system" :exit t)
-    ("u" my/hydra-utils/body "utils" :exit t)
+    ("m" my/hydra-utils/body "my" :exit t)
     ("q" nil "quit" :color blue))
 
   (global-set-key (kbd "C-c h") 'my/hydra-menu/body))
 
 ;; ===== HYDRA MENU =====
+
+
 
 
 ;; ===== OTHER =====

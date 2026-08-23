@@ -159,8 +159,6 @@
 
 (global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c a") 'align-regexp)
-(global-set-key (kbd "C-c c") 'calendar)
 (global-set-key (kbd "C-c p") 'compile)
 
 (defun my/dired-home ()
@@ -357,9 +355,9 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :bind (("C-c s" . mc/edit-lines)
          ("C->"   . mc/mark-next-like-this)
          ("C-<"   . mc/mark-previous-like-this)
-         ("C-c l" . mc/mark-all-like-this)
-         ("C-\""  . mc/skip-to-next-like-this)
-         ("C-}"   . mc/skip-to-previous-like-this)))
+         ("C-c a" . mc/mark-all-like-this)
+         ("C-}"  . mc/skip-to-next-like-this)
+         ("C-{"   . mc/skip-to-previous-like-this)))
 
 ;; GCMH - the Garbage Collector Magic Hack
 

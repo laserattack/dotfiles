@@ -470,15 +470,19 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :ensure t
   :config
 
-  (defhydra my/hydra-system (:color red :hint nil)
+  (defhydra my/hydra-describe (:color red :hint nil)
     "
-System
-------
-[_e_]: Eval expression
-[_r_]: Reset tags table
+Describe
+--------
+[_v_]: Variable
+[_k_]: Key
+[_f_]: Function
+[_m_]: Mode
 "
-    ("e" eval-expression)
-    ("r" tags-reset-tags-tables)
+    ("v" describe-variable)
+    ("f" describe-function)
+    ("k" describe-key)
+    ("m" describe-mode)
     ("q" my/hydra-menu/body "quit" :exit t))
 
   (defhydra my/hydra-system (:color red :hint nil)

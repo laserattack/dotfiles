@@ -489,7 +489,7 @@ Describe
     "
 System
 ------
-[_e_]: Eval expression
+[_e_]: Eval expression    [_d_]: Diff buffers
 [_r_]: Reset tags table
 [_v_]: Revert buffer
 [_n_]: Rename buffer
@@ -498,6 +498,7 @@ System
     ("r" tags-reset-tags-tables)
     ("v" revert-buffer)
     ("n" rename-buffer)
+    ("d" diff-buffers)
     ("q" my/hydra-menu/body "quit" :exit t))
 
   (defhydra my/hydra-open (:color red :hint nil)

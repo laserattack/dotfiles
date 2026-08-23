@@ -174,7 +174,6 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
         (buffer-list))
   (switch-to-buffer "*scratch*")
   (message "Everything nuked. Just you and *scratch* now"))
-(global-set-key (kbd "C-c k") 'my/nuke-everything)
 
 (defun my/duplicate-line (&optional n)
   "Duplicate current line."
@@ -189,23 +188,22 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
       (insert line)
       (move-beginning-of-line 1)
       (forward-char column))))
-(global-set-key (kbd "C-c d") 'my/duplicate-line)
 
 (defun my/insert-timestamp ()
   "Insert current timestamp in format (%Y%m%dT%H%M%S)."
   (interactive)
   (let ((current-time (current-time)))
     (insert (format-time-string "(%Y%m%dT%H%M%S)" current-time))))
-(global-set-key (kbd "C-c i t") 'my/insert-timestamp)
 
 (defun my/insert-note ()
    "Insert note."
   (interactive)
   (insert "NOTE(serr): "))
-(global-set-key (kbd "C-c i n") 'my/insert-note)
 
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)
+
+(global-set-key (kbd "C-c d") 'my/duplicate-line)
 
 ;; ===== SOME USEFUL BINDS =====
 
@@ -447,6 +445,57 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 ;; ===== LANGUAGES MODES =====
 
 
+;; ===== HYDRA MENU =====
+
+(use-package hydra
+  :ensure t
+  :config
+
+  (defhydra my/hydra-system (:color red :hint nil :verbosity 0)
+    "
+^System^
+--------
+_p_  List processes
+_v_  Describe variable
+_f_  Describe function
+_r_  Reset tags table
+_q_  Quit
+"
+    ("p" list-processes)
+    ("v" describe-variable)
+    ("f" describe-function)
+    ("r" tags-reset-tags-table)
+    ("q" my/hydra-menu/body "quit" :exit t))
+
+  (defhydra my/hydra-utils (:color red :hint nil :verbosity 0)
+    "
+^Utils^
+--------
+_n_  Nuke everything
+_t_  Insert timestamp
+_i_  Insert note
+_q_  Quit
+"
+    ("n" my/nuke-everything)
+    ("t" my/insert-timestamp)
+    ("i" my/insert-note)
+    ("q" my/hydra-menu/body "quit" :exit t))
+
+  (defhydra my/hydra-menu (:color red :hint nil :verbosity 0)
+    "
+^Main Menu^
+-----------
+_s_  System commands
+_u_  Utils commands
+_q_  Quit
+"
+    ("s" my/hydra-system/body "system" :exit t)
+    ("u" my/hydra-utils/body "utils" :exit t)
+    ("q" nil "quit" :color blue))
+
+  (global-set-key (kbd "C-c h") 'my/hydra-menu/body))
+
+;; ===== HYDRA MENU =====
 
 
 ;; ===== OTHER =====

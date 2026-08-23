@@ -16,9 +16,16 @@ HISTFILESIZE=10000000
 #PS1='\[\e[34m\]\w\n\[\e[32m\]-> \[\e[0m\]'
 PS1='\[\e[34m\]\w\n\[\e[32m\][\u@\h]-> \[\e[0m\]'
 
+# Использовать gpg-agent вместо ssh-agent
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+update_gpg_tty() {
+    gpg-connect-agent updatestartuptty /bye &>/dev/null
+}
+
 # Forces bash to save the command history immediately
 # after each command is executed
-export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; update_gpg_tty; $PROMPT_COMMAND"
 
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     export PATH="$HOME/.local/bin:$PATH"
@@ -121,7 +128,3 @@ export ANDROID_SDK_ROOT=$HOME/software/android-sdk
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_HOME/emulator
-
-# Использовать gpg-agent вместо ssh-agent
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpg-connect-agent updatestartuptty /bye &>/dev/null

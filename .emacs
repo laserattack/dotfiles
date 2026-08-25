@@ -377,11 +377,6 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :config
   (reverse-im-mode t))
 
-;; quickrun
-
-(use-package quickrun
-  :ensure t)
-
 ;; ===== PLUGINS =====
 
 

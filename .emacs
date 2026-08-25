@@ -359,16 +359,8 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
          ("C-}"   . mc/skip-to-next-like-this)
          ("C-{"   . mc/skip-to-previous-like-this))
   :config
-
   (setq mc/always-run-for-all t)
-  (setq mc/cmds-to-run-once nil)
-  (setq mc/list-file nil)
-  (setq mc/record-commands nil))
-
-(add-hook 'pre-command-hook
-          (lambda ()
-            (when mc/mode
-              (use-local-map (current-global-map)))))
+  (setq mc/cmds-to-run-once nil))
 
 ;; GCMH - the Garbage Collector Magic Hack
 

@@ -300,6 +300,7 @@ ii iptables-1.8.11_3                         Linux IPv[46] packet filtering rule
 ii iputils-20250605_1                        Useful utilities for Linux networking (including ping)
 ii ipw2100-firmware-1.3_6                    Firmware for the Intel PRO/Wireless 2100 wifi cards
 ii ipw2200-firmware-3.1_6                    Firmware for the Intel PRO/Wireless 2200BG wifi cards
+ii irssi-1.4.5_4                             Secure and modular IRC client with text mode user interface
 ii isl-0.26_1                                Integer Set Library
 ii iso-codes-4.20.1_1                        List of country, language and currency names
 ii iw-6.17_1                                 Utility for nl80211 based CLI configuration of wireless devices

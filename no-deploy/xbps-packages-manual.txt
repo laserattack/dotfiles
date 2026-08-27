@@ -64,6 +64,7 @@ i3blocks-1.5_2
 i3status-2.15_1
 inetutils-telnet-2.8_1
 irssi-1.4.5_4
+irssi-perl-1.4.5_4
 jq-1.8.2_1
 krita-6.0.3_1
 libX11-devel-1.8.13_1

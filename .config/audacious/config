@@ -4,7 +4,7 @@ no_confirm_playlist_delete=TRUE
 repeat=TRUE
 
 [audgui]
-filesel_path=/home/serr/Music/Music/SD/Madk1d/Albums
+filesel_path=/home/serr/Music/Music/SD
 
 [audqt]
 icon_theme=audacious-flat-dark

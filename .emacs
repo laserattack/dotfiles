@@ -160,6 +160,8 @@
 (global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-c p") 'compile)
+(global-set-key (kbd "C-c c e") 'my/epa-encrypt-region-symmetric)
+(global-set-key (kbd "C-c c d") 'epa-decrypt-region)
 
 (defun my/dired-home ()
   "Open dired in home directory."
@@ -205,16 +207,10 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
       (move-beginning-of-line 1)
       (forward-char column))))
 
-(defun my/insert-timestamp ()
-  "Insert current timestamp in format (%Y%m%dT%H%M%S)."
-  (interactive)
-  (let ((current-time (current-time)))
-    (insert (format-time-string "(%Y%m%dT%H%M%S)" current-time))))
-
-(defun my/insert-note ()
-   "Insert note."
-  (interactive)
-  (insert "NOTE(serr): "))
+(defun my/epa-encrypt-region-symmetric (start end)
+  "Encrypt region with symmetric encryption."
+  (interactive "r")
+  (epa-encrypt-region start end nil nil nil))
 
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)
@@ -386,7 +382,7 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :ensure t
   :init
   (setq epa-pinentry-mode 'loopback)
-  (setq-default epa-file-select-keys 'silent)
+  (setq epa-replace-original-text 't)
   :config
   (pinentry-start))
 

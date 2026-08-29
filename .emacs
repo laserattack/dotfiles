@@ -208,9 +208,24 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
       (forward-char column))))
 
 (defun my/epa-encrypt-region-symmetric (start end)
-  "Encrypt region with symmetric encryption."
   (interactive "r")
-  (epa-encrypt-region start end nil nil nil))
+  (let ((text (buffer-substring start end)))
+    (delete-region start end)
+    (goto-char start)
+    (let* ((context (epg-make-context 'OpenPGP)))
+      (setf (epg-context-armor context) t)
+      (let ((cipher (epg-encrypt-string context text nil nil nil)))
+        (insert cipher)))))
+
+;; (defun my/epa-encrypt-region-symmetric (start end)
+;;   (interactive "r")
+;;   (let ((text (buffer-substring start end)))
+;;     (delete-region start end)
+;;     (goto-char start)
+;;     (let* ((context (epg-make-context 'OpenPGP)))
+;;       (setf (epg-context-armor context) t)
+;;       (let ((cipher (epg-encrypt-string context text nil nil nil)))
+;;         (insert (string-trim cipher "\n"))))))
 
 ;; switch between windows using shift+arrows
 (windmove-default-keybindings)

@@ -1,3 +1,14 @@
+;; ===== BUILT-IN PACKAGES THAT MUST BE LOADED EARLY =====
+
+(require 'package)
+(require 'epa)
+(require 'ansi-color)
+
+;; ===== BUILT-IN PACKAGES THAT MUST BE LOADED EARLY =====
+
+
+
+
 ;; ===== PATHS =====
 
 (setq custom-file "~/.emacs.custom.el"
@@ -46,7 +57,6 @@
 (setq reb-re-syntax 'string)
 
 ;; repos
-(require 'package)
 (setq package-archives '(("gnu" . "https://mirrors.ustc.edu.cn/elpa/gnu/")
                          ("melpa" . "https://mirrors.ustc.edu.cn/elpa/melpa/")
                          ("nongnu" . "https://mirrors.ustc.edu.cn/elpa/nongnu/")))
@@ -94,8 +104,6 @@
 ;; adding ansi sequence support to some buffers
 ;; https://stackoverflow.com/questions/13397737/ansi-coloring-in-compilation-mode
 (ignore-errors
-  (require 'ansi-color)
-
   (defun my/colorize-compilation-buffer ()
     (when (eq major-mode 'compilation-mode)
       (ansi-color-apply-on-region compilation-filter-start (point-max))))
@@ -155,14 +163,6 @@
 
 ;; ===== SOME USEFUL STUFF =====
 
-;; binds
-
-(global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c p") 'compile)
-(global-set-key (kbd "C-c c e") 'my/epa-encrypt-region-symmetric)
-(global-set-key (kbd "C-c c d") 'epa-decrypt-region)
-
 (defun my/dired-home ()
   "Open dired in home directory."
   (interactive)
@@ -208,6 +208,7 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
       (forward-char column))))
 
 (defun my/epa-encrypt-region-symmetric (start end)
+  "Encrypt region with symmetric GPG encryption."
   (interactive "r")
   (let ((text (buffer-substring start end)))
     (delete-region start end)
@@ -215,22 +216,17 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
     (let* ((context (epg-make-context 'OpenPGP)))
       (setf (epg-context-armor context) t)
       (let ((cipher (epg-encrypt-string context text nil nil nil)))
-        (insert cipher)))))
+        (insert (string-trim cipher "\n"))))))
 
-;; (defun my/epa-encrypt-region-symmetric (start end)
-;;   (interactive "r")
-;;   (let ((text (buffer-substring start end)))
-;;     (delete-region start end)
-;;     (goto-char start)
-;;     (let* ((context (epg-make-context 'OpenPGP)))
-;;       (setf (epg-context-armor context) t)
-;;       (let ((cipher (epg-encrypt-string context text nil nil nil)))
-;;         (insert (string-trim cipher "\n"))))))
+;; binds
 
-;; switch between windows using shift+arrows
-(windmove-default-keybindings)
-
+(global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-c p") 'compile)
+(global-set-key (kbd "C-c c e") 'my/epa-encrypt-region-symmetric)
+(global-set-key (kbd "C-c c d") 'epa-decrypt-region)
 (global-set-key (kbd "C-c d") 'my/duplicate-line)
+(windmove-default-keybindings) ;; switch between windows using shift+arrows
 
 ;; ===== SOME USEFUL STUFF =====
 
@@ -391,13 +387,13 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :config
   (reverse-im-mode t))
 
-;; pinentry (gpg passphrase input in minibuffer)
+;; pinentry (gpg passphrase input in minibuffer) and epa
 
 (use-package pinentry
   :ensure t
   :init
   (setq epa-pinentry-mode 'loopback)
-  (setq epa-replace-original-text 't)
+  (setq epa-replace-original-text t)
   :config
   (pinentry-start))
 
@@ -411,7 +407,6 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 ;; c mode (https://github.com/rexim/simpc-mode)
 
 (require 'simpc-mode)
-;; Enabling simpc-mode on .h, .c, .cpp, .hpp files
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
 (use-package clang-format

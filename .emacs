@@ -358,7 +358,7 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
          ("C-c a" . mc/mark-all-like-this)
          ("C-}"   . mc/skip-to-next-like-this)
          ("C-{"   . mc/skip-to-previous-like-this))
-  :config
+  :init
   (setq mc/always-run-for-all t)
   (setq mc/cmds-to-run-once nil))
 

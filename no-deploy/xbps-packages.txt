@@ -957,6 +957,7 @@ ii perl-URI-5.21_1                           Perl Uniform Resource Identifiers c
 ii phodav-3.0_2                              GNOME Web Dav implementation
 ii pick-4.0.0_1                              Fuzzy search tool for the command-line
 ii pinentry-1.3.3_1                          PIN or passphrase entry dialogs for GnuPG
+ii pinentry-emacs-1.3.3_1                    PIN or passphrase entry dialogs for GnuPG - Emacs interface
 ii pipewire-1.6.7_1                          Server and user space API to deal with multimedia pipelines
 ii pipewire-devel-1.6.7_1                    Server and user space API to deal with multimedia pipelines - pipewire and libspa development files
 ii pixman-0.46.4_1                           Library of low-level pixel manipulation routines

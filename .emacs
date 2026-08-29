@@ -380,6 +380,16 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :config
   (reverse-im-mode t))
 
+;; pinentry (gpg passphrase input in minibuffer)
+
+(use-package pinentry
+  :ensure t
+  :init
+  (setq epa-pinentry-mode 'loopback)
+  (setq-default epa-file-select-keys 'silent)
+  :config
+  (pinentry-start))
+
 ;; ===== PLUGINS =====
 
 

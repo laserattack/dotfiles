@@ -81,13 +81,6 @@
 (setq epa-pinentry-mode 'loopback)
 (setq epa-replace-original-text t)
 
-;; ===== CHANGE SETTINGS =====
-
-
-
-
-;; ===== ENABLE COOL STUFF =====
-
 (column-number-mode 1)
 
 ;; save positions in buffer on exit (limit: 400 by default (check save-place-limit var))
@@ -115,12 +108,8 @@
   (add-hook 'compilation-filter-hook 'my/colorize-compilation-buffer)
   (setq magit-process-apply-ansi-colors 'filter))
 
-;; ===== ENABLE COOL STUFF =====
-
-
-
-
-;; ===== DISABLE ANNOYING STUFF =====
+;; Move +/- indicators to the fringe for cleaner diffs
+(setq diff-font-lock-prettify t)
 
 ;; never insert tabs. only spaces. hate tabs.
 (setq-default indent-tabs-mode nil)
@@ -160,7 +149,7 @@
 (global-unset-key (kbd "C-<down-mouse-1>"))
 (global-unset-key (kbd "C-<down-mouse-3>"))
 
-;; ===== DISABLE ANNOYING STUFF =====
+;; ===== CHANGE SETTINGS =====
 
 
 

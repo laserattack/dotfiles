@@ -77,6 +77,10 @@
 ;; so that the ediff control window is not in a separate frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
+;; EPA (GPG) settings
+(setq epa-pinentry-mode 'loopback)
+(setq epa-replace-original-text t)
+
 ;; ===== CHANGE SETTINGS =====
 
 
@@ -157,78 +161,6 @@
 (global-unset-key (kbd "C-<down-mouse-3>"))
 
 ;; ===== DISABLE ANNOYING STUFF =====
-
-
-
-
-;; ===== SOME USEFUL STUFF =====
-
-(defun my/dired-home ()
-  "Open dired in home directory."
-  (interactive)
-  (dired "~/"))
-
-(defun my/occur-all-buffers ()
-  "Search across all open buffers."
-  (interactive)
-  (let* ((regexp (read-regexp "Search in all buffers: "))
-         (buffers (seq-filter
-                   (lambda (buf)
-                     (and (buffer-live-p buf)
-                          (not (string-prefix-p " " (buffer-name buf)))))
-                   (buffer-list))))
-    (if buffers
-        (multi-occur buffers regexp)
-      (message "No buffers to search"))))
-
-(defun my/nuke-everything ()
-  "Kill all buffers without confirmation and switch to *scratch*.
-Modified buffers will be killed WITHOUT saving. Use with caution."
-  (interactive)
-  (mapc (lambda (buf)
-          (with-current-buffer buf
-            (set-buffer-modified-p nil)
-            (kill-buffer buf)))
-        (buffer-list))
-  (switch-to-buffer "*scratch*")
-  (message "Everything nuked. Just you and *scratch* now"))
-
-(defun my/duplicate-line (&optional n)
-  "Duplicate current line."
-  (interactive "p")
-  (let ((n (or n 1))
-        (column (- (point) (point-at-bol)))
-        (line (let ((s (thing-at-point 'line t)))
-                (if s (string-remove-suffix "\n" s) ""))))
-    (dotimes (i n)
-      (move-end-of-line 1)
-      (newline)
-      (insert line)
-      (move-beginning-of-line 1)
-      (forward-char column))))
-
-(defun my/epa-encrypt-region-symmetric (start end)
-  "Encrypt region with symmetric GPG encryption."
-  (interactive "r")
-  (let ((text (buffer-substring start end)))
-    (delete-region start end)
-    (goto-char start)
-    (let* ((context (epg-make-context 'OpenPGP)))
-      (setf (epg-context-armor context) t)
-      (let ((cipher (epg-encrypt-string context text nil nil nil)))
-        (insert (string-trim cipher "\n"))))))
-
-;; binds
-
-(global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c p") 'compile)
-(global-set-key (kbd "C-c c e") 'my/epa-encrypt-region-symmetric)
-(global-set-key (kbd "C-c c d") 'epa-decrypt-region)
-(global-set-key (kbd "C-c d") 'my/duplicate-line)
-(windmove-default-keybindings) ;; switch between windows using shift+arrows
-
-;; ===== SOME USEFUL STUFF =====
 
 
 
@@ -387,17 +319,79 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :config
   (reverse-im-mode t))
 
-;; pinentry (gpg passphrase input in minibuffer) and epa
-
-(use-package pinentry
-  :ensure t
-  :init
-  (setq epa-pinentry-mode 'loopback)
-  (setq epa-replace-original-text t)
-  :config
-  (pinentry-start))
-
 ;; ===== PLUGINS =====
+
+
+
+
+;; ===== SOME USEFUL STUFF =====
+
+(defun my/dired-home ()
+  "Open dired in home directory."
+  (interactive)
+  (dired "~/"))
+
+(defun my/occur-all-buffers ()
+  "Search across all open buffers."
+  (interactive)
+  (let* ((regexp (read-regexp "Search in all buffers: "))
+         (buffers (seq-filter
+                   (lambda (buf)
+                     (and (buffer-live-p buf)
+                          (not (string-prefix-p " " (buffer-name buf)))))
+                   (buffer-list))))
+    (if buffers
+        (multi-occur buffers regexp)
+      (message "No buffers to search"))))
+
+(defun my/nuke-everything ()
+  "Kill all buffers without confirmation and switch to *scratch*.
+Modified buffers will be killed WITHOUT saving. Use with caution."
+  (interactive)
+  (mapc (lambda (buf)
+          (with-current-buffer buf
+            (set-buffer-modified-p nil)
+            (kill-buffer buf)))
+        (buffer-list))
+  (switch-to-buffer "*scratch*")
+  (message "Everything nuked. Just you and *scratch* now"))
+
+(defun my/duplicate-line (&optional n)
+  "Duplicate current line."
+  (interactive "p")
+  (let ((n (or n 1))
+        (column (- (point) (point-at-bol)))
+        (line (let ((s (thing-at-point 'line t)))
+                (if s (string-remove-suffix "\n" s) ""))))
+    (dotimes (i n)
+      (move-end-of-line 1)
+      (newline)
+      (insert line)
+      (move-beginning-of-line 1)
+      (forward-char column))))
+
+(defun my/epa-encrypt-region-symmetric (start end)
+  "Encrypt region with symmetric GPG encryption."
+  (interactive "r")
+  (let ((text (buffer-substring start end)))
+    (delete-region start end)
+    (goto-char start)
+    (let* ((context (epg-make-context 'OpenPGP)))
+      (setf (epg-context-armor context) t)
+      (let ((cipher (epg-encrypt-string context text nil nil nil)))
+        (insert (string-trim cipher "\n"))))))
+
+;; some binds
+
+(global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-c p") 'compile)
+(global-set-key (kbd "C-c c e") 'my/epa-encrypt-region-symmetric)
+(global-set-key (kbd "C-c c d") 'epa-decrypt-region)
+(global-set-key (kbd "C-c d") 'my/duplicate-line)
+(windmove-default-keybindings) ;; switch between windows using shift+arrows
+
+;; ===== SOME USEFUL STUFF =====
 
 
 

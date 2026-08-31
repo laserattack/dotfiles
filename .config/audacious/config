@@ -2,7 +2,6 @@
 [audacious]
 no_confirm_playlist_delete=TRUE
 repeat=TRUE
-shuffle=TRUE
 
 [audgui]
 filesel_path=/home/serr/Music/Music/SD

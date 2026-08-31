@@ -156,6 +156,16 @@
 
 ;; ===== PLUGINS =====
 
+;; deadgrep
+
+(use-package deadgrep
+  :ensure t
+  :config
+  (setq deadgrep-max-buffers 1)
+  (setq-default deadgrep--search-type 'regexp)
+  (setq-default deadgrep--context '(5 . 5))
+  :bind (("C-c g" . deadgrep)))
+
 ;; expand region
 
 (use-package expand-region

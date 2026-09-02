@@ -383,8 +383,16 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
       (let ((cipher (epg-encrypt-string context text nil nil nil)))
         (insert (string-trim cipher "\n"))))))
 
+(defun my/delete-char-no-newline (n)
+  "Delete N characters, but never delete newline."
+  (interactive "p")
+  (if (and (not (eobp))
+           (not (eq (char-after) ?\n)))
+      (delete-char n)))
+
 ;; some binds
 
+(global-set-key (kbd "C-d") 'my/delete-char-no-newline)
 (global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-c p") 'compile)

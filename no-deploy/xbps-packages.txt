@@ -18,6 +18,7 @@ ii acl-2.4.0_1                               Access Control List filesystem supp
 ii acpid-2.0.34_4                            ACPI Daemon (acpid) With Netlink Support
 ii ada-3.4.4_1                               WHATWG-compliant and fast URL parser written
 ii adwaita-icon-theme-49.0_1                 Theme consisting of a set of icons for GTK+
+ii aircrack-ng-1.7_6                         Complete suite of tools to assess WiFi network security
 ii alsa-firmware-1.2.4_1                     Advanced Linux Sound Architecture (ALSA) firmware
 ii alsa-lib-1.2.16.1_1                       Advanced Linux Sound Architecture (ALSA) library
 ii alsa-lib-devel-1.2.16.1_1                 Advanced Linux Sound Architecture (ALSA) library - development files
@@ -532,6 +533,7 @@ ii libhandy1-1.8.3_1                         GTK+3 building blocks for modern ad
 ii libharfbuzz-14.3.1_1                      OpenType text shaping engine - runtime library
 ii libheif-1.23.1_2                          ISO/IEC 23008-12:2017 HEIF file format decoder and encoder
 ii libhunspell1.7-1.7.2_1                    Spell checker and morphological analyzer - runtime library
+ii libhwloc-2.13.0_1                         Portable abstraction of hierarchical hardware architectures - libraries
 ii libicu77-77.1_2                           International Components for Unicode v77
 ii libicu78-78.3_1                           International Components for Unicode v78
 ii libicu78-32bit-78.3_1                     International Components for Unicode v78 (32bit)

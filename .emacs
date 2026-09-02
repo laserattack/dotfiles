@@ -135,6 +135,9 @@
 
 (global-eldoc-mode -1)
 
+;; disable C-g ring-bell
+(setq ring-bell-function 'ignore)
+
 (put 'narrow-to-region 'disabled t)
 (put 'narrow-to-page 'disabled t)
 (put 'narrow-to-defun 'disabled t)

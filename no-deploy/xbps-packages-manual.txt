@@ -80,6 +80,7 @@ linux-6.18_1
 llvm21-devel-21.1.7_1
 lsof-4.99.7_1
 lvm2-2.03.29_1
+macchanger-1.7.0_5
 make-4.4.1_1
 man-pages-devel-6.17_1
 man-pages-posix-2017a_6

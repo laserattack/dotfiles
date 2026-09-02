@@ -837,6 +837,7 @@ ii lzo-devel-2.10_3                          Portable lossless data compression 
 ii m17n-db-1.8.10_1                          Multilingual text processing library (database)
 ii m17n-lib-1.8.6_3                          Multilingual text processing library
 ii m4-1.4.19_1                               GNU version of UNIX m4 macro language processor
+ii macchanger-1.7.0_5                        Small utility to change your NIC's MAC address
 ii make-4.4.1_1                              GNU Make build tool
 ii man-pages-6.17_1                          Linux Documentation Project (LDP) manual pages
 ii man-pages-devel-6.17_1                    Linux Documentation Project (LDP) manual pages - development pages

@@ -138,10 +138,6 @@
 ;; disable C-g ring-bell
 (setq ring-bell-function 'ignore)
 
-;; (put 'narrow-to-page 'disabled t)
-;; (put 'narrow-to-defun 'disabled t)
-;; (put 'widen 'disabled t)
-
 (global-unset-key (kbd "M-<drag-mouse-1>"))
 (global-unset-key (kbd "M-<down-mouse-1>"))
 (global-unset-key (kbd "M-<mouse-1>"))

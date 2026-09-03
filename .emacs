@@ -138,6 +138,8 @@
 ;; disable C-g ring-bell
 (setq ring-bell-function 'ignore)
 
+(put 'narrow-to-region 'disabled nil)
+
 (global-unset-key (kbd "M-<drag-mouse-1>"))
 (global-unset-key (kbd "M-<down-mouse-1>"))
 (global-unset-key (kbd "M-<mouse-1>"))
@@ -491,4 +493,3 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 (load-file custom-file)
 
 ;; ===== OTHER =====
-(put 'narrow-to-region 'disabled nil)

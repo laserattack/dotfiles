@@ -159,7 +159,7 @@
 ;; deadgrep
 
 (use-package deadgrep
-  :load-path "~/projects/deadgrep"
+  :vc (:url "https://github.com/laserattack/deadgrep" :rev :newest)
   :config
   (setq deadgrep-max-buffers 1)
   (setq-default deadgrep--search-type 'regexp)

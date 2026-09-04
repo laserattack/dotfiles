@@ -10,7 +10,6 @@
 
 .emacs|symlink|
 .emacs.local|symlink|
-.emacs.snippets|symlink|
 
 .config/auto-cpufreq|symlink|
 .config/i3blocks|symlink|

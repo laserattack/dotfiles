@@ -12,7 +12,6 @@
 ;; ===== PATHS =====
 
 (setq custom-file "~/.emacs.custom.el"
-      yas-snippet-dirs '("~/.emacs.snippets/")
       local-dir "~/.emacs.local")
 
 ;; ===== PATHS =====
@@ -217,24 +216,6 @@
         orderless-smart-case t
         ;; no use separators (search the entire row)
         orderless-component-separator nil))
-
-;; snippets
-
-(use-package yasnippet
-  :ensure t
-  :config
-  (setq yas-indent-line 'fixed)
-  (yas-global-mode 1)
-  (yas-reload-all)
-
-  ;; allow yas in minibuffer
-  (add-hook 'minibuffer-setup-hook 'yas-minor-mode)
-  (define-key minibuffer-local-map (kbd "TAB")
-    (lambda ()
-      (interactive)
-      (if (yas--maybe-expand-key-filter 'ignore)
-          (yas-expand)
-        (vertico-next)))))
 
 ;; move text
 

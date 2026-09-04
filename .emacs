@@ -159,12 +159,21 @@
 ;; deadgrep
 
 (use-package deadgrep
-  :ensure t
+  :load-path "~/projects/deadgrep"
   :config
   (setq deadgrep-max-buffers 1)
   (setq-default deadgrep--search-type 'regexp)
   (setq-default deadgrep--context '(5 . 5))
+  (setq deadgrep-no-line-numbers t)
   :bind (("C-c g" . deadgrep)))
+
+;; (use-package deadgrep
+;;   :ensure t
+;;   :config
+;;   (setq deadgrep-max-buffers 1)
+;;   (setq-default deadgrep--search-type 'regexp)
+;;   (setq-default deadgrep--context '(5 . 5))
+;;   :bind (("C-c g" . deadgrep)))
 
 ;; expand region
 

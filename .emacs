@@ -32,7 +32,7 @@
 
 (advice-add #'display-startup-echo-area-message :override #'ignore)
 
-(setq initial-scratch-message "HELLO, SAILOR!\nCHECK TODOS PLS!!\n\n")
+(setq initial-scratch-message "HELLO, SAILOR!\n\n")
 (setq initial-major-mode 'fundamental-mode)
 
 (setq warning-minimum-level :error)
@@ -155,16 +155,20 @@
 
 ;; ===== PLUGINS =====
 
-;; my deadgrep fork with no-line-numbers var
+;; my deadgrep fork https://github.com/laserattack/deadgrep
 
-(use-package deadgrep
-  :vc (:url "https://github.com/laserattack/deadgrep")
-  :init
-  (setq-default deadgrep--search-type 'regexp)
-  (setq deadgrep-max-buffers 1)
-  (setq deadgrep-no-line-numbers t)
-  (setq-default deadgrep--context '(5 . 5))
-  :bind (("C-c g" . deadgrep)))
+(use-package s
+  :ensure t)
+
+(use-package spinner
+  :ensure t)
+
+(require 'deadgrep)
+(setq deadgrep-max-buffers 1)
+(setq-default deadgrep--search-type 'regexp)
+(setq-default deadgrep--context '(5 . 5))
+(setq deadgrep-no-line-numbers t)
+(global-set-key (kbd "C-c g") 'deadgrep)
 
 ;; expand region
 

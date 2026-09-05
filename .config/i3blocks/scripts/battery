@@ -1,26 +1,14 @@
 #!/usr/bin/env bash
 
-sta=$(cat /sys/class/power_supply/BAT0/status)
-now=$(cat /sys/class/power_supply/BAT0/energy_now)
-full=$(cat /sys/class/power_supply/BAT0/energy_full)
-val=$(echo "scale=1; 100 * $now / $full" | bc)
+MAX_VOLTAGE=16763
+MIN_VOLTAGE=12000
 
-case "$sta" in
-    "Charging")
-        s="CHG"
-        ;;
-    "Discharging")
-        s="DIS"
-        ;;
-    "Not charging")
-        s="NCH"
-        ;;
-    "Full")
-        s="FUL"
-        ;;
-    *)
-        s="UNK"
-        ;;
-esac
+VOLTAGE=$(cat /sys/class/power_supply/BAT0/voltage_now)
+VOLTAGE_MV=$((VOLTAGE / 1000))
 
-echo "${s} ${val}%"
+PERCENT=$(echo "scale=0; ($VOLTAGE_MV - $MIN_VOLTAGE) * 100 / ($MAX_VOLTAGE - $MIN_VOLTAGE)" | bc)
+
+[ $PERCENT -gt 100 ] && PERCENT=100
+[ $PERCENT -lt 0 ] && PERCENT=0
+
+echo "BAT VOLTAGE ${PERCENT}%"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MAX_VOLTAGE=16763
+MAX_VOLTAGE=16800
 MIN_VOLTAGE=12000
 
 VOLTAGE=$(cat /sys/class/power_supply/BAT0/voltage_now)
@@ -11,4 +11,4 @@ PERCENT=$(echo "scale=0; ($VOLTAGE_MV - $MIN_VOLTAGE) * 100 / ($MAX_VOLTAGE - $M
 [ $PERCENT -gt 100 ] && PERCENT=100
 [ $PERCENT -lt 0 ] && PERCENT=0
 
-echo "BAT VOLTAGE ${PERCENT}%"
+echo "BAT ${PERCENT}% (${VOLTAGE_MV}mV)"

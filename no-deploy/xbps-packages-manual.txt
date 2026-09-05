@@ -1,6 +1,7 @@
 7zip-26.02_1
 ImageMagick-7.1.2.25_2
 SDL3-devel-3.4.14_1
+acpi_call-dkms-1.2.2_1
 aircrack-ng-1.7_6
 alsa-pipewire-1.6.7_1
 android-tools-36.0.1_2

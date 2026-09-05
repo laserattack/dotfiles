@@ -15,6 +15,7 @@ ii Vulkan-Headers-1.4.350.1_1                Vulkan header files
 ii aalib-1.4rc5_3                            Portable ASCII art GFX library
 ii abseil-cpp-20250512.1_1                   Abseil common libraries
 ii acl-2.4.0_1                               Access Control List filesystem support
+ii acpi_call-dkms-1.2.2_1                    Kernel module allowing calls to ACPI methods through /proc/acpi/call
 ii acpid-2.0.34_4                            ACPI Daemon (acpid) With Netlink Support
 ii ada-3.4.4_1                               WHATWG-compliant and fast URL parser written
 ii adwaita-icon-theme-49.0_1                 Theme consisting of a set of icons for GTK+

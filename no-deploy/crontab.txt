@@ -1,1 +1,2 @@
 */30 * * * * timeout -k 1m 15m /home/serr/.local/bin/git-auto-backup | logger -t cron-job
+* * * * * /home/serr/.local/bin/battery_logger

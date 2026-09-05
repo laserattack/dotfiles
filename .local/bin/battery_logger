@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+VOLTAGE=$(cat /sys/class/power_supply/BAT0/voltage_now)
+VOLTAGE_MV=$((VOLTAGE / 1000))
+
+logger -t "current battery voltage" "${VOLTAGE_MV}"

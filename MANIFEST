@@ -25,6 +25,7 @@
 
 wallpapers|symlink|
 
+.local/bin/battery_logger|symlink|
 .local/bin/git-auto-backup|symlink|
 .local/bin/greek|symlink|
 .local/bin/clipshot|symlink|

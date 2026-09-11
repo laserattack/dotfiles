@@ -21,6 +21,10 @@
 
 ;; ===== CHANGE SETTINGS =====
 
+;; split window settings (always verical)
+(setq split-window-preferred-direction 'vertical
+      split-height-threshold 0)
+
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 

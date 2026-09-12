@@ -87,10 +87,12 @@ man-pages-devel-6.17_1
 man-pages-posix-2017a_6
 mdadm-4.4_1
 mesa-32bit-26.1.8_1
+meson-1.12.0_1
 moreutils-0.70_1
 mpv-0.41.0_3
 ncurses-devel-6.6_1
 network-manager-applet-1.36.0_1
+ninja-1.13.2_2
 nmap-7.99_1
 nodejs-24.18.0_1
 noto-fonts-cjk-1_1

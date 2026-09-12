@@ -467,6 +467,11 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
   :mode (("\\.kt\\'" . kotlin-mode)
          ("\\.kts\\'" . kotlin-mode)))
 
+;; meson
+
+(use-package meson-mode
+  :ensure t)
+
 ;; ===== LANGUAGES MODES =====
 
 

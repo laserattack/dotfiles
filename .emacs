@@ -472,6 +472,11 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 (use-package meson-mode
   :ensure t)
 
+;; cmake
+
+(use-package cmake-mode
+  :ensure t)
+
 ;; ===== LANGUAGES MODES =====
 
 

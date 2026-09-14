@@ -845,6 +845,7 @@ ii lsof-4.99.7_1                             LiSt Open Files
 ii lua52-5.2.4_12                            Powerful, fast, lightweight, embeddable scripting language (5.2.x)
 ii lua54-5.4.8_1                             Powerful, fast, lightweight, embeddable scripting language (5.4.x)
 ii lvm2-2.03.29_1                            Logical Volume Manager 2 utilities
+ii lz4-1.10.0_1                              Extremely fast compression algorithm
 ii lzo-2.10_3                                Portable lossless data compression library
 ii lzo-devel-2.10_3                          Portable lossless data compression library - development files
 ii m17n-db-1.8.10_1                          Multilingual text processing library (database)

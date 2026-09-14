@@ -1,4 +1,5 @@
 ii 7zip-26.02_1                              File archiver with a high compression ratio
+ii Apktool-3.0.1_1                           Tool for reverse engineering Android apk files
 ii AppStream-1.1.2_1                         Tools and libraries to work with AppStream metadata
 ii CoinMP-1.8.4_2                            Library that supports most of Coin CLP, CBC and CGL
 ii ImageMagick-7.1.2.25_2                    Create, edit, compose, or convert bitmap images

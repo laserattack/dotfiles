@@ -410,7 +410,6 @@ ii libavcodec6-6.1.6_3                       FFmpeg codec library
 ii libavdevice6-6.1.6_3                      FFmpeg device handling library
 ii libavfilter6-6.1.6_3                      FFmpeg audio/video filter library
 ii libavformat6-6.1.6_3                      FFmpeg file format library
-ii libavif-1.4.2_1                           Library for encoding and decoding .avif files
 ii libavutil6-6.1.6_3                        FFmpeg utility library
 ii libayatana-appindicator-0.5.94_1          Ayatana Application Indicators Shared Library
 ii libayatana-indicator-0.9.4_1              Ayatana Indicators Shared Library
@@ -586,7 +585,6 @@ ii liblzma-devel-5.8.3_1                     XZ-format compression library - dev
 ii libmad-0.15.1b_10                         High-quality MPEG audio decoder
 ii libmagic-5.46_2                           File type identification library
 ii libmagick-7.1.2.25_2                      ImageMagick low-level image manipulation libraries
-ii libmanette-0.2.6_1                        Simple GObject game controller library
 ii libmariadbclient-11.1.2_2                 Fast SQL database server, drop-in replacement for MySQL - client library
 ii libmaxminddb-1.9.1_1                      C library for the MaxMind DB file format
 ii libmcpp-2.7.2_8                           Portable C preprocessor - Runtime library
@@ -778,13 +776,10 @@ ii libvpl-2.17.0_1                           Intel Video Processing Library (Int
 ii libvpx-1.16.0_1                           VP8 and VP9 video codec
 ii libwacom-2.20.0_1                         Library to identify wacom tablets
 ii libwavpack-5.9.0_1                        Hybrid lossless audio compression - shared library
-ii libwebkitgtk60-2.50.4_1                   GTK4 port of the WebKit browser engine
 ii libwebp-1.6.0_3                           WebP image format
 ii libwireshark-4.6.8_1                      Network protocol analyzer - library
 ii libwmf-0.2.15_1                           Library for reading and converting WMF (Windows Meta Files)
 ii libwnck-43.2_1                            Library for layout and rendering of text
-ii libwoff2common1.0.2-1.0.2_1               Web Open Font Format 2 reference implementaton - common library
-ii libwoff2dec1.0.2-1.0.2_1                  Web Open Font Format 2 reference implementaton - decoder library
 ii libwpd-0.10.3_1                           Library for importing WordPerfect documents
 ii libwpg-0.3.4_1                            Library for importing WordPerfect Graphics
 ii libwps-0.4.14_1                           Library for importing Microsoft Works documents
@@ -1197,7 +1192,6 @@ ii qt6-widgets-6.11.1_1                      Cross-platform application and UI f
 ii qt6-xml-6.11.1_1                          Cross-platform application and UI framework (QT6) - Xml
 ii quazip-1.4_1                              Qt5/C++ wrapper for the Gilles Vollant's ZIP/UNZIP C package
 ii radeontop-1.4_1                           View radeon GPU utilization
-ii rav1e-0.6.6_3                             Fastest and safest AV1 encoder
 ii rdiff-backup-2.2.6_4                      Local/remote mirroring and incremental backups
 ii removed-packages-0.1.20260823_1           Uninstalls packages removed from repository
 ii restic-0.19.1_1                           Backup solution written in Go
@@ -1248,8 +1242,6 @@ ii sratom-0.6.22_1                           Library for serialising LV2 atoms t
 ii sshuttle-1.3.2_1                          Transparent proxy server that forwards TCP packets over ssh
 ii ssr-0.4.4_3                               Simple Screen Recorder for programs and games
 ii startup-notification-0.12_11              Library for tracking application startup
-ii steam-1.0.0.87_1                          Digital distribution client bootstrap package - Valve's steam client
-ii steam-udev-rules-1.0.0.61+20260625_1      Udev rules for gaming peripherals for Steam and SteamVR
 ii strace-7.1_1                              System Call Tracer
 ii sudo-1.9.17p2_1                           Allow others to run commands as root
 ii taglib-2.3.1_1                            Library for accessing ID tags in various media files
@@ -1401,7 +1393,6 @@ ii yajl-2.1.0_4                              Yet Another JSON Library
 ii yaml-cpp-0.8.0_1                          YAML parser and emitter in C++
 ii yyjson-0.12.0_1                           High performance JSON library
 ii zd1211-firmware-1.5_3                     Firmware for the Zydas 1211 wifi cards
-ii zenity-4.0.5_1                            Display GNOME dialogs from the command line
 ii zip-3.0_6                                 Create/update ZIP files compatible with pkzip
 ii zix-0.6.2_1                               C library of portability wrappers and data structures
 ii zlib-1.3.2_1                              Compression/decompression Library

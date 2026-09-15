@@ -758,6 +758,8 @@ ii libusb-compat-devel-0.1.8_1               libusb-0.1 compatibility library - 
 ii libusb-devel-1.0.29_1                     Library which allows userspace access to USB devices - development files
 ii libusbmuxd-2.0.2_1                        USB Multiplex Daemon library
 ii libutempter-1.2.1_2                       Library interface to record user sessions in utmp/wtmp files
+ii libutf8proc-2.11.3_1                      C library for processing UTF-8 encoded Unicode strings
+ii libutf8proc-devel-2.11.3_1                C library for processing UTF-8 encoded Unicode strings - development files
 ii libuuid-2.41.4_1                          UUID library
 ii libuuid-devel-2.41.4_1                    UUID library development files
 ii libuv-1.52.1_1                            Multi-platform support library with a focus on asynchronous I/O

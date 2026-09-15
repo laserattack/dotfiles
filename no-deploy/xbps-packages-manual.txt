@@ -77,6 +77,8 @@ libbsd-0.12.2_1
 libdrm-32bit-2.4.134_1
 libglvnd-32bit-1.7.0_1
 libreoffice-26.8.0.3_2
+libutf8proc-2.11.3_1
+libutf8proc-devel-2.11.3_1
 libxkbfile-devel-1.1.3_1
 light-1.2.2_1
 linux-6.18_1

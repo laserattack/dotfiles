@@ -1,17 +1,18 @@
 
 [audacious]
 no_confirm_playlist_delete=TRUE
+no_playlist_advance=TRUE
 repeat=TRUE
 
 [audgui]
-filesel_path=/home/serr/Music/Music/SD
+filesel_path=/home/serr/Music/Music
 
 [audqt]
 icon_theme=audacious-flat-dark
 theme=dark
 
 [qtui]
-column_widths=25,25,275,175,50,173,175,25,100,111,75,275,275,275,75,275,175,75,25,190
+column_widths=25,25,385,175,50,173,175,25,100,111,75,275,275,275,75,275,175,75,25,190
 menu_visible=FALSE
 player_height=687
 player_width=1280

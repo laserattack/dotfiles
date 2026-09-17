@@ -205,6 +205,7 @@ ii gdk-pixbuf-2.42.12_2                      Image loading library for The GTK+ 
 ii gdu-5.37.0_1                              Disk usage analyzer intended primarily for SSD disks
 ii gedit-50.0_1                              Text editor for GNOME
 ii gettext-0.22.5_1                          Internationalized Message Handling Library and tools
+ii ghidra-12.1.3_1                           Software reverse engineering (SRE) framework
 ii gi-docgen-2026.1_1                        Documentation generator for GObject-based libraries
 ii giflib-6.1.3_1                            Library to handle, display and manipulate GIF images
 ii gir-freedesktop-1.86.0_2                  Introspection data for some FreeDesktop components
@@ -929,6 +930,8 @@ ii openjdk-common-3_1                        Common files for OpenJDK packages
 ii openjdk11-jre-11.0.25+5_3                 OpenJDK Java Development Kit (version 11) - runtime components
 ii openjdk17-17.0.15+2_2                     OpenJDK Java Development Kit (version 17)
 ii openjdk17-jre-17.0.15+2_2                 OpenJDK Java Development Kit (version 17) - runtime components
+ii openjdk21-21.0.8+9_1                      OpenJDK Java Development Kit (version 21)
+ii openjdk21-jre-21.0.8+9_1                  OpenJDK Java Development Kit (version 21) - runtime components
 ii openresolv-3.17.4_1                       Management framework for resolv.conf
 ii openssh-10.5p1_1                          OpenSSH free Secure Shell (SSH) client and server implementation
 ii openssl-3.6.4_1                           Toolkit for Secure Sockets Layer and Transport Layer Security

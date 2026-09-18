@@ -77,6 +77,7 @@ ii capstone-5.0.9_1                          Lightweight multi-platform, multi-a
 ii cdrtools-2024.03.21_1                     Schily's portable tools - cdrtools
 ii celt-0.11.3_3                             An audio codec for use in low-delay speech and audio communication
 ii chromaprint-1.5.1_2                       Library that extracts fingerprints from any audio source
+ii chromium-153.0.8010.36_1                  Google's attempt at creating a safer, faster, and more stable browser
 ii chrony-4.8_1                              Versatile implementation of the Network Time Protocol (NTP)
 ii clang-21_3                                LLVM meta package - clang
 ii clang-analyzer21-21.1.7_1                 LLVM Compiler Infrastructure Project - Version 21 - A source code analysis framework

@@ -477,6 +477,11 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 (use-package cmake-mode
   :ensure t)
 
+;; yaml
+
+(use-package yaml-mode
+  :ensure t)
+
 ;; ===== LANGUAGES MODES =====
 
 

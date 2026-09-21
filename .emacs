@@ -482,6 +482,11 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 (use-package yaml-mode
   :ensure t)
 
+;; php
+
+(use-package php-mode
+  :ensure t)
+
 ;; ===== LANGUAGES MODES =====
 
 

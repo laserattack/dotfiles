@@ -304,6 +304,7 @@ ii iana-etc-20260409_1                       Unix /etc/services and /etc/protoco
 ii iceauth-1.0.11_1                          ICE protocol utility
 ii imath-3.1.9_9                             C++/Python library for 2D/3D vector/matrix/math operations
 ii imlib2-1.12.7_1                           Image manipulation library
+ii inetutils-ftp-2.8_1                       GNU network utilities - ftp client and server (file transfer protocol)
 ii inetutils-telnet-2.8_1                    GNU network utilities - telnet client and server
 ii inih-62_1                                 Simple ini file parser library
 ii iproute2-7.1.0_1                          IP Routing Utilities
@@ -1303,7 +1304,6 @@ ii void-live-audio-0.1.1_1                   Script for enabling and configuring
 ii void-repo-multilib-6_4                    Void Linux drop-in file for the multilib repository
 ii void-repo-nonfree-9_6                     Void Linux drop-in file for the nonfree repository
 ii volume_key-0.3.12_10                      Library for manipulating storage volume encryption keys
-ii vsftpd-3.0.5_3                            FTP daemon with focus on security
 ii vte3-0.82.1_1                             Terminal widget with improved accessibility and I18N support
 ii vte3-profile-0.82.1_1                     Terminal widget with improved accessibility and I18N support - profile scripts
 ii vulkan-loader-1.4.350.1_1                 Vulkan Installable Client Driver (ICD) loader

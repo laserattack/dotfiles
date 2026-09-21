@@ -67,6 +67,7 @@ gvfs-smb-1.56.1_3
 i3-4.25.1_1
 i3blocks-1.5_2
 i3status-2.15_1
+inetutils-ftp-2.8_1
 inetutils-telnet-2.8_1
 irssi-1.4.5_4
 irssi-perl-1.4.5_4
@@ -159,7 +160,6 @@ void-docs-browse-2026.04.13_1
 void-live-audio-0.1.1_1
 void-repo-multilib-6_4
 void-repo-nonfree-9_6
-vsftpd-3.0.5_3
 webp-pixbuf-loader-0.2.7_1
 wget-1.25.0_1
 wireless-regdb-2026.05.30_1

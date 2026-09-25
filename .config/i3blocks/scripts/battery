@@ -11,4 +11,4 @@ PERCENT=$(echo "scale=0; ($VOLTAGE_MV - $MIN_VOLTAGE) * 100 / ($MAX_VOLTAGE - $M
 [ $PERCENT -gt 100 ] && PERCENT=100
 [ $PERCENT -lt 0 ] && PERCENT=0
 
-echo "BAT ${PERCENT}% (${VOLTAGE_MV}mV)"
+echo "bat ${PERCENT}% (${VOLTAGE_MV}mV)"

@@ -13,4 +13,4 @@ else
     color="#FF0000"
 fi
 
-echo '{"full_text":"coffee '"${degrees}"'°C", "color":"'"$color"'"}'
+echo '{"full_text":"cpu '"${degrees}"'°C", "color":"'"$color"'"}'

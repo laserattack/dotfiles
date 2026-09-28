@@ -379,6 +379,7 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 
 ;; some binds
 
+(global-set-key (kbd "C-c n") 'remember-notes)
 (global-set-key (kbd "C-d") 'my/delete-char-no-newline)
 (global-set-key (kbd "C-x C-d") 'dired) ;; it also C-x d
 (global-set-key (kbd "C-x C-b") 'ibuffer)

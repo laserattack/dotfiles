@@ -1,7 +1,6 @@
 
 [audacious]
 no_confirm_playlist_delete=TRUE
-no_playlist_advance=TRUE
 repeat=TRUE
 
 [audgui]

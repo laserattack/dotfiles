@@ -43,6 +43,7 @@ ii automake-1.16.5_1                             GNU Standards-compliant Makefil
 ii avahi-glib-libs-0.8_9                         Avahi glib shared libraries
 ii avahi-libs-0.8_2                              Avahi shared libraries
 ii ayatana-ido-0.10.4_1                          Ayatana Indicator Display Objects
+ii babeltrace-1.5.8_1                            Open source trace format converter
 ii bandwhich-0.23.1_1                            Terminal bandwidth utilization tool
 ii base-devel-20181003_2                         Void Linux development tools meta package
 ii base-files-0.146_1                            Void Linux base system files
@@ -691,6 +692,7 @@ ii libpcre-8.45_3                                Perl Compatible Regular Express
 ii libpcre2-10.47_1                              Perl Compatible Regular Expressions (2nd version) - shared libraries
 ii libpcsclite-2.5.2_1                           Middleware to access a smart card using SCard API (PC/SC) - library files
 ii libpeas-1.38.1_1                              Gobject-based plugins engine
+ii libpfm4-4.13.0_4                              Library to program the performance monitoring events
 ii libpipewire-1.6.8_1                           Server and user space API to deal with multimedia pipelines - pipewire library
 ii libplacebo-7.360.1_1                          Reusable library for GPU-accelerated video/image rendering
 ii libplist-2.2.0_7                              Apple Property List library
@@ -796,6 +798,7 @@ ii libtirpc-1.3.8_1                              Transport Independent RPC libra
 ii libtommath-1.3.0_1                            Portable number theoretic multiple-precision integer library
 ii libtool-2.4.7_8                               Generic library support script
 ii libtorrent-rasterbar-2.0.10_7                 C++ bittorrent library by Rasterbar Software
+ii libtraceevent-1.9.0_1                         Linux kernel trace event library
 ii libunbound-1.26.1_1                           Validating, recursive, and caching DNS resolver - shared library
 ii libunibreak-5.1_1                             Implementation of the Unicode line breaking algorithm
 ii libunistring-1.0_1                            Library for manipulating Unicode strings and C strings
@@ -1032,6 +1035,7 @@ ii pavucontrol-6.2_1                             PulseAudio Volume Control
 ii pcaudiolib-1.2_2                              Portable C Audio Library
 ii pciutils-3.14.0_1                             PCI bus related utilities
 ii pcre2-devel-10.47_1                           Perl Compatible Regular Expressions (2nd version) - development files
+ii perf-6.5_8                                    Linux kernel performance auditing tool
 ii perl-5.42.3_1                                 Practical Extraction and Report Language
 ii perl-Authen-SASL-2.2000_1                     Authen::SASL -- SASL authentication framework
 ii perl-Convert-BinHex-1.125_3                   Perl module to extract data from Macintosh BinHex files

@@ -129,6 +129,7 @@ rdiff-backup-2.2.6_4
 restic-0.19.1_1
 ripgrep-15.2.0_1
 rsync-3.5.1_1
+ruby-3.4.11_1
 rustup-1.29.1_1
 sagemath-10.9_1
 sbcl-2.6.8_1

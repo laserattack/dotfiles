@@ -1353,6 +1353,7 @@ ii rlwrap-0.48_1                                 Adds readline-style editing and
 ii rnnoise-0.2_1                                 Recurrent neural network for audio noise reduction
 ii rsync-3.5.1_1                                 Remote fast incremental file transfer tool
 ii rtkit-0.14_1                                  Realtime Policy and Watchdog Daemon
+ii ruby-3.4.11_1                                 Ruby programming language
 ii run-parts-5.23.2_1                            Run scripts or programs in a directory
 ii runc-1.5.1_1                                  CLI tool for spawning and running OCI containers
 ii runit-2.3.1_1                                 UNIX init scheme with service supervision

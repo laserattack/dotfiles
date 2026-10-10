@@ -161,12 +161,6 @@
 
 ;; my deadgrep fork https://github.com/laserattack/deadgrep
 
-(use-package s
-  :ensure t)
-
-(use-package spinner
-  :ensure t)
-
 (require 'deadgrep)
 (setq deadgrep-max-buffers 1)
 (setq-default deadgrep--search-type 'regexp)

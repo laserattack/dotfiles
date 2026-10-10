@@ -159,14 +159,15 @@
 
 ;; ===== PLUGINS =====
 
-;; my deadgrep fork https://github.com/laserattack/deadgrep
+;; deadgrep
 
-(require 'deadgrep)
-(setq deadgrep-max-buffers 1)
-(setq-default deadgrep--search-type 'regexp)
-(setq-default deadgrep--context '(5 . 5))
-(setq deadgrep-no-line-numbers t)
-(global-set-key (kbd "C-c g") 'deadgrep)
+(use-package deadgrep
+  :ensure t
+  :config
+  (setq deadgrep-max-buffers 1)
+  (setq-default deadgrep--search-type 'regexp)
+  (setq-default deadgrep--context '(5 . 5))
+  :bind (("C-c g" . deadgrep)))
 
 ;; expand region
 

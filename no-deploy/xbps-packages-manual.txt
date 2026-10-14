@@ -12,6 +12,7 @@ audacious-4.6.1_1
 bandwhich-0.23.1_1
 base-devel-20181003_2
 base-system-0.114_2
+bind-utils-9.20.29_1
 bluez-5.86_2
 brltty-6.9.1_1
 btop-1.4.7_1

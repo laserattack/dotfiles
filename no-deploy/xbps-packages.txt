@@ -52,6 +52,8 @@ ii bash-5.3_2                                    GNU Bourne Again Shell
 ii bc-1.08.2_1                                   Arbitrary precision numeric processing language
 ii bcg729-1.1.1_3                                Implementation of the ITU G729 Annex A/B speech codec
 ii beanshell-2.1.1_1                             BeanShell - Simple Java Scripting
+ii bind-libs-9.20.29_1                           Berkeley Internet Name Domain server - Runtime libraries
+ii bind-utils-9.20.29_1                          Berkeley Internet Name Domain server - DNS utils
 ii binutils-2.44_2                               GNU binary utilities
 ii binutils-doc-2.44_2                           GNU binary utilities - info files
 ii binutils-libs-2.44_2                          GNU binary utilities - shared libraries
@@ -352,6 +354,7 @@ ii jadx-1.5.6_1                                  Decompiler for Dalvik bytecode
 ii jansson-2.15.0_1                              Library for encoding, decoding and manipulating JSON data
 ii jbigkit-devel-2.2_2                           Data compression library/utilities for bi-level high-resolution images - development files
 ii jbigkit-libs-2.2_2                            Data compression library/utilities for bi-level high-resolution images - shared libraries
+ii jemalloc-5.3.1_1                              General-purpose scalable concurrent malloc(3) implementation
 ii jq-1.8.2_1                                    Command-line JSON processor
 ii json-c-0.18_1                                 JSON implementation in C
 ii json-glib-1.10.8_1                            JSON parser for GLib-based libraries and applications

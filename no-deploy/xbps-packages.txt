@@ -1443,6 +1443,8 @@ ii tcl-8.6.18_1                                  TCL scripting language
 ii tcpdump-4.99.6_1                              Tool for network monitoring and data acquisition
 ii terminus-font-4.49.1_1                        Clean, fixed width bitmap font
 ii tesseract-ocr-5.5.2_1                         Tesseract Open Source OCR engine
+ii tesseract-ocr-eng-5.5.2_1                     Tesseract Open Source OCR engine - English language data
+ii tesseract-ocr-rus-5.5.2_1                     Tesseract Open Source OCR engine - Russian language data
 ii tevent-0.16.1_3                               Event system based on the talloc memory management library
 ii texinfo-7.3_2                                 GNU Documentation System
 ii thin-provisioning-tools-1.0.4_1               Tools for manipulating the metadata of dm-thin device-mapper targets

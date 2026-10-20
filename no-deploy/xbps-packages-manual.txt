@@ -149,6 +149,8 @@ ssr-0.4.4_3
 strace-7.1_1
 tcpdump-4.99.6_1
 terminus-font-4.49.1_1
+tesseract-ocr-eng-5.5.2_1
+tesseract-ocr-rus-5.5.2_1
 tldr-1.0.0.alpha_6
 tmux-3.7c_1
 torsocks-2.5.0_1

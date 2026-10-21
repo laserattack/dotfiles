@@ -456,6 +456,7 @@ ii libavcodec6-6.1.6_3                           FFmpeg codec library
 ii libavdevice6-6.1.6_3                          FFmpeg device handling library
 ii libavfilter6-6.1.6_3                          FFmpeg audio/video filter library
 ii libavformat6-6.1.6_3                          FFmpeg file format library
+ii libavif-1.4.2_1                               Library for encoding and decoding .avif files
 ii libavutil6-6.1.6_3                            FFmpeg utility library
 ii libayatana-appindicator-0.5.94_1              Ayatana Application Indicators Shared Library
 ii libayatana-indicator-0.9.4_1                  Ayatana Indicators Shared Library
@@ -640,6 +641,7 @@ ii liblzma-devel-5.8.3_1                         XZ-format compression library -
 ii libmad-0.15.1b_10                             High-quality MPEG audio decoder
 ii libmagic-5.46_2                               File type identification library
 ii libmagick-7.1.2.31_1                          ImageMagick low-level image manipulation libraries
+ii libmanette-0.2.6_1                            Simple GObject game controller library
 ii libmariadbclient-12.3.2_3                     Fast SQL database server, drop-in replacement for MySQL - client library
 ii libmaxminddb-1.9.1_1                          C library for the MaxMind DB file format
 ii libmcpp-2.7.2_8                               Portable C preprocessor - Runtime library
@@ -839,11 +841,14 @@ ii libvpl-2.17.0_1                               Intel Video Processing Library 
 ii libvpx-1.16.0_1                               VP8 and VP9 video codec
 ii libwacom-2.20.0_1                             Library to identify wacom tablets
 ii libwavpack-5.9.0_1                            Hybrid lossless audio compression - shared library
+ii libwebkit2gtk41-2.50.4_1                      GTK+3 port of the WebKit browser engine (soup3)
 ii libwebp-1.6.0_3                               WebP image format
 ii libwebp-devel-1.6.0_3                         WebP image format - development files
 ii libwireshark-4.6.8_1                          Network protocol analyzer - library
 ii libwmf-0.2.15_1                               Library for reading and converting WMF (Windows Meta Files)
 ii libwnck-43.2_1                                Library for layout and rendering of text
+ii libwoff2common1.0.2-1.0.2_1                   Web Open Font Format 2 reference implementaton - common library
+ii libwoff2dec1.0.2-1.0.2_1                      Web Open Font Format 2 reference implementaton - decoder library
 ii libwpd-0.10.3_1                               Library for importing WordPerfect documents
 ii libwpg-0.3.4_1                                Library for importing WordPerfect Graphics
 ii libwps-0.4.14_1                               Library for importing Microsoft Works documents
@@ -1371,6 +1376,7 @@ ii qt6-xml-6.11.2_1                              Cross-platform application and 
 ii quazip-1.4_1                                  Qt5/C++ wrapper for the Gilles Vollant's ZIP/UNZIP C package
 ii radeontop-1.4_1                               View radeon GPU utilization
 ii rankwidth-0.10_1                              Calculates rank-width and rank-decompositions
+ii rav1e-0.6.6_3                                 Fastest and safest AV1 encoder
 ii rdiff-backup-2.2.6_4                          Local/remote mirroring and incremental backups
 ii removed-packages-0.1.20260823_1               Uninstalls packages removed from repository
 ii restic-0.19.1_2                               Backup solution written in Go

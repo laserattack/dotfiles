@@ -81,6 +81,7 @@ libbsd-0.12.2_1
 libdrm-32bit-2.4.134_1
 libglvnd-32bit-1.7.0_1
 libreoffice-26.8.0.3_3
+libwebkit2gtk41-2.50.4_1
 libxkbfile-devel-1.1.3_1
 light-1.2.2_1
 linux-6.18_1

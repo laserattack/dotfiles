@@ -114,6 +114,65 @@ gcf() {
     )
 }
 
+backup() {
+    if [[ $# -lt 1 || $# -gt 2 || ! -e "$1" ]]; then
+        echo "Usage: backup <path> [tag]"
+        return 1
+    fi
+
+    local path name parent timestamp archive tmp tag
+
+    path="$(realpath -- "$1")" || return 1
+    name="$(basename -- "$path")"
+    parent="$(dirname -- "$path")"
+    timestamp="$(date +%Y%m%d-%H%M%S)"
+    tag="${2:-}"
+
+    # Validate the optional tag
+    if [[ -n "$tag" && ! "$tag" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+        echo "Error: Tag may only contain letters, numbers, underscores, and hyphens."
+        return 1
+    fi
+
+    # Build archive filename
+    if [[ -n "$tag" ]]; then
+        archive="${parent}/${name}-backup-${tag}-${timestamp}.tar.gz"
+    else
+        archive="${parent}/${name}-backup-${timestamp}.tar.gz"
+    fi
+
+    # Create a temporary archive
+    tmp="$(mktemp "${archive}.tmp.XXXXXXXX")" || return 1
+
+    # Try archiving without elevated privileges first
+    if ! tar -czf "$tmp" -C "$parent" -- "$name" 2>/dev/null; then
+        echo "Permission denied for some files. Retrying with sudo..."
+
+        if ! sudo tar -czf "$tmp" -C "$parent" -- "$name"; then
+            rm -f -- "$tmp"
+            echo "Error: Failed to create backup."
+            return 1
+        fi
+    fi
+
+    # Verify archive integrity
+    if ! gzip -t "$tmp"; then
+        rm -f -- "$tmp"
+        echo "Error: Archive integrity check failed."
+        return 1
+    fi
+
+    # Move the temporary archive to its final destination
+    if ! mv -- "$tmp" "$archive"; then
+        rm -f -- "$tmp"
+        echo "Error: Failed to save backup."
+        return 1
+    fi
+
+    echo "Backup created successfully: $archive"
+    ls -lh -- "$archive"
+}
+
 . "$HOME/.cargo/env"
 
 export NVM_DIR="$HOME/.nvm"

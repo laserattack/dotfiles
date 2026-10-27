@@ -17,6 +17,7 @@ bluez-5.86_2
 brltty-6.9.1_1
 btop-1.4.7_1
 cairo-devel-1.18.4_2
+chatgpt-26.1023.50603_1
 chromium-155.0.8059.39_1
 chrony-4.8_1
 clang-21_3

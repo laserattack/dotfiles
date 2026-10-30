@@ -26,5 +26,5 @@
 
 #wallpapers|symlink|
 
-.local/bin/git-auto-backup|symlink|
+.local/bin/git-backup|symlink|
 .local/bin/greek|symlink|

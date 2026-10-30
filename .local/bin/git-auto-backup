@@ -33,19 +33,9 @@ echo ""
 echo ""
 
 echo "[INFO  ] Processing dotfiles"
-cd /home/serr/projects/dotfiles/ || { echo "  [FAILED] Cannot enter dotfiles directory"; exit 1; }
-
-xbps-query -l > no-deploy/xbps-packages.txt
-check_result "save all packages to file"
-
-xbps-query -m > no-deploy/xbps-packages-manual.txt
-check_result "save manually installed packages to file"
-
-crontab -l > no-deploy/crontab.txt
-check_result "save crontab to file"
+cd /Users/serr/projects/dotfiles/ || { echo "  [FAILED] Cannot enter dotfiles directory"; exit 1; }
 
 gacp "dotfiles"
-
 
 echo ""
 echo ""
@@ -56,11 +46,13 @@ echo ""
 echo ""
 
 echo "[INFO  ] Processing MADO"
-cd /home/serr/projects/documents/MADO/ || { echo "  [FAILED] Cannot enter MADO directory"; exit 1; }
+cd /Users/serr/projects/documents/MADO/ || { echo "  [FAILED] Cannot enter MADO directory"; exit 1; }
 
 gacp "MADO"
 
 echo ""
 echo ""
+
+#
 
 echo "[INFO  ] Git backup finished"

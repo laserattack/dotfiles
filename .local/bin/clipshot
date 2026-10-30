@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-scrot -s -o "$HOME/scrot_screenshot.png" -e 'xclip -selection clipboard -t image/png -i "$f"'

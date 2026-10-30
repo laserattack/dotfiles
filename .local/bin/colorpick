@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-xcolor | tr -d '\n' | copy

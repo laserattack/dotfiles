@@ -1,28 +1,28 @@
-# --- Основное ---
+# --- Basic ---
 HISTSIZE=50000
 SAVEHIST=50000
-setopt INC_APPEND_HISTORY  # сохранять историю сразу, а не при выходе
+setopt INC_APPEND_HISTORY  # save history immediately, not on exit
 
-# Включаем поддержку цветов в zsh
+# Enable color support in zsh
 autoload -U colors && colors
 
-# Устанавливаем промпт:
-# %F{blue} - синий цвет
-# %~ - текущая директория
-# %F{green} - зеленый цвет
-# %n - имя пользователя
-# %m - имя хоста
-# %# - символ # для root или % для обычного пользователя
+# Set the prompt:
+# %F{blue} - blue color
+# %~ - current directory
+# %F{green} - green color
+# %n - username
+# %m - hostname
+# %# - # symbol for root or % for regular user
 
 PROMPT='%F{blue}%~%f
 %F{green}[%n@%m]-> %f'
 
-# Путь к локальным бинарникам
+# Path to local binaries
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-# --- Алиасы ---
+# --- Aliases ---
 alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
 alias valgall='valgrind --leak-check=full --show-leak-kinds=all'
@@ -35,7 +35,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-# --- Функции ---
+# --- Functions ---
 tmux3() {
   tmux new-session -d -s main -n launcher
   tmux new-window -t main -n home

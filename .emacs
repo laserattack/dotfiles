@@ -78,6 +78,9 @@
 (setq-default tab-width 4
               compilation-scroll-output t)
 
+;; Turning off inertial scrolling (macOS)
+(setq ns-use-mwheel-momentum nil)
+
 ;; so that the ediff control window is not in a separate frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 

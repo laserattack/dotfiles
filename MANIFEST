@@ -1,35 +1,36 @@
 #.alacritty.toml|symlink|
-.xinitrc|symlink|
-.Xresources|symlink|
-.i3status.conf|symlink|
-.bash_profile|symlink|
-.bashrc|symlink|
-.xprofile|symlink|
+#.xinitrc|symlink|
+#.Xresources|symlink|
+#.i3status.conf|symlink|
+#.bash_profile|symlink|
+#.bashrc|symlink|
+.zshrc|symlink|
+#.xprofile|symlink|
 .tmux.conf|symlink|
-.vimrc|symlink|
+#.vimrc|symlink|
 
 .emacs|symlink|
 .emacs.local|symlink|
 
-.config/auto-cpufreq|symlink|
-.config/i3blocks|symlink|
-.config/i3/config|symlink|
-.config/gtk-3.0|symlink|
-.config/gtk-4.0|symlink|
+#.config/auto-cpufreq|symlink|
+#.config/i3blocks|symlink|
+#.config/i3/config|symlink|
+#.config/gtk-3.0|symlink|
+#.config/gtk-4.0|symlink|
 
 .ssh/config|symlink|
 
-.gnupg/gpg-agent.conf|symlink|
+#.gnupg/gpg-agent.conf|symlink|
 
-.config/audacious/config|symlink|
+#.config/audacious/config|symlink|
 
-wallpapers|symlink|
+#wallpapers|symlink|
 
-.local/bin/battery_logger|symlink|
-.local/bin/git-auto-backup|symlink|
-.local/bin/greek|symlink|
-.local/bin/clipshot|symlink|
-.local/bin/sucklog|symlink|
-.local/bin/deltachat|symlink|
-.local/bin/copy|symlink|
-.local/bin/colorpick|symlink|
+#.local/bin/battery_logger|symlink|
+#.local/bin/git-auto-backup|symlink|
+#.local/bin/greek|symlink|
+#.local/bin/clipshot|symlink|
+#.local/bin/sucklog|symlink|
+#.local/bin/deltachat|symlink|
+#.local/bin/copy|symlink|
+#.local/bin/colorpick|symlink|

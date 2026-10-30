@@ -1,1 +1,1 @@
-/home/serr/projects/move-text/move-text.el
+/Users/serr/projects/move-text/move-text.el

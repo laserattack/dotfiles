@@ -69,8 +69,9 @@
 
 (package-initialize)
 
-(add-to-list 'default-frame-alist
-             '(font . "Liberation Mono-15"))
+(set-face-attribute 'default nil
+                    :family "Menlo"
+                    :height 150)
 
 (global-hl-line-mode t)
 

@@ -1,1 +1,1 @@
-/home/serr/projects/emado/emado.el
+/Users/serr/projects/emado/emado.el

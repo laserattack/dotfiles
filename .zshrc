@@ -25,7 +25,6 @@ fi
 # --- Aliases ---
 alias gcl='git clone --depth 1 --no-tags --single-branch'
 alias gs='git status'
-alias valgall='valgrind --leak-check=full --show-leak-kinds=all'
 alias cp='cp -iv'
 alias ln='ln -i'
 alias mv='mv -iv'

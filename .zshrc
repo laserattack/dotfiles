@@ -70,3 +70,5 @@ gacp() {
         git add . && git commit -m "quick update" && git push
     fi
 }
+export PATH="/opt/homebrew/opt/bison/bin:$PATH"
+export PATH="/opt/homebrew/opt/flex/bin:$PATH"

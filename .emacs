@@ -361,13 +361,14 @@ Modified buffers will be killed WITHOUT saving. Use with caution."
 (defun my/epa-encrypt-region-symmetric (start end)
   "Encrypt region with symmetric GPG encryption."
   (interactive "r")
-  (let ((text (buffer-substring start end)))
-    (delete-region start end)
-    (goto-char start)
-    (let* ((context (epg-make-context 'OpenPGP)))
-      (setf (epg-context-armor context) t)
-      (let ((cipher (epg-encrypt-string context text nil nil nil)))
-        (insert (string-trim cipher "\n"))))))
+  (let* ((text (buffer-substring-no-properties start end))
+         (context (epg-make-context 'OpenPGP)))
+    (setf (epg-context-armor context) t)
+    (let ((cipher (epg-encrypt-string context text nil nil nil)))
+      (atomic-change-group
+        (delete-region start end)
+        (goto-char start)
+        (insert (string-trim-right cipher "\n"))))))
 
 (defun my/delete-char-no-newline (n)
   "Delete N characters, but never delete newline."

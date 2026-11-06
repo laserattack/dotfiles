@@ -21,9 +21,9 @@
 
 ;; ===== CHANGE SETTINGS =====
 
-;; split window settings (always verical)
-(setq split-window-preferred-direction 'vertical
-      split-height-threshold 0)
+;; split window settings
+;; (setq split-window-preferred-direction 'vertical
+;;       split-height-threshold 40)
 
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
@@ -51,6 +51,7 @@
 (setq vc-follow-symlinks t)
 
 ;; dired
+(setq insert-directory-program "gls")
 (setq dired-kill-when-opening-new-dired-buffer t
       dired-listing-switches "-alh"
       dired-mouse-drag-files t)
@@ -230,13 +231,6 @@
 
 (require 'move-text)
 (move-text-default-bindings)
-
-;; company
-
-(use-package company
-  :ensure t
-  :config
-  (global-company-mode))
 
 ;; avy jump
 

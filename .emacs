@@ -51,7 +51,7 @@
 (setq vc-follow-symlinks t)
 
 ;; dired
-(setq insert-directory-program "gls")
+(setq insert-directory-program "gls")  ;; for macos (need coreutils)
 (setq dired-kill-when-opening-new-dired-buffer t
       dired-listing-switches "-alh"
       dired-mouse-drag-files t)

@@ -10,3 +10,5 @@
 
 .local/bin/git-backup|symlink|
 .local/bin/greek|symlink|
+
+Library/Application Support/Übersicht/widgets/servers.jsx|symlink|

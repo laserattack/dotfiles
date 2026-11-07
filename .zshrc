@@ -86,5 +86,10 @@ brew() {
   command brew "$@"
 }
 
+strace() {
+  PYTHONPATH="$HOME/projects/strace-macos:$(xcrun lldb -P)" \
+    /usr/bin/python3 -m strace_macos "$@"
+}
+
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 export PATH="/opt/homebrew/opt/flex/bin:$PATH"

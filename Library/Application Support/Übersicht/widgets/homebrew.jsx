@@ -2,7 +2,7 @@ export const refreshFrequency = 60000;
 
 export const command = `
 # Last successful Homebrew upgrade
-STAMP="$HOME/homebrew-last-upgrade"
+STAMP="$HOME/.homebrew-last-upgrade"
 
 if [ -f "$STAMP" ]; then
   LAST=$(cat "$STAMP" 2>/dev/null)

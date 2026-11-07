@@ -77,7 +77,7 @@ brew() {
     local result=$?
 
     if [[ $result -eq 0 ]]; then
-      date +%s > "$HOME/homebrew-last-upgrade"
+      date +%s > "$HOME/.homebrew-last-upgrade"
     fi
 
     return "$result"

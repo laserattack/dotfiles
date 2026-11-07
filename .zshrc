@@ -70,5 +70,21 @@ gacp() {
         git add . && git commit -m "quick update" && git push
     fi
 }
+
+brew() {
+  if [[ "${1:-}" == "upgrade" ]]; then
+    command brew "$@"
+    local result=$?
+
+    if [[ $result -eq 0 ]]; then
+      date +%s > "$HOME/homebrew-last-upgrade"
+    fi
+
+    return "$result"
+  fi
+
+  command brew "$@"
+}
+
 export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 export PATH="/opt/homebrew/opt/flex/bin:$PATH"

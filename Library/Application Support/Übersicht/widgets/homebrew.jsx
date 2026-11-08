@@ -14,7 +14,12 @@ if [ -f "$STAMP" ]; then
       ;;
     *)
       if [ "$LAST" -le "$NOW" ]; then
-        DAYS=$(( (NOW - LAST) / 86400 ))
+        # Compare local calendar dates, independent of elapsed hours and DST.
+        LAST_DATE=$(date -r "$LAST" +%Y-%m-%d)
+        NOW_DATE=$(date -r "$NOW" +%Y-%m-%d)
+        LAST_DAY=$(TZ=UTC date -j -f "%Y-%m-%d %H:%M:%S" "$LAST_DATE 00:00:00" +%s)
+        NOW_DAY=$(TZ=UTC date -j -f "%Y-%m-%d %H:%M:%S" "$NOW_DATE 00:00:00" +%s)
+        DAYS=$(( (NOW_DAY - LAST_DAY) / 86400 ))
         echo "BREW|$DAYS|OK"
       else
         echo "BREW|0|UNKNOWN"

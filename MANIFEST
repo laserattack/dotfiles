@@ -12,3 +12,4 @@
 .local/bin/greek|symlink|
 
 Library/Application Support/Übersicht/widgets/homebrew.jsx|symlink|
+Library/Application Support/Übersicht/widgets/uptime.jsx|symlink|

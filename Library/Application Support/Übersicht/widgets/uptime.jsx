@@ -17,6 +17,15 @@ export const className = `
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 `;
 
+const colors = {
+  green: "#36d987",
+  yellow: "#ffbd59",
+  red: "#ff606b",
+  muted: "#999",
+};
+
+const minutesPerWeek = 7 * 24 * 60;
+
 export const render = ({ output, error }) => {
   const minutesText = (output || "").trim();
   const known = !error && /^\d+$/.test(minutesText);
@@ -29,7 +38,13 @@ export const render = ({ output, error }) => {
     : hours > 0
       ? `${hours}h ${minutes}m`
       : `${minutes}m`;
-  const color = known ? "#36d987" : "#999";
+  const color = !known
+    ? colors.muted
+    : totalMinutes <= minutesPerWeek
+      ? colors.green
+      : totalMinutes <= 2 * minutesPerWeek
+        ? colors.yellow
+        : colors.red;
 
   return (
     <div

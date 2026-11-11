@@ -21,9 +21,13 @@
 
 ;; ===== CHANGE SETTINGS =====
 
-;; split window settings
 ;; (setq split-window-preferred-direction 'vertical
-;;       split-height-threshold 40)
+;;       ;; 41 lines -> split top and bottom
+;;       ;; 39 lines -> split left and right
+;;       split-height-threshold 40
+;;       ;; 161 columns -> split left and right
+;;       ;; 159 columns -> split top and bottom
+;;       split-width-threshold 160)
 
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
